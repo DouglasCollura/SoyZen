@@ -1,0 +1,258 @@
+:root {
+  --green: #2A5449;
+  --beige: #C3BDA6;
+  --gray: #9FA4AE;
+  --dark-gray: #373A40;
+  --light-gray: #EDEEF1;
+  --red: #F86060;
+  --gold: #C08E23;
+  --success: #3DBD73;
+
+}
+
+$font-url-thin: '../font/NotoSans-Thin.ttf';
+$font-url-light: '../font/NotoSans-Light.ttf';
+$font-url-regular: '../font/NotoSans-Regular.ttf';
+$font-url-medium: '../font/NotoSans-Medium.ttf';
+$font-url-bold: '../font/NotoSans-Bold.ttf';
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('#{$font-url-thin}') format('truetype');
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('#{$font-url-light}') format('truetype');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('#{$font-url-regular}') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('#{$font-url-medium}') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('#{$font-url-bold}') format('truetype');
+  font-weight: 700;
+}
+
+
+@function calculateRem($size) {
+  $remSize: calc($size / 16px);
+  @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+  line-height: calculateRem($size)*1.5;
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-weight: 400;
+  font-family: 'Noto Sans', sans-serif;
+  @include font-size(16px);
+  scrollbar-width: thin !important;
+  scrollbar-color: #00BCD4 #090c1073 !important;
+
+  *::-webkit-scrollbar {
+    width: 7px !important;
+    height: 7px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #090c1073;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #00BCD4;
+    border-radius: 20px;
+    // border: 3px solid rgba(69,69,69,.09);
+  }
+}
+
+
+html {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100%;
+  height: 100%;
+  font-family: "Noto Sans";
+  color: var(--dark-gray);
+  @include font-size(15px);
+  position: relative;
+  background-color: white !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0px;
+  padding: 0px;
+}
+
+h1 {
+  @include font-size(21px)
+}
+
+h2 {
+  @include font-size(19px)
+}
+
+h3 {
+  @include font-size(17px)
+}
+
+h4 {
+  @include font-size(15px)
+}
+
+h5, p {
+  @include font-size(13px)
+}
+
+// * TEXT
+
+.text-light-gray{
+  color: var(--light-gray) !important;
+}
+
+.text-gray{
+  color: var(--gray) !important;
+}
+
+.text-beige{
+  color: var(--beige) !important;
+}
+
+.text-red{
+  color: var(--red) !important;
+}
+
+.text-success{
+  color: var(--success) !important;
+}
+
+
+
+.splash{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--green);
+  display: grid;
+  place-content: center;
+}
+
+// * BUTTONS
+
+.btn{
+  background: none;
+  border: none;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--green);
+  padding: 6px 25px;
+  width: max-content;
+  height: max-content;
+  &:focus-visible{
+    outline: none;
+  }
+
+
+  &-gold{
+    @extend .btn;
+    background-color: var(--beige);
+    color: white;
+  }
+  &-green{
+    @extend .btn;
+    background-color: var(--green);
+    color: white;
+  }
+  &-white{
+    @extend .btn;
+    background-color: white;
+  }
+  &-blur{
+    @extend.btn;
+    color: white;
+    backdrop-filter: blur(10px);
+    background-color: rgba($color: #FFF, $alpha: 0.3);
+  }
+
+  &-border{
+    @extend .btn;
+    font-weight: 500;
+    outline: 2px solid;
+
+    &-gold{
+      @extend .btn-border;
+      background-color: white;
+      outline-color: var(--beige);
+      color: var(--beige);
+    }
+  }
+
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.btn-link{
+  background: none;
+  border: none;
+  text-decoration: underline;
+}
+
+
+.text-with-border {
+  color: white; /* Color del texto */
+  text-shadow: -0.5px -0.5px 1px rgb(78, 78, 78),
+          0.5px -0.5px 1px rgb(78, 78, 78),
+          -0.5px 0.5px 1px rgb(78, 78, 78),
+          0.5px 0.5px 1px rgb(78, 78, 78); /* Crea un borde negro alrededor del texto */
+}
+
+
+.input-plane{
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--gray);
+  font-weight: 300;
+  outline: none;
+  padding: 5px 15px;
+  text-align: center;
+
+  &::placeholder{
+    text-align: center;
+  }
+}
+
+
