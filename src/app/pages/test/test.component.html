@@ -1,0 +1,47 @@
+<div class="temp-test">
+  <button class="btn" routerLink="../" >
+    <mat-icon class="material-symbols-outlined" > arrow_back </mat-icon>
+  </button>
+  <div class="main">
+    @if(step() > 0){
+      <app-test-progress class="w-full" [percent]="percent()" [title]="title()" />
+    }
+
+    @switch (step()) {
+
+      <!-- Registro Nombre -->
+      @case (0) {
+
+        <div class="content animate__animated animate__slideInRight animate__fast" >
+          <img srcset="/assets/images/isotype.svg" alt="" />
+
+          <h1>Cómo te llamas...</h1>
+
+          <input type="text" class="input-plane" placeholder="Nombre" />
+        </div>
+
+      }
+
+      <!-- Select Feeling -->
+      @case (1){
+        <app-select-feeling />
+      }
+
+      <!-- Select Focus -->
+      @case (2){
+        <app-focus class="w-full" />
+      }
+
+      @case (3){
+        <app-behavior/>
+      }
+
+      @case (4){
+        <app-interests />
+      }
+    }
+
+    <button class="btn-green" (click)="nextStep()" >Continuar</button>
+  </div>
+  <button class="btn-link">Quiero hacerlo después</button>
+</div>

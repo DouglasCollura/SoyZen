@@ -1,0 +1,7 @@
+<div class="card" [ngClass]="{'selected': feeling.selected}">
+  <mat-icon class="material-symbols-outlined check " > task_alt </mat-icon>
+
+  <img [srcset]="feeling.url_img" alt="">
+
+  <h1> {{feeling.title}} </h1>
+</div>

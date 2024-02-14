@@ -1,0 +1,30 @@
+::ng-deep {
+  .mat-mdc-progress-bar {
+    --mdc-linear-progress-active-indicator-color: var(--beige) !important;
+    --mdc-linear-progress-track-color: var(--light-gray);
+  }
+
+  .mdc-linear-progress__bar-inner {
+    border-radius: 50px;
+  }
+
+  mat-progress-bar {
+    --mdc-linear-progress-active-indicator-height: 5px;
+    --mdc-linear-progress-track-height: 5px;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+  }
+}
+
+.test_progress_content{
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+  button{
+    padding: 5px 10px;
+  }
+}

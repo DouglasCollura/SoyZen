@@ -12,4 +12,8 @@ export const routes: Routes = [
     path:'test',
     loadComponent: () => import('./pages/test/test.component')
   },
+  {
+    path:'send_test_email',
+    loadComponent: () => import('./pages/test/sent_test_email/sent_test_email.component')
+  },
 ];

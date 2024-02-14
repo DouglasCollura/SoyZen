@@ -1,0 +1,43 @@
+.card{
+  display: grid;
+  gap: 10px;
+  position: relative;
+  justify-items: center;
+  cursor: pointer;
+  padding: 20px 2px;
+  min-width: 160px;
+
+  .check{
+    opacity: 0;
+  }
+
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+
+  transition: all 0.15s cubic-bezier(0.46, 0.03, 0.52, 0.96);
+  -webkit-transition: all 0.15s cubic-bezier(0.46, 0.03, 0.52, 0.96);
+  -moz-transition: all 0.15s cubic-bezier(0.46, 0.03, 0.52, 0.96);
+  -ms-transition: all 0.15s cubic-bezier(0.46, 0.03, 0.52, 0.96);
+  -o-transition: all 0.15s cubic-bezier(0.46, 0.03, 0.52, 0.96);
+}
+
+.selected{
+  background-color: #edeef1a8;
+  outline: 2px solid #2a544970;
+  h1{
+    font-weight: 500;
+  }
+  .check{
+    opacity: 1;
+  }
+}
+
+.check{
+  position: absolute;
+  color: var(--success);
+  top: 5px;
+  right: 46px;
+}

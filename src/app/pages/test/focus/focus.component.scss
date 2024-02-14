@@ -1,0 +1,24 @@
+::ng-deep {
+  mat-slider {
+    .mdc-slider__track--active_fill {
+      border-color: var(--green) !important;
+    }
+
+    .mdc-slider__track--inactive {
+      background-color: var(--gray) !important;
+    }
+
+    .mdc-slider__thumb-knob {
+      background-color: var(--green);
+      border-color: var(--green) !important;
+    }
+
+  }
+
+}
+
+.content-focus{
+  width: 100%;
+  display: grid;
+  gap: 20px;
+}

@@ -1,0 +1,24 @@
+.temp-send-test-email{
+  min-height: 100%;
+  display: grid;
+  background-image: url('/assets/images/home.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.7) 30%,
+    rgba(255, 255, 255, 0.15) 75%),
+  url(/assets/images/home.svg);
+  padding: 50px 70px;
+  gap: 40px;
+
+  grid-template-rows: max-content auto auto;
+
+  .content-send{
+    button{
+      width: 90% !important;
+      padding: 10px 20px;
+    }
+  }
+}

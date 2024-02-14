@@ -137,29 +137,29 @@ h5, p {
 
 // * TEXT
 
-.text-light-gray{
+.text-light-gray {
   color: var(--light-gray) !important;
 }
 
-.text-gray{
+.text-gray {
   color: var(--gray) !important;
 }
 
-.text-beige{
+.text-beige {
   color: var(--beige) !important;
 }
 
-.text-red{
+.text-red {
   color: var(--red) !important;
 }
 
-.text-success{
+.text-success {
   color: var(--success) !important;
 }
 
 
 
-.splash{
+.splash {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -170,7 +170,7 @@ h5, p {
 
 // * BUTTONS
 
-.btn{
+.btn {
   background: none;
   border: none;
   font-weight: 500;
@@ -179,38 +179,42 @@ h5, p {
   padding: 6px 25px;
   width: max-content;
   height: max-content;
-  &:focus-visible{
+
+  &:focus-visible {
     outline: none;
   }
 
 
-  &-gold{
+  &-gold {
     @extend .btn;
     background-color: var(--beige);
     color: white;
   }
-  &-green{
+
+  &-green {
     @extend .btn;
     background-color: var(--green);
     color: white;
   }
-  &-white{
+
+  &-white {
     @extend .btn;
     background-color: white;
   }
-  &-blur{
+
+  &-blur {
     @extend.btn;
     color: white;
     backdrop-filter: blur(10px);
     background-color: rgba($color: #FFF, $alpha: 0.3);
   }
 
-  &-border{
+  &-border {
     @extend .btn;
     font-weight: 500;
     outline: 2px solid;
 
-    &-gold{
+    &-gold {
       @extend .btn-border;
       background-color: white;
       outline-color: var(--beige);
@@ -225,7 +229,7 @@ h5, p {
   -o-border-radius: 10px;
 }
 
-.btn-link{
+.btn-link {
   background: none;
   border: none;
   text-decoration: underline;
@@ -233,15 +237,17 @@ h5, p {
 
 
 .text-with-border {
-  color: white; /* Color del texto */
+  color: white;
+  /* Color del texto */
   text-shadow: -0.5px -0.5px 1px rgb(78, 78, 78),
-          0.5px -0.5px 1px rgb(78, 78, 78),
-          -0.5px 0.5px 1px rgb(78, 78, 78),
-          0.5px 0.5px 1px rgb(78, 78, 78); /* Crea un borde negro alrededor del texto */
+    0.5px -0.5px 1px rgb(78, 78, 78),
+    -0.5px 0.5px 1px rgb(78, 78, 78),
+    0.5px 0.5px 1px rgb(78, 78, 78);
+  /* Crea un borde negro alrededor del texto */
 }
 
 
-.input-plane{
+.input-plane {
   background: none;
   border: none;
   border-bottom: 1px solid var(--gray);
@@ -250,9 +256,54 @@ h5, p {
   padding: 5px 15px;
   text-align: center;
 
-  &::placeholder{
+  &::placeholder {
     text-align: center;
   }
 }
+.form-group{
+  position: relative;
+  display: grid;
+  align-items: center;
+}
+
+.input {
+  outline: none;
+  background-color: white;
+  border: none;
+  padding: 7px 15px;
+  font-size: 14px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 
 
+}
+
+.input-icon{
+  position: absolute;
+  color: var(--gray) !important;
+  font-size: 18px;
+  height: 18px !important;
+  width: 18px !important;
+}
+
+
+.input-icon-left{
+  .input{
+    padding-left: 25px;
+  }
+  .input-icon{
+    left: 3px;
+  }
+}
+
+.input-icon-right{
+  .input{
+    padding-right: 25px;
+  }
+  .input-icon{
+    right: 5px;
+  }
+}

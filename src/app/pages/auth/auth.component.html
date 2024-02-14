@@ -1,0 +1,12 @@
+  <div class=" animate__animated animate__fadeIn ">
+
+  <p>auth works! usuario Id: {{userId()}}</p>
+  <button (click)="loadUser(userId() + 1)" >Siguiente</button>
+  <button (click)="loadUser(userId() - 1)" >Atras</button>
+  <h1>{{fullName()}}</h1>
+
+  <img [src]="currentUser()?.avatar" alt="">
+
+</div>
+
+
