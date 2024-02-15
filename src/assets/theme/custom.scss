@@ -70,8 +70,8 @@ $font-url-bold: '../font/NotoSans-Bold.ttf';
   scrollbar-color: #00BCD4 #090c1073 !important;
 
   *::-webkit-scrollbar {
-    width: 7px !important;
-    height: 7px;
+    width: 5px !important;
+    height: 5px;
   }
 
   *::-webkit-scrollbar-track {
@@ -79,7 +79,7 @@ $font-url-bold: '../font/NotoSans-Bold.ttf';
   }
 
   *::-webkit-scrollbar-thumb {
-    background-color: #00BCD4;
+    background-color: var(--green);
     border-radius: 20px;
     // border: 3px solid rgba(69,69,69,.09);
   }
