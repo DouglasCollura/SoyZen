@@ -8,4 +8,13 @@
       <button  [class]="isSelected(interest) ? 'btn-gold' : 'btn-border-gold'" (click)="toogleSelect(interest)" > {{interest.name}} </button>
     }
   </div>
+
+  <button class="justify-self-center"
+    [class]="interestSelected().length > 0 ? 'btn-green' : 'btn-disable' "
+    (click)="interestSelected().length > 0 && nextStep()"
+
+  id="btn-continue">Continuar</button>
+
+
+
 </div>

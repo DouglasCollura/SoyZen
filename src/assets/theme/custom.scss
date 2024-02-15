@@ -181,7 +181,11 @@ h5, p {
   color: var(--success) !important;
 }
 
-
+.text-error{
+  position: absolute;
+  bottom: -25px;
+  color: var(--red);
+}
 
 .splash {
   position: absolute;
@@ -208,7 +212,11 @@ h5, p {
     outline: none;
   }
 
-
+  &-disable{
+    @extend .btn;
+    color: white;
+    background-color: var(--gray)
+  }
   &-gold {
     @extend .btn;
     background-color: var(--beige);
@@ -296,6 +304,7 @@ h5, p {
   position: relative;
   display: grid;
   align-items: center;
+  margin-bottom: 25px;
 }
 
 .input {

@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output, inject, signal } from '@angular/core';
 import { FeelingCardComponent } from '../feeling_card/feeling_card.component';
 import { MatIconModule } from '@angular/material/icon';
 import { Feelings } from '@interfaces/feelings.interface';
 import { data_feeling } from '@shared/helpers/data_feeling.component';
+import { TestService } from '@services/test.service';
 @Component({
   selector: 'app-select-feeling',
   standalone: true,
@@ -18,13 +19,27 @@ import { data_feeling } from '@shared/helpers/data_feeling.component';
 })
 export class SelectFeelingComponent {
 
+  private testService = inject(TestService)
+  @Output() nextStepEmitter = new EventEmitter<boolean>();
+
   public feelings = signal<Feelings[]>(data_feeling);
+  public feeling = signal<Feelings | null>(null);
+  public test = this.testService.test;
+
 
   selectFeel(feeling:Feelings){
     const index = this.feelings().findIndex((value)=> value.url_img == feeling.url_img);
+
+    this.feeling.set(feeling);
+
     this.feelings.update(()=> {
       const new_feelings:Feelings | any = Object.values({...data_feeling,[index]:{...feeling, selected:true}});
       return new_feelings;
     })
+  }
+
+  nextStep(){
+    this.testService.test.update(value=> ({...value, feeling:this.feeling()!}));
+    this.nextStepEmitter.emit(true);
   }
  }

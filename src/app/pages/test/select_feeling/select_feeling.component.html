@@ -1,10 +1,14 @@
-<div class="text-center my-9">
-  <h3 class="text-gray" >Hola, michelle</h3>
-  <h1 class="font-medium" >¿Cómo te sientes hoy?</h1>
-</div>
+<div class="temp-select-feeling">
+  <div class="text-center my-9">
+    <h3 class="text-gray">Hola, {{test().name}} </h3>
+    <h1 class="font-medium">¿Cómo te sientes hoy?</h1>
+  </div>
 
-<div class=" list-cards animate__animated animate__slideInRight animate__fast">
-  @for (feeling of feelings(); track $index) {
+  <div class="list-cards animate__animated animate__slideInRight animate__fast">
+    @for (feeling of feelings(); track $index) {
     <app-feeling-card [feeling]="feeling" (click)="selectFeel(feeling)" />
-  }
+    }
+  </div>
+
+  <button class="mx-auto" [class]="feeling() ? 'btn-green' : 'btn-disable' " (click)="feeling() && nextStep()" id="btn-continue">Continuar</button>
 </div>

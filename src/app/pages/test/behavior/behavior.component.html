@@ -1,4 +1,4 @@
-<div class="content-focus animate__animated animate__slideInRight animate__fast" >
+<div class="content-behavior animate__animated animate__slideInRight animate__fast" >
 
   <h1 class="text-2xl text-center" >¿Cuánto valoras la amabilidad y el trato respetuoso hacia los demás?</h1>
 
@@ -8,5 +8,7 @@
     <button [class]="select() == 2 ? 'btn-gold' : 'btn-border-gold'" (click)="select.set(2)" >Hay cosas más valiosas</button>
     <button [class]="select() == 3 ? 'btn-gold' : 'btn-border-gold'" (click)="select.set(3)" >Me preocupo más por mí</button>
   </div>
+
+  <button  class="btn-green justify-self-center" id="btn-continue" (click)="nexStep()" >Continuar</button>
 
 </div>

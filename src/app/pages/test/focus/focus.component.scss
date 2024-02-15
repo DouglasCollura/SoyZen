@@ -20,5 +20,10 @@
 .content-focus{
   width: 100%;
   display: grid;
-  gap: 20px;
+  gap: 25px;
+
+  #btn-continue{
+    width: 80% !important;
+    margin-top: 25px;
+  }
 }

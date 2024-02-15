@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, signal, effect, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal, effect, computed, inject, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { TestService } from '@services/test.service';
 
 @Component({
   selector: 'app-focus',
@@ -18,6 +19,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FocusComponent {
+
+  private testService = inject(TestService)
+  @Output() nextStepEmitter = new EventEmitter<boolean>();
 
   constructor() {
     this.percent.setValue(0);
@@ -37,24 +41,12 @@ export class FocusComponent {
       this.feelings_data.hard :
       this.percentSignal()! >= 30 && this.percentSignal()! <= 70 ?
         this.feelings_data.medium : this.feelings_data.easy
+  })
+
+  nexStep(){
+    this.testService.test.update(value => ({...value, focus: this.percent.value }));
+    this.nextStepEmitter.emit(true);
   }
 
-    //   {
-    //   hard:{
-    //     url:"assets/images/feelings/simple_estres.svg",
-    //   },
-    //   medium:{
-    //     url:"assets/images/feelings/simple_not_sure.svg",
-    //   },
-    //   easy:{
-    //     url:"assets/images/feelings/simple_entusiasmado.svg",
-    //   }
-    // }
-  )
-
-
-  changeValue(event: any) {
-    console.log(event)
-  }
 
 }

@@ -7,6 +7,8 @@ import { TestProgressComponent } from './test_progress/test_progress.component';
 import { FocusComponent } from './focus/focus.component';
 import { BehaviorComponent } from './behavior/behavior.component';
 import { InterestsComponent } from './interests/interests.component';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TestService } from '@services/test.service';
 
 @Component({
   selector: 'app-test',
@@ -19,7 +21,8 @@ import { InterestsComponent } from './interests/interests.component';
     FocusComponent,
     RouterModule,
     BehaviorComponent,
-    InterestsComponent
+    InterestsComponent,
+    ReactiveFormsModule
   ],
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.scss','./test-mobile.component.scss'],
@@ -30,10 +33,16 @@ import { InterestsComponent } from './interests/interests.component';
 export default class TestComponent {
 
   private router = inject(Router);
+  private testService = inject(TestService)
+
+  public name = new FormControl('',Validators.required);
 
   public step = signal<number>(0);
   public percent = signal<number>(0);
   public title = signal<string>('');
+
+
+  public test = this.testService.test;
 
   nextStep(){
     if(this.step() == 4){
@@ -54,7 +63,18 @@ export default class TestComponent {
 
     setTimeout(()=>{
       this.percent.update(value=>value+25);
-    },300)
+    },200)
   }
+
+  formInvalid(){
+    return this.name.invalid && this.name.touched
+  }
+
+  canNext(){
+    if(this.name.invalid){this.name.markAllAsTouched(); return;}
+    this.testService.test.update(test=> ({...test,name:this.name.value!}));
+    this.nextStep()
+  }
+
 
 }

@@ -1,47 +1,45 @@
 <div class="temp-test">
-  <button class="btn" routerLink="../" >
-    <mat-icon class="material-symbols-outlined" > arrow_back </mat-icon>
+  <button class="btn" routerLink="../">
+    <mat-icon class="material-symbols-outlined"> arrow_back </mat-icon>
   </button>
   <div class="main">
+
+
     @if(step() > 0){
-      <app-test-progress class="w-full" [percent]="percent()" [title]="title()" />
+    <app-test-progress class="w-full" [percent]="percent()" [title]="title()" />
+    } @switch (step()) {
+
+    <!-- Registro Nombre -->
+    @case (0) {
+
+    <div class="content animate__animated animate__slideInRight animate__fast">
+      <img srcset="/assets/images/isotype.svg" alt="" />
+
+      <h1>Cómo te llamas...</h1>
+      <div class="form-group">
+        <input type="text" class="input-plane" [formControl]="name" placeholder="Nombre" />
+        <p *ngIf="formInvalid()" class="text-error">Campo requerido</p>
+      </div>
+
+    </div>
+
+    <button  class="btn-green" (click)="canNext()">Continuar</button>
+
     }
 
-    @switch (step()) {
-
-      <!-- Registro Nombre -->
-      @case (0) {
-
-        <div class="content animate__animated animate__slideInRight animate__fast" >
-          <img srcset="/assets/images/isotype.svg" alt="" />
-
-          <h1>Cómo te llamas...</h1>
-
-          <input type="text" class="input-plane" placeholder="Nombre" />
-        </div>
-
-      }
-
-      <!-- Select Feeling -->
-      @case (1){
-        <app-select-feeling />
-      }
-
-      <!-- Select Focus -->
-      @case (2){
-        <app-focus class="w-full" />
-      }
-
-      @case (3){
-        <app-behavior/>
-      }
-
-      @case (4){
-        <app-interests />
-      }
+    <!-- Select Feeling -->
+    @case (1){
+    <app-select-feeling class="w-full" (nextStepEmitter)="nextStep()" />
     }
 
-    <button class="btn-green" (click)="nextStep()" >Continuar</button>
+    <!-- Select Focus -->
+    @case (2){
+      <app-focus class="w-full" (nextStepEmitter)="nextStep()" />
+    } @case (3){
+      <app-behavior (nextStepEmitter)="nextStep()" />
+    } @case (4){
+      <app-interests (nextStepEmitter)="nextStep()" />
+    } }
   </div>
   <button class="btn-link">Quiero hacerlo después</button>
 </div>
