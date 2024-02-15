@@ -22,7 +22,7 @@ import { InterestsComponent } from './interests/interests.component';
     InterestsComponent
   ],
   templateUrl: './test.component.html',
-  styleUrl: './test.component.scss',
+  styleUrls: ['./test.component.scss','./test-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 

@@ -1,0 +1,19 @@
+@media (width < 500px) {
+
+  .temp-test {
+    padding: 10px 2px;
+    grid-template-rows: max-content auto max-content;
+
+    .main{
+      width:100%;
+    }
+
+    .btn-link{
+      margin-left: 15px;
+      margin-bottom: 15px;
+      justify-self: start;
+
+    }
+  }
+
+}

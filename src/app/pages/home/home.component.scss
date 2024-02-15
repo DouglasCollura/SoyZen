@@ -2,7 +2,8 @@
   min-height: 100%;
   display: grid;
   grid-template-rows: max-content auto;
-
+  height: 100%;
+  overflow: auto;
 
   .header {
     padding: 20px 40px;

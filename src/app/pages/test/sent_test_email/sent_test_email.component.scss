@@ -12,7 +12,8 @@
   url(/assets/images/home.svg);
   padding: 50px 70px;
   gap: 40px;
-
+  height: 100%;
+  overflow: auto;
   grid-template-rows: max-content auto auto;
 
   .content-send{

@@ -135,6 +135,30 @@ h5, p {
   @include font-size(13px)
 }
 
+@media (width < 500px) {
+
+  h1 {
+    @include font-size(20px)
+  }
+
+  h2 {
+    @include font-size(18px)
+  }
+
+  h3 {
+    @include font-size(16px)
+  }
+
+  h4 {
+    @include font-size(14px)
+  }
+
+  h5, p {
+    @include font-size(12px)
+  }
+
+}
+
 // * TEXT
 
 .text-light-gray {
@@ -233,6 +257,14 @@ h5, p {
   background: none;
   border: none;
   text-decoration: underline;
+}
+
+@media (width < 500px) {
+  .btn{
+    padding: 4px 20px;
+
+    font-size: 13px !important;
+  }
 }
 
 

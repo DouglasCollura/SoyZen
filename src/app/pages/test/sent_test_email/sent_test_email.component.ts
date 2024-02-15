@@ -12,7 +12,7 @@ import { RouterModule } from '@angular/router';
     RouterModule,
   ],
   templateUrl: './sent_test_email.component.html',
-  styleUrl: './sent_test_email.component.scss',
+  styleUrls: ['./sent_test_email.component.scss', './send_test_email-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SentTestEmailComponent { }
