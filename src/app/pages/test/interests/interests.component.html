@@ -5,7 +5,7 @@
 
   <div class="list-interests">
     @for (interest of interestList; track $index) {
-      <button  [class]="isSelected(interest) ? 'btn-gold' : 'btn-border-gold'" (click)="toogleSelect(interest)" > {{interest.name}} </button>
+      <button  [class]="isSelected(interest) ? 'btn-beige' : 'btn-border-beige'" (click)="toogleSelect(interest)" > {{interest.name}} </button>
     }
   </div>
 

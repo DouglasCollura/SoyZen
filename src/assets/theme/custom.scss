@@ -222,9 +222,15 @@ h5, p {
     color: white;
     background-color: var(--gray)
   }
-  &-gold {
+  &-beige {
     @extend .btn;
     background-color: var(--beige);
+    color: white;
+  }
+
+  &-gold {
+    @extend .btn;
+    background-color: var(--gold);
     color: white;
   }
 
@@ -252,6 +258,13 @@ h5, p {
     outline: 2px solid;
 
     &-gold {
+      @extend .btn-border;
+      background-color: white;
+      outline-color: var(--gold);
+      color: var(--gold);
+    }
+
+    &-beige {
       @extend .btn-border;
       background-color: white;
       outline-color: var(--beige);

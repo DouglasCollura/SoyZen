@@ -1,0 +1,61 @@
+.temp-create-account-success {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: max-content max-content auto;
+  height: 100%;
+  overflow: auto;
+  gap: 70px;
+
+  .header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 70px;
+
+    .close {
+      width: 40px;
+      height: 40px;
+
+      mat-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 40px;
+      }
+
+    }
+  }
+
+  .top {
+    justify-self: center;
+    padding-top: 60px;
+  }
+
+  .content-info {
+    background-image: url('/assets/images/background_green.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    gap: 10px;
+    padding: 20px;
+    border-top-right-radius: 40px;
+    border-top-left-radius: 40px;
+    grid-template-rows: auto max-content;
+
+    .info {
+      display: grid;
+      grid-template-rows: auto max-content;
+      justify-content: center;
+    }
+
+    * {
+      color: white;
+    }
+
+    .btn-gold {
+      width: 100%;
+      padding: 10px;
+    }
+  }
+}

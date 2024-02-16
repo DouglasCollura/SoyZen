@@ -26,6 +26,10 @@ export const routes: Routes = [
       {
         path:'login',
         loadComponent: () => import('./pages/auth/login/login.component')
+      },
+      {
+        path:'account-success',
+        loadComponent: () => import('./pages/auth/signup/create_account_success/create_account_success.component')
       }
     ]
   }
