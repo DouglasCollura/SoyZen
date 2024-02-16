@@ -1,0 +1,84 @@
+.temp-signup{
+  min-height: 100%;
+  display: grid;
+  background-image: url('/assets/images/home.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.90) 40%, rgba(255, 255, 255, 0.72) 100%), url('/assets/images/home.svg');
+  padding: 20px 70px;
+  grid-template-rows: max-content auto 15%;
+  height: 100%;
+  overflow: auto;
+
+  .header{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    .close{
+      width: 40px;
+      height: 40px;
+      mat-icon{
+        width: 40px;
+        height: 40px;
+        font-size: 40px;
+      }
+
+    }
+  }
+
+  .content{
+    width: 100%;
+    max-width: 450px;
+    margin: 0px auto;
+    margin-top: 80px;
+    display: grid;
+    gap: 10px;
+    align-content: start;
+
+    .form{
+      margin: 30px 0px;
+      display: grid;
+      gap: 5px;
+
+      #btn-signup{
+        width: 100%;
+        padding: 13px;
+      }
+    }
+  }
+
+
+  .btn-group-media{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    gap: 10px;
+
+    .btn{
+      background-color: white;
+      width: max-content;
+      padding: 10px 40px;
+      display: flex;
+      img{
+        width: 30px;
+        height: 30px;
+      }
+      border-radius: 10px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      -ms-border-radius: 10px;
+      -o-border-radius: 10px;
+    }
+
+  }
+
+  #signup{
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 2px;
+    text-decoration: underline;
+  }
+}

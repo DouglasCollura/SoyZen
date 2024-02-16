@@ -16,4 +16,17 @@ export const routes: Routes = [
     path:'send_test_email',
     loadComponent: () => import('./pages/test/sent_test_email/sent_test_email.component')
   },
+  {
+    path:'auth',
+    children:[
+      {
+        path:'signup',
+        loadComponent: () => import('./pages/auth/signup/signup.component')
+      },
+      {
+        path:'login',
+        loadComponent: () => import('./pages/auth/login/login.component')
+      }
+    ]
+  }
 ];

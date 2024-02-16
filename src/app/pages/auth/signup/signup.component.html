@@ -1,0 +1,61 @@
+<div class="temp-signup">
+
+  <header class="header">
+    <img srcset="/assets/images/head_logo.svg" alt="">
+
+    <button class="btn close" routerLink="/" > <mat-icon class="material-icons-outlined icon-200">close</mat-icon> </button>
+  </header>
+
+  <div class="content">
+    <h1 class="text-3xl font-medium" >Registro con Email</h1>
+
+    <h3 class="text-gray-dark" >Tendrás acceso Freemium en nuestra web</h3>
+
+
+    <form class="form" [formGroup]="form" >
+
+      <div class="form-group input-icon-right">
+        <input type="text" class="input" formControlName="email" placeholder="Email">
+        <mat-icon class="input-icon material-icons-outlined" >email</mat-icon>
+      </div>
+
+      <div class="form-group input-icon-right">
+        <input type="password" class="input" formControlName="password" placeholder="Contraseña">
+        <mat-icon class="input-icon material-icons-outlined" >visibility</mat-icon>
+      </div>
+
+      <button class="btn-green" id="btn-signup" > Crear cuenta </button>
+
+    </form>
+
+    <mat-divider></mat-divider>
+
+    <div class="grid gap-5">
+      <h4 class="text-center">O regístrate con:</h4>
+
+      <div class="btn-group-media">
+        <button class="btn" >
+          <img srcset="/assets/images/google_icon.svg" alt="">
+        </button>
+
+        <button class="btn" >
+          <img srcset="/assets/images/facebook_icon.svg" alt="">
+        </button>
+
+        <button class="btn" >
+          <img srcset="/assets/images/apple_icon.svg" alt="">
+        </button>
+      </div>
+
+      <div class="flex justify-center">
+        <h4 class="text-center">Ya tengo cuenta,</h4>
+          <button id="login" routerLink="/auth/login" >INICIA SESIÓN</button>
+      </div>
+    </div>
+
+    <h5 class="font-medium text-center mt-10">
+      Al crear la cuenta aceptas nuestros <button class="text-blue underline " >Términos y Condiciones</button> , y confirmas haber leído y comprendido la <button class="text-blue underline" >Política de Privacidad</button>
+    </h5>
+  </div>
+
+</div>

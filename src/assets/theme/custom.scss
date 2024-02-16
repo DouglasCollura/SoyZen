@@ -188,6 +188,10 @@ h5, p {
   color: var(--red);
 }
 
+.text-blue{
+  color: #5192E9 !important;
+}
+
 .splash {
   position: absolute;
   width: 100%;
@@ -312,15 +316,14 @@ h5, p {
   outline: none;
   background-color: white;
   border: none;
-  padding: 7px 15px;
+  padding: 12px 17px;
   font-size: 14px;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-
-
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  outline: 1.5px solid var(--gray);
 }
 
 .input-icon{
@@ -346,6 +349,13 @@ h5, p {
     padding-right: 25px;
   }
   .input-icon{
-    right: 5px;
+    right: 10px;
   }
+}
+.icon-200{
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 200,
+  'GRAD' 0,
+  'opsz' 24
 }
