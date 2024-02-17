@@ -1,0 +1,74 @@
+.temp-subscribe_operator{
+  min-height: 100%;
+  display: grid;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  grid-template-rows: max-content auto max-content ;
+  height: 100%;
+  overflow: auto;
+  gap: 10px;
+  .header{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .main{
+    display: grid;
+    width: 100%;
+    max-width: 550px;
+    margin: auto;
+    gap: 30px;
+    padding: 20px 70px;
+
+    .card{
+      display: grid;
+      width: 100%;
+      padding:10px 20px;
+      outline: 1px solid var(--gray);
+      cursor: pointer;
+      place-content: center;
+
+      border-radius: 10px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      -ms-border-radius: 10px;
+      -o-border-radius: 10px;
+
+      transition: all ease-in-out 0.1s ;
+      -webkit-transition: all ease-in-out 0.1s ;
+      -moz-transition: all ease-in-out 0.1s ;
+      -ms-transition: all ease-in-out 0.1s ;
+      -o-transition: all ease-in-out 0.1s ;
+    }
+  }
+
+
+  .info-suscription{
+    background-image: url('/assets/images/background_green.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    display: flex;
+    gap: 40px;
+    *{
+      color: white;
+    }
+    padding: 40px;
+    justify-content: center;
+    .list{
+      max-width: 500px;
+      display: grid;
+      gap: 10px;
+      h4{
+        width: 100%;
+      }
+    }
+
+    border-top-right-radius:40px;
+    border-top-left-radius: 40px;
+  }
+}

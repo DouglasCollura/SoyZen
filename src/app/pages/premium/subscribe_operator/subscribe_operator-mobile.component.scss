@@ -1,0 +1,34 @@
+@media (width < 500px) {
+
+  .temp-subscribe_operator{
+
+    .header{
+      padding: 10px;
+      .btn{
+        padding: 5px !important;
+      }
+    }
+
+    .main{
+      padding: 0px 20px ;
+      padding-bottom: 30px;
+
+      .card{
+        img{
+          width: 200px;
+        }
+      }
+    }
+
+    .info-suscription{
+      display: grid !important;
+      gap: 20px;
+      padding: 20px;
+
+      h1{
+        text-align: center;
+      }
+    }
+  }
+
+}

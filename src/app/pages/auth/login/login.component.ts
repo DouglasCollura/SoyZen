@@ -16,7 +16,7 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+  styleUrls: ['./login.component.scss','./login-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class LoginComponent {

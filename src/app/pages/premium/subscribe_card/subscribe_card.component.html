@@ -1,0 +1,88 @@
+<div class="temp-subscribe_card  animate__animated animate__fadeIn ">
+  <header class="header">
+    <button class="btn close" routerLink="/premium" > <mat-icon class="material-icons-outlined icon-200">arrow_back</mat-icon> </button>
+  </header>
+
+  <div class="main">
+    <div class="grid">
+      <h1 class="text-2xl sm:text-4xl">Acceso Premium</h1>
+      <h4 class="text-gray" >Selecciona un plan para disfrutar de contenido exclusivo.</h4>
+    </div>
+
+
+    <form [formGroup]="form" class="grid gap-3">
+
+      <div class="card" (click)="setValue(1)" [class]="isSelected(1) ? 'active' : ''">
+        <div class="flex gap-3">
+          <input type="radio" id="type-pay-1" formControlName="type_pay" [value]="1"  class="colored-radio" >
+          <div class="grid gap-2">
+            <label class="font-semibold leading-tight text-lg" for="type-pay-1">$59.98 por año</label>
+
+            <div class="flex gap-2">
+              <span class="text-sm line-through" >95,76%</span>
+              <span class="text-sm font-semibold" >  Ahorras 40%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid gap-2 content-start">
+          <span class="text-end" >$4.99 al mes</span>
+          <button class="btn-gold">Best Value</button>
+        </div>
+      </div>
+
+      <div class="card" (click)="setValue(2)" [class]="isSelected(2) ? 'active' : ''" >
+        <div class="flex gap-3">
+          <input type="radio" id="type-pay-2" formControlName="type_pay" [value]="2"  class="colored-radio" >
+          <div class="grid gap-2">
+            <label class="font-semibold leading-tight text-lg" for="type-pay-2">$7.98 al mes</label>
+
+            <h4 class="text-gray" >Primeros 7 días gratis</h4>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card" (click)="setValue(3)" [class]="isSelected(3) ? 'active' : ''" >
+        <div class="flex gap-3">
+          <input type="radio" id="type-pay-3" formControlName="type_pay" [value]="3"  class="colored-radio" >
+          <div class="grid gap-2">
+            <label class="font-semibold leading-tight text-lg" for="type-pay-3">$4.99 semanal</label>
+            <h4 class="text-gray" >Primeros 2 días gratis</h4>
+          </div>
+        </div>
+
+      </div>
+    </form>
+
+    <button class="btn-green" >Suscribirme</button>
+  </div>
+
+  <div class="info-suscription"  style="view-transition-name: img-transition-background-green" >
+
+      <h1 class="text-lg sm:text-2xl" >¿Qué obtienes con
+        tu suscripción?</h1>
+
+      <div class="grid list">
+        <div class="flex gap-1">
+          <mat-icon class="material-icons-outlined" >check</mat-icon>
+          <h4>Acceso al catálogo completo de clases de yoga y meditación, incluyendo sesiones especiales dictadas por expertos.</h4>
+        </div>
+
+        <div class="flex gap-1">
+          <mat-icon class="material-icons-outlined" >check</mat-icon>
+          <h4>Descarga directa de ebooks y audioguías para trabajar en tu bienestar.</h4>
+        </div>
+
+        <div class="flex gap-1">
+          <mat-icon class="material-icons-outlined" >check</mat-icon>
+          <h4>Lectura del taróscopo del fin de semana todos los jueves. ¡Directamente en tu correo!</h4>
+        </div>
+
+        <div class="flex gap-1">
+          <mat-icon class="material-icons-outlined" >check</mat-icon>
+          <h4>Funciones avanzadas como seguimiento de progreso, mood tracker y programas adaptados a tus necesidades.</h4>
+        </div>
+      </div>
+  </div>
+</div>

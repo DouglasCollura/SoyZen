@@ -1,0 +1,30 @@
+@media (width < 500px) {
+
+.temp-signup{
+  padding: 20px 10px;
+  grid-template-rows: max-content auto max-content;
+  .header{
+    img{
+      width: 140px;
+    }
+
+    .close{
+      width: 20px;
+      height: 20px;
+      mat-icon{
+        width: 20px;
+        height: 20px;
+        font-size: 20px;
+      }
+
+    }
+  }
+
+  .content{
+    margin-top: 40px !important;
+    gap: 5px !important;
+
+  }
+}
+
+}

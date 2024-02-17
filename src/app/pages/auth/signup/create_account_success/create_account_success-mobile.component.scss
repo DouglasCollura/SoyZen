@@ -1,0 +1,32 @@
+@media (width < 500px) {
+
+  .temp-create-account-success {
+    .header{
+      padding: 15px 10px;
+      img{
+        width: 140px;
+      }
+
+      .close{
+        display: grid;
+        place-content: center;
+        width: 20px;
+        height: 20px;
+        mat-icon{
+          width: 20px;
+          height: 20px;
+          font-size: 20px;
+        }
+
+      }
+    }
+
+    .top {
+      justify-self: start;
+      padding: 15px;
+      padding-top: 50px;
+
+    }
+  }
+
+}

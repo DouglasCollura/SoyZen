@@ -32,5 +32,22 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/auth/signup/create_account_success/create_account_success.component')
       }
     ]
+  },
+  {
+    path:"premium",
+    children:[
+      {
+        path:"",
+        loadComponent: () => import('./pages/premium/enter_premium/enter_premium.component')
+      },
+      {
+        path:"subscribe_card",
+        loadComponent: () => import('./pages/premium/subscribe_card/subscribe_card.component')
+      },
+      {
+        path:"subscribe_operator",
+        loadComponent: () => import('./pages/premium/subscribe_operator/subscribe_operator.component')
+      }
+    ]
   }
 ];

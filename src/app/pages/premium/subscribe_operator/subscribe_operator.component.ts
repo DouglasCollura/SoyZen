@@ -4,15 +4,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-create-account-success',
+  selector: 'app-subscribe-operator',
   standalone: true,
   imports: [
     CommonModule,
     MatIconModule,
     RouterModule
   ],
-  templateUrl: './create_account_success.component.html',
-  styleUrls: ['./create_account_success.component.scss', 'create_account_success-mobile.component.scss'],
+  templateUrl: './subscribe_operator.component.html',
+  styleUrls: ['./subscribe_operator.component.scss', 'subscribe_operator-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class CreateAccountSuccessComponent { }
+export default class SubscribeOperatorComponent { }

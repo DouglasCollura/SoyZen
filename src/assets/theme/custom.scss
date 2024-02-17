@@ -243,6 +243,7 @@ h5, p {
   &-white {
     @extend .btn;
     background-color: white;
+    color: var(--green) !important
   }
 
   &-blur {
@@ -371,4 +372,53 @@ h5, p {
   'wght' 200,
   'GRAD' 0,
   'opsz' 24
+}
+
+input[type=radio]{
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 50%;
+  outline: 1.5px solid #A6A6A6;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+
+input[type=radio]:checked{
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+  position: relative;
+  background-color:white;
+  outline: none;
+  border: 1px solid var(--gray);
+}
+input[type=radio]:checked+label, input[type=radio]:checked+div>label{
+  color: var(--green);
+}
+
+input[type=radio]:checked:before{
+  content: '';
+  align-self: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  padding: 0px;
+  font-size: 14px;
+  background-color: var(--green);
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
