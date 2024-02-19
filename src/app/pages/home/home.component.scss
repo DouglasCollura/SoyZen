@@ -12,6 +12,10 @@
     align-items: center;
     justify-content: space-between;
 
+    img{
+      width: 180px;
+    }
+
     .buttons-group {
       align-items: center;
       display: flex;
@@ -20,7 +24,7 @@
   }
 
   .main {
-    background-image: url('/assets/images/home.svg');
+    background-image: url('/assets/images/home.webp');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
