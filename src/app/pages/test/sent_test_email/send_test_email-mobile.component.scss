@@ -4,17 +4,20 @@
   .temp-send-test-email {
 
     padding: 20px 10px;
-
-
-
-  }
-  .content-send{
-    button{
-      width: 100% !important;
-      padding: 10px 20px;
+    grid-template-rows: auto max-content;
+    .content-send{
+      button{
+        width: 100% !important;
+        padding: 10px 20px;
+      }
+      align-content: center;
     }
+
+    #btn-close{
+      display: none !important;
+    }
+
   }
-  .btn{
-    display: none !important;
-  }
+
+
 }
