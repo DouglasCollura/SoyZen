@@ -3,7 +3,11 @@
   <header class="header">
     <img srcset="/assets/images/head_logo.webp" alt="">
 
-    <button class="btn close" routerLink="/" > <mat-icon class="material-icons-outlined icon-200">close</mat-icon> </button>
+    <button class="btn close" routerLink="/" > 
+
+      <mat-icon svgIcon="my-cancel"></mat-icon>
+
+    </button>
   </header>
 
   <div class="content">
@@ -18,8 +22,8 @@
       </div>
 
       <div class="form-group input-icon-right">
-        <input type="password" class="input" formControlName="password" placeholder="Contraseña">
-        <mat-icon class="input-icon material-icons-outlined" >visibility</mat-icon>
+        <input type="{{ passwordVisible ? 'text' : 'password' }}" class="input" formControlName="password" placeholder="Contraseña">
+        <mat-icon (click)="togglePasswordVisibility()" class="input-icon material-icons-outlined" >{{passwordVisible ? 'visibility_off' : 'visibility'}}</mat-icon>
       </div>
 
       <button class="btn-green" id="btn-signup" > Iniciar Sesión </button>

@@ -3,6 +3,11 @@
   .temp-login{
     padding: 20px 10px;
     grid-template-rows: max-content auto max-content;
+    background-position: top right;
+    background-size: 61%;
+    background-repeat: no-repeat;
+    grid-template-rows: max-content auto max-content;
+    background-image: url(/assets/images/BG-elementos.webp);
     .header{
       img{
         width: 140px;

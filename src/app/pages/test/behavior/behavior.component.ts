@@ -9,7 +9,7 @@ import { TestService } from '@services/test.service';
     CommonModule,
   ],
   templateUrl: './behavior.component.html',
-  styleUrl: './behavior.component.scss',
+  styleUrls: ['./behavior.component.scss','./behavior-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BehaviorComponent {
