@@ -1,0 +1,11 @@
+.temp-zen-today-list{
+  display: grid;
+  padding: 30px;
+  gap: 15px;
+  background-color: var(--background-gray);
+
+  .list{
+    display: flex;
+    gap: 20px;
+  }
+}
