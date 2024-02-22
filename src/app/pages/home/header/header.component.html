@@ -1,0 +1,62 @@
+<div class="temp-header">
+  <img id="logo" srcset="/assets/images/head_logo.webp" alt="">
+  <div class="input-icon-right search">
+    <input type="text" class="input-rounded" placeholder="¿En qué te enfocarás hoy?">
+    <mat-icon class="input-icon material-icons-outlined" >search</mat-icon>
+  </div>
+
+  <div class="options-group">
+    @switch (type_login) {
+      @case ('guest'){
+        <div class="flex gap-3">
+          <button class="btn !font-semibold">
+            Iniciar sesión
+          </button>
+          <button class="btn-beige">
+            Suscríbete
+          </button>
+
+          <button class="btn-user-menu">
+            <mat-icon class="material-icons-outlined text-gold" >account_circle</mat-icon>
+            <img srcset="/assets/images/menu-scale.svg" width="20" alt="">
+          </button>
+        </div>
+      }
+      @case ('freemium') {
+        <div class="flex gap-3">
+          <button class="btn-beige">
+            Suscríbete
+          </button>
+
+          <button class="btn-user-menu">
+            <mat-icon class="material-icons-outlined text-gold" >account_circle</mat-icon>
+            <img srcset="/assets/images/menu-scale.svg" width="20" alt="">
+          </button>
+        </div>
+      }
+    }
+
+  </div>
+</div>
+
+@if(type_login == 'guest'){
+
+}
+@else if(type_login == 'freemium'){
+  <div class="landing-freemium">
+    <div class="grid gap-2">
+      <div class="flex">
+        <h1 class="!font-semibold text-2xl" >Hola</h1>
+        <h1 class="!font-light text-2xl">, Michelle</h1>
+      </div>
+      <mat-divider />
+    </div>
+
+    <div class="grid gap-6 py-16">
+      <h1 class="text-5xl !font-light">Programa de 21 días</h1>
+      <h3>Ya puedes disfrutar de tu programa personalizado.</h3>
+
+      <button class="btn-white" id="see-program" >Ver Programa</button>
+    </div>
+  </div>
+}
