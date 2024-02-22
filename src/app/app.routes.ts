@@ -1,12 +1,11 @@
 import { Routes } from '@angular/router';
-import { AuthComponent } from './pages/auth/auth.component';
-import { HomeComponent } from './pages/home/home.component';
+import { LandingComponent } from './pages/landing/landing.component';
 
 export const routes: Routes = [
 
   {
     path:'',
-    component: HomeComponent
+    component: LandingComponent
   },
   {
     path:'test',
@@ -47,6 +46,15 @@ export const routes: Routes = [
       {
         path:"subscribe_operator",
         loadComponent: () => import('./pages/premium/subscribe_operator/subscribe_operator.component')
+      }
+    ]
+  },
+  {
+    path:'home',
+    children:[
+      {
+        path:'',
+        loadComponent: () => import('./pages/home/home.component')
       }
     ]
   }
