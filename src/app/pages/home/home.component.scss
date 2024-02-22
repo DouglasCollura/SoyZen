@@ -42,29 +42,82 @@
       h1,h3 {
         color: white;
         /* Color del texto */
-        text-shadow: -0.5px -0.5px 1px rgb(78, 78, 78),
-          0.5px -0.5px 1px rgb(78, 78, 78),
-          -0.5px 0.5px 1px rgb(78, 78, 78),
-          0.5px 0.5px 1px rgb(78, 78, 78);
+        // text-shadow: -0.5px -0.5px 1px rgb(78, 78, 78),
+        //   0.5px -0.5px 1px rgb(78, 78, 78),
+        //   -0.5px 0.5px 1px rgb(78, 78, 78),
+        //   0.5px 0.5px 1px rgb(78, 78, 78);
       }
 
       h1{
-        font-size: 60px;
-        line-height: normal;
+        font-family: Noto Sans;
+        font-size: 52px;
         font-weight: 300;
+        line-height: 71px;
+        letter-spacing: 0em;
+        text-align: left;
+        
       }
 
-      button{
-        padding: 10px 50px;
-      }
 
     }
 
     #go_home{
-      align-self: end;
+      // align-self: end;
       justify-self: end;
+      font-family: Noto Sans;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: 0.02em;
+      text-align: center;
+      height: 40px;
+
     }
 
+  }
+
+  .h3medium{
+    font-family: Noto Sans;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-top: 30px;
+
+  }
+
+  .h3hard{
+    font-family: Noto Sans;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 32px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 30px;
+
+  }
+
+  .txt{
+
+    top: 534px;
+    left: 80px;
+    padding: 16px 75px 16px 73px;
+    border-radius: 16px;
+    gap: 10px;
+    font-family: Noto Sans;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22px;
+    letter-spacing: 0.02em;
+    text-align: center;
+
+
+  }
+
+  #center{
+    padding-top: 200px;
+    padding-bottom: 200px;
   }
 
 }
