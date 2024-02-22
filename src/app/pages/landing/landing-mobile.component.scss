@@ -1,0 +1,31 @@
+@media (width < 500px) {
+  .temp-landing {
+    #login{
+      display: none !important;
+    }
+
+    .header{
+      padding: 20px !important;
+      img{
+        width: 140px;
+      }
+    }
+
+    .main {
+      padding: 10px 14px !important;
+      grid-template-rows: auto max-content;
+
+      #center {
+        h1 {
+          font-size: 50px;
+        }
+      }
+    }
+
+
+    #go_home{
+      margin-top: 30px;
+      justify-self: start !important;
+    }
+  }
+}

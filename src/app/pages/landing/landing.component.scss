@@ -1,0 +1,70 @@
+.temp-landing {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: max-content auto;
+  height: 100%;
+  overflow: auto;
+
+  .header {
+    padding: 20px 40px;
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    img{
+      width: 180px;
+    }
+
+    .buttons-group {
+      align-items: center;
+      display: flex;
+      gap: 10px;
+    }
+  }
+
+  .main {
+    background-image: url('/assets/images/home.webp');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    display: grid;
+    padding: 40px 50px;
+    grid-template-rows: auto 15%;
+
+    #center {
+      display: grid;
+      gap: 10px;
+      width: 100%;
+      text-align: start;
+      justify-items: start;
+      align-self: center;
+      h1,h3 {
+        color: white;
+        /* Color del texto */
+        text-shadow: -0.5px -0.5px 1px rgb(78, 78, 78),
+          0.5px -0.5px 1px rgb(78, 78, 78),
+          -0.5px 0.5px 1px rgb(78, 78, 78),
+          0.5px 0.5px 1px rgb(78, 78, 78);
+      }
+
+      h1{
+        font-size: 60px;
+        line-height: normal;
+        font-weight: 300;
+      }
+
+      button{
+        padding: 10px 50px;
+      }
+
+    }
+
+    #go_home{
+      align-self: end;
+      justify-self: end;
+    }
+
+  }
+
+}
