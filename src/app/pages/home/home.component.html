@@ -1,24 +1,43 @@
-<div class="temp-home animate__animated animate__fadeIn ">
-  <header class="header">
-    <img srcset="/assets/images/head_logo.webp" alt="">
+<div class="temp-home animate__animated animate__fadeIn">
+  <app-header />
 
-    <div class="buttons-group">
-      <button class="btn" id="login" routerLink="/auth/login" >Iniciar sesión</button>
-      <button class="btn-beige" routerLink="/auth/signup">Suscríbete</button>
-    </div>
-  </header>
+  <div class="body-home">
+    <section class="filter-option">
+      <mat-chip-listbox multiple="">
+        @for (filter_option of filter_options(); track $index) {
+        <mat-chip-row>
+          {{ filter_option.title }}
+          @if(filter_option.selected){
+          <mat-icon matChipRemove>close</mat-icon>
+          }
+        </mat-chip-row>
+        }
+      </mat-chip-listbox>
+    </section>
 
-  <div class="main">
+    @defer(on viewport){
+    <app-zen-today-list />
+    }@placeholder () {
+      <app-skeleton-section class="overflow-hidden" />
+    }
 
-    <div id="center">
-      <h1>¡Bienvenido a Soy Zen!</h1>
+    @defer(on viewport){
+      <app-collaborators />
+    }@placeholder () {
+      <app-skeleton-section class="overflow-hidden" />
+    }
 
-      <h3>Descubre el camino hacia la calma interior uniéndote a nuestra comunidad.</h3>
-      <h3>¡Realiza nuestro test y obtén un programa especial de 21 días!</h3>
+    @defer(on viewport){
+      <app-taroscope />
+    }@placeholder () {
+      <app-skeleton-section class="overflow-hidden" />
+    }
 
-      <button class="btn-white" routerLink="test" >Comenzar mi camino</button>
-    </div>
+    @defer(on viewport){
+      <app-yogui-life />
+    }@placeholder (){
+      <app-skeleton-section class="overflow-hidden" />
+    }
 
-    <button class="btn-blur" id="go_home" >Ir al inicio</button>
   </div>
 </div>

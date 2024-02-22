@@ -1,70 +1,59 @@
-.temp-home {
-  min-height: 100%;
+.temp-home{
+  height: 100%;
   display: grid;
   grid-template-rows: max-content auto;
-  height: 100%;
-  overflow: auto;
 
-  .header {
-    padding: 20px 40px;
-    display: flex;
 
-    align-items: center;
-    justify-content: space-between;
+  ::ng-deep{
+    .mat-mdc-standard-chip{
 
-    img{
-      width: 180px;
+      background: white !important;
+      outline: 1px solid var(--green);
+
+      border-radius: 6px !important;
+      -webkit-border-radius: 6px !important;
+      -moz-border-radius: 6px !important;
+      -ms-border-radius: 6px !important;
+      -o-border-radius: 6px !important;
     }
+    .mat-mdc-chip-action-label{
+      font-size: 10px !important;
+    }
+    .mat-mdc-standard-chip{
 
-    .buttons-group {
-      align-items: center;
-      display: flex;
-      gap: 10px;
+      background: white !important;
+      outline: 1px solid var(--green);
+
+      border-radius: 6px !important;
+      -webkit-border-radius: 6px !important;
+      -moz-border-radius: 6px !important;
+      -ms-border-radius: 6px !important;
+      -o-border-radius: 6px !important;
+    }
+    .mat-mdc-chip-action-label{
+      font-size: 12px !important;
+      font-weight: 600 !important;
+      color: var(--green);
+    }
+    .selected.mat-mdc-standard-chip{
+      background-color: var(--green) !important;
+    }
+    .selected .mat-mdc-chip-action-label{
+      color: white !important;
+    }
+    .selected mat-icon{
+      color: white !important;
     }
   }
 
-  .main {
-    background-image: url('/assets/images/home.webp');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+
+  .body-home{
     display: grid;
-    padding: 40px 50px;
-    grid-template-rows: auto 15%;
+    align-content: start;
+    gap: 10px;
 
-    #center {
-      display: grid;
-      gap: 10px;
-      width: 100%;
-      text-align: start;
-      justify-items: start;
-      align-self: center;
-      h1,h3 {
-        color: white;
-        /* Color del texto */
-        text-shadow: -0.5px -0.5px 1px rgb(78, 78, 78),
-          0.5px -0.5px 1px rgb(78, 78, 78),
-          -0.5px 0.5px 1px rgb(78, 78, 78),
-          0.5px 0.5px 1px rgb(78, 78, 78);
-      }
-
-      h1{
-        font-size: 60px;
-        line-height: normal;
-        font-weight: 300;
-      }
-
-      button{
-        padding: 10px 50px;
-      }
-
+    .filter-option{
+      padding: 30px;
     }
-
-    #go_home{
-      align-self: end;
-      justify-self: end;
-    }
-
   }
-
 }
