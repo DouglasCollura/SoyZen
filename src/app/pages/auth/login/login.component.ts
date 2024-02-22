@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,9 +22,15 @@ import { RouterModule } from '@angular/router';
 export default class LoginComponent {
 
   private formBuilder = inject(FormBuilder);
+  private router = inject(Router);
 
   public form = this.formBuilder.group({
     email: [null, [Validators.required, Validators.email]],
     password: [null, Validators.required]
   });
+
+  login(){
+    localStorage.setItem('type_login','freemium');
+    this.router.navigate(['/home']);
+  }
  }
