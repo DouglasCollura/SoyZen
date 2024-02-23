@@ -15,7 +15,7 @@ import { TestService } from '@services/test.service';
     MatSliderModule
   ],
   templateUrl: './focus.component.html',
-  styleUrl: './focus.component.scss',
+  styleUrls: ['./focus.component.scss','./focus-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FocusComponent {

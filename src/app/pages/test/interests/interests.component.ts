@@ -11,7 +11,7 @@ import { TestService } from '@services/test.service';
     CommonModule,
   ],
   templateUrl: './interests.component.html',
-  styleUrl: './interests.component.scss',
+  styleUrls: ['./interests.component.scss','./interests-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 

@@ -23,6 +23,7 @@ export default class LoginComponent {
 
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
+  passwordVisible = false;
 
   public form = this.formBuilder.group({
     email: [null, [Validators.required, Validators.email]],
@@ -32,5 +33,9 @@ export default class LoginComponent {
   login(){
     localStorage.setItem('type_login','freemium');
     this.router.navigate(['/home']);
+  }
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
   }
  }

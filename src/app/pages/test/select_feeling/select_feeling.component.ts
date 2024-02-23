@@ -14,7 +14,7 @@ import { TestService } from '@services/test.service';
     MatIconModule,
   ],
   templateUrl: './select_feeling.component.html',
-  styleUrl: './select_feeling.component.scss',
+  styleUrls: ['./select_feeling.component.scss', './select_feeling-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectFeelingComponent {

@@ -25,10 +25,16 @@
 }
 
 .selected{
-  background-color: #edeef1a8;
-  outline: 2px solid #2a544970;
-  h1{
-    font-weight: 500;
+  background-color: rgba(237, 238, 241, 0.3);
+  
+  h2{
+    font-family: Noto Sans;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: center;
+
   }
   .check{
     opacity: 1;
@@ -36,8 +42,22 @@
 }
 
 .check{
+  width: 16px;
+  height: 16px;
+
+
   position: absolute;
-  color: var(--success);
+  // color: var(--success);
   top: 5px;
   right: 46px;
+}
+
+h2{
+  font-family: Noto Sans;
+font-size: 14px;
+font-weight: 400;
+line-height: 24px;
+letter-spacing: 0em;
+text-align: center;
+
 }

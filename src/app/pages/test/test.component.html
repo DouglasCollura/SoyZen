@@ -1,13 +1,16 @@
 <div class="temp-test">
-  <button class="btn" routerLink="../">
+  <button class="btn" id="btn-close" routerLink="../">
     <mat-icon class="material-symbols-outlined"> arrow_back </mat-icon>
   </button>
-  <div class="main">
+  <div class="main" [class]="step() >= 2 ? '!content-stretch' :''">
 
 
-    @if(step() > 0){
+    @if(step() > 0) {
     <app-test-progress class="w-full" [percent]="percent()" [title]="title()" />
-    } @switch (step()) {
+    }
+
+
+    @switch (step()) {
 
     <!-- Registro Nombre -->
     @case (0) {
@@ -41,5 +44,5 @@
       <app-interests (nextStepEmitter)="nextStep()" />
     } }
   </div>
-  <button class="btn-link">Quiero hacerlo después</button>
+  <button class="btn-link" id="do_later" >Quiero hacerlo después</button>
 </div>
