@@ -190,6 +190,53 @@ h5, p {
 .text-blue{
   color: #5192E9 !important;
 }
+.font-2xl{
+  font-size: 28px !important;
+  line-height: normal;
+}
+.font-xl{
+  font-size: 24px !important;
+  line-height: normal;
+}
+.font-lg{
+  line-height: normal;
+  font-size: 20px !important;
+}
+.font-md{
+  line-height: normal;
+  font-size: 18px !important;
+}
+
+.font-sm{
+  line-height: normal;
+  font-size: 16px !important;
+}
+
+
+.font-xs{
+  line-height: normal;
+  font-size: 14px !important;
+}
+
+
+
+@media (width < 500px) {
+  .font-2xl{
+    font-size: 24px !important;
+  }
+
+  .font-xl{
+    font-size: 20px !important;
+  }
+
+  .font-lg{
+    font-size: 18px !important;
+  }
+
+  .font-md{
+    font-size: 20px !important;
+  }
+}
 
 .splash {
   position: absolute;
