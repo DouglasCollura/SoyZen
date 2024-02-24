@@ -11,6 +11,10 @@ import { SkeletonSectionComponent } from '@shared/components/skeleton_section/sk
 import { CollaboratorsComponent } from './components/collaborators/collaborators.component';
 import { TaroscopeComponent } from './components/taroscope/taroscope.component';
 import { YoguiLifeComponent } from './components/yogui_life/yogui_life.component';
+import MeditationComponent from './components/meditation/meditation.component';
+import { PeaceMindComponent } from './components/peace_mind/peace_mind.component';
+import { DigitalLibraryComponent } from './components/digital_library/digital_library.component';
+import { FooterComponent } from '@shared/components/layout/footer/footer.component';
 
 
 @Component({
@@ -26,7 +30,11 @@ import { YoguiLifeComponent } from './components/yogui_life/yogui_life.component
     SkeletonSectionComponent,
     CollaboratorsComponent,
     TaroscopeComponent,
-    YoguiLifeComponent
+    YoguiLifeComponent,
+    MeditationComponent,
+    PeaceMindComponent,
+    DigitalLibraryComponent,
+    FooterComponent
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss','./home-mobile.component.scss'],
