@@ -13,6 +13,14 @@ export class AppComponent {
   title = 'soyZen';
   constructor(private matIconRegistry: MatIconRegistry,private sanitizer: DomSanitizer) {
     const safeIconUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/cancel.svg');
+    const lockIconUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/lock.svg');
+    const facebookIconUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/facebook_white.svg');
+    const instagramIconUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/instagram_white.svg');
+    const tiktokIconUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/tiktok_white.svg');
     this.matIconRegistry.addSvgIcon('my-cancel', safeIconUrl);
+    this.matIconRegistry.addSvgIcon('my-lock', lockIconUrl);
+    this.matIconRegistry.addSvgIcon('my-facebook-white', facebookIconUrl);
+    this.matIconRegistry.addSvgIcon('my-instagram-white', instagramIconUrl);
+    this.matIconRegistry.addSvgIcon('my-tiktok-white', tiktokIconUrl);
   }
 }
