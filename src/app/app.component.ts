@@ -22,5 +22,8 @@ export class AppComponent {
     this.matIconRegistry.addSvgIcon('my-facebook-white', facebookIconUrl);
     this.matIconRegistry.addSvgIcon('my-instagram-white', instagramIconUrl);
     this.matIconRegistry.addSvgIcon('my-tiktok-white', tiktokIconUrl);
+    this.width = window.screen.width;
   }
+
+  public width:number = 0;
 }

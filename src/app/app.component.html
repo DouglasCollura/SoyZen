@@ -2,6 +2,8 @@
   <router-outlet></router-outlet>
 }@placeholder (minimum 1000) {
   <div class="splash animate__animated animate__fadeIn " >
-    <img srcset="/assets/images/logo.webp" class="animate__animated animate__pulse animate__infinite animate__slow" alt="">
+    <img [srcset]=" width > 500 ? '/assets/images/logo.webp' : 'assets/images/logo_mobile.webp'" class="animate__animated animate__pulse animate__infinite animate__slow" alt="">
+
+    <span class="!text-center text-white font-xs leading-[22px]">Conectium Limited © 2023</span>
   </div>
 }
