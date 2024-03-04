@@ -11,10 +11,14 @@
     rgba(255, 255, 255, 0.15) 75%),
   url(/assets/images/home.webp);
   padding: 50px 70px;
-  gap: 40px;
+  gap: 45px;
   height: 100%;
   overflow: auto;
   grid-template-rows: max-content auto auto;
+
+  .form-group{
+    margin: 0px !important;
+  }
 
   .content-send{
     button{
@@ -25,22 +29,6 @@
   .btn{
     display: block;
   }
-  h1{
-    font-family: Noto Sans;
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 33px;
-    letter-spacing: 0em;
-    text-align: center;
 
-  }
-  .second h3{
-    font-family: Noto Sans;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 22px;
-    letter-spacing: 0em;
-    text-align: center;
 
-  }
 }

@@ -4,10 +4,10 @@
     padding: 20px 10px;
     grid-template-rows: max-content auto max-content;
     background-position: top right;
-    background-size: 61%;
+    background-size: contain;
     background-repeat: no-repeat;
     grid-template-rows: max-content auto max-content;
-    background-image: url(/assets/images/BG-elementos.webp);
+    background-image: url(/assets/images/bg_elementos.webp);
     .header{
       img{
         width: 140px;
@@ -29,6 +29,10 @@
       margin-top: 40px !important;
       gap: 5px !important;
 
+    }
+
+    .btn-group-media{
+      justify-content: space-between;
     }
   }
 

@@ -1,0 +1,15 @@
+.temp-meditation{
+  gap: 30px;
+  height: 100%;
+  display: grid;
+  background-image: url('/assets/images/bg_meditation.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  padding: 30px;
+
+  .list{
+    display: flex;
+    gap: 20px;
+  }
+}

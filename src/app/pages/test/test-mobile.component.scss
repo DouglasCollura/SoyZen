@@ -2,9 +2,14 @@
 
   .temp-test {
     padding: 10px 2px;
-    grid-template-rows: max-content auto max-content !important;
+    grid-template-rows: auto max-content !important;
+    background-image:url('/assets/images/bg_line.webp');
     height: 100%;
     overflow-x: hidden;
+
+    #btn-close{
+      display: none;
+    }
 
     .main{
       width:100%;
@@ -14,21 +19,15 @@
       width: 100% !important;
     }
 
-    .btn-link2{
-      background: none;
-      border: none;
-      text-decoration: underline;
-      display: block;
-      text-align: left;
-
+    .input-plane{
+      width: 100%;
     }
-    .btn-link{
-      display:none;
-    }
-  }
 
-  .btn{
-    display: none;
+    #do_later{
+      padding: 0px 20px;
+      margin-bottom: 20px;
+      text-align: start !important;
+    }
   }
 
 }

@@ -1,0 +1,59 @@
+.temp-header{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 20px 30px;
+  justify-content: space-between;
+  #logo{
+    width: 180px;
+  }
+
+  .search{
+    mat-icon{
+      color: black !important;
+    }
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .btn-user-menu{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    outline: 1px solid var(--gray);
+    padding: 1px 10px !important;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+  }
+}
+
+.landing-freemium{
+  padding: 40px;
+  background-image: url('/assets/images/zen_back.webp');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  padding-bottom: 60px;
+  display: grid;
+  gap: 30px;
+  *{
+    color: white;
+  }
+
+  mat-divider{
+    border-top-color: white !important
+  }
+
+  #freemium-title{
+    font-size: 52px !important;
+  }
+
+
+  #see-program{
+    font-weight: 600 !important;
+    padding: 13px 50px;
+  }
+}

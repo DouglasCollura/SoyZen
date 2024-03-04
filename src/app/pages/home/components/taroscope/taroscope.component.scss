@@ -1,0 +1,16 @@
+.temp-taroscope{
+  display: grid;
+  gap: 20px;
+  background-image: url('/assets/images/bg_taroscope.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  padding: 30px;
+  *{
+    color: white;
+  }
+}
+
+mat-divider{
+  border-top-color: white !important
+}

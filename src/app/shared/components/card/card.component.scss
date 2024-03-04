@@ -1,0 +1,91 @@
+.content-card{
+  .card{
+    min-width: 200px;
+    // min-height: 240px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .body{
+      top: 0;
+      padding: 10px;
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-rows: max-content auto max-content;
+
+      *{
+        color: white;
+      }
+    }
+
+    .chip{
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      padding: 4px 9px;
+      background-color:rgba($color:#000000,$alpha: 0.5);
+
+      mat-icon{
+        width: 20px;
+        height: 20px;
+        font-size: 20px;
+      }
+
+      *{
+        color: white;
+      }
+
+      border-radius: 20px;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      -ms-border-radius: 20px;
+      -o-border-radius: 20px;
+  }
+
+
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+  }
+
+  .avatar-info{
+    padding: 10px 5px;
+    display: flex;
+    gap: 10px;
+    .avatar{
+      width: 40px;
+      height: 40px;
+      overflow: hidden;
+      position: relative;
+      img{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        object-fit: cover;
+      }
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+    }
+
+    mat-icon{
+      width: 20px;
+      height: 20px;
+      font-size: 20px;
+    }
+  }
+}
+

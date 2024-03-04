@@ -7,6 +7,7 @@
   --red: #F86060;
   --gold: #C08E23;
   --success: #3DBD73;
+  --background-gray:#EFF4F4;
 }
 
 $font-url-thin: '../font/NotoSans-Thin.ttf';
@@ -173,6 +174,10 @@ h5, p {
   color: var(--beige) !important;
 }
 
+.text-gold{
+  color: var(--gold) !important;
+}
+
 .text-red {
   color: var(--red) !important;
 }
@@ -190,14 +195,67 @@ h5, p {
 .text-blue{
   color: #5192E9 !important;
 }
+.font-2xl{
+  font-size: 28px !important;
+  line-height: normal;
+}
+.font-xl{
+  font-size: 24px !important;
+  line-height: normal;
+}
+.font-lg{
+  line-height: normal;
+  font-size: 20px !important;
+}
+.font-md{
+  line-height: normal;
+  font-size: 18px !important;
+}
+
+.font-sm{
+  line-height: normal;
+  font-size: 16px !important;
+}
+
+
+.font-xs{
+  line-height: normal;
+  font-size: 14px !important;
+}
+
+
+
+@media (width < 500px) {
+  .font-2xl{
+    font-size: 24px !important;
+  }
+
+  .font-xl{
+    font-size: 20px !important;
+  }
+
+  .font-lg{
+    font-size: 18px !important;
+  }
+
+  .font-md{
+    font-size: 20px !important;
+  }
+}
 
 .splash {
   position: absolute;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  padding: 30px;
+  background-position: center;
   width: 100%;
   height: 100%;
-  background-color: var(--green);
   display: grid;
-  place-content: center;
+  justify-items: center;
+  place-items: center;
+  grid-template-rows: auto max-content;
+
 }
 
 // * BUTTONS
@@ -211,7 +269,6 @@ h5, p {
   padding: 6px 25px;
   width: max-content;
   height: max-content;
-
   &:focus-visible {
     outline: none;
   }
@@ -289,7 +346,7 @@ h5, p {
   .btn{
     padding: 4px 20px;
 
-    font-size: 13px !important;
+    font-size: 14px;
   }
 }
 
@@ -339,9 +396,20 @@ h5, p {
   outline: 1.5px solid var(--gray);
 }
 
+.input-rounded{
+  @extend.input;
+  padding: 8px 17px;
+  outline: 1.5px solid #E0E2E7;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
 .input-icon{
   position: absolute;
-  color: var(--gray) !important;
+  color: var(--gray);
   font-size: 18px;
   height: 18px !important;
   width: 18px !important;
@@ -349,6 +417,9 @@ h5, p {
 
 
 .input-icon-left{
+  position: relative;
+  display: grid;
+  align-items: center;
   .input{
     padding-left: 25px;
   }
@@ -358,6 +429,9 @@ h5, p {
 }
 
 .input-icon-right{
+  position: relative;
+  display: grid;
+  align-items: center;
   .input{
     padding-right: 25px;
   }
@@ -421,3 +495,5 @@ input[type=radio]:checked:before{
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
 }
+
+
