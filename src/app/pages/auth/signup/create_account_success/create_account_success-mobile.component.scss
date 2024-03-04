@@ -27,8 +27,27 @@
       padding-top: 50px;
       #title{
         font-size: 24px !important;
+        line-height: 38px;
       }
     }
   }
+.text-3xl{
+  font-size: 28px;
+  line-height: 38px;
+  font-weight: 500;
+}
+h4 {
+  font-size: 14px !important;
+  line-height: 22px;
+}
+
+.btn-gold {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+line-height: 19.6px;
+letter-spacing: 0.02em;
+}
+
 
 }

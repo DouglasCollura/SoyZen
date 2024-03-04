@@ -9,31 +9,31 @@
   </header>
 
   <div class="content">
-    <h1 class=" text-[28px] leading-[38px] font-medium" >Registro con Email</h1>
+    <h1 class=" text-xl sm:text-3xl font-medium txt-reg" >Registro con Email</h1>
 
-    <h3 class="text-gray-dark text-[16px] leading-[22px]" >Tendrás acceso Freemium en nuestra web</h3>
+    <h3 class="text-gray-dark" >Tendrás acceso Freemium en nuestra web</h3>
 
 
     <form class="form" [formGroup]="form" >
 
       <div class="form-group input-icon-right">
         <input type="text" class="input" formControlName="email" placeholder="Email">
-        <mat-icon class="input-icon material-symbols-rounded" >email</mat-icon>
+        <mat-icon class="input-icon material-icons-outlined" >email</mat-icon>
       </div>
 
       <div class="form-group input-icon-right">
         <input type="{{ passwordVisible ? 'text' : 'password' }}" class="input" formControlName="password" placeholder="Contraseña">
-        <mat-icon (click)="togglePasswordVisibility()" class="input-icon material-symbols-rounded" >{{passwordVisible ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-icon (click)="togglePasswordVisibility()" class="input-icon material-icons-outlined" >{{passwordVisible ? 'visibility_off' : 'visibility'}}</mat-icon>
       </div>
 
-      <button class="btn-green" id="btn-signup"  > Crear cuenta </button>
+      <button class="btn-green" id="btn-signup" routerLink="/auth/account-success"   > Crear cuenta </button>
 
     </form>
 
     <mat-divider></mat-divider>
 
     <div class="grid gap-5">
-      <h4 class="text-center font-semibold sm:font-normal text-[10px] leading-[13.62px] sm:text-[14px] sm:leading-[19.07px] ">O regístrate con:</h4>
+      <h4 class="text-center font-semibold txt-init">O regístrate con:</h4>
 
       <div class="btn-group-media">
         <button class="btn" >
@@ -50,12 +50,12 @@
       </div>
 
       <div class="flex justify-center">
-        <h4 class="text-center text-[10px] leading-[13.62px]  sm:text-[14px] sm:leading-[19.07px] font-semibold sm:font-normal">Ya tengo cuenta,</h4>
-          <button id="login" class="text-[10px] leading-[13.62px]  sm:text-[14px] sm:leading-[19.07px] sm:font-normal" routerLink="/auth/login" >INICIA SESIÓN</button>
+        <h4 class="text-center txt-tmn">Ya tengo cuenta,</h4>
+          <button id="login" class=" txt-tmn" routerLink="/auth/login" >INICIA SESIÓN</button>
       </div>
     </div>
 
-    <h5 class="text-center m-auto mt-10 text-[10px] leading-[16px] font-semibold  sm:text-[12px] sm:leading-[22px] max-w-[300px] sm:max-w-full">
+    <h5 class="font-medium text-center mt-10 txt-doble">
       Al crear la cuenta aceptas nuestros <button class="text-blue underline " >Términos y Condiciones</button> , y confirmas haber leído y comprendido la <button class="text-blue underline" >Política de Privacidad</button>
     </h5>
   </div>

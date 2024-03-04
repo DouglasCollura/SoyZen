@@ -35,4 +35,59 @@
   }
 }
 
+.txt-doble{
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+  font-weight: 700;
+  font-family: "Noto Sans";
+  padding: 0px 13%;
+}
+.txt-tmn{
+  font-size: 10px !important;
+    font-weight: 600;
+    line-height: 14px;
+    text-align: center;
+}
+.text-gray-dark{
+  font-family: Noto Sans;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: rgba(104, 109, 118, 1);
+}
+.txt-reg{
+  font-family: Noto Sans;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 38px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: rgba(55, 58, 64, 1);
+}
+
+.txt-init{
+  font-size: 10px;
+  margin-top: 10px;
+  line-height: 14px;
+  color: rgba(55, 58, 64, 1);
+}
+
+.btn-group-media{
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  gap: 10px;
+
+  .btn{
+    background-color: #EDEEF1;
+    width: max-content;
+    padding: 19px 10.9vw !important;
+    display: flex;
+   
+  }
+
+}
 }
