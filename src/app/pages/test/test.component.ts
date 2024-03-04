@@ -36,6 +36,7 @@ export default class TestComponent {
   private testService = inject(TestService)
 
   public name = new FormControl('',Validators.required);
+  public select_feeling = new FormControl('',Validators.required);
 
   public step = signal<number>(0);
   public percent = signal<number>(0);
@@ -76,5 +77,15 @@ export default class TestComponent {
     this.nextStep()
   }
 
+  goBack(){
+    if(this.step() > 0 ){
+      this.step.update(data => data-1)
+      setTimeout(()=>{
+        this.percent.update(value=>value-25);
+      },200)
+    }else{
+      this.router.navigate(['/']);
+    }
+  }
 
 }

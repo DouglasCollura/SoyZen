@@ -17,11 +17,15 @@ export class BehaviorComponent {
   private testService = inject(TestService)
   @Output() nextStepEmitter = new EventEmitter<boolean>();
 
-  public select = signal<number>(1);
+  constructor(){
+    this.select.set(this.testService.test().behavior)
+  }
+
+  public select = signal<number| null>(null);
 
 
   nexStep(){
-    this.testService.test.update(value => ({...value, behavior: this.select() }));
+    this.testService.test.update(value => ({...value, behavior: this.select()! }));
     this.nextStepEmitter.emit(true);
   }
 

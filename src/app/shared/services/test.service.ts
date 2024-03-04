@@ -6,6 +6,12 @@ import { Test } from '@interfaces/test.interface';
 })
 export class TestService {
 
+  // form = this.formBuilder.group({
+  //   name: ['', Validators.required],
+  //   code: ['', Validators.required],
+  //   trayectos: [[], Validators.required],
+  // })
+
   public test = signal<Test>({
     name:'',
     focus:0,

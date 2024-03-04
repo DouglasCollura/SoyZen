@@ -10,13 +10,11 @@
   .check{
     opacity: 0;
   }
-
-  border-radius: 20px;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  -ms-border-radius: 20px;
-  -o-border-radius: 20px;
-
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
   transition: all 0.15s cubic-bezier(0.46, 0.03, 0.52, 0.96);
   -webkit-transition: all 0.15s cubic-bezier(0.46, 0.03, 0.52, 0.96);
   -moz-transition: all 0.15s cubic-bezier(0.46, 0.03, 0.52, 0.96);
@@ -26,7 +24,7 @@
 
 .selected{
   background-color: rgba(237, 238, 241, 0.3);
-
+  outline: 1.5px solid #2a544975;
   h2{
     font-family: Noto Sans;
     font-size: 14px;
@@ -60,4 +58,10 @@ line-height: 24px;
 letter-spacing: 0em;
 text-align: center;
 
+}
+
+@media (width < 500px) {
+  .selected{
+    outline: none !important;
+  }
 }

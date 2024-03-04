@@ -55,6 +55,10 @@ export const routes: Routes = [
       {
         path:'',
         loadComponent: () => import('./pages/home/home.component')
+      },
+      {
+        path:'videoplayer',
+        loadComponent: () => import('./pages/videoplayer/videoplayer.component')
       }
     ]
   }

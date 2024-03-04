@@ -2,28 +2,29 @@
   <header class="header">
     <img srcset="/assets/images/head_logo.webp" alt="">
 
-    <button class="btn close" routerLink="/" > <mat-icon class="material-icons-outlined icon-200">close</mat-icon> </button>
+    <button class="btn close" routerLink="/" > <mat-icon class="material-symbols-rounded font-extralight">close</mat-icon> </button>
   </header>
 
   <div class="top">
-    <h1 id="title" >¡Tu cuenta ha sido creada!</h1>
-    <h4 class="text-gray font-md" id="subtitle" >Verifica en tu email la confirmación</h4>
+    <h1 class="text-[24px] sm:text-[40px] font-normal" >¡Tu cuenta ha sido creada!</h1>
+    <h4 class="text-gray text-[14px] sm:text-[18px] font-medium" >Verifica en tu email la confirmación</h4>
   </div>
 
   <div class="content-info justify-content-center" style="view-transition-name: img-transition-background-green;">
     <div class="info">
-      <div class="grid gap-7 mt-12  content-start max-w-[400px]">
-        <h1 class="text-3xl" >Hazte Premium</h1>
+      <div class="grid gap-7 content-center  max-w-[500px]">
+        <h1 class=" text-[28px] sm:text-[40px] leading-[38px] font-normal" >Hazte Premium</h1>
 
-        <h4>
+        <span class="text-[14px] sm:text-[20px] leading-[22px] sm:leading-[28px] font-light">
           Tendrás full acceso a todas las clases de yoga, meditaciones, programas, seguimiento de progreso, notificaciones personalizadas y más.
-        </h4>
+        </span>
 
-        <button class="btn-gold" routerLink="/premium" >Quiero Suscribirme</button>
+        <button class="btn-gold"  >Quiero Suscribirme</button>
+        <!-- <button class="btn-gold" routerLink="/premium" >Quiero Suscribirme</button> -->
       </div>
 
       <div class="grid gap-3 justify-items-start">
-        <p class="font-light" >Por ahora no deseo suscribirme,</p>
+        <p class="font-light text-[12px] sm:text-[16px]" >Por ahora no deseo suscribirme,</p>
         <button class="btn-blur" id="go_home" routerLink="/" >Ir al inicio</button>
       </div>
 
