@@ -1,0 +1,14 @@
+<div class="content-behavior animate__animated animate__slideInRight animate__fast" >
+
+  <h1 class="text-[24px] leading-[32.69px] text-center sm:text-[20px] sm:leading-[27.24px]" >¿Cómo te sientes con respecto a tu nivel de energía diario?</h1>
+
+
+  <div class="grid list-buttons justify-center gap-3">
+    <button [class]="select() == 1 ? 'btn-beige' : 'btn-border-beige'" (click)="select.set(1)" >Me siento con energía</button>
+    <button [class]="select() == 2 ? 'btn-beige' : 'btn-border-beige'" (click)="select.set(2)" >Me siento normal</button>
+    <button [class]="select() == 3 ? 'btn-beige' : 'btn-border-beige'" (click)="select.set(3)" >Me siento agotado</button>
+    <button [class]="select() == 4 ? 'btn-beige' : 'btn-border-beige'" (click)="select.set(4)" >Me siento muy agotado</button>
+  </div>
+
+  <button  class="btn-green justify-self-center !py-2" id="btn-continue" (click)="nexStep()" >Continuar</button>
+</div>

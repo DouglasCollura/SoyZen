@@ -9,6 +9,14 @@ import { BehaviorComponent } from './behavior/behavior.component';
 import { InterestsComponent } from './interests/interests.component';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TestService } from '@services/test.service';
+import { SliderGoalsComponent } from './slider_goals/slider_goals.component';
+import { SliderPatientComponent } from './slider_patient/slider_patient.component';
+import { KindnessComponent } from './kindness/kindness.component';
+import { SliderStressComponent } from './slider_stress/slider_stress.component';
+import { DreamComponent } from './dream/dream.component';
+import { PhysicalActivityComponent } from './physical_activity/physical_activity.component';
+import { FeedingComponent } from './feeding/feeding.component';
+import { EnergyComponent } from './energy/energy.component';
 
 @Component({
   selector: 'app-test',
@@ -18,10 +26,18 @@ import { TestService } from '@services/test.service';
     MatIconModule,
     SelectFeelingComponent,
     TestProgressComponent,
+    SliderGoalsComponent,
     FocusComponent,
     RouterModule,
     BehaviorComponent,
     InterestsComponent,
+    SliderPatientComponent,
+    KindnessComponent,
+    SliderStressComponent,
+    DreamComponent,
+    PhysicalActivityComponent,
+    FeedingComponent,
+    EnergyComponent,
     ReactiveFormsModule
   ],
   templateUrl: './test.component.html',
@@ -36,6 +52,7 @@ export default class TestComponent {
   private testService = inject(TestService)
 
   public name = new FormControl('',Validators.required);
+  public select_feeling = new FormControl('',Validators.required);
 
   public step = signal<number>(0);
   public percent = signal<number>(0);
@@ -45,24 +62,14 @@ export default class TestComponent {
   public test = this.testService.test;
 
   nextStep(){
-    if(this.step() == 4){
+    if(this.step() == 12){
       this.router.navigate(['/send_test_email']);
       return
     }
-
     this.step.update(value => value+1);
-
-    if(this.step() < 3){
-      this.title.set("Mentalidad y Enfoque")
-    }else if(this.step() == 3){
-      this.title.set("Actitud y Comportamiento");
-    }else{
-      this.title.set("Intereses");
-
-    }
-
+    this.setTitlePercent();
     setTimeout(()=>{
-      this.percent.update(value=>value+25);
+      this.percent.update(value=>value+8.3);
     },200)
   }
 
@@ -76,5 +83,31 @@ export default class TestComponent {
     this.nextStep()
   }
 
+  setTitlePercent(){
+
+    if(this.step() < 4){
+      this.title.set("Mentalidad y Enfoque")
+    }else if(this.step() >= 4 && this.step() <=7){
+      this.title.set("Actitud y Comportamiento");
+    }else if(this.step() >= 8 && this.step() <=11){
+      this.title.set("Bienestar");
+    }
+    else{
+      this.title.set("Intereses");
+    }
+
+  }
+
+  goBack(){
+    if(this.step() > 0 ){
+      this.step.update(data => data-1)
+      this.setTitlePercent();
+      setTimeout(()=>{
+        this.percent.update(value=>value-8.3);
+      },200)
+    }else{
+      this.router.navigate(['/']);
+    }
+  }
 
 }

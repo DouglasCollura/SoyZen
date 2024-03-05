@@ -26,6 +26,7 @@ export class InterestsComponent {
   public interestSelected = signal<Interest[]>([]);
 
   constructor(){
+    this.testService.test().interests && this.interestSelected.set(this.testService.test().interests!);
     this.interestList = interests;
   }
 
@@ -39,6 +40,8 @@ export class InterestsComponent {
         value.splice(index, 1)
         return value;
       });
+    this.testService.test.update(value => ({...value, interests: this.interestSelected()}));
+
   }
 
   isSelected(interest:Interest){
@@ -46,7 +49,19 @@ export class InterestsComponent {
   }
 
   nextStep(){
-    this.testService.test.update(value => ({...value, interests: this.interestSelected()}));
+    this.testService.test.update(value => ({
+      name:'',
+      focus:0,
+      dream:1,
+      energy:1,
+      feeding:1,
+      goals:0,
+      kindness:1,
+      patient:0,
+      physical_activity:1,
+      stress:0,
+      behavior:1,
+    }));
     this.nextStepEmitter.emit(true);
   }
 

@@ -1,6 +1,6 @@
 <div class="temp-test">
-  <button class="btn" id="btn-close" routerLink="../">
-    <mat-icon class="material-symbols-outlined"> arrow_back </mat-icon>
+  <button class="btn" id="btn-close" (click)="goBack()">
+    <mat-icon class="material-symbols-rounded font-extralight !w-[40px] !h-[40px] text-[40px]"> arrow_back </mat-icon>
   </button>
   <div class="main" [class]="step() >= 2 ? '!content-stretch' :''">
 
@@ -38,9 +38,35 @@
     <!-- Select Focus -->
     @case (2){
       <app-focus class="w-full" (nextStepEmitter)="nextStep()" />
-    } @case (3){
+    }
+    @case (3){
+      <app-slider-goals class="w-full" (nextStepEmitter)="nextStep()" />
+    }
+    @case (4){
+      <app-slider-patient class="w-full" (nextStepEmitter)="nextStep()" />
+    }
+    @case (5){
       <app-behavior (nextStepEmitter)="nextStep()" />
-    } @case (4){
+    }
+    @case (6){
+      <app-kindness (nextStepEmitter)="nextStep()" />
+    }
+    @case (7){
+      <app-slider-stress class="w-full" (nextStepEmitter)="nextStep()" />
+    }
+    @case (8){
+      <app-dream class="w-full" (nextStepEmitter)="nextStep()" />
+    }
+    @case (9){
+      <app-physical-activity class="w-full" (nextStepEmitter)="nextStep()" />
+    }
+    @case (10){
+      <app-feeding class="w-full" (nextStepEmitter)="nextStep()" />
+    }
+    @case (11){
+      <app-energy class="w-full" (nextStepEmitter)="nextStep()" />
+    }
+    @case (12){
       <app-interests (nextStepEmitter)="nextStep()" />
     } }
   </div>

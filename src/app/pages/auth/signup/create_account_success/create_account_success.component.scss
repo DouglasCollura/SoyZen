@@ -33,16 +33,14 @@
 
   .top {
     justify-self: center;
+    display: grid;
+    gap: 20px;
     padding-top: 60px;
 
-    #title{
-      font-size: 40px !important;
-    }
+    // #title{
+    //   font-size: 40px !important;
+    // }
 
-    #subtitle{
-      font-size: 14px !important;
-      line-height: 22px;
-    }
   }
 
   .content-info {
@@ -52,7 +50,7 @@
     background-position: center;
     display: grid;
     gap: 10px;
-    padding: 20px;
+    padding: 30px;
     border-top-right-radius: 40px;
     border-top-left-radius: 40px;
     grid-template-rows: auto max-content;

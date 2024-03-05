@@ -20,11 +20,12 @@ import { TestService } from '@services/test.service';
 })
 export class FocusComponent {
 
-  private testService = inject(TestService)
+  private testService = inject(TestService);
   @Output() nextStepEmitter = new EventEmitter<boolean>();
 
+
   constructor() {
-    this.percent.setValue(0);
+    this.percent.setValue(this.testService.test().focus);
   }
 
   public percent = new FormControl();
