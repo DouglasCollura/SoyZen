@@ -1,0 +1,14 @@
+<div class="content-behavior animate__animated animate__slideInRight animate__fast" >
+
+  <h1 class="text-[24px] leading-[32.69px] text-center sm:text-[20px] sm:leading-[27.24px]" >¿Qué tan saludables son tus hábitos alimenticios?</h1>
+
+
+  <div class="grid list-buttons justify-center gap-3">
+    <button [class]="select() == 1 ? 'btn-beige' : 'btn-border-beige'" (click)="select.set(1)" >Como muy saludable</button>
+    <button [class]="select() == 2 ? 'btn-beige' : 'btn-border-beige'" (click)="select.set(2)" >Como saludable</button>
+    <button [class]="select() == 3 ? 'btn-beige' : 'btn-border-beige'" (click)="select.set(3)" >Como normal</button>
+    <button [class]="select() == 4 ? 'btn-beige' : 'btn-border-beige'" (click)="select.set(4)" >Como muy poco saludable</button>
+  </div>
+
+  <button  class="btn-green justify-self-center !py-2" id="btn-continue" (click)="nexStep()" >Continuar</button>
+</div>

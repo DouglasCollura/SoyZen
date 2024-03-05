@@ -1,0 +1,37 @@
+:host {
+  display: block;
+}
+::ng-deep{
+
+  vg-controls {
+    height: auto !important;
+    padding: 5px 20px;
+    background-color: transparent;
+    background:linear-gradient(
+      181deg,
+      rgba(0, 0, 0, 0.03) 12%,
+      rgba(45, 45, 47, 0.42) 35%,
+      rgba(34, 34, 34, 0.87) 69%) !important;
+  }
+
+  vg-time-display{
+    height: 20px !important;
+  }
+
+  vg-scrub-bar{
+    margin: 0px !important;
+    height: 30px !important;
+  }
+
+}
+
+#play{
+  mat-icon{
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+  }
+}
+mat-icon{
+  color: white;
+}

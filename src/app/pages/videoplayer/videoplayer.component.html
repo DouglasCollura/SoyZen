@@ -1,0 +1,64 @@
+<vg-player #videoPlayer (onPlayerReady)="onPlayerReady($event)">
+  <vg-controls [vgAutohide]="true" [vgAutohideTime]="0.5">
+    <div class="grid w-full">
+      <vg-scrub-bar>
+        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+      </vg-scrub-bar>
+      <div class="flex justify-between">
+        <vg-time-display
+          vgProperty="current"
+          vgFormat="mm:ss"
+        ></vg-time-display>
+        <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+      </div>
+      <div class="flex w-full items-center justify-center gap-7 h-[50px]">
+
+        <button>
+          <mat-icon class="material-symbols-rounded font-thin !h-[55px] !w-[55px] !text-[55px]">skip_previous</mat-icon>
+        </button>
+        <button (click)="Replay()" >
+          <mat-icon class="material-symbols-rounded font-thin !h-[38px] !w-[38px] !text-[38px]">replay_10</mat-icon>
+        </button>
+        <button class="text-white" id="play" (click)="playPause()">
+          @if(isPlaying()){
+          <mat-icon class="material-symbols-rounded font-thin !h-[48px] !w-[48px] !text-[48px]"
+            >pause_circle</mat-icon
+          >
+          } @else{
+          <mat-icon class="material-symbols-rounded font-thin !h-[48px] !w-[48px] !text-[48px]"
+            >play_circle</mat-icon
+          >
+          }
+        </button>
+        <button (click)="Forward()">
+          <mat-icon class="material-symbols-rounded font-thin !h-[38px] !w-[38px] !text-[38px]"
+            >forward_10</mat-icon
+          >
+        </button>
+
+        <button>
+          <mat-icon class="material-symbols-rounded font-thin !h-[55px] !w-[55px] !text-[55px]">
+            skip_next
+          </mat-icon>
+        </button>
+      </div>
+    </div>
+  </vg-controls>
+
+  <video
+    [vgMedia]="$any(myMedia)"
+    #myMedia
+    id="myMedia"
+    preload="auto"
+    crossorigin
+  >
+    <source src="/assets/player/video.mp4" type="video/mp4" />
+  </video>
+
+  <!-- <video [vgMedia]="$any(slave)" #slave id="slaveVideo" preload="auto">
+      <source src="https://www.youtube.com/watch?v=0kItFB6dJzw" type="video/mp4">
+  </video> -->
+</vg-player>
+
+<!--  <iframe width="972" height="711" src="https://www.youtube.com/embed/iYYRH4apXDo" title="David Bowie – Space Oddity (Official Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
