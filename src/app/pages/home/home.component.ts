@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import {MatChipsModule} from '@angular/material/chips';
@@ -39,6 +39,7 @@ import { FooterComponent } from '@shared/components/layout/footer/footer.compone
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss','./home-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export default class HomeComponent {
 

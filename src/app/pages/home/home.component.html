@@ -3,16 +3,26 @@
 
   <div class="body-home">
     <section class="filter-option">
+      <swiper-container
+      slides-per-view="auto"
+      speed="500"
+      loop="false"
+      freemode="true"
+      class="overflow-auto"
+    >
+      <swiper-slide>
       <mat-chip-listbox multiple="">
         @for (filter_option of filter_options(); track $index) {
-        <mat-chip-row>
+        <mat-chip-row [class.selected]="filter_option.selected">
           {{ filter_option.title }}
           @if(filter_option.selected){
-          <mat-icon matChipRemove class="material-symbols-rounded">close</mat-icon>
+          <mat-icon matChipRemove class="material-symbols-rounded font-extralight">close</mat-icon>
           }
         </mat-chip-row>
         }
       </mat-chip-listbox>
+    </swiper-slide>
+  </swiper-container>
     </section>
     @defer(on viewport){
     <app-zen-today-list />

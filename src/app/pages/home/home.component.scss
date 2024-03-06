@@ -21,7 +21,7 @@
     }
     .mat-mdc-standard-chip{
 
-      background: white !important;
+      background: white;
       outline: 1px solid var(--green);
 
       border-radius: 6px !important;
@@ -40,10 +40,21 @@
     }
     .selected .mat-mdc-chip-action-label{
       color: white !important;
+      font-weight: 500 !important;
     }
     .selected mat-icon{
       color: white !important;
     }
+    .mat-mdc-chip-focus-overlay{
+      background-color: transparent !important;
+    }
+    .mat-mdc-chip-remove{
+      opacity: 1 !important;
+    }
+
+    // .filter-select.mat-mdc-standard-chip{
+    //   background-color: var(--green) !important;
+    // }
   }
 
 
