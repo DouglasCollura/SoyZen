@@ -11,7 +11,7 @@ import {MatDividerModule} from '@angular/material/divider';
     MatDividerModule
   ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  styleUrls: ['./header.component.scss','./header-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {

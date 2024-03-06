@@ -2,11 +2,19 @@
   <div class="card">
     <img [srcset]="url_img" alt="">
     <div class="body">
-      <div class="flex justify-between p-3">
-        <div class="chip">
-          <mat-icon svgIcon="my-lock"></mat-icon>
-          <!-- <p>30min</p> -->
-        </div>
+      <div class="flex  p-3" [class]="isNew ? 'justify-end': 'justify-between' ">
+        @if(isLock){
+          <div class="chip">
+              <mat-icon svgIcon="my-lock"></mat-icon>
+            <!-- <p>30min</p> -->
+          </div>
+        }
+        @if(isNew){
+          <div class="chip new">
+            <span class="font-semibold text-[12px]"  >Nuevo</span>
+            <!-- <p>30min</p> -->
+          </div>
+        }
       </div>
 
 

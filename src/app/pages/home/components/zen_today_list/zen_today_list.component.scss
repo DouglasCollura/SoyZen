@@ -9,3 +9,11 @@
     gap: 20px;
   }
 }
+::ng-deep{
+  swiper-slide{
+    margin: 0px;
+    margin-left: 0px;
+    margin-right:  20px;
+    width: auto !important;
+  }
+}

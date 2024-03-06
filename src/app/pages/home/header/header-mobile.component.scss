@@ -1,0 +1,27 @@
+@media (width < 820px) {
+
+  .temp-header {
+    .search {
+      display: none !important;
+    }
+  }
+}
+
+@media (width < 620px) {
+  .temp-header {
+    padding: 15px 20px !important;
+
+    #logo {
+      width: 120px !important;
+    }
+
+  }
+
+  .landing-freemium {
+    padding: 20px !important;
+  }
+
+  .btn-white{
+    padding: 10px 50px !important;
+  }
+}

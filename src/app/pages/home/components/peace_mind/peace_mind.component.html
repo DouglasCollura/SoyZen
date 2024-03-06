@@ -1,20 +1,72 @@
 <div class="temp-peace-mind animate__animated animate__fadeIn">
-
   <div class="grid gap-2">
     <div class="flex w-full justify-between">
-      <span class="font-xl">Paz Mental</span>
+      <span class=" text-[20px] leading-[28px] font-semibold sm:font-xl">Paz Mental</span>
 
       <button class="btn flex btn-seemore">
         VER TODO
-        <mat-icon class="material-symbols-rounded">keyboard_arrow_right</mat-icon>
+        <mat-icon class="material-symbols-rounded"
+          >keyboard_arrow_right</mat-icon
+        >
       </button>
     </div>
-    <h4 class="font-sm">Siéntete bien contigo mismo y con el mundo que te rodea.</h4>
+    <h4 class=" text-[14px] leading-[22px] sm:font-sm">
+      Siéntete bien contigo mismo y con el mundo que te rodea.
+    </h4>
   </div>
 
+  <swiper-container
+    slides-per-view="auto"
+    speed="500"
+    loop="false"
+    freemode="true"
+    class="overflow-auto"
+  >
+    <swiper-slide>
+      <app-card-article
+        title="Técnicas efectivas para encontrar la calma interior"
+        url_img="/assets/images/test/back_card_article.jpg"
+      />
+    </swiper-slide>
 
-  <div class="list">
-    <app-card-article title="Técnicas efectivas para encontrar la calma interior" url_img="/assets/images/test/back_card_article.jpg" />
-  </div>
+    <swiper-slide>
+      <app-card-article
+        [isLock]="true"
+        title="Técnicas efectivas para encontrar la calma interior"
+        url_img="/assets/images/test/back_card_article.jpg"
+      />
+    </swiper-slide>
 
+    <swiper-slide>
+      <app-card-article
+        [isNew]="true"
+        title="Técnicas efectivas para encontrar la calma interior"
+        url_img="/assets/images/test/back_card_article.jpg"
+      />
+    </swiper-slide>
+
+    <swiper-slide>
+      <app-card-article
+        [isLock]="true"
+        title="Técnicas efectivas para encontrar la calma interior"
+        url_img="/assets/images/test/back_card_article.jpg"
+      />
+    </swiper-slide>
+
+    <swiper-slide>
+      <app-card-article
+        [isLock]="true"
+        title="Técnicas efectivas para encontrar la calma interior"
+        url_img="/assets/images/test/back_card_article.jpg"
+      />
+    </swiper-slide>
+
+    <swiper-slide>
+      <app-card-article
+        [isLock]="true"
+        title="Técnicas efectivas para encontrar la calma interior"
+        url_img="/assets/images/test/back_card_article.jpg"
+      />
+    </swiper-slide>
+  </swiper-container>
 </div>

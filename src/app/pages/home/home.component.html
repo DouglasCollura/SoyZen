@@ -14,7 +14,6 @@
         }
       </mat-chip-listbox>
     </section>
-
     @defer(on viewport){
     <app-zen-today-list />
     }@placeholder () {
@@ -40,6 +39,20 @@
     }
 
     @defer(on viewport){
+      <div class="section-ad">
+        <div class="grid m-auto  max-w-[900px]">
+          <div class="content-ads">
+            <img srcset="/assets/images/test/ad.jpg" alt="">
+          </div>
+          <span class="text-end text-[12px]">Publicidad</span>
+        </div>
+
+      </div>
+    }@placeholder (){
+      <app-skeleton-section class="overflow-hidden" />
+    }
+
+    @defer(on viewport){
       <app-meditation />
     }@placeholder () {
       <app-skeleton-section class="overflow-hidden" />
@@ -48,6 +61,21 @@
     @defer(on viewport){
       <app-peace-mind />
     }@placeholder () {
+      <app-skeleton-section class="overflow-hidden" />
+    }
+
+
+    @defer(on viewport){
+      <div class="section-ad">
+        <div class="grid m-auto  max-w-[900px]">
+          <div class="content-ads">
+            <img srcset="/assets/images/test/ad.jpg" alt="">
+          </div>
+          <span class="text-end text-[12px]">Publicidad</span>
+        </div>
+
+      </div>
+    }@placeholder (){
       <app-skeleton-section class="overflow-hidden" />
     }
 

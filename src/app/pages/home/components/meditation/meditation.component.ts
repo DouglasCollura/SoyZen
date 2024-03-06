@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { CardComponent } from '@shared/components/card/card.component';
 
@@ -12,7 +12,9 @@ import { CardComponent } from '@shared/components/card/card.component';
     CardComponent
   ],
   templateUrl: './meditation.component.html',
-  styleUrl: './meditation.component.scss',
+  styleUrls: ['./meditation.component.scss', 'meditation-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+
 })
 export default class MeditationComponent { }

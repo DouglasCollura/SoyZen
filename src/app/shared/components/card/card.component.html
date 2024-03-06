@@ -20,7 +20,11 @@
       <div class="flex justify-between px-1 items-center">
         <p>Meditación</p>
 
-        <mat-icon  class="material-symbols-rounded font-thin text-[40px] !w-[40px] !h-[40px]">play_circle_outline</mat-icon>
+        @if(isLock){
+          <mat-icon  class="material-symbols-rounded font-thin text-[32px] !w-[32px] !h-[32px]" svgIcon="my-lock" ></mat-icon>
+        }@else{
+          <mat-icon  class="material-symbols-rounded font-thin text-[40px] !w-[40px] !h-[40px]" >play_circle_outline</mat-icon>
+        }
       </div>
     </div>
   </div>

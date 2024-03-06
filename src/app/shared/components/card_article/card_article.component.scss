@@ -48,6 +48,19 @@
       -moz-border-radius:50%;
       -ms-border-radius:50%;
       -o-border-radius:50%;
+    }
+
+    .new{
+      background-color: #EDE0C9;
+      padding: 4px 9px;
+      *{
+        color: var(--dark-gray);
+      }
+      border-radius: 20px !important;
+      -webkit-border-radius: 20px !important;
+      -moz-border-radius: 20px !important;
+      -ms-border-radius: 20px !important;
+      -o-border-radius: 20px !important;
 }
 
     .content-title{

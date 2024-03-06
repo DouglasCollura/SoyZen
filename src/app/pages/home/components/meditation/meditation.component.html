@@ -1,21 +1,80 @@
 <div class="temp-meditation animate__animated animate__fadeIn">
-
   <div class="grid gap-2">
     <div class="flex w-full justify-between">
-      <span class="font-xl">Meditaciones</span>
+      <span class=" text-[20px] leading-[28px] font-semibold sm:font-xl">Meditaciones</span>
 
       <button class="btn flex btn-seemore">
         VER TODO
-        <mat-icon class="material-symbols-rounded">keyboard_arrow_right</mat-icon>
+        <mat-icon class="material-symbols-rounded"
+          >keyboard_arrow_right</mat-icon
+        >
       </button>
     </div>
-    <h4 class="font-sm">Consigue un estado de relajación y concentración mental con la Meditación.</h4>
+    <h4 class=" text-[14px] leading-[22px] font-normal sm:font-sm">
+      Consigue un estado de relajación y concentración mental con la Meditación.
+    </h4>
   </div>
 
-  <div class="list">
-    <app-card
-      title="Conectar con la energía de los 4 elementos"
-      url_img="/assets/images/test/back_card.webp"
-    />
-  </div>
+  <swiper-container
+    slides-per-view="auto"
+    speed="500"
+    loop="false"
+    freemode="true"
+    class="overflow-auto"
+  >
+    <swiper-slide>
+      <app-card
+        [isNew]="true"
+        title="Conectar con la energía de los 4 elementos"
+        url_img="/assets/images/test/back_card.webp"
+      />
+    </swiper-slide>
+
+    <swiper-slide>
+      <app-card
+        [isLock]="true"
+        title="Conectar con la energía de los 4 elementos"
+        url_img="/assets/images/test/back_card.webp"
+      />
+    </swiper-slide>
+
+    <swiper-slide>
+      <app-card
+        [isLock]="true"
+        title="Conectar con la energía de los 4 elementos"
+        url_img="/assets/images/test/back_card.webp"
+      />
+    </swiper-slide>
+
+    <swiper-slide>
+      <app-card
+        title="Conectar con la energía de los 4 elementos"
+        url_img="/assets/images/test/back_card.webp"
+      />
+    </swiper-slide>
+
+    <swiper-slide>
+      <app-card
+        [isLock]="true"
+        title="Conectar con la energía de los 4 elementos"
+        url_img="/assets/images/test/back_card.webp"
+      />
+    </swiper-slide>
+
+    <swiper-slide>
+      <app-card
+        [isLock]="true"
+        title="Conectar con la energía de los 4 elementos"
+        url_img="/assets/images/test/back_card.webp"
+      />
+    </swiper-slide>
+
+    <swiper-slide>
+      <app-card
+        title="Conectar con la energía de los 4 elementos"
+        url_img="/assets/images/test/back_card.webp"
+      />
+    </swiper-slide>
+
+  </swiper-container>
 </div>
