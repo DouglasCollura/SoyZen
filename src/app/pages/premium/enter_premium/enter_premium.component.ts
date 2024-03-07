@@ -14,7 +14,7 @@ import {MatDividerModule} from '@angular/material/divider';
     MatDividerModule
   ],
   templateUrl: './enter_premium.component.html',
-  styleUrl: './enter_premium.component.scss',
+  styleUrls: ['./enter_premium.component.scss','enter_premium-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class EnterPremiumComponent { }

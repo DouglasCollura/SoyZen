@@ -25,16 +25,16 @@
       height: 40px;
       mat-icon{
         color: white;
-        width: 40px;
-        height: 40px;
-        font-size: 40px;
+
       }
+      display: grid;
+      place-content: center;
 
     }
   }
 
   .main{
-    max-width: 400px;
+    max-width: 480px;
     width: 100%;
     margin: auto;
     margin-top: 70px;
@@ -50,6 +50,6 @@
   }
 
   mat-divider{
-    border-color: white !important;
+    border-color: #e0e2e763 !important;
   }
 }
