@@ -5,4 +5,15 @@
     display: grid;
     padding:20px !important;
   }
+
+  ::ng-deep{
+    .mat-mdc-chip-action-label{
+      font-size: 14px !important;
+    }
+    .mdc-evolution-chip__icon--trailing{
+      height: 22px !important;
+      width: 22px !important;
+      font-size: 22px !important;
+    }
+  }
 }
