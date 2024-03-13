@@ -6,32 +6,124 @@
   </div>
 
   <div class="options-group">
-    @switch (type_login) {
-      @case ('guest'){
+    @switch (role) {
+      @case (roles.GUEST){
         <div class="flex gap-3">
-          <button class="btn !font-semibold">
+          <button class="btn !font-semibold" id="btn-login" routerLink="/auth/login" >
             Iniciar sesión
           </button>
-          <button class="btn-beige">
+          <button class="btn-beige" routerLink="/auth/signup">
             Suscríbete
           </button>
 
-          <button class="btn-user-menu">
+          <button class="btn-user-menu" [matMenuTriggerFor]="menu">
             <mat-icon class="material-symbols-rounded text-gold" >account_circle</mat-icon>
             <img srcset="/assets/images/menu-scale.svg" width="20" alt="">
           </button>
+
+          <mat-menu #menu="matMenu">
+            <div class="flex items-center p-[15px]">
+              <mat-icon class="material-symbols-rounded font-light" >verified</mat-icon>
+              <span class="text-[16px] leading-[21.79px] font-bold" >Suscríbete a Soy Zen </span>
+            </div>
+
+            <mat-divider />
+
+            <button mat-menu-item class="!min-h-[40px]" routerLink="/auth/signup">
+              <span class="text-[16px] leading-[21.79px] font-bold" >Regístrate </span>
+            </button>
+
+            <button mat-menu-item class="!min-h-[40px]" routerLink="/auth/login" >
+              <span class="text-[16px] leading-[21.79px] font-bold" >Iniciar Sesión </span>
+            </button>
+
+          </mat-menu>
         </div>
       }
-      @case ('freemium') {
+      @case (roles.REGISTER) {
         <div class="flex gap-3">
           <button class="btn-beige">
             Suscríbete
           </button>
 
-          <button class="btn-user-menu">
+          <button class="btn-user-menu" [matMenuTriggerFor]="menu">
             <mat-icon class="material-symbols-rounded text-gold" >account_circle</mat-icon>
             <img srcset="/assets/images/menu-scale.svg" width="20" alt="">
           </button>
+
+          <mat-menu #menu="matMenu">
+            <div class="menu-data-user">
+              <span class="font-bold text-[16px] leading-[21.79px]">Michelle</span>
+              <span class="text-[12px] font-normal leading-[16.34px] text-[#9FA4AE]" >{{'michelle30@email.com'}}</span>
+            </div>
+            <mat-divider />
+            <button mat-menu-item>
+              <mat-icon class="material-symbols-rounded font-normal" >account_circle</mat-icon>
+              <span class="text-[16px] leading-[21.79px] font-bold" >Mi Perfil </span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon class="material-symbols-rounded font-light" >settings</mat-icon>
+              <span class="text-[16px] leading-[21.79px] font-bold" >Configuración  </span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon class="material-symbols-rounded font-light" >verified</mat-icon>
+              <span class="text-[16px] leading-[21.79px] font-bold" >Suscribirme </span>
+            </button>
+
+            <mat-divider />
+
+            <button mat-menu-item class="!min-h-[40px]">
+              <span class="text-[16px] leading-[21.79px] font-bold" >Soporte </span>
+            </button>
+
+            <button mat-menu-item class="!min-h-[40px]" (click)="logout()" >
+              <span class="text-[16px] leading-[21.79px] font-bold" >Cerrar Sesión </span>
+            </button>
+
+          </mat-menu>
+        </div>
+      }
+
+      @case (roles.SUBSCRIBE){
+        <div class="flex items-center gap-3 ">
+          <button class="grid place-content-center">
+            <mat-icon svgIcon="my-bell-notification"></mat-icon>
+          </button>
+
+          <button class="btn-user-menu" [matMenuTriggerFor]="menu">
+            <mat-icon class="material-symbols-rounded text-gold" >account_circle</mat-icon>
+            <img srcset="/assets/images/menu-scale.svg" width="20" alt="">
+          </button>
+          <mat-menu #menu="matMenu">
+            <div class="menu-data-user">
+              <span class="font-bold text-[16px] leading-[21.79px]">Michelle</span>
+              <span class="text-[12px] font-normal leading-[16.34px] text-[#9FA4AE]" >{{'michelle30@email.com'}}</span>
+            </div>
+            <mat-divider />
+            <button mat-menu-item>
+              <mat-icon class="material-symbols-rounded font-normal" >account_circle</mat-icon>
+              <span class="text-[16px] leading-[21.79px] font-bold" >Mi Perfil </span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon class="material-symbols-rounded font-light" >settings</mat-icon>
+              <span class="text-[16px] leading-[21.79px] font-bold" >Configuración  </span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon class="material-symbols-rounded font-light" >check_circle</mat-icon>
+              <span class="text-[16px] leading-[21.79px] font-bold" >Manejar Suscripción </span>
+            </button>
+
+            <mat-divider />
+
+            <button mat-menu-item class="!min-h-[40px]">
+              <span class="text-[16px] leading-[21.79px] font-bold" >Soporte </span>
+            </button>
+
+            <button mat-menu-item class="!min-h-[40px]" (click)="logout()" >
+              <span class="text-[16px] leading-[21.79px] font-bold" >Cerrar Sesión </span>
+            </button>
+
+          </mat-menu>
         </div>
       }
     }
@@ -39,10 +131,19 @@
   </div>
 </div>
 
-@if(type_login == 'guest'){
+@if(role == roles.GUEST){
+  <div class="landing-guest">
+    <div id="center">
+      <h1 class=" text-[40px] leading-[54.48px] sm:text-[52px] sm:leading-[70.82px] sm:font-light" >¡Bienvenido a Soy Zen!</h1>
 
+      <h3 class="font-semibold text-[16px] leading-[24px] sm:text-[20px] sm:leading-[32px] sm:font-semibold" >¡Realiza nuestro test y obtén un programa especial de 21 días!</h3>
+
+      <button class="btn-white !text-[16px] mt-3" routerLink="/test" >Comenzar mi camino</button>
+    </div>
+
+  </div>
 }
-@else if(type_login == 'freemium'){
+@else if(role == roles.REGISTER){
   <div class="landing-freemium">
     <div class="grid gap-2">
       <div class="flex items-center">

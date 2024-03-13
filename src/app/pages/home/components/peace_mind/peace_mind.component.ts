@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { Roles } from '@services/auth.service';
 import { CardArticleComponent } from '@shared/components/card_article/card_article.component';
 
 @Component({
@@ -16,4 +17,8 @@ import { CardArticleComponent } from '@shared/components/card_article/card_artic
   changeDetection: ChangeDetectionStrategy.OnPush,
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
-export class PeaceMindComponent { }
+export class PeaceMindComponent {
+
+  public subscribe = localStorage.getItem('role') == Roles.SUBSCRIBE;
+
+}

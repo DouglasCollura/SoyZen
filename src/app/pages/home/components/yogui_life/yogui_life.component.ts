@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { Roles } from '@services/auth.service';
 import { CardComponent } from '@shared/components/card/card.component';
 
 @Component({
@@ -17,4 +18,8 @@ import { CardComponent } from '@shared/components/card/card.component';
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 
 })
-export class YoguiLifeComponent { }
+export class YoguiLifeComponent {
+
+  public subscribe = localStorage.getItem('role') == Roles.SUBSCRIBE;
+
+}

@@ -4,6 +4,8 @@
   align-items: center;
   padding: 20px 30px;
   justify-content: space-between;
+  border-bottom: 1px solid #E0E2E7;
+
   #logo{
     width: 180px;
   }
@@ -27,6 +29,36 @@
     -moz-border-radius: 50px;
     -ms-border-radius: 50px;
     -o-border-radius: 50px;
+  }
+}
+
+.landing-guest{
+  background-image: url('/assets/images/home.webp');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  display: grid;
+  padding: 40px 30px;
+  grid-template-rows: auto 15%;
+  min-height: 500px;
+
+
+  #center {
+    display: grid;
+    gap: 10px;
+    width: 100%;
+    text-align: start;
+    justify-items: start;
+    align-self: center;
+    h1,h3 {
+      color: white;
+    }
+
+    button{
+      padding: 15px 50px;
+      font-weight: 600;
+    }
+
   }
 }
 
@@ -56,4 +88,28 @@
     font-weight: 600 !important;
     padding: 13px 50px;
   }
+}
+
+::ng-deep{
+  .mat-mdc-menu-panel{
+    max-width: 250px !important;
+    width: 250px !important;
+
+    button{
+      mat-icon{
+        margin-right: 5px !important;
+      }
+    }
+
+    border-radius: 12px !important;
+    -webkit-border-radius: 12px !important;
+    -moz-border-radius: 12px !important;
+    -ms-border-radius: 12px !important;
+    -o-border-radius: 12px !important;
+  }
+}
+
+.menu-data-user{
+  display: grid;
+  padding: 15px;
 }

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Roles } from '@services/auth.service';
 import { CardComponent } from '@shared/components/card/card.component';
 @Component({
   selector: 'app-zen-today-list',
@@ -15,4 +16,6 @@ import { CardComponent } from '@shared/components/card/card.component';
 })
 export class ZenTodayListComponent {
 
- }
+  public subscribe = localStorage.getItem('role') == Roles.SUBSCRIBE;
+
+}

@@ -17,13 +17,17 @@
     <form class="form" [formGroup]="form" >
 
       <div class="form-group input-icon-right">
-        <input type="text" class="input" formControlName="email" placeholder="Email">
+        <input type="text" class="input" [class.input-error]="getInputError('email')" formControlName="email" placeholder="Email">
         <mat-icon class="input-icon material-symbols-rounded" >email</mat-icon>
+        <p *ngIf="getTypeError('email', 'required')" class="text-error"> campo requerido </p>
+        <p *ngIf="getTypeError('email', 'email')" class="text-error"> formato de correo incorrecto  </p>
+
       </div>
 
       <div class="form-group input-icon-right">
-        <input type="{{ passwordVisible ? 'text' : 'password' }}" class="input" formControlName="password" placeholder="Contraseña">
+        <input type="{{ passwordVisible ? 'text' : 'password' }}" class="input"  [class.input-error]="getInputError('password')" formControlName="password" placeholder="Contraseña">
         <mat-icon (click)="togglePasswordVisibility()" class="input-icon material-symbols-rounded" >{{passwordVisible ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <p *ngIf="getTypeError('password', 'required')" class="text-error"> campo requerido </p>
       </div>
 
       <button class="btn-green" id="btn-signup" (click)="login()" > Iniciar Sesión </button>

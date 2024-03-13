@@ -35,3 +35,24 @@
 mat-icon{
   color: white;
 }
+
+.content-control{
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: auto max-content;
+}
+
+.controlTop{
+  display: grid;
+  z-index: 1;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  padding: 10px 20px;
+  background:linear-gradient(0deg, rgba(0, 0, 0, 0.03) 7%, rgba(45, 45, 47, 0.35) 34%, rgba(34, 34, 34, 0.8) 92%) !important;
+
+  .endTopPlayer{
+    display: flex;
+    align-items: center;
+  }
+}

@@ -19,11 +19,17 @@ export class AppComponent {
     const facebookIconUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/facebook_white.svg');
     const instagramIconUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/instagram_white.svg');
     const tiktokIconUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/tiktok_white.svg');
+    const smileVideoIconUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/smile_video.svg');
+    const switchVideoIconUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/switch_video.svg');
+    const bellNotification = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/bell_notification.svg');
     this.matIconRegistry.addSvgIcon('my-cancel', safeIconUrl);
     this.matIconRegistry.addSvgIcon('my-lock', lockIconUrl);
     this.matIconRegistry.addSvgIcon('my-facebook-white', facebookIconUrl);
     this.matIconRegistry.addSvgIcon('my-instagram-white', instagramIconUrl);
     this.matIconRegistry.addSvgIcon('my-tiktok-white', tiktokIconUrl);
+    this.matIconRegistry.addSvgIcon('my-smile-video', smileVideoIconUrl);
+    this.matIconRegistry.addSvgIcon('my-switch-video', switchVideoIconUrl);
+    this.matIconRegistry.addSvgIcon('my-bell-notification', bellNotification);
     this.width = window.screen.width;
   }
 

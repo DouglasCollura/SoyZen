@@ -4,6 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ export default class LoginComponent {
 
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
+  private authService = inject(AuthService);
   passwordVisible = false;
 
   public form = this.formBuilder.group({
@@ -31,11 +33,26 @@ export default class LoginComponent {
   });
 
   login(){
-    localStorage.setItem('type_login','freemium');
+    if (
+      this.form.invalid
+    ) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    this.authService.login(this.form.value)
     this.router.navigate(['/home']);
   }
 
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
+  }
+
+  getTypeError(field: any, type: any) {
+    return this.form.get(field)?.invalid && this.form.get(field)?.touched && this.form.get(field)?.hasError(type)
+  }
+
+  getInputError(field: any){
+    return this.form.get(field)?.invalid && this.form.get(field)?.touched
   }
  }
