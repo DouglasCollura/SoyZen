@@ -15,6 +15,10 @@
       width: 120px !important;
     }
 
+    #btn-login{
+      display: none !important;
+    }
+
   }
 
   .landing-freemium {
@@ -23,5 +27,23 @@
 
   .btn-white{
     padding: 10px 50px !important;
+  }
+
+  .landing-guest{
+
+    .main {
+      padding: 10px 14px !important;
+      grid-template-rows: auto max-content;
+
+      #center {
+        h1 {
+          text-align: left;
+        }
+
+        button{
+          width: 100%;
+        }
+      }
+    }
   }
 }

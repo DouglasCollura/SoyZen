@@ -192,7 +192,7 @@ h5, p {
 
 .text-error{
   position: absolute;
-  bottom: -25px;
+  bottom: -18px;
   color: var(--red);
 }
 
@@ -409,6 +409,11 @@ h5, p {
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
+}
+
+.input-error{
+  outline: 1.5px solid var(--red) !important;
+
 }
 
 .input-icon{

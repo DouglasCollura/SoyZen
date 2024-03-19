@@ -26,6 +26,13 @@ export default class VideoplayerComponent {
   private vgPlayer:VgApiService | undefined;
   public isPlaying = signal(false);
 
+  public controlVideoPlayer = signal({
+    isOver:false,
+    hideTop:true,
+  });
+
+  private timeOut:any;
+
   onPlayerReady(api: VgApiService) {
     this.vgPlayer = api;
     console.log(api)
@@ -46,5 +53,19 @@ export default class VideoplayerComponent {
   Forward(){
     let time = this.vgPlayer?.currentTime;
     this.vgPlayer!.currentTime = (time + 10 > this.vgPlayer?.duration) ? (this.vgPlayer?.duration-1) : (time + 10);
+  }
+
+  showTopControl(){
+    if(!this.controlVideoPlayer().isOver){
+      this.controlVideoPlayer.update(value=>({...value, isOver:true,hideTop:false}));
+    }
+    clearTimeout(this.timeOut);
+
+    this.timeOut = setTimeout(()=>{
+      this.controlVideoPlayer.update(value=>({...value, hideTop:true}));
+      setTimeout(()=>{
+        this.controlVideoPlayer.update(value=>({...value, isOver:false}));
+      },500)
+    },1000);
   }
 }
