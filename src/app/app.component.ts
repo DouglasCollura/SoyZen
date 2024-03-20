@@ -22,6 +22,8 @@ export class AppComponent {
     const smileVideoIconUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/smile_video.svg');
     const switchVideoIconUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/switch_video.svg');
     const bellNotification = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/bell_notification.svg');
+    const bellEmpty = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/bell_empty.svg');
+    const settings = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/settings.svg');
     this.matIconRegistry.addSvgIcon('my-cancel', safeIconUrl);
     this.matIconRegistry.addSvgIcon('my-lock', lockIconUrl);
     this.matIconRegistry.addSvgIcon('my-facebook-white', facebookIconUrl);
@@ -30,6 +32,8 @@ export class AppComponent {
     this.matIconRegistry.addSvgIcon('my-smile-video', smileVideoIconUrl);
     this.matIconRegistry.addSvgIcon('my-switch-video', switchVideoIconUrl);
     this.matIconRegistry.addSvgIcon('my-bell-notification', bellNotification);
+    this.matIconRegistry.addSvgIcon('my-bell-empty', bellEmpty);
+    this.matIconRegistry.addSvgIcon('my-settings', settings);
     this.width = window.screen.width;
   }
 

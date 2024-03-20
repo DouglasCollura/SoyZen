@@ -87,7 +87,26 @@
       @case (roles.SUBSCRIBE){
         <div class="flex items-center gap-3 ">
           <button class="grid place-content-center">
-            <mat-icon svgIcon="my-bell-notification"></mat-icon>
+            @if(notifications().length > 0){
+              <mat-icon svgIcon="my-bell-notification"  [matMenuTriggerFor]="notify"></mat-icon>
+            }@else{
+              <mat-icon svgIcon="my-bell-empty" class="!h-[20px]" [matMenuTriggerFor]="notify"></mat-icon>
+
+            }
+            <mat-menu #notify="matMenu" class="menu-notify">
+              <div class="body-notify">
+                <button class="justify-self-end" ><mat-icon class="material-symbols-rounded !font-extralight" svgIcon="my-settings" ></mat-icon></button>
+
+                <div class="flex items-end justify-between mb-6">
+                  <span class="text-[24px] leading-[38px] font-normal" >Notificaciones</span>
+
+                  <button class="text-[14px] leading-[24px] font-semibold  "  [class]="notifications().length > 0 ? 'text-blue' : 'text-gray' " (click) = "$event.stopPropagation(); clearNotify()" >Borrar todo</button>
+                </div>
+                @for (item of notifications(); track $index) {
+                  <app-nofity-item [notify]="item" />
+                }
+              </div>
+            </mat-menu>
           </button>
 
           <button class="btn-user-menu" [matMenuTriggerFor]="menu">
@@ -148,7 +167,7 @@
     <div class="grid gap-2">
       <div class="flex items-center">
         <span class="!font-semibold text-[24px] leading-[32px] sm:text-[28px] sm:leading-[32px]" >Hola</span>
-        <span class="!font-light font-2xl">, Michelle...</span>
+        <span class="!font-normal text-[24px] leading-[32px] sm:text-[28px] sm:leading-[32px]">, Michelle...</span>
       </div>
       <mat-divider />
     </div>
@@ -159,5 +178,11 @@
 
       <button class="btn-white !text-[14px] !leading-[19.6px] sm:!text-[16px] sm:!leading-[22.4px] font-bold" id="see-program" >Ver Programa</button>
     </div>
+  </div>
+}
+@else {
+  <div class="flex items-center ml-[40px] mt-[35px]">
+    <span class="!font-semibold text-[24px] leading-[32px] sm:text-[28px] sm:leading-[32px]" >Hola</span>
+    <span class="!font-normal text-[24px] leading-[32px] sm:text-[28px] sm:leading-[32px]">, Michelle...</span>
   </div>
 }

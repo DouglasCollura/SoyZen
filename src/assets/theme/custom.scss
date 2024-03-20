@@ -8,6 +8,7 @@
   --gold: #C08E23;
   --success: #3DBD73;
   --background-gray:#EFF4F4;
+  --blue: #5192E9;
 }
 
 $font-url-thin: '../font/NotoSans-Thin.ttf';
@@ -197,7 +198,7 @@ h5, p {
 }
 
 .text-blue{
-  color: #5192E9 !important;
+  color: var(--blue) !important;
 }
 .font-2xl{
   font-size: 28px !important;

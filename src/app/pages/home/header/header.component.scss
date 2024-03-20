@@ -90,10 +90,16 @@
   }
 }
 
+.body-notify{
+  padding: 10px 20px;
+  display: grid;
+  gap: 10px;
+}
+
 ::ng-deep{
   .mat-mdc-menu-panel{
-    max-width: 250px !important;
-    width: 250px !important;
+    max-width: 250px;
+    width: 250px;
 
     button{
       mat-icon{
@@ -107,7 +113,12 @@
     -ms-border-radius: 12px !important;
     -o-border-radius: 12px !important;
   }
-}
+
+  .menu-notify.mat-mdc-menu-panel{
+      max-width: 380px !important;
+      width: 380px !important;
+    }
+  }
 
 .menu-data-user{
   display: grid;
