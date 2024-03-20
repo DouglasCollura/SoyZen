@@ -4,6 +4,7 @@
   --gray: #9FA4AE;
   --dark-gray: #373A40;
   --light-gray: #EDEEF1;
+  ---disable-text:#C7CACF;
   --red: #F86060;
   --gold: #C08E23;
   --success: #3DBD73;
@@ -169,6 +170,10 @@ h5, p {
 
 .text-gray {
   color: var(--gray) !important;
+}
+
+.text-disable{
+  color: var(---disable-text) !important;
 }
 
 .text-dark-gray {

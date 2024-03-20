@@ -86,12 +86,11 @@
 
       @case (roles.SUBSCRIBE){
         <div class="flex items-center gap-3 ">
-          <button class="grid place-content-center">
+          <button class="grid place-content-center" [matMenuTriggerFor]="notify">
             @if(notifications().length > 0){
-              <mat-icon svgIcon="my-bell-notification"  [matMenuTriggerFor]="notify"></mat-icon>
+              <mat-icon svgIcon="my-bell-notification" x></mat-icon>
             }@else{
-              <mat-icon svgIcon="my-bell-empty" class="!h-[20px]" [matMenuTriggerFor]="notify"></mat-icon>
-
+              <mat-icon svgIcon="my-bell-empty" class="!h-[20px]"></mat-icon>
             }
             <mat-menu #notify="matMenu" class="menu-notify">
               <div class="body-notify">
@@ -100,10 +99,18 @@
                 <div class="flex items-end justify-between mb-6">
                   <span class="text-[24px] leading-[38px] font-normal" >Notificaciones</span>
 
-                  <button class="text-[14px] leading-[24px] font-semibold  "  [class]="notifications().length > 0 ? 'text-blue' : 'text-gray' " (click) = "$event.stopPropagation(); clearNotify()" >Borrar todo</button>
+                  <button class="text-[14px] leading-[24px] font-semibold  "  [class]="notifications().length > 0 ? 'text-blue' : 'text-disable' " (click) ="$event.stopPropagation(); clearNotify()" >Borrar todo</button>
                 </div>
                 @for (item of notifications(); track $index) {
                   <app-nofity-item [notify]="item" />
+                }
+
+                @if(notifications().length == 0){
+                  <div class="grid justify-items-center content-center">
+                    <img src="/assets/images/notify/logo_notify.png" alt="">
+                    <span class="text-[14px] leading-[19.07px] font-semibold" >Aún no tienes <br/>
+                      notificaciones</span>
+                  </div>
                 }
               </div>
             </mat-menu>
