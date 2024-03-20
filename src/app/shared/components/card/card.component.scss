@@ -43,7 +43,7 @@
       *{
         color: white;
       }
-
+      height: 24.34px;
       border-radius: 20px;
       -webkit-border-radius: 20px;
       -moz-border-radius: 20px;
@@ -53,6 +53,8 @@
 
     .new{
       background-color: #EDE0C9;
+      box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
+
 
       *{
         color: var(--dark-gray);
@@ -99,5 +101,24 @@
       font-size: 20px;
     }
   }
+  .hgt{
+    height: 32px;
+  }
+  .ftsize{
+   
+font-size: 18px;
+font-weight: 700;
+line-height: 22px;
+letter-spacing: 0em;
+text-align: center;
+color:rgba(255, 255, 255, 1)
+
+  }
+
+  .txtft{
+    font-size: 14px;
+    line-height: 19.07px;
+  }
+
 }
 
