@@ -16,3 +16,27 @@ export interface Test{
   energy:number,
   interests?:Interest[]
 }
+
+export enum TypeTest { range, select_icon, select_single, multiple }
+
+export interface BodyTest{
+  id:number,
+  title:string,
+  content:string,
+  type: TypeTest,
+  pillar: PillarTest,
+  answer: answerTest[]
+}
+
+export interface PillarTest{
+  id:number,
+  name:string
+}
+
+export interface answerTest{
+  id:number,
+  content:string,
+  score:number,
+  img?:string,
+  selected?:boolean
+}

@@ -1,0 +1,13 @@
+<div class="temp-test">
+  <button class="btn" id="btn-close" (click)="goBack()">
+    <mat-icon class="material-symbols-rounded font-extralight !w-[40px] !h-[40px] text-[40px]"> arrow_back </mat-icon>
+  </button>
+  <div class="main !content-stretch" [class]="step() >= 2 ? '!content-stretch' :''">
+    @if(testConstructor()){
+      <app-test-progress class="w-full" [percent]="percent()" [title]="testConstructor()!.pillar!.name" />
+      <app-test-item (nextStepEmitter)="nextStep()" [setTest]="testConstructor()!" ></app-test-item>
+    }
+
+  </div>
+  <button class="btn-link" id="do_later" routerLink="../" >Quiero hacerlo después</button>
+</div>

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Feelings } from '../../../shared/interfaces/feelings.interface';
 import { MatIconModule } from '@angular/material/icon';
+import { answerTest } from '@interfaces/test.interface';
 
 @Component({
   selector: 'app-feeling-card',
@@ -16,6 +17,6 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class FeelingCardComponent {
 
-  @Input({required: true}) feeling!:Feelings;
+  @Input({required: true}) feeling!:Feelings | answerTest | any;
 
 }
