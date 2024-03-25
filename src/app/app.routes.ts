@@ -12,6 +12,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/test/test.component')
   },
   {
+    path:'test-constructor',
+    loadComponent: () => import('./pages/test/test-constructor/test-constructor.component')
+  },
+  {
     path:'send_test_email',
     loadComponent: () => import('./pages/test/sent_test_email/sent_test_email.component')
   },
@@ -56,7 +60,7 @@ export const routes: Routes = [
         path:'',
         loadComponent: () => import('./pages/home/home.component')
       }
-      
+
     ]
   }
 ];
