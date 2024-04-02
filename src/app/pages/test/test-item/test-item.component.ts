@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, comput
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
-import { BodyTest, TypeTest, answerTest } from '@interfaces/test.interface';
+import { BodyTest, TypeTest, AnswerTest } from '@interfaces/test.interface';
 import { TestService } from '@services/test.service';
 import { FeelingCardComponent } from '../feeling_card/feeling_card.component';
 
@@ -25,8 +25,9 @@ export class TestItemComponent {
 
   @Input({required: true}) set setTest(test:BodyTest){
     this.test.set(test);
-    (this.test()!.type == this.type_test.multiple || this.test()?.type == this.type_test.select_icon) && (this.multiList = this.test()!.answer);
+    (this.test()!.type == this.type_test.multiple || this.test()?.type == this.type_test.select_icon) && (this.multiList = this.test()!.answers);
     this.test()!.type == this.type_test.range && this.setRangeValues();
+    this.test()!.type == this.type_test.select_single && (this.select.set(this.test()!.answers[0].id));
   };
   public type_test = TypeTest;
 
@@ -61,8 +62,8 @@ export class TestItemComponent {
 
 
   // * TYPE MULTI
-    public multiList: answerTest[] = [];
-    public multiSelected = signal<answerTest[]>([])
+    public multiList: AnswerTest[] = [];
+    public multiSelected = signal<AnswerTest[]>([])
 
 
   // * SINGLE SELECT
@@ -79,7 +80,7 @@ export class TestItemComponent {
   }
 
 
-  toogleSelect(answer:answerTest){
+  toogleSelect(answer:AnswerTest){
 
     const index = this.multiSelected().findIndex(value => value.id == answer.id);
     index < 0 ?
@@ -92,15 +93,14 @@ export class TestItemComponent {
 
   }
 
-  isSelected(answer:answerTest){
+  isSelected(answer:AnswerTest){
     return this.multiSelected().findIndex(value => value.id == answer.id) > -1;
   }
 
   setRangeValues(){
-    console.log(this.test()!.answer[0])
     this.percent.setValue(0);
-    this.firstValue.set(this.test()!.answer[0].content);
-    this.lastValue.set(this.test()!.answer[this.test()!.answer.length - 1].content);
+    this.firstValue.set(this.test()!.answers[0].content);
+    this.lastValue.set(this.test()!.answers[this.test()!.answers.length - 1].content);
   }
 
   selectFeel(feeling:any){
@@ -113,11 +113,11 @@ export class TestItemComponent {
   };
 
   updateFeelingsSelect(feeling:any){
-    const index:number = this.test()?.answer.findIndex((value)=> value.img == feeling.img)!;
-    let answers:answerTest[] = [...this.multiList];
+    const index:number = this.test()?.answers.findIndex((value)=> value.id == feeling.id)!;
+    let answers:AnswerTest[] = [...this.multiList];
     answers.splice(index, 1 , {...feeling, selected: true})
     this.test.update((value)=> {
-      return {...value!, answer:answers};
+      return {...value!, answers:answers};
     })
     this.selectIcon.set(true)
   }

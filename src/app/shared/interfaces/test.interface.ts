@@ -17,15 +17,21 @@ export interface Test{
   interests?:Interest[]
 }
 
-export enum TypeTest { range, select_icon, select_single, multiple }
+export interface TestGet{
+  questions:BodyTest[]
+}
+
+export enum TypeTest { range = 'range', select_icon = 'select_icon', select_single = 'select_single', multiple = 'multiple' }
 
 export interface BodyTest{
   id:number,
   title:string,
   content:string,
-  type: TypeTest,
+  // type: TypeTest,
+  type: string,
+  pillarId?: number,
   pillar: PillarTest,
-  answer: answerTest[]
+  answers: AnswerTest[]
 }
 
 export interface PillarTest{
@@ -33,10 +39,10 @@ export interface PillarTest{
   name:string
 }
 
-export interface answerTest{
+export interface AnswerTest{
   id:number,
   content:string,
-  score:number,
+  ponderation:number,
   img?:string,
   selected?:boolean
 }

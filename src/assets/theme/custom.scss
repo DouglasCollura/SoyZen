@@ -6,6 +6,7 @@
   --light-gray: #EDEEF1;
   ---disable-text:#C7CACF;
   --red: #F86060;
+  --violet:#9180A0;
   --gold: #C08E23;
   --success: #3DBD73;
   --background-gray:#EFF4F4;
@@ -17,6 +18,13 @@ $font-url-light: '../font/NotoSans-Light.ttf';
 $font-url-regular: '../font/NotoSans-Regular.ttf';
 $font-url-medium: '../font/NotoSans-Medium.ttf';
 $font-url-bold: '../font/NotoSans-Bold.ttf';
+
+
+@font-face {
+  font-family: 'Magistral Honesty';
+  src: url('../font/magistral_honesty/Magistral-Honesty.ttf') format('truetype');
+  font-weight: normal;
+}
 
 @font-face {
   font-family: 'Noto Sans';
@@ -194,6 +202,14 @@ h5, p {
 
 .text-success {
   color: var(--success) !important;
+}
+
+.text-green{
+  color: var(--green) !important;
+}
+
+.bg-gray{
+  background-color: var(--background-gray) !important;
 }
 
 .text-error{

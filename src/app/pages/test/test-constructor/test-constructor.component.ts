@@ -1,13 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Signal, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Signal, computed, inject, signal } from '@angular/core';
 import { TestItemComponent } from '../test-item/test-item.component';
-import { BodyTest, TypeTest } from '@interfaces/test.interface';
+import { BodyTest, TestGet, TypeTest } from '@interfaces/test.interface';
 import { Router } from '@angular/router';
-import { TestService } from '@services/test.service';
+import { TestService, TestServiceData } from '@services/test.service';
 import { FormControl, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { TestProgressComponent } from '../test_progress/test_progress.component';
 import { data_feeling_constructor } from '@shared/helpers/data_feeling_constructor.component';
+import { questions } from '@shared/helpers/data_test_cons.component';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { tap, map } from 'rxjs';
 
 @Component({
   selector: 'app-test-constructor',
@@ -25,7 +28,7 @@ import { data_feeling_constructor } from '@shared/helpers/data_feeling_construct
 export default class TestConstructorComponent {
 
   private router = inject(Router);
-  private testService = inject(TestService)
+  private testService = inject(TestService);
 
   public name = new FormControl('',Validators.required);
   public select_feeling = new FormControl('',Validators.required);
@@ -38,129 +41,21 @@ export default class TestConstructorComponent {
 
   public testConstructor = signal<BodyTest | null>(null);
 
-  public testData = [
-    {
-      id:1,
-      content:'test',
-      title: 'test',
-      type: TypeTest.multiple,
-      pillar:{
-        id:1,
-        name:'Personalidad',
-      },
-      answer:[
-        {
-          id:1,
-          content:'Opcion 1',
-          score:1,
-        },
-        {
-          id:2,
-          content:'Opcion 2',
-          score:1,
-        },
-        {
-          id:3,
-          content:'Opcion 3',
-          score:1,
-        },
-        {
-          id:4,
-          content:'Opcion 4',
-          score:1,
-        },
-        {
-          id:5,
-          content:'Opcion 5',
-          score:1,
-        },
-        {
-          id:6,
-          content:'Opcion 6',
-          score:1,
-        },
-        {
-          id:7,
-          content:'Opcion 7',
-          score:1,
-        },
-      ]
-    },
-    {
-      id:1,
-      content:'test',
-      title: 'test',
-      type: TypeTest.select_single,
-      pillar:{
-        id:1,
-        name:'Multiple',
-      },
-      answer:[
-        {
-          id:1,
-          content:'Opcion 1',
-          score:1,
-        },
-        {
-          id:2,
-          content:'Opcion 2',
-          score:1,
-        },
-        {
-          id:3,
-          content:'Opcion 3',
-          score:1,
-        },
-      ]
-    },
-
-    {
-      id:1,
-      content:'Rango',
-      title: 'test',
-      type: TypeTest.range,
-      pillar:{
-        id:1,
-        name:'Mentalidad',
-      },
-      answer:[
-        {
-          id:1,
-          content:'Muy dificil',
-          score:0,
-        },
-        {
-          id:2,
-          content:'Normal',
-          score:50,
-        },
-        {
-          id:3,
-          content:'Facil',
-          score:100,
-        },
-      ]
-    },
-
-    {
-      id:1,
-      content:'Select Icon',
-      title: 'test',
-      type: TypeTest.select_icon,
-      pillar:{
-        id:1,
-        name:'Mentalidad',
-      },
-      answer:data_feeling_constructor,
-    }
-  ];
-
-  constructor(){
-    this.testConstructor.set(this.testData[0]);
-  }
+  public testData = toSignal<BodyTest[]>(
+    this.testService.getTests().pipe(
+      tap(
+        value=>{
+          value!.questions.length > 0 && this.testConstructor.set(value!.questions[0])
+        }
+      ),
+      map((value)=>value!.questions)
+    )
+  );
+  public testDataService = computed<TestServiceData>(()=>this.testService.testData());
 
 
   public test = this.testService.test;
+
 
   nextStep(){
     this.testConstructor.set(null);
@@ -170,10 +65,11 @@ export default class TestConstructorComponent {
       return
     }
     this.index.update(value => value+1);
-    this.testConstructor.update(value => this.testData[this.index()]);
+    this.testConstructor.update(value => null)
+    this.testConstructor.update(value => this.testData()![this.index()]);
     this.setTitlePercent();
     setTimeout(()=>{
-      this.percent.update(value=>((100/this.testData.length)*this.index()+1));
+      this.percent.update(value=>((100/this.testData()!.length)*this.index()+1));
     },200)
   }
 

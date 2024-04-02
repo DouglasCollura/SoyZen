@@ -30,7 +30,7 @@
       <h1 class="text-[24px] leading-[32.69px] text-center sm:text-[20px] sm:leading-[27.24px]" > {{test()!.content}} </h1>
 
       <div class="grid list-buttons justify-center gap-3">
-        @for (answer of test()!.answer; track $index) {
+        @for (answer of test()!.answers; track $index) {
           <button [class]="select() == answer.id ? 'btn-beige' : 'btn-border-beige'" (click)="select.set(answer.id)" > {{answer.content}} </button>
         }
       </div>
@@ -68,7 +68,7 @@
       </div>
 
       <div class="list-cards animate__animated animate__slideInRight animate__fast">
-        @for (feeling of test()?.answer; track $index) {
+        @for (feeling of test()?.answers; track $index) {
         <app-feeling-card [feeling]="feeling" (click)="selectFeel(feeling)" />
         }
       </div>
