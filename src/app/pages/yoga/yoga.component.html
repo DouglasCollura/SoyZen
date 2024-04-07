@@ -1,0 +1,383 @@
+<div class="temp-yoga">
+  <div class="grid p-6 gap-5">
+    <mat-icon class="material-symbols-rounded font-extralight !w-[40px] !h-[40px] text-[40px]" routerLink="../" > arrow_back </mat-icon>
+
+    <img class="justify-self-center" srcset="/assets/images/sections/yoga_logo.webp" alt="">
+    <span class="text-[24px] leading-[32px] font-medium text-center" >Yoga</span>
+
+    <div class="input-icon-right search max-w-[392px] m-auto w-full">
+      <input type="text" class="input-rounded" placeholder="¿En qué te enfocarás hoy?">
+      <mat-icon class="input-icon material-symbols-rounded" >search</mat-icon>
+    </div>
+  </div>
+
+  <section class="filter-option m-auto">
+    <swiper-container
+      slides-per-view="auto"
+      speed="500"
+      loop="false"
+      freemode="true"
+      class="overflow-auto"
+    >
+      <swiper-slide>
+        <mat-chip-listbox multiple="">
+          @for (filter_option of filter_options(); track $index) {
+          <mat-chip-row [class.selected]="filter_option.selected">
+            {{ filter_option.title }}
+            @if(filter_option.selected){
+            <mat-icon matChipRemove class="material-symbols-rounded font-extralight">close</mat-icon>
+            }
+          </mat-chip-row>
+          }
+        </mat-chip-listbox>
+      </swiper-slide>
+    </swiper-container>
+  </section>
+
+  <div class="section-recent">
+    <span class="text-[24px] leading-[28px] font-medium text-white"> Recientes </span>
+
+    <swiper-container
+      slides-per-view="auto"
+      speed="500"
+      loop="false"
+      freemode="true"
+      class="overflow-auto"
+    >
+      <swiper-slide>
+        <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+      </swiper-slide>
+
+    </swiper-container>
+  </div>
+
+
+  <div class="section-init">
+
+    <div class="flex justify-between">
+      <span class="text-[24px] leading-[28px] font-medium" >Principiantes</span>
+
+      <button class="btn flex btn-seemore  items-center !text-[14px] !leading-[19.07px]  !font-semibold" routerLink="yoga">
+        VER TODO
+        <mat-icon class="material-symbols-rounded">keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
+
+    <swiper-container
+      slides-per-view="auto"
+      speed="500"
+      loop="false"
+      freemode="true"
+      class="overflow-auto"
+    >
+      <swiper-slide>
+        <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+      </swiper-slide>
+
+    </swiper-container>
+  </div>
+
+
+  <div class="section-text">
+    <span class="text-magistral text-[32px] leading-[44px] text-green" >"El camino no está en el cielo. <br> El camino esta en el corazón"</span>
+    <span class="text-magistral text-[40px] leading-[32px] text-green" >BUDA</span>
+  </div>
+
+  <div class="section-program">
+    <span class="text-[24px] leading-[28px] font-medium text-white" >Únete a un programa...</span>
+    <span class="text-[16px] leading-[22px] font-semibold text-white" >Apúntate a un programa de Yoga, activa las notificaciones y disfruta de las sesiones diarias.</span>
+
+    <swiper-container
+    slides-per-view="auto"
+    speed="500"
+    loop="false"
+    freemode="true"
+    class="overflow-auto py-5"
+  >
+    <swiper-slide>
+      <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+    </swiper-slide>
+
+    <swiper-slide>
+      <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+    </swiper-slide>
+
+    <swiper-slide>
+      <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+    </swiper-slide>
+
+  </swiper-container>
+  </div>
+
+  <div class="section-init">
+
+    <div class="flex justify-between">
+      <span class="text-[24px] leading-[28px] font-medium" >Vinyasa Yoga</span>
+
+      <button class="btn flex btn-seemore  items-center !text-[14px] !leading-[19.07px]  !font-semibold" routerLink="yoga">
+        VER TODO
+        <mat-icon class="material-symbols-rounded">keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
+
+    <swiper-container
+      slides-per-view="auto"
+      speed="500"
+      loop="false"
+      freemode="true"
+      class="overflow-auto"
+    >
+      <swiper-slide>
+        <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+      </swiper-slide>
+
+    </swiper-container>
+  </div>
+
+  <div class="section-init">
+
+    <div class="flex justify-between">
+      <span class="text-[24px] leading-[28px] font-medium" >Yoga Nidra</span>
+
+      <button class="btn flex btn-seemore  items-center !text-[14px] !leading-[19.07px]  !font-semibold" routerLink="yoga">
+        VER TODO
+        <mat-icon class="material-symbols-rounded">keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
+
+    <swiper-container
+      slides-per-view="auto"
+      speed="500"
+      loop="false"
+      freemode="true"
+      class="overflow-auto"
+    >
+      <swiper-slide>
+        <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          category="Meditacion"
+          time="30min"
+          title=""
+          [isLock]="!subscribe"
+          url_img="/assets/images/test/back_card_lg.jpg"
+        />
+      </swiper-slide>
+
+    </swiper-container>
+  </div>
+
+  <div class="section-info-init">
+    <div class="info">
+      <span class="text-magistral text-white text-[38px] leading-[43.93px] font-normal" >¿Cómo empezar a <br> practicar yoga?</span>
+
+      <div class="grid gap-2">
+        <p class="text-[16px] leading-[24px] font-normal" >Si estás interesado en empezar a practicar yoga, hay muchos recursos disponibles para ti en Soy Zen.</p>
+        <p class="text-[16px] leading-[24px] font-normal" >
+          Empieza con una clase de yoga suave y ve aumentando gradualmente la intensidad y la duración de tus sesiones a medida que te sientas más cómodo. Es importante escuchar a tu cuerpo y no forzar las posturas. Si sientes dolor, detente y descansa.
+        </p>
+        <p class="text-[16px] leading-[24px] font-normal" >
+          El yoga es una práctica segura y beneficiosa para personas de todas las edades y niveles de condición física. Si estás buscando una forma de mejorar tu salud física y mental, el yoga puede ser una excelente opción para ti.
+        </p>
+      </div>
+    </div>
+
+    <div class="img">
+      <img srcset="/assets/images/sections/yoga_init.webp" alt="">
+    </div>
+  </div>
+</div>
