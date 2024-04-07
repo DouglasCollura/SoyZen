@@ -1,0 +1,403 @@
+<app-banner />
+<div class="temp-category">
+
+  <section class="filter-option">
+
+    <mat-chip-row [class.selected]="true">
+      Meditación
+      <mat-icon matChipRemove class="material-symbols-rounded font-extralight">close</mat-icon>
+    </mat-chip-row>
+
+    <swiper-container
+      slides-per-view="auto"
+      speed="500"
+      loop="false"
+      freemode="true"
+      class="overflow-auto"
+    >
+
+      <swiper-slide>
+        <mat-chip-listbox multiple="">
+          @for (filter_option of filter_options(); track $index) {
+          <mat-chip-row [class.selected]="filter_option.selected">
+            {{ filter_option.title }}
+            @if(filter_option.selected){
+            <mat-icon matChipRemove class="material-symbols-rounded font-extralight">close</mat-icon>
+            }
+          </mat-chip-row>
+          }
+        </mat-chip-listbox>
+      </swiper-slide>
+    </swiper-container>
+  </section>
+
+
+  <section class="section-swiper bg-gray">
+    <span class="text-[24px] leading-[28px] font-medium" >Meditaciones del Día</span>
+    <swiper-container
+      slides-per-view="auto"
+      speed="500"
+      loop="false"
+      freemode="true"
+      class="overflow-auto"
+    >
+      <swiper-slide>
+        <app-card
+          [isNew]="true"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          [isLock]="!subscribe"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          [isLock]="!subscribe"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          [isLock]="!subscribe"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          [isLock]="!subscribe"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+    </swiper-container>
+  </section>
+
+
+  <section class="section-swiper ">
+    <div class="flex items-center justify-between">
+      <span class="text-[24px] leading-[28px] font-medium" >Principiantes</span>
+
+      <button class="btn btn-seemore flex items-center !text-[14px] !leading-[19.07px]  !font-semibold">
+        VER TODO
+        <mat-icon class="material-symbols-rounded"
+          >keyboard_arrow_right</mat-icon
+        >
+      </button>
+    </div>
+    <swiper-container
+      slides-per-view="auto"
+      speed="500"
+      loop="false"
+      freemode="true"
+      class="overflow-auto"
+    >
+      <swiper-slide>
+        <app-card
+          [isNew]="true"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          [isLock]="!subscribe"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          [isLock]="!subscribe"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          [isLock]="!subscribe"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          [isLock]="!subscribe"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+    </swiper-container>
+  </section>
+
+  <section class="section-swiper ">
+    <div class="flex items-center justify-between">
+      <span class="text-[24px] leading-[28px] font-medium" >Para Dormir</span>
+
+      <button class="btn btn-seemore flex items-center !text-[14px] !leading-[19.07px]  !font-semibold">
+        VER TODO
+        <mat-icon class="material-symbols-rounded"
+          >keyboard_arrow_right</mat-icon
+        >
+      </button>
+    </div>
+    <swiper-container
+      slides-per-view="auto"
+      speed="500"
+      loop="false"
+      freemode="true"
+      class="overflow-auto"
+    >
+      <swiper-slide>
+        <app-card
+          [isNew]="true"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          [isLock]="!subscribe"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          [isLock]="!subscribe"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          [isLock]="!subscribe"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          [isLock]="!subscribe"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+    </swiper-container>
+  </section>
+
+
+  <section class="section-swiper section-meditation">
+    <div class="flex items-center justify-between">
+      <span class="text-[24px] leading-[28px] font-medium" >Meditación 5 minutos</span>
+
+      <button class="btn btn-seemore flex items-center !text-[14px] !leading-[19.07px]  !font-semibold">
+        VER TODO
+        <mat-icon class="material-symbols-rounded"
+          >keyboard_arrow_right</mat-icon
+        >
+      </button>
+    </div>
+    <swiper-container
+      slides-per-view="auto"
+      speed="500"
+      loop="false"
+      freemode="true"
+      class="overflow-auto"
+    >
+      <swiper-slide>
+        <app-card
+          [isNew]="true"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          [isLock]="!subscribe"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          [isLock]="!subscribe"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          [isLock]="!subscribe"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          [isLock]="!subscribe"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+    </swiper-container>
+  </section>
+
+  <section class="section-swiper ">
+    <div class="flex items-center justify-between">
+      <span class="text-[24px] leading-[28px] font-medium" >Meditación 10 minutos</span>
+
+      <button class="btn btn-seemore flex items-center !text-[14px] !leading-[19.07px]  !font-semibold">
+        VER TODO
+        <mat-icon class="material-symbols-rounded"
+          >keyboard_arrow_right</mat-icon
+        >
+      </button>
+    </div>
+    <swiper-container
+      slides-per-view="auto"
+      speed="500"
+      loop="false"
+      freemode="true"
+      class="overflow-auto"
+    >
+      <swiper-slide>
+        <app-card
+          [isNew]="true"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          [isLock]="!subscribe"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          [isLock]="!subscribe"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          [isLock]="!subscribe"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          [isLock]="!subscribe"
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card
+          title="Conectar con la energía de los 4 elementos"
+          url_img="/assets/images/test/back_card.webp"
+        />
+      </swiper-slide>
+
+    </swiper-container>
+  </section>
+
+</div>

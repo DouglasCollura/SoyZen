@@ -1,0 +1,76 @@
+.temp-category{
+
+  .filter-option{
+    padding: 40px;
+    display: grid;
+    gap: 10px;
+    justify-items: start;
+  }
+}
+
+
+::ng-deep{
+
+  .mat-mdc-standard-chip{
+
+    background: white !important;
+    outline: 1px solid var(--green);
+
+    border-radius: 6px !important;
+    -webkit-border-radius: 6px !important;
+    -moz-border-radius: 6px !important;
+    -ms-border-radius: 6px !important;
+    -o-border-radius: 6px !important;
+  }
+  .mat-mdc-chip-action-label{
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: var(--green);
+  }
+  .selected.mat-mdc-standard-chip{
+    background-color: var(--green) !important;
+  }
+  .selected .mat-mdc-chip-action-label{
+    color: white !important;
+    font-weight: 500 !important;
+  }
+  .selected mat-icon{
+    color: white !important;
+  }
+  .mat-mdc-chip-focus-overlay{
+    background-color: transparent !important;
+  }
+  .mat-mdc-chip-remove{
+    opacity: 1 !important;
+  }
+
+  // .filter-select.mat-mdc-standard-chip{
+  //   background-color: var(--green) !important;
+  // }
+}
+::ng-deep{
+  swiper-slide{
+    margin: 0px;
+    margin-left: 0px;
+    margin-right:  20px;
+    width: auto !important;
+  }
+}
+
+.section-swiper{
+  display: grid;
+  gap: 20px;
+  padding: 40px;
+
+}
+
+.section-meditation{
+  gap: 30px;
+    height: 100%;
+    display: grid;
+    background-image: url(/assets/images/bg_meditacion.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 30px;
+}
