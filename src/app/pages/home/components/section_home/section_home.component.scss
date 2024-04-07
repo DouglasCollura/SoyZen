@@ -1,0 +1,33 @@
+.temp-section-home{
+  display: grid;
+  gap: 20px;
+  position: relative;
+  padding: 30px;
+}
+
+.bg-img{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.btn-seemore{
+  color:#686D76;
+}
+.colorgray{
+  color: rgba(104, 109, 118, 1);
+}
+
+
+::ng-deep{
+  swiper-slide{
+    margin: 0px;
+    margin-left: 0px;
+    margin-right:  20px;
+    width: auto !important;
+  }
+}
