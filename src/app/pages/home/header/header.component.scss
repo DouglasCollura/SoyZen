@@ -4,6 +4,8 @@
   align-items: center;
   padding: 20px 30px;
   justify-content: space-between;
+  border-bottom: 1px solid #E0E2E7;
+
   #logo{
     width: 180px;
   }
@@ -30,6 +32,36 @@
   }
 }
 
+.landing-guest{
+  background-image: url('/assets/images/home.webp');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  display: grid;
+  padding: 40px 30px;
+  grid-template-rows: auto 15%;
+  min-height: 500px;
+
+
+  #center {
+    display: grid;
+    gap: 10px;
+    width: 100%;
+    text-align: start;
+    justify-items: start;
+    align-self: center;
+    h1,h3 {
+      color: white;
+    }
+
+    button{
+      padding: 15px 50px;
+      font-weight: 600;
+    }
+
+  }
+}
+
 .landing-freemium{
   padding: 40px;
   background-image: url('/assets/images/zen_back.webp');
@@ -44,16 +76,53 @@
   }
 
   mat-divider{
-    border-top-color: white !important
+    border-top-color: rgba(255, 255, 255, 0.205) !important
   }
 
-  #freemium-title{
-    font-size: 52px !important;
-  }
+  // #freemium-title{
+  //   font-size: 52px !important;
+  // }
 
 
   #see-program{
     font-weight: 600 !important;
     padding: 13px 50px;
   }
+}
+
+.body-notify{
+  padding: 10px 20px;
+  display: grid;
+  gap: 10px;
+  min-height: 400px;
+  grid-template-rows: max-content max-content auto;
+}
+
+::ng-deep{
+  .mat-mdc-menu-panel{
+    max-width: 250px;
+    width: 250px;
+
+    button{
+      mat-icon{
+        margin-right: 5px !important;
+      }
+    }
+
+    border-radius: 12px !important;
+    -webkit-border-radius: 12px !important;
+    -moz-border-radius: 12px !important;
+    -ms-border-radius: 12px !important;
+    -o-border-radius: 12px !important;
+  }
+
+  .menu-notify.mat-mdc-menu-panel{
+      max-width: 380px !important;
+      width: 380px !important;
+    }
+  }
+
+.menu-data-user{
+  display: grid;
+  padding: 15px;
 }

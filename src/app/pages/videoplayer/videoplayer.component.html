@@ -1,4 +1,19 @@
-<vg-player #videoPlayer (onPlayerReady)="onPlayerReady($event)">
+<vg-player #videoPlayer (onPlayerReady)="onPlayerReady($event)"  (mousemove)="showTopControl()">
+  <div class="controlTop animate__animated " [class]="controlVideoPlayer().hideTop ? 'animate__fadeOut' : 'animate__fadeIn'" *ngIf="controlVideoPlayer().isOver">
+    <div class="flex justify-between">
+      <h1 class="text-white text-[16px] leading-[32px] font-bold">Yoga con Alegría - Chakra Muladhara</h1>
+      <div class="endTopPlayer">
+        <button class="btn-green items-center flex gap-1">
+          <mat-icon class="material-symbols-rounded" svgIcon="my-switch-video"></mat-icon>
+          Escena
+        </button>
+        <button class="btn close grid place-content-center" routerLink="/" >
+          <mat-icon class="material-symbols-rounded !font-thin !w-[30px] !h-[30px] !text-[30px]">close</mat-icon>
+        </button>
+      </div>
+
+    </div>
+  </div>
   <vg-controls [vgAutohide]="true" [vgAutohideTime]="0.5">
     <div class="grid w-full">
       <vg-scrub-bar>
@@ -12,37 +27,50 @@
         ></vg-time-display>
         <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
       </div>
-      <div class="flex w-full items-center justify-center gap-7 h-[50px]">
+      <div class="content-control">
+        <div class="flex w-full items-center justify-center gap-7 h-[50px]">
 
-        <button>
-          <mat-icon class="material-symbols-rounded font-thin !h-[55px] !w-[55px] !text-[55px]">skip_previous</mat-icon>
-        </button>
-        <button (click)="Replay()" >
-          <mat-icon class="material-symbols-rounded font-thin !h-[38px] !w-[38px] !text-[38px]">replay_10</mat-icon>
-        </button>
-        <button class="text-white" id="play" (click)="playPause()">
-          @if(isPlaying()){
-          <mat-icon class="material-symbols-rounded font-thin !h-[48px] !w-[48px] !text-[48px]"
-            >pause_circle</mat-icon
-          >
-          } @else{
-          <mat-icon class="material-symbols-rounded font-thin !h-[48px] !w-[48px] !text-[48px]"
-            >play_circle</mat-icon
-          >
-          }
-        </button>
-        <button (click)="Forward()">
-          <mat-icon class="material-symbols-rounded font-thin !h-[38px] !w-[38px] !text-[38px]"
-            >forward_10</mat-icon
-          >
-        </button>
+          <button>
+            <mat-icon class="material-symbols-rounded font-thin !h-[55px] !w-[55px] !text-[55px]">skip_previous</mat-icon>
+          </button>
+          <button (click)="Replay()" >
+            <mat-icon class="material-symbols-rounded font-thin !h-[38px] !w-[38px] !text-[38px]">replay_10</mat-icon>
+          </button>
+          <button class="text-white" id="play" (click)="playPause()">
+            @if(isPlaying()){
+            <mat-icon class="material-symbols-rounded font-thin !h-[48px] !w-[48px] !text-[48px]"
+              >pause_circle</mat-icon
+            >
+            } @else{
+            <mat-icon class="material-symbols-rounded font-thin !h-[48px] !w-[48px] !text-[48px]"
+              >play_circle</mat-icon
+            >
+            }
+          </button>
+          <button (click)="Forward()">
+            <mat-icon class="material-symbols-rounded font-thin !h-[38px] !w-[38px] !text-[38px]"
+              >forward_10</mat-icon
+            >
+          </button>
 
-        <button>
-          <mat-icon class="material-symbols-rounded font-thin !h-[55px] !w-[55px] !text-[55px]">
-            skip_next
-          </mat-icon>
-        </button>
+          <button>
+            <mat-icon class="material-symbols-rounded font-thin !h-[55px] !w-[55px] !text-[55px]">
+              skip_next
+            </mat-icon>
+          </button>
+
+        </div>
+        <div class="flex gap-5">
+          <button>
+            <mat-icon svgIcon="my-smile-video" ></mat-icon>
+          </button>
+          <button>
+            <mat-icon class="material-symbols-rounded !font-thin" >share</mat-icon>
+          </button>
+        </div>
+
       </div>
+
     </div>
   </vg-controls>
 

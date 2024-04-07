@@ -3,6 +3,8 @@
   gap: 20px;
   padding: 30px;
   grid-template-rows: max-content auto;
+  margin-top: 20px;
+  margin-bottom: 50px;
 
   .card-library{
     background-repeat: no-repeat;
@@ -34,7 +36,16 @@
   .ebook{
     background-image: linear-gradient( 180deg, rgba(0, 0, 0, 0.1) 50%, rgba(34, 34, 34, 0.7) 70%), url('/assets/images/bg_ebooks.webp');
   }
+
+  .content-info{
+    display: grid;
+    grid-auto-flow: column;
+    gap: 20px;
+  }
 }
 .btn-seemore{
   color:#686D76;
+}
+.btntxt{
+  color:rgba(104, 109, 118, 1)
 }

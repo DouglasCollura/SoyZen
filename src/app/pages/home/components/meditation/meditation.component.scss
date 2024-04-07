@@ -2,7 +2,7 @@
   gap: 30px;
   height: 100%;
   display: grid;
-  background-image: url('/assets/images/bg_meditation.webp');
+  background-image: url('/assets/images/bg_meditacion.webp');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -15,5 +15,9 @@
 }
 
 .btn-seemore{
-  color:#686D76;
+ color: rgba(104, 109, 118, 1);;
+}
+
+.colorgray{
+  color: rgba(104, 109, 118, 1);
 }

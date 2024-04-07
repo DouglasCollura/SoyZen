@@ -3,18 +3,27 @@
 
   <div class="body-home">
     <section class="filter-option">
+      <swiper-container
+      slides-per-view="auto"
+      speed="500"
+      loop="false"
+      freemode="true"
+      class="overflow-auto"
+    >
+      <swiper-slide>
       <mat-chip-listbox multiple="">
         @for (filter_option of filter_options(); track $index) {
-        <mat-chip-row>
+        <mat-chip-row [class.selected]="filter_option.selected">
           {{ filter_option.title }}
           @if(filter_option.selected){
-          <mat-icon matChipRemove class="material-symbols-rounded">close</mat-icon>
+          <mat-icon matChipRemove class="material-symbols-rounded font-extralight">close</mat-icon>
           }
         </mat-chip-row>
         }
       </mat-chip-listbox>
+    </swiper-slide>
+  </swiper-container>
     </section>
-
     @defer(on viewport){
     <app-zen-today-list />
     }@placeholder () {
@@ -40,6 +49,20 @@
     }
 
     @defer(on viewport){
+      <div class="section-ad">
+        <div class="grid m-auto  max-w-[900px]">
+          <div class="content-ads">
+            <img srcset="/assets/images/test/ad.jpg" alt="">
+          </div>
+          <span class="text-end text-[12px]">Publicidad</span>
+        </div>
+
+      </div>
+    }@placeholder (){
+      <app-skeleton-section class="overflow-hidden" />
+    }
+
+    @defer(on viewport){
       <app-meditation />
     }@placeholder () {
       <app-skeleton-section class="overflow-hidden" />
@@ -48,6 +71,21 @@
     @defer(on viewport){
       <app-peace-mind />
     }@placeholder () {
+      <app-skeleton-section class="overflow-hidden" />
+    }
+
+
+    @defer(on viewport){
+      <div class="section-ad">
+        <div class="grid m-auto  max-w-[900px]">
+          <div class="content-ads">
+            <img srcset="/assets/images/test/ad.jpg" alt="">
+          </div>
+          <span class="text-end text-[12px]">Publicidad</span>
+        </div>
+
+      </div>
+    }@placeholder (){
       <app-skeleton-section class="overflow-hidden" />
     }
 

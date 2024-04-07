@@ -1,4 +1,5 @@
 export const environment = {
   production:false,
-  apiUrl: 'https://reqres.in/api'
+  apiUrl: 'https://api-dev.soyzen.com/api/v1',
+  urlMedia: 'https://dev-media.soyzen.com/'
 };

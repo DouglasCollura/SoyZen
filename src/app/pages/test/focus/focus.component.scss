@@ -20,7 +20,7 @@
 .content-focus{
   width: 100%;
   display: grid;
-  gap: 25px;
+  gap: 80px;
 
   #btn-continue{
     width: 80% ;
@@ -51,4 +51,10 @@ line-height: 16px;
 letter-spacing: 0em;
 text-align: center;
 
+}
+
+.mat-mdc-slider{
+  width: 90%;
+  margin: 0px auto -40px;
+  top: -35px;
 }

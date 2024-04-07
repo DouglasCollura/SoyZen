@@ -14,3 +14,9 @@
 mat-divider{
   border-top-color: #ffffff38 !important
 }
+::ng-deep{
+  swiper-slide{
+    margin: 0px 10px;
+    width: auto !important;
+  }
+}

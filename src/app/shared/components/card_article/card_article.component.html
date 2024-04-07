@@ -2,16 +2,24 @@
   <div class="card">
     <img [srcset]="url_img" alt="">
     <div class="body">
-      <div class="flex justify-between p-3">
-        <div class="chip">
-          <mat-icon svgIcon="my-lock"></mat-icon>
-          <!-- <p>30min</p> -->
-        </div>
+      <div class="flex  p-3" [class]="isNew ? 'justify-end': 'justify-between' ">
+        @if(isLock){
+          <div class="chip">
+              <mat-icon svgIcon="my-lock"></mat-icon>
+            <!-- <p>30min</p> -->
+          </div>
+        }
+        @if(isNew){
+          <div class="chip new">
+            <span class="font-semibold text-[12px]"  >Nuevo</span>
+            <!-- <p>30min</p> -->
+          </div>
+        }
       </div>
 
 
       <div class="content-title">
-        <span class="self-start font-sm text-white text-start leading-normal"> {{title}} </span>
+        <span class="self-start font-sm text-white text-start leading-normal title"> {{title}} </span>
       </div>
     </div>
   </div>
@@ -22,10 +30,10 @@
     </div>
 
     <div class="flex justify-between w-full items-center">
-      <h4 class="font-semibold">Llynier Tobia</h4>
+      <h4 class="font-semibold txtCl">Llynier Tobia</h4>
       <div class="flex items-center">
-        <mat-icon class="material-symbols-rounded">remove_red_eye</mat-icon>
-        <span class="text-sm" >265</span>
+        <mat-icon class="material-symbols-rounded txtft">remove_red_eye</mat-icon>
+        <span class="text-sm txtft" >265</span>
       </div>
     </div>
   </div>

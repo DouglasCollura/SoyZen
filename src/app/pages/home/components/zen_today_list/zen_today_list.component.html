@@ -1,20 +1,67 @@
 <div class="temp-zen-today-list animate__animated animate__fadeIn">
-  <span class="text-[24px] font-medium">Mood Zen del día</span>
-
-  <div class="list">
+  <span class="text-[20px] leading-[28px] font-semibold sm:text-[24px] sm:font-medium">Mood Zen del día</span>
+  <swiper-container
+    slides-per-view="auto"
+    speed="500"
+    loop="false"
+    freemode="true"
+    class="overflow-auto"
+  >
+    <swiper-slide>
       <app-card
         [isNew]="true"
         title="Conectar con la energía de los 4 elementos"
         url_img="/assets/images/test/back_card.webp"
       />
+    </swiper-slide>
+    <swiper-slide>
       <app-card
+        [isLock]="!subscribe"
         title="Flow shot energético"
         url_img="/assets/images/test/back_card_lg.jpg"
-
       />
+    </swiper-slide>
+    <swiper-slide>
       <app-card
         title="Conectar con la energía de los 4 elementos"
         url_img="/assets/images/test/back_card.webp"
       />
-  </div>
+    </swiper-slide>
+
+    <swiper-slide>
+      <app-card
+        [isLock]="!subscribe"
+        title="Flow shot energético"
+        url_img="/assets/images/test/back_card_lg.jpg"
+      />
+    </swiper-slide>
+
+    <swiper-slide>
+      <app-card
+        [isLock]="!subscribe"
+        title="Flow shot energético"
+        url_img="/assets/images/test/back_card_lg.jpg"
+      />
+    </swiper-slide>
+
+    <swiper-slide>
+      <app-card
+        [isNew]="true"
+        title="Conectar con la energía de los 4 elementos"
+        url_img="/assets/images/test/back_card.webp"
+      />
+    </swiper-slide>
+
+    <swiper-slide>
+      <app-card
+        title="Conectar con la energía de los 4 elementos"
+        url_img="/assets/images/test/back_card.webp"
+      />
+    </swiper-slide>
+  </swiper-container>
+
+  <!-- <div class="list">
+
+
+  </div> -->
 </div>

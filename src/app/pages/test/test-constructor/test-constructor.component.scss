@@ -1,0 +1,50 @@
+.temp-test {
+  min-height: 100%;
+  display: grid;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-image: linear-gradient(179.98deg, rgba(255, 255, 255, 1) 23.04%, rgba(255, 255, 255, 0.72) 99.98%), url('/assets/images/home.webp');
+  padding: 50px 150px;
+  grid-template-rows: max-content auto 15%;
+  height: 100%;
+  overflow: auto;
+
+  .main{
+    display: grid;
+    padding: 20px;
+    align-content: space-around;
+    margin: 0px auto;
+    max-width: 500px;
+    width: 60%;
+    gap: 20px;
+    height: 100%;
+    .content{
+      display: grid;
+      justify-items: center;
+      gap: 50px;
+    }
+
+    button{
+      width: 80%;
+    }
+  }
+
+  .btn-link{
+    justify-self: end;
+    display: block;
+  }
+
+
+  .input-plane{
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+}
+
+::ng-deep{
+  .mdc-circular-progress__indeterminate-circle-graphic{
+    stroke: var(--green) !important;
+  }
+}

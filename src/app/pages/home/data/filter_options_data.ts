@@ -5,7 +5,7 @@ export const filter_options_data:FilterOption[] = [
 
   {
     title:'Todo',
-    selected:false
+    selected:true
   },
   {
     title:'Yoga',

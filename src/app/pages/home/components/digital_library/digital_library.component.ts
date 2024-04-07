@@ -10,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule
   ],
   templateUrl: './digital_library.component.html',
-  styleUrl: './digital_library.component.scss',
+  styleUrls: ['./digital_library.component.scss', './digital_library-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DigitalLibraryComponent { }

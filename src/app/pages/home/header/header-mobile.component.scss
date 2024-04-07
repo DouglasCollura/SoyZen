@@ -1,0 +1,49 @@
+@media (width < 820px) {
+
+  .temp-header {
+    .search {
+      display: none !important;
+    }
+  }
+}
+
+@media (width < 620px) {
+  .temp-header {
+    padding: 15px 20px !important;
+
+    #logo {
+      width: 120px !important;
+    }
+
+    #btn-login{
+      display: none !important;
+    }
+
+  }
+
+  .landing-freemium {
+    padding: 20px !important;
+  }
+
+  .btn-white{
+    padding: 10px 50px !important;
+  }
+
+  .landing-guest{
+
+    .main {
+      padding: 10px 14px !important;
+      grid-template-rows: auto max-content;
+
+      #center {
+        h1 {
+          text-align: left;
+        }
+
+        button{
+          width: 100%;
+        }
+      }
+    }
+  }
+}

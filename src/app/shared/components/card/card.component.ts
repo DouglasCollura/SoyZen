@@ -16,8 +16,12 @@ import { MatIconModule } from '@angular/material/icon';
 export class CardComponent {
 
   @Input({transform: booleanAttribute}) isNew:boolean = false;
+  @Input({transform: booleanAttribute}) isLock:boolean = false;
   @Input({required: true}) title!:string;
+  @Input() time!:string | null;
+  @Input() category!:string | null;
   @Input({required: true}) url_img!:string;
+  @Input() user:any = null
 
 
  }

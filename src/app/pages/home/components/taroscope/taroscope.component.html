@@ -2,9 +2,9 @@
 
   <div class="grid gap-3">
     <div class="flex w-full justify-between">
-      <span class="font-xl">Taróscopo</span>
+      <span class=" text-[20px] leading-[28px] sm:text-[24px] ">Taróscopo</span>
 
-      <button class="btn flex btn-seemore">
+      <button class="btn flex btn-seemore items-center !text-[14px] !leading-[19.07px]  !font-semibold">
         VER TODO
         <mat-icon class="material-symbols-rounded">keyboard_arrow_right</mat-icon>
       </button>
@@ -12,28 +12,46 @@
 
     <mat-divider />
 
-    <h4>Taróscopo especial de la temporada Escorpio que va desde el 23 de octubre al 22 de noviembre.</h4>
+    <h4 class="text-[14px] leading-[22px] font-normal sm:text-[16px]">Taróscopo especial de la temporada Escorpio que va desde el 23 de octubre al 22 de noviembre.</h4>
   </div>
 
-  <div class="flex gap-4 my-7">
-    <app-card
-      title=""
-      url_img="/assets/images/test/back_card_tarot.jpg"
-    />
+  <swiper-container
+    slides-per-view="auto"
+    speed="500"
+    loop="false"
+    freemode="true"
+    class="overflow-auto"
+  >
+    <swiper-slide>
+      <app-card
+        title=""
+        url_img="/assets/images/test/back_card_tarot.jpg"
+      />
+    </swiper-slide>
+    <swiper-slide>
+      <app-card
+        title=""
+        url_img="/assets/images/test/back_card_tarot.jpg"
+      />
+    </swiper-slide>
 
-    <app-card
-      title=""
-      url_img="/assets/images/test/back_card_tarot.jpg"
-    />
-
-    <app-card
-      title=""
-      url_img="/assets/images/test/back_card_tarot.jpg"
-    />
-
-    <app-card
-      title=""
-      url_img="/assets/images/test/back_card_tarot.jpg"
-    />
-  </div>
+    <swiper-slide>
+      <app-card
+        title=""
+        url_img="/assets/images/test/back_card_tarot.jpg"
+      />
+    </swiper-slide>
+    <swiper-slide>
+      <app-card
+        title=""
+        url_img="/assets/images/test/back_card_tarot.jpg"
+      />
+    </swiper-slide>
+    <swiper-slide>
+      <app-card
+        title=""
+        url_img="/assets/images/test/back_card_tarot.jpg"
+      />
+    </swiper-slide>
+  </swiper-container>
 </div>

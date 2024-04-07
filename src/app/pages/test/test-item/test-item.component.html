@@ -1,0 +1,80 @@
+
+@switch (test()!.type) {
+
+  @case (type_test.range) {
+    <div class="content-range animate__animated animate__slideInRight animate__fast" >
+      <h1 class="text-center  text-[20px] leading-[27.24px] sm:text-[24px] sm:leading-[32.69px] " > {{test()!.content  }} </h1>
+
+      <div class="flex justify-center min-h-10">
+         <img [srcset]="feeling()" alt="" width="64" height="64">
+      </div>
+
+      <div class="grid gap-1">
+        <mat-slider >
+          <input matSliderThumb [formControl]="percent" >
+        </mat-slider>
+
+        <div class="flex justify-between items-center">
+          <h2 class="text-[12px] leading-[16.34px] font-normal" > {{firstValue()}} </h2>
+          <h2 class="text-[12px] leading-[16.34px] font-normal" > {{lastValue()}} </h2>
+        </div>
+      </div>
+
+      <button  class="btn-green justify-self-center !py-2" id="btn-continue" (click)="nexStep()" >Continuar</button>
+    </div>
+  }
+
+  @case(type_test.select_single){
+    <div class="content-single animate__animated animate__slideInRight animate__fast" >
+
+      <h1 class="text-[24px] leading-[32.69px] text-center sm:text-[20px] sm:leading-[27.24px]" > {{test()!.content}} </h1>
+
+      <div class="grid list-buttons justify-center gap-3">
+        @for (answer of test()!.answers; track $index) {
+          <button [class]="select() == answer.id ? 'btn-beige' : 'btn-border-beige'" (click)="select.set(answer.id)" > {{answer.content}} </button>
+        }
+      </div>
+
+      <button  class="btn-green justify-self-center !py-2" id="btn-continue" (click)="nexStep()" >Continuar</button>
+    </div>
+  }
+
+  @case(type_test.multiple){
+    <div class=" grid gap-2 animate__animated animate__slideInRight animate__fast" >
+      <h1 class="text-[20px] leading-[27.24px] sm:text-[24px] sm:leading-[32.69px] text-center font-medium" >Selecciona los temas que te interesan</h1>
+      <h3 class="text-gray text-center text-[14px] leading-[24px] sm:text-[16px] sm:leading-[24px]" >Puedes marcar más de uno</h3>
+
+
+      <div class="list-multiple">
+        @for (answer of multiList; track $index) {
+          <button  [class]="isSelected(answer) ? 'btn-beige' : 'btn-border-beige'" (click)="toogleSelect(answer)" > {{answer.content}} </button>
+        }
+      </div>
+
+      <button class="justify-self-center !py-2 !w-full"
+        [class]="multiSelected().length > 0 ? 'btn-green' : 'btn-disable' "
+        (click)="multiSelected().length > 0 && nexStep()"
+
+      id="btn-continue">Continuar</button>
+
+    </div>
+
+  }
+
+  @case(type_test.select_icon){
+    <div class="temp-select-feeling">
+      <div class="text-center my-9">
+        <h1 class="font-medium text-[24px] leading-[38px]"> {{test()?.content}} </h1>
+      </div>
+
+      <div class="list-cards animate__animated animate__slideInRight animate__fast">
+        @for (feeling of test()?.answers; track $index) {
+          <app-feeling-card [feeling]="feeling" (click)="selectFeel(feeling)" />
+        }
+      </div>
+
+      <button class="mx-auto !py-2" [class]="selectIcon() ? 'btn-green' : 'btn-disable' " (click)="selectIcon() && nexStep()" id="btn-continue">Continuar</button>
+    </div>
+
+  }
+}

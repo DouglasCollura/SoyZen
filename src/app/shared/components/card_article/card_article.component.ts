@@ -16,8 +16,9 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class CardArticleComponent {
 
-  @Input({transform: booleanAttribute}) new:boolean = false;
+  @Input({transform: booleanAttribute}) isNew:boolean = false;
   @Input({required: true}) title!:string;
+  @Input({transform: booleanAttribute}) isLock:boolean = false;
   @Input({required: true}) url_img!:string;
 
 

@@ -16,3 +16,33 @@ export interface Test{
   energy:number,
   interests?:Interest[]
 }
+
+export interface TestGet{
+  questions:BodyTest[]
+}
+
+export enum TypeTest { range = 'range', select_icon = 'select_icon', select_single = 'select_single', multiple = 'multiple' }
+
+export interface BodyTest{
+  id:number,
+  title:string,
+  content:string,
+  // type: TypeTest,
+  type: string,
+  pillarId?: number,
+  pillar: PillarTest,
+  answers: AnswerTest[]
+}
+
+export interface PillarTest{
+  id:number,
+  name:string
+}
+
+export interface AnswerTest{
+  id:number,
+  content:string,
+  ponderation:number,
+  img?:string,
+  selected?:boolean
+}

@@ -5,6 +5,7 @@
 
 
   ::ng-deep{
+
     .mat-mdc-standard-chip{
 
       background: white !important;
@@ -17,21 +18,7 @@
       -o-border-radius: 6px !important;
     }
     .mat-mdc-chip-action-label{
-      font-size: 10px !important;
-    }
-    .mat-mdc-standard-chip{
-
-      background: white !important;
-      outline: 1px solid var(--green);
-
-      border-radius: 6px !important;
-      -webkit-border-radius: 6px !important;
-      -moz-border-radius: 6px !important;
-      -ms-border-radius: 6px !important;
-      -o-border-radius: 6px !important;
-    }
-    .mat-mdc-chip-action-label{
-      font-size: 12px !important;
+      font-size: 16px !important;
       font-weight: 600 !important;
       color: var(--green);
     }
@@ -40,10 +27,21 @@
     }
     .selected .mat-mdc-chip-action-label{
       color: white !important;
+      font-weight: 500 !important;
     }
     .selected mat-icon{
       color: white !important;
     }
+    .mat-mdc-chip-focus-overlay{
+      background-color: transparent !important;
+    }
+    .mat-mdc-chip-remove{
+      opacity: 1 !important;
+    }
+
+    // .filter-select.mat-mdc-standard-chip{
+    //   background-color: var(--green) !important;
+    // }
   }
 
 
@@ -56,4 +54,18 @@
       padding: 30px;
     }
   }
+
+  .section-ad{
+    display: grid;
+    padding: 60px 20px;
+  }
+
+  .content-ads{
+    overflow: hidden;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
 }

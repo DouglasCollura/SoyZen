@@ -2,7 +2,7 @@
   <!-- <mat-icon class="material-symbols-outlined check " > task_alt </mat-icon> -->
   <img class="check" src="../../../../assets/images/check-circled-outline.svg" alt="">
 
-  <img [srcset]="feeling.url_img" alt="">
+  <img [src]="feeling?.img ? getImage(feeling?.img) : feeling?.url_img" alt="">
 
-  <h2> {{feeling.title}} </h2>
+  <h2> {{feeling.title ?? feeling.content}} </h2>
 </div>
