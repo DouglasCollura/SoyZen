@@ -1,0 +1,37 @@
+
+@if(role == roles.GUEST){
+  <div class="landing-guest">
+    <div id="center">
+      <h1 class=" text-[40px] leading-[54.48px] sm:text-[52px] sm:leading-[70.82px] sm:font-light" >¡Bienvenido a Soy Zen!</h1>
+
+      <h3 class="font-semibold text-[16px] leading-[24px] sm:text-[20px] sm:leading-[32px] sm:font-semibold" >¡Realiza nuestro test y obtén un programa especial de 21 días!</h3>
+
+      <button class="btn-white !text-[16px] mt-3" routerLink="/test" >Comenzar mi camino</button>
+    </div>
+
+  </div>
+}
+@else if(role == roles.REGISTER){
+  <div class="landing-freemium">
+    <div class="grid gap-2">
+      <div class="flex items-center">
+        <span class="!font-semibold text-[24px] leading-[32px] sm:text-[28px] sm:leading-[32px]" >Hola</span>
+        <span class="!font-normal text-[24px] leading-[32px] sm:text-[28px] sm:leading-[32px]">, Michelle...</span>
+      </div>
+      <mat-divider />
+    </div>
+
+    <div class="grid gap-4 py-16">
+      <span class="!font-light text-[28px] leading-[38.14px] sm:text-[52px] sm:leading-[70.82px]">Programa de 21 días</span>
+      <h3 class=" text-[16px] leading-[22px] sm:text-[18px] sm:leading-[32px]">Ya puedes disfrutar de tu programa personalizado.</h3>
+
+      <button class="btn-white !text-[14px] !leading-[19.6px] sm:!text-[16px] sm:!leading-[22.4px] font-bold" id="see-program" >Ver Programa</button>
+    </div>
+  </div>
+}
+@else {
+  <div class="flex items-center ml-[40px] mt-[35px]">
+    <span class="!font-semibold text-[24px] leading-[32px] sm:text-[28px] sm:leading-[32px]" >Hola</span>
+    <span class="!font-normal text-[24px] leading-[32px] sm:text-[28px] sm:leading-[32px]">, Michelle...</span>
+  </div>
+}

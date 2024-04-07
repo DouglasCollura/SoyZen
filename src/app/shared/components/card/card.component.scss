@@ -105,7 +105,7 @@
     height: 32px;
   }
   .ftsize{
-   
+
 font-size: 18px;
 font-weight: 700;
 line-height: 22px;
@@ -122,3 +122,13 @@ color:rgba(255, 255, 255, 1)
 
 }
 
+::ng-deep{
+  .mat-mdc-dialog-container .mdc-dialog__surface{
+    padding: 15px 1px;
+    border-radius: 20px !important;
+    -webkit-border-radius: 20px !important;
+    -moz-border-radius: 20px !important;
+    -ms-border-radius: 20px !important;
+    -o-border-radius: 20px !important;
+}
+}

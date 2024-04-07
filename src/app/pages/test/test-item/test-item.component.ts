@@ -102,7 +102,6 @@ export class TestItemComponent {
         value.splice(index, 1)
         return value;
       });
-      console.log(this.multiSelected().map(value=> value.id) );
     // this.testService.test.update(value => ({...value, interests: this.multiSelected()}));
 
   }
@@ -147,7 +146,6 @@ export class TestItemComponent {
     })
     this.selectIcon.set(true)
     this.updateProgress([feeling.id]);
-    console.log(this.questionAnswer())
   }
 
   updateProgress(answers:any){

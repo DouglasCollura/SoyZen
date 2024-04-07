@@ -7,6 +7,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { Router, RouterModule } from '@angular/router';
 import { NofityItemComponent } from '@shared/components/nofity-item/nofity-item.component';
 import { notifyItem, typeNotify } from '@interfaces/notify-item';
+import { FooterComponent } from '@shared/components/layout/footer/footer.component';
 
 @Component({
   selector: 'app-header',
@@ -17,13 +18,14 @@ import { notifyItem, typeNotify } from '@interfaces/notify-item';
     MatDividerModule,
     MatMenuModule,
     RouterModule,
-    NofityItemComponent
+    NofityItemComponent,
+    FooterComponent
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss','./header-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent {
+export default class HeaderComponent {
   public roles = Roles;
   public role = localStorage.getItem('role');
   public router = inject(Router);

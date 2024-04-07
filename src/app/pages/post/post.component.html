@@ -1,0 +1,161 @@
+<div class="temp-post">
+
+  <div class="header-post">
+
+    <img srcset="/assets/images/post/bg_post.svg" alt=""  >
+
+    <div class="flex justify-between py-4">
+      <button class="btn" id="btn-close" routerLink="/home" >
+        <mat-icon class="material-symbols-rounded font-extralight !w-[40px] !h-[40px] text-[40px] !text-white" > arrow_back </mat-icon>
+      </button>
+
+      <button class="btn close" routerLink="/home" >
+        <mat-icon class=" !w-[40px] !h-[40px] text-[40px] !text-white font-thin material-symbols-rounded" > close </mat-icon>
+      </button>
+    </div>
+
+    <div class="info">
+      <span class="text-white text-[24px] leading-[32px] font-medium">Técnicas efectivas para encontrar la paz interior</span>
+      <button>
+        <mat-icon class="material-symbols-rounded text-white !w-[32px] !h-[32px] text-[32px] font-extralight" >share</mat-icon>
+      </button>
+    </div>
+
+  </div>
+
+  <div class="body-post">
+
+    <div class="flex justify-between">
+
+      <div class="flex gap-2">
+        <div class="avatar">
+          <img src="/assets/images/test/user_avatar_4.jpg" alt="">
+        </div>
+        <div class="grid content-center">
+          <span class="text-[18px] leading-[22px] font-semibold" >Llynier Tobia</span>
+          <span class="text-[14px] leading-[19.07px] font-medium" >27 Oct. 2023</span>
+        </div>
+      </div>
+
+      <div class="flex items-center">
+        <mat-icon class="material-symbols-rounded font-extralight ">remove_red_eye</mat-icon>
+        <span class="text-sm gray txtft" >265</span>
+      </div>
+    </div>
+
+    <div class="play_audio">
+      <mat-icon class="material-symbols-rounded font-extralight !h-[48px] !w-[48px] !text-[48px] text-green"
+      >play_circle</mat-icon>
+
+      <div class="grid content-center">
+        <span class="text-[12px] leading-[16.34px] font-normal text-[#686D76]" >Lectura 2 minutos</span>
+        <span class="text-[14px] leading-[24px] font-bold" >REPRODUCIR AUDIO</span>
+      </div>
+    </div>
+
+    <p class="text-[16px] leading-[24px] font-normal" >
+      A corto plazo, el estrés puede ser beneficioso, ya que nos prepara para la acción y nos ayuda a enfrentar situaciones difíciles. Sin embargo, cuando el estrés se vuelve crónico, puede tener efectos negativos en nuestra salud mental y física.
+    </p>
+
+    <span class="text-[16px] leading-[24px] font-bold" >¿Cómo afecta el estrés a la salud mental?</span>
+
+    <p class="text-[16px] leading-[24px] font-normal" >
+      El estrés crónico puede tener efectos negativos en nuestra salud mental. Por ejemplo, puede aumentar el riesgo de ansiedad, depresión y trastornos del sueño. También distorsiona nuestra capacidad para concentrarnos y tomar decisiones, lo cual reduce la productividad en el trabajo y nuestras relaciones interpersonales.
+    </p>
+
+
+    <p class="text-[16px] leading-[24px] font-normal" >
+      El estrés también afecta nuestra autoestima y nuestra capacidad para manejar situaciones desafiantes. Cuando estamos estresados, podemos ser más críticos con nosotros mismos, lo que puede hacer que nos sintamos inseguros y sin valor. También podemos sentirnos abrumados por nuestras responsabilidades, lo que puede hacer que evitemos enfrentar situaciones difíciles y nos sintamos atrapados en un ciclo de ansiedad.
+    </p>
+
+    <span class="text-[16px] leading-[24px] font-bold" >¿Cómo afecta el estrés a la salud física?</span>
+
+    <p class="text-[16px] leading-[24px] font-normal" >
+      El estrés crónico también puede tener efectos negativos en nuestra salud física. Por ejemplo, aumenta el riesgo de enfermedades cardiovasculares, diabetes y obesidad; o perjudica nuestro sistema inmunológico, lo que puede hacer que seamos más propensos a enfermarnos y tardemos más en recuperarnos de las enfermedades.
+    </p>
+
+    <p class="text-[16px] leading-[24px] font-normal" >
+      Cuando estamos estresados, nuestro cuerpo libera hormonas como el cortisol, que pueden afectar nuestra digestión y causar problemas estomacales.
+    </p>
+
+    <div class="flex justify-between mt-7">
+      <div class="grid gap-1">
+        <div class="content-arrow">
+          <mat-icon class="material-symbols-rounded font-light !w-[26px] !h-[26px] text-[26px] text-green"> arrow_back </mat-icon>
+        </div>
+        <span class="text-[12px] leading-[16.34px] text-[#686D76] text-center" >Anterior</span>
+      </div>
+
+      <div class="grid gap-1">
+        <div class="content-arrow">
+          <mat-icon class="material-symbols-rounded font-light !w-[26px] !h-[26px] text-[26px] text-green"> arrow_forward </mat-icon>
+        </div>
+        <span class="text-[12px] leading-[16.34px] text-[#686D76] text-center" >Siguiente</span>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="section-interest">
+    <mat-divider />
+
+    <span class="text-[20px] leading-[28px] font-bold text-center" >Te puede interesar...</span>
+
+    <swiper-container
+      slides-per-view="auto"
+      speed="500"
+      loop="false"
+      freemode="true"
+      class="overflow-auto"
+    >
+      <swiper-slide>
+        <app-card-article
+          title="Técnicas efectivas para encontrar la calma interior"
+          url_img="/assets/images/test/back_card_article.jpg"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card-article
+          [isLock]="!subscribe"
+          title="Técnicas efectivas para encontrar la calma interior"
+          url_img="/assets/images/test/back_card_article.jpg"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card-article
+          [isNew]="!subscribe"
+          title="Técnicas efectivas para encontrar la calma interior"
+          url_img="/assets/images/test/back_card_article.jpg"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card-article
+          [isLock]="!subscribe"
+          title="Técnicas efectivas para encontrar la calma interior"
+          url_img="/assets/images/test/back_card_article.jpg"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card-article
+          [isLock]="!subscribe"
+          title="Técnicas efectivas para encontrar la calma interior"
+          url_img="/assets/images/test/back_card_article.jpg"
+        />
+      </swiper-slide>
+
+      <swiper-slide>
+        <app-card-article
+          [isLock]="!subscribe"
+          title="Técnicas efectivas para encontrar la calma interior"
+          url_img="/assets/images/test/back_card_article.jpg"
+        />
+      </swiper-slide>
+    </swiper-container>
+
+  </div>
+</div>
