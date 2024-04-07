@@ -25,7 +25,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatProgressSpinnerModule
   ],
   templateUrl: './test-constructor.component.html',
-  styleUrl: './test-constructor.component.scss',
+  styleUrls: ['./test-constructor.component.scss','./test-constructor-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class TestConstructorComponent implements OnDestroy {
@@ -134,7 +134,7 @@ export default class TestConstructorComponent implements OnDestroy {
   }
 
   setPositionProgress(){
-    this.testService.testProgress().guestAnswers.map((data:any)=>{
+    this.testService.testProgress()?.guestAnswers.map((data:any)=>{
       data.questionId == this.testConstructor()?.id && this.nextStep();
       return data;
     })

@@ -104,24 +104,24 @@ export class TestService {
 
 
   saveProgressTest(){
+    const uuidToken =  localStorage.getItem('uuidToken');
     this.http.post<any>(`${this.urlApi}/guest/answer`,
     {
-      "uuidToken": localStorage.getItem('uuidToken'),
+      "uuidToken": uuidToken,
       "ipAddress": this.#testData().ip,
       "name": this.#testData().name,
       questions: this.#testProgressQuestions()?.guestAnswers ?? []
-    }).subscribe();
+    }).subscribe(()=>{
+      !this.#testProgressQuestions()?.guestAnswers && this.getProgress(uuidToken!).subscribe()
+    });
   }
 
   setProgress(question:any){
     this.#testProgressQuestions.update((value:any)=>({...value, guestAnswers:[...value.guestAnswers, question]}))
-    console.log(this.#testProgressQuestions());
   }
 
   getProgress(uuidToken : string):Observable<any | null>{
-    this.#testData.update(
-      value=> ({...value, loading:true})
-    );
+
       return this.http.get<any>(`${this.urlApi}/guest/bytoken/${uuidToken}`).pipe(
         tap((data)=>{
           const {name, uuidToken, ipAddress} = data;

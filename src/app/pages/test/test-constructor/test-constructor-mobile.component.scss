@@ -1,0 +1,33 @@
+@media (width < 500px) {
+
+  .temp-test {
+    padding: 10px 2px;
+    grid-template-rows: auto max-content !important;
+    background-image:url('/assets/images/bg_line.webp');
+    height: 100%;
+    overflow-x: hidden;
+
+    #btn-close{
+      display: none;
+    }
+
+    .main{
+      width:100%;
+      height: 100%;
+    }
+    button{
+      width: 100% !important;
+    }
+
+    .input-plane{
+      width: 100%;
+    }
+
+    #do_later{
+      padding: 0px 20px;
+      margin-bottom: 20px;
+      text-align: start !important;
+    }
+  }
+
+}
