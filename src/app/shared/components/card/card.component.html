@@ -5,7 +5,7 @@
       <div class="flex justify-between">
         <div class="chip">
           <mat-icon  class="material-symbols-rounded !w-[16px] !h-[16px] !text-[16px]">watch_later</mat-icon>
-          <p class="text-[12px] leading-[16.34px] font-bold">30min</p>
+          <p class="text-[12px] leading-[16.34px] font-bold"> {{time ?? '0min'}} </p>
         </div>
         @if(isNew){
           <div class="chip new">
@@ -18,7 +18,7 @@
       <h2 class="self-center text-white text-center leading-normal ftsize"> {{title}} </h2>
 
       <div class="flex justify-between px-1 items-center hgt">
-        <p>Meditación</p>
+        <p> {{category ?? 'Meditacion'}} </p>
 
         @if(isLock){
           <mat-icon  class="material-symbols-rounded font-thin text-[32px] !w-[32px] !h-[32px]" svgIcon="my-lock" ></mat-icon>
@@ -31,15 +31,15 @@
 
   <div class="avatar-info">
     <div class="avatar">
-      <img src="/assets/images/test/user_avatar.jpg" alt="">
+      <img [src]=" user.image ?? '/assets/images/test/user_avatar.jpg'" alt="">
     </div>
 
     <div class="grid mt-2">
-      <h4 class="!font-semibold !text-[16px] !leading-[22px]">Vanessa Aponte</h4>
+      <h4 class="!font-semibold !text-[16px] !leading-[22px]">{{ user.name ?? "Vanessa Aponte"}}</h4>
       <div class="flex gap-1">
         <div class="flex items-center">
           <mat-icon class="material-symbols-rounded font-extralight">favorite_border</mat-icon>
-          <span class="text-sm gray txtft" >227</span>
+          <span class="text-sm gray txtft" > 775 </span>
         </div>
 
         <div class="flex items-center">

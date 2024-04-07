@@ -74,7 +74,20 @@ export class TestItemComponent {
   public selectIcon = signal<boolean>(false);
 
 
+  questionAnswer = signal<any>(null);
+
   nexStep(){
+    this.test()!.type == this.type_test.select_single && this.updateProgress([this.select()]);
+
+    if(this.test()!.type == this.type_test.range){
+      const index = this.test()?.answers.findIndex((value)=> this.percent.value <= value.ponderation);
+      this.updateProgress([this.test()?.answers[index!].id])
+    }
+
+    this.test()!.type == this.type_test.multiple && this.updateProgress(this.multiSelected().map(value=> value.id));
+
+    this.testService.setProgress(this.questionAnswer());
+
     this.testService.test.update(value => ({...value, focus: this.percent.value }));
     this.nextStepEmitter.emit(true);
   }
@@ -89,6 +102,7 @@ export class TestItemComponent {
         value.splice(index, 1)
         return value;
       });
+      console.log(this.multiSelected().map(value=> value.id) );
     // this.testService.test.update(value => ({...value, interests: this.multiSelected()}));
 
   }
@@ -99,6 +113,18 @@ export class TestItemComponent {
 
   setRangeValues(){
     this.percent.setValue(0);
+    this.test.update((value)=> (
+      {
+        ...value!,
+        answers: this.test()?.answers.map(
+          (data, index)=> (
+            {
+              ...data,
+              ponderation: (100 / this.test()!.answers.length) * (index + 1)
+            }
+          )
+        )!
+      }));
     this.firstValue.set(this.test()!.answers[0].content);
     this.lastValue.set(this.test()!.answers[this.test()!.answers.length - 1].content);
   }
@@ -120,5 +146,13 @@ export class TestItemComponent {
       return {...value!, answers:answers};
     })
     this.selectIcon.set(true)
+    this.updateProgress([feeling.id]);
+    console.log(this.questionAnswer())
   }
+
+  updateProgress(answers:any){
+    const questionId = this.test()?.id;
+    this.questionAnswer.set({questionId,answers});
+  }
+
 }

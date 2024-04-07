@@ -43,4 +43,8 @@
 
 }
 
-
+::ng-deep{
+  .mdc-circular-progress__indeterminate-circle-graphic{
+    stroke: var(--green) !important;
+  }
+}

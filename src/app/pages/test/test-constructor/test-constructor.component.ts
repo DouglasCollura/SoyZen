@@ -1,16 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Signal, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Signal, computed, inject, signal, OnDestroy } from '@angular/core';
 import { TestItemComponent } from '../test-item/test-item.component';
 import { BodyTest, TestGet, TypeTest } from '@interfaces/test.interface';
 import { Router } from '@angular/router';
 import { TestService, TestServiceData } from '@services/test.service';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { TestProgressComponent } from '../test_progress/test_progress.component';
 import { data_feeling_constructor } from '@shared/helpers/data_feeling_constructor.component';
 import { questions } from '@shared/helpers/data_test_cons.component';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { tap, map } from 'rxjs';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-test-constructor',
@@ -20,12 +21,18 @@ import { tap, map } from 'rxjs';
     TestItemComponent,
     MatIconModule,
     TestProgressComponent,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './test-constructor.component.html',
   styleUrl: './test-constructor.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class TestConstructorComponent {
+export default class TestConstructorComponent implements OnDestroy {
+
+  constructor(){
+    // !!!localStorage.getItem('uuidToken') && this.testService.generateUuidToken().subscribe();
+  }
 
   private router = inject(Router);
   private testService = inject(TestService);
@@ -39,16 +46,28 @@ export default class TestConstructorComponent {
 
   public index = signal<number>(0);
 
-  public testConstructor = signal<BodyTest | null>(null);
+  testConstructor = signal<BodyTest | null>(null);
 
-  public testData = toSignal<BodyTest[]>(
+  public testData = signal<BodyTest[]>([]);
+
+  public testDataSignal = toSignal<BodyTest[]>(
     this.testService.getTests().pipe(
+      map((value)=>value!.questions),
       tap(
         value=>{
-          value!.questions.length > 0 && this.testConstructor.set(value!.questions[0])
+          this.testData.set(value);
+          value!.length > 0 && this.testConstructor.set(value![0]);
+          const uuidToken = localStorage.getItem('uuidToken');
+
+          if(uuidToken && !this.testService.testProgress()){
+            this.testService.getProgress(uuidToken)
+            .subscribe(_=>this.setPositionProgress());
+          }
+          if(uuidToken && this.testService.testProgress()){
+            this.setPositionProgress()
+          }
         }
       ),
-      map((value)=>value!.questions)
     )
   );
   public testDataService = computed<TestServiceData>(()=>this.testService.testData());
@@ -56,17 +75,22 @@ export default class TestConstructorComponent {
 
   public test = this.testService.test;
 
+  sendTest(){
+
+  }
 
   nextStep(){
+
     this.testConstructor.set(null);
 
-    if(this.index() == this.testData.length -1 ){
+    if(this.index() == this.testData()!.length -1 ){
       this.router.navigate(['/send_test_email']);
       return
     }
     this.index.update(value => value+1);
     this.testConstructor.update(value => null)
     this.testConstructor.update(value => this.testData()![this.index()]);
+    this.setPositionProgress()
     this.setTitlePercent();
     setTimeout(()=>{
       this.percent.update(value=>((100/this.testData()!.length)*this.index()+1));
@@ -79,8 +103,7 @@ export default class TestConstructorComponent {
 
   canNext(){
     if(this.name.invalid){this.name.markAllAsTouched(); return;}
-    this.testService.test.update(test=> ({...test,name:this.name.value!}));
-    this.nextStep()
+    this.testService.saveName(this.name.value!);
   }
 
   setTitlePercent(){
@@ -108,6 +131,18 @@ export default class TestConstructorComponent {
     }else{
       this.router.navigate(['/']);
     }
+  }
+
+  setPositionProgress(){
+    this.testService.testProgress().guestAnswers.map((data:any)=>{
+      data.questionId == this.testConstructor()?.id && this.nextStep();
+      return data;
+    })
+  }
+
+
+  ngOnDestroy(): void {
+    this.testService.saveProgressTest()
   }
 
 }
