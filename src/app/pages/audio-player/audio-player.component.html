@@ -1,0 +1,124 @@
+<div class="temp-audioplayer">
+
+  <vg-player #videoPlayer (onPlayerReady)="onPlayerReady($event)"  (mousemove)="showTopControl()">
+    <!-- <div class="controlTop animate__animated " [class]="controlVideoPlayer().hideTop ? 'animate__fadeOut' : 'animate__fadeIn'" *ngIf="controlVideoPlayer().isOver">
+      <div class="flex justify-between">
+        <h1 class="text-white text-[16px] leading-[32px] font-bold">Yoga con Alegría - Chakra Muladhara</h1>
+        <div class="endTopPlayer">
+          <button class="btn-green items-center flex gap-1">
+            <mat-icon class="material-symbols-rounded" svgIcon="my-switch-video"></mat-icon>
+            Escena
+          </button>
+          <button class="btn close grid place-content-center" routerLink="/" >
+            <mat-icon class="material-symbols-rounded !font-thin !w-[30px] !h-[30px] !text-[30px]">close</mat-icon>
+          </button>
+        </div>
+
+      </div>
+    </div> -->
+
+    <div class="background_audio">
+      <img srcset="/assets/images/audioplayer/bg_audioplayer.webp" alt="">
+      <div class="gradient"></div>
+    </div>
+
+
+    <vg-controls >
+      <button class="btn close" routerLink="/" >
+        <mat-icon class="material-symbols-rounded !font-thin !w-[38px] !h-[38px] !text-[38px] text-white" >close</mat-icon>
+      </button>
+      <div class="info-audio">
+        <div class="grid content-start gap-8">
+
+
+          <span class="text-[40px] leading-[32px] text-white text-center" >Meditación</span>
+
+          <span class="text-white text-center text-[20px] leading-[28px] font-bold">
+            Conectar con la energía de los 4 <br>
+            elementos de la naturaleza
+          </span>
+        </div>
+
+        <div class="grid gap-6 self-end justify-self-end mb-5">
+          <button>
+            <mat-icon class="material-symbols-rounded font-thin !h-[28px] !w-[28px] !text-[28px]" svgIcon="my-smile-video"></mat-icon>
+          </button>
+
+          <button>
+            <mat-icon class="material-symbols-rounded font-thin !h-[32px] !w-[32px] !text-[32px]">share</mat-icon>
+          </button>
+
+          <button>
+            <mat-icon class="material-symbols-rounded font-thin !h-[32px] !w-[32px] !text-[32px]">info</mat-icon>
+          </button>
+        </div>
+
+      </div>
+
+      <div class="grid w-full controls">
+        <vg-scrub-bar>
+          <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+          <vg-scrub-bar-buffering-time>
+          </vg-scrub-bar-buffering-time>
+          <div class="progress-bar"></div>
+
+        </vg-scrub-bar>
+        <div class="flex justify-between">
+          <vg-time-display
+            vgProperty="current"
+            vgFormat="mm:ss"
+          ></vg-time-display>
+          <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+        </div>
+        <div class="content-control">
+
+          <button>
+            <mat-icon class="material-symbols-rounded font-thin !h-[55px] !w-[55px] !text-[55px]">skip_previous</mat-icon>
+          </button>
+          <button (click)="Replay()" >
+            <mat-icon class="material-symbols-rounded font-thin !h-[38px] !w-[38px] !text-[38px]">replay_10</mat-icon>
+          </button>
+          <button class="text-white" id="play" (click)="playPause()">
+            @if(isPlaying()){
+            <mat-icon class="material-symbols-rounded font-thin !h-[48px] !w-[48px] !text-[48px]"
+              >pause_circle</mat-icon
+            >
+            } @else{
+            <mat-icon class="material-symbols-rounded font-thin !h-[48px] !w-[48px] !text-[48px]"
+              >play_circle</mat-icon
+            >
+            }
+          </button>
+          <button (click)="Forward()">
+            <mat-icon class="material-symbols-rounded font-thin !h-[38px] !w-[38px] !text-[38px]"
+              >forward_10</mat-icon
+            >
+          </button>
+
+          <button>
+            <mat-icon class="material-symbols-rounded font-thin !h-[55px] !w-[55px] !text-[55px]">
+              skip_next
+            </mat-icon>
+          </button>
+
+        </div>
+
+      </div>
+    </vg-controls>
+
+    <audio
+      [vgMedia]="$any(myMedia)"
+      #myMedia
+      id="myMedia"
+      preload="auto"
+      crossorigin
+    >
+      <source src="/assets/audio/test_audio.mpeg" type="audio/mpeg" />
+    </audio>
+
+    <!-- <video [vgMedia]="$any(slave)" #slave id="slaveVideo" preload="auto">
+        <source src="https://www.youtube.com/watch?v=0kItFB6dJzw" type="video/mp4">
+    </video> -->
+  </vg-player>
+
+</div>
