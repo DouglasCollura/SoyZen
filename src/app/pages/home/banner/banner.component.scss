@@ -1,0 +1,89 @@
+
+.landing-guest{
+  background-image: url('/assets/images/home.webp');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  display: grid;
+  padding: 40px 30px;
+  grid-template-rows: auto 15%;
+  min-height: 500px;
+
+
+  #center {
+    display: grid;
+    gap: 10px;
+    width: 100%;
+    text-align: start;
+    justify-items: start;
+    align-self: center;
+    h1,h3 {
+      color: white;
+    }
+
+    button{
+      padding: 15px 50px;
+      font-weight: 600;
+    }
+
+  }
+}
+
+.landing-freemium{
+  padding: 40px;
+  background-image: url('/assets/images/zen_back.webp');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  padding-bottom: 60px;
+  display: grid;
+  gap: 30px;
+  *{
+    color: white;
+  }
+
+  mat-divider{
+    border-top-color: rgba(255, 255, 255, 0.205) !important
+  }
+
+  // #freemium-title{
+  //   font-size: 52px !important;
+  // }
+
+
+  #see-program{
+    font-weight: 600 !important;
+    padding: 13px 50px;
+  }
+}
+
+
+
+@media (width < 620px) {
+
+  .landing-freemium {
+    padding: 20px !important;
+  }
+
+  .btn-white{
+    padding: 10px 50px !important;
+  }
+
+  .landing-guest{
+
+    .main {
+      padding: 10px 14px !important;
+      grid-template-rows: auto max-content;
+
+      #center {
+        h1 {
+          text-align: left;
+        }
+
+        button{
+          width: 100%;
+        }
+      }
+    }
+  }
+}
