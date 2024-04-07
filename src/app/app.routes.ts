@@ -55,11 +55,31 @@ export const routes: Routes = [
   },
   {
     path:'home',
+    loadComponent: () => import('./shared/components/layout/base_layout/base_layout.component'),
     children:[
       {
         path:'',
         loadComponent: () => import('./pages/home/home.component')
-      }
+      },
+      {
+        path:'yoga',
+        loadComponent: () => import('./pages/yoga/yoga.component')
+      },
+
+      {
+        path:'filter-category',
+        loadComponent: () => import('./pages/filter-category/filter-category.component')
+      },
+
+      {
+        path:'post',
+        loadComponent: () => import('./pages/post/post.component')
+      },
+
+      {
+        path:'audioplayer',
+        loadComponent: () => import('./pages/audio-player/audio-player.component')
+      },
 
     ]
   }
