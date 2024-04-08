@@ -19,13 +19,14 @@
     freemode="true"
     class="overflow-auto"
   >
+
     <swiper-slide *ngFor="let item of section()?.posts">
       <app-card
         [category]="item.category?.name!"
         [time]="item.duration!"
         [title]="item.description!"
-        [isLock]="!subscribe"
-        url_img="/assets/images/test/back_card_lg.jpg"
+        [isLock]="rol_tier != 'subscribe' && (rol_tier != item.tier?.name )"
+        [url_img]=url_base+item.postDetail?.thumbnail
         [user]="item.user!"
       />
     </swiper-slide>

@@ -22,7 +22,7 @@ import { CardComponent } from '@shared/components/card/card.component';
 })
 export class SectionHomeComponent {
   role = localStorage.getItem('role');
-
+  url_base='https://dev-media.soyzen.com/'
   @Input({required: true}) set setSection(section:SectionPost){
     this.section.set(section);
     // (this.section()!.type == this.type_test.multiple || this.section()?.type == this.type_test.select_icon) && (this.multiList = this.test()!.answers);
@@ -33,4 +33,7 @@ export class SectionHomeComponent {
   public section = signal<SectionPost | null>(null);
 
   public subscribe = localStorage.getItem('role') == Roles.SUBSCRIBE;
+  public rol_tier=localStorage.getItem('role')?.toLowerCase()
+
+
 }
