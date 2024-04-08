@@ -31,7 +31,9 @@
         <div class="section-ad">
           <div class="grid m-auto  max-w-[900px]">
             <div class="content-ads">
-              <img [srcset]="item.url_ads" alt="">
+              <a [href]="item.url_ads ? item.url_ads :'#'">
+              <img [srcset]="url_base+item.ads" alt="">
+            </a>
             </div>
             <span class="text-end text-[12px]">Publicidad</span>
           </div>

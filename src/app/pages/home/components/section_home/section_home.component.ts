@@ -35,5 +35,19 @@ export class SectionHomeComponent {
   public subscribe = localStorage.getItem('role') == Roles.SUBSCRIBE;
   public rol_tier=localStorage.getItem('role')?.toLowerCase()
 
-
+ permisos(itemTier:any){
+  if(itemTier=='guest' && (this.rol_tier==='register' || this.rol_tier==='subscribe' || this.rol_tier==='guest')){
+     console.log('primera condicion')
+    return false
+  }else if(itemTier=='register' && (this.rol_tier==='register' || this.rol_tier==='subscribe')){
+    console.log('segunda condicion')
+    return false
+  }else if(itemTier=='subscribe' && this.rol_tier==='subscribe'){
+    console.log('tercera condicion')
+    return false
+  }else{
+    console.log('ultima condicion')
+    return true
+  }
+}
 }

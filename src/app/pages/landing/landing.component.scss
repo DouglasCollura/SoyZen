@@ -34,13 +34,20 @@
 
     #center {
       display: grid;
-      gap: 10px;
+      gap: 20px;
       width: 100%;
       text-align: start;
       justify-items: start;
       align-self: center;
       h1,h3 {
         color: white;
+      
+      }
+
+      h1{
+        font-size: 60px;
+        line-height: normal;
+        font-weight: 300;
       }
 
       button{

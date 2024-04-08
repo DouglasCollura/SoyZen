@@ -48,6 +48,7 @@ export default class HomeComponent {
 
   filter_options = signal<FilterOption[]>([]);
   sectionService = inject(SectionService);
+  url_base='https://dev-media.soyzen.com/'
   public sectionDataService = computed<SectionServiceData>(()=>this.sectionService.sectionData());
 
   constructor(){
