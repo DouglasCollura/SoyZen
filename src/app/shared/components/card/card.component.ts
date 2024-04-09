@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, Inject, Input, TemplateRef, ViewChi
 import { MatIconModule } from '@angular/material/icon';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { Router, RouterModule } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-card',
   standalone: true,
@@ -30,8 +31,10 @@ export class CardComponent {
   @Input({required: true}) url_img!:string;
   @Input() user:any = null;
   @ViewChild('modalEvent') modalEvent!: TemplateRef<any>;
+  private urlMedia = environment.urlMedia;
 
   openDialog(): void {
+    console.log('lock',this.isLock)
     if(!this.isLock){
       this.router.navigateByUrl('home/post');
     }else{
@@ -41,6 +44,10 @@ export class CardComponent {
       });
     }
 
+  }
+
+  getImg(url:string){
+    return `${this.urlMedia}${url}`;
   }
 
  }

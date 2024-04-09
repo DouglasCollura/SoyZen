@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 
 export enum Roles {
 
-  GUEST = 'GUEST',
-  SUBSCRIBE = 'SUBSCRIBE',
-  REGISTER = 'REGISTER'
+  GUEST = 'guest',
+  SUBSCRIBE = 'subscribe',
+  REGISTER = 'register'
 
 }
 

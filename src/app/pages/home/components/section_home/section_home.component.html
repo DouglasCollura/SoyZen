@@ -1,5 +1,5 @@
 <div class="temp-section-home animate__animated animate__fadeIn">
-  <img [srcset]="url_base+section()?.background " class="bg-img" alt="">
+  <img [srcset]="getImg()" class="bg-img" alt="">
   <div class="grid gap-3">
     <div class="flex w-full justify-between">
       <span class=" text-[20px] leading-[28px] font-semibold sm:text-[24px] sm:font-medium"> {{section()?.name}} </span>
@@ -25,8 +25,8 @@
         [category]="item.category?.name!"
         [time]="item.duration!"
         [title]="item.title!"
-        [isLock]="permisos(item.tier?.name )"
-        [url_img]=url_base+item.postDetail?.thumbnail
+        [isLock]="!isUnLock(item)"
+        [url_img]="item.postDetail!.thumbnail"
         [user]="item.user!"
       />
     </swiper-slide>

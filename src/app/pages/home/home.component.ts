@@ -17,6 +17,7 @@ import { FooterComponent } from '@shared/components/layout/footer/footer.compone
 import { BannerComponent } from './banner/banner.component';
 import { SectionService, SectionServiceData } from '@services/section.service';
 import { SectionHomeComponent } from './components/section_home/section_home.component';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -48,14 +49,14 @@ export default class HomeComponent {
 
   filter_options = signal<FilterOption[]>([]);
   sectionService = inject(SectionService);
-  url_base='https://dev-media.soyzen.com/'
   public sectionDataService = computed<SectionServiceData>(()=>this.sectionService.sectionData());
+  private urlMedia = environment.urlMedia;
 
   constructor(){
     this.filter_options.set(filter_options_data);
   }
 
-  change(event:any){
-    console.log(event)
+  getImg(url:string){
+    return `${this.urlMedia}${url}`;
   }
 }
