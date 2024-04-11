@@ -17,7 +17,7 @@ export interface Post {
   duration?:string;
   category?:    Category;
   subcategory?: Category;
-  postType?:    Category;
+  postType?:    PostType;
   tier?:        Category;
   user?:        User;
   postDetail?:  PostDetail;
@@ -26,6 +26,14 @@ export interface Post {
 export interface Category {
   id:          number;
   name:        string;
+  description: string;
+}
+
+export enum PostMediaType { video = 'video', audio = 'audio' };
+
+export interface PostType {
+  id:          number;
+  name:        PostMediaType;
   description: string;
 }
 

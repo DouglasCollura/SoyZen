@@ -4,6 +4,9 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { Router, RouterModule } from '@angular/router';
 import { environment } from '../../../../environments/environment';
+import VideoplayerComponent from '../../../pages/videoplayer/videoplayer.component';
+import { PostMediaType } from '@interfaces/section_post';
+import AudioPlayerComponent from '../../../pages/audio-player/audio-player.component';
 @Component({
   selector: 'app-card',
   standalone: true,
@@ -11,7 +14,9 @@ import { environment } from '../../../../environments/environment';
     CommonModule,
     MatIconModule,
     MatDialogModule,
-    RouterModule
+    RouterModule,
+    VideoplayerComponent,
+    AudioPlayerComponent
   ],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
@@ -30,13 +35,34 @@ export class CardComponent {
   @Input() category!:string | null;
   @Input({required: true}) url_img!:string;
   @Input() user:any = null;
+  @Input() type:string = 'blog';
+
   @ViewChild('modalEvent') modalEvent!: TemplateRef<any>;
   private urlMedia = environment.urlMedia;
 
   openDialog(): void {
-    console.log('lock',this.isLock)
+    console.log('lock',this.type)
     if(!this.isLock){
-      this.router.navigateByUrl('home/post');
+
+      if(this.type == PostMediaType.audio){
+        this.dialog.open(AudioPlayerComponent, {
+          width: '100vw',
+          height: '100vh',
+          maxWidth:'100vw',
+          panelClass: 'full-screen-modal-player'
+        });
+      }
+
+      else if(this.type == PostMediaType.video){
+        this.dialog.open(VideoplayerComponent, {
+          width: '100vw',
+          height: '100vh',
+          maxWidth:'100vw',
+          panelClass: 'full-screen-modal-player'
+        });
+      } else{
+        this.router.navigateByUrl('home/post');
+      }
     }else{
       this.dialog.open(this.modalEvent, {
         width: '400px',

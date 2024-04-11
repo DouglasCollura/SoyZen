@@ -5,6 +5,7 @@ import {VgControlsModule} from '@videogular/ngx-videogular/controls';
 import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
 import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-videoplayer',
@@ -15,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
+    MatDialogModule,
     MatIconModule
   ],
   templateUrl: './videoplayer.component.html',
