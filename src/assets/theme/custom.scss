@@ -77,7 +77,7 @@ $font-url-bold: '../font/NotoSans-Bold.ttf';
   font-family: 'Noto Sans', sans-serif;
   @include font-size(16px);
   scrollbar-width: thin !important;
-  scrollbar-color: #00BCD4 #090c1073 !important;
+  scrollbar-color: var(--green) rgb(218 222 228 / 45%) !important;
 
   *::-webkit-scrollbar {
     width: 5px !important;

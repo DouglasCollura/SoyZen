@@ -56,14 +56,14 @@
 
   .btn-group-media{
     width: 100%;
-    justify-content: center;
+    justify-content: space-between;
     display: flex;
     gap: 10px;
 
     .btn{
       background-color: #EDEEF1;
       width: max-content;
-      padding: 15px 40px;
+      padding: 15px 50px;
       display: flex;
       img{
         width: 30px;
@@ -84,4 +84,18 @@
     margin-left: 2px;
     text-decoration: underline;
   }
+}
+::ng-deep{
+  .mat-mdc-form-field-subscript-wrapper{
+    height: 0px !important;
+  }
+  .mat-mdc-form-field{
+    align-self: start !important;
+    height: 50px !important;
+  }
+}
+
+
+.typeNumberSelect{
+  outline: 2px solid var(--green);
 }

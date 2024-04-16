@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDivider } from '@angular/material/divider';
+import { RouterModule } from '@angular/router';
 import { Roles } from '@services/auth.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { Roles } from '@services/auth.service';
   standalone: true,
   imports: [
     CommonModule,
-    MatDivider
+    MatDivider,
+    RouterModule
   ],
   templateUrl: './banner.component.html',
   styleUrl: './banner.component.scss',

@@ -11,26 +11,51 @@
   <div class="content">
     <h1 class="font-2xl font-medium txt-reg" >Iniciar Sesión</h1>
 
+    @if(typeLogin() == typesLogin.email){
+      <form class="form" [formGroup]="form" >
 
-    <form class="form" [formGroup]="form" >
+        <div class="form-group input-icon-right">
+          <input type="text" class="input" [class.input-error]="getInputError('email')" formControlName="email" placeholder="Email">
+          <mat-icon class="input-icon material-symbols-rounded" >email</mat-icon>
+          <p *ngIf="getTypeError('email', 'required')" class="text-error"> campo requerido </p>
+          <p *ngIf="getTypeError('email', 'email')" class="text-error"> formato de correo incorrecto  </p>
 
-      <div class="form-group input-icon-right">
-        <input type="text" class="input" [class.input-error]="getInputError('email')" formControlName="email" placeholder="Email">
-        <mat-icon class="input-icon material-symbols-rounded" >email</mat-icon>
-        <p *ngIf="getTypeError('email', 'required')" class="text-error"> campo requerido </p>
-        <p *ngIf="getTypeError('email', 'email')" class="text-error"> formato de correo incorrecto  </p>
+        </div>
 
-      </div>
+        <div class="form-group input-icon-right">
+          <input type="{{ passwordVisible ? 'text' : 'password' }}" class="input"  [class.input-error]="getInputError('password')" formControlName="password" placeholder="Contraseña">
+          <mat-icon (click)="togglePasswordVisibility()" class="input-icon material-symbols-rounded" >{{passwordVisible ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <p *ngIf="getTypeError('password', 'required')" class="text-error"> campo requerido </p>
+        </div>
 
-      <div class="form-group input-icon-right">
-        <input type="{{ passwordVisible ? 'text' : 'password' }}" class="input"  [class.input-error]="getInputError('password')" formControlName="password" placeholder="Contraseña">
-        <mat-icon (click)="togglePasswordVisibility()" class="input-icon material-symbols-rounded" >{{passwordVisible ? 'visibility_off' : 'visibility'}}</mat-icon>
-        <p *ngIf="getTypeError('password', 'required')" class="text-error"> campo requerido </p>
-      </div>
+        <button class="btn-green" id="btn-signup" (click)="login()" > Iniciar Sesión </button>
 
-      <button class="btn-green" id="btn-signup" (click)="login()" > Iniciar Sesión </button>
+      </form>
+    }
+    @else {
+      <form class="form" [formGroup]="formNumber" >
 
-    </form>
+        <div class="flex">
+          <mat-form-field floatLabel="always">
+            <mat-label>Código</mat-label>
+            <mat-select formControlName="code">
+              @for (item of codePhoneList(); track $index) {
+                <mat-option [value]="item"> {{item}} </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <div class="form-group input-icon-right w-full">
+            <input type="text" class="input" [class.input-error]="getInputError('email')" formControlName="phone" placeholder="Teléfono">
+            <mat-icon class="input-icon material-symbols-rounded" >phone_iphone</mat-icon>
+            <p *ngIf="getTypeError('email', 'required')" class="text-error"> campo requerido </p>
+          </div>
+        </div>
+
+        <button class="btn-green" id="btn-signup" (click)="login()" > Iniciar Sesión </button>
+      </form>
+    }
+
+
 
     <div class="flex justify-center">
       <h4 class="text-center font-medium txt-tmn">¿Olvidaste tu contraseña?</h4>
@@ -53,6 +78,15 @@
 
         <button class="btn" >
           <img srcset="/assets/images/apple_icon.svg" alt="">
+        </button>
+      </div>
+      <div class="flex h-[70px] gap-3 justify-center">
+        <button class="btn !bg-[#EDEEF1] !h-full" [class.typeNumberSelect]="typeLogin() == typesLogin.movistar" (click)="setTypeLogin(typesLogin.movistar)" >
+          <img srcset="/assets/images/movistar.png"  class="max-w-[180px]"  alt="">
+        </button>
+
+        <button class="btn !bg-[#EDEEF1]  !h-full !px-12" [class.typeNumberSelect]="typeLogin() == typesLogin.digitel" (click)="setTypeLogin(typesLogin.digitel)" >
+          <img srcset="/assets/images/digitel.png" class="max-w-[120px] !pt-[10px]" alt="">
         </button>
       </div>
 

@@ -1,6 +1,69 @@
 <div class="temp-home animate__animated animate__fadeIn">
   <app-banner />
   <div class="body-home">
+
+    <div class="content-search" >
+      <div class="input-icon-right search">
+        <input
+          type="text"
+          [(ngModel)]="searchText"
+          (blur)="showSearch.set(false)"
+          (keyup.enter)=" searchText != '' && showSearch.set(true)"x
+          (input)="onInputChange($event)"
+          class="input-rounded !text-[#686D76] !placeholder-[#686D76]"
+          placeholder="¿En qué te enfocarás hoy?">
+
+        @if(sectionData().loadingSearch){
+          <mat-icon class="input-icon material-symbols-rounded animate-spin" >progress_activity</mat-icon>
+        }@else {
+          <mat-icon class="input-icon material-symbols-rounded" >search</mat-icon>
+        }
+      </div>
+
+
+      <div class="modal-filter" *ngIf="showSearch()">
+        <div class="p-3 py-4 flex items-center justify-between w-full modal-filter-header">
+
+          <div class="flex items-center">
+            <button class="btn">
+              <mat-icon class="material-symbols-rounded font-light" >arrow_back</mat-icon>
+            </button>
+            <span> {{searchText}} </span>
+          </div>
+
+          <button class="btn">
+            <mat-icon class="material-symbols-rounded font-light" >close</mat-icon>
+          </button>
+        </div>
+
+        <div class="body-filter">
+          @for (item of listSearch(); track $index) {
+            <div class="item-result">
+              <div class="img">
+                <img [src]="getImg(item.thumbnail)" alt="">
+              </div>
+
+              <div class="grid">
+                <span class="text-[14px] leading-[19.07px]" > {{item.title}} </span>
+                <span class="text-[10px] leading-[13.62px] font-medium" > {{item.category}} </span>
+              </div>
+            </div>
+          }
+
+          @if(listSearch().length == 0){
+            <div class="p-4 grid gap-1 justify-items-center">
+              <img srcset="/assets/images/head_logo.webp" width="150" alt="">
+              <div class="flex">
+                <mat-icon class="material-symbols-rounded font-light" >info</mat-icon>
+                <span class="font-medium">No se encontraron resultados</span>
+              </div>
+            </div>
+          }
+        </div>
+
+      </div>
+    </div>
+
     <section class="filter-option">
       <swiper-container
         slides-per-view="auto"
