@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { VgControlsModule } from '@videogular/ngx-videogular/controls';
@@ -15,7 +16,8 @@ import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule,
   ],
   templateUrl: './audio-player.component.html',
   styleUrl: './audio-player.component.scss',

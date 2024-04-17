@@ -80,6 +80,10 @@ export const routes: Routes = [
         path:'audioplayer',
         loadComponent: () => import('./pages/audio-player/audio-player.component')
       },
+      {
+        path:'videoplayer',
+        loadComponent: () => import('./pages/videoplayer/videoplayer.component')
+      },
 
     ]
   }

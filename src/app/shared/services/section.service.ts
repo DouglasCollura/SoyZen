@@ -9,6 +9,7 @@ import { SectionPost } from '@interfaces/section_post';
 export interface SectionServiceData{
   loading:boolean,
   sections:SectionPost[],
+  loadingSearch:boolean
 }
 
 
@@ -23,6 +24,7 @@ export class SectionService {
 
   #sectionData = signal<SectionServiceData>({
     loading:false,
+    loadingSearch:false,
     sections:[],
   })
 
@@ -30,6 +32,23 @@ export class SectionService {
 
   constructor() {
     this.getSections()
+  }
+
+  searchPosts(search:string){
+
+    this.#sectionData.update(
+      value=> ({...value, loadingSearch:true})
+    );
+
+    const response = this.http.get<any>(`https://api-dev.soyzen.com/api/v1/posts/all/search?search=${search}&page=1&perPage=10`).pipe(
+      tap(()=>{
+        this.#sectionData.update(
+          value=> ({...value, loadingSearch:false})
+        );
+      })
+    );
+
+    return response;
   }
 
   getSections(){

@@ -1,5 +1,5 @@
 <div class="temp-section-home animate__animated animate__fadeIn">
-  <img [srcset]="section()?.background != '' && section()?.background?.includes('http')  ? section()?.background : '/assets/images/bg_yoga.webp'" class="bg-img" alt="">
+  <img [srcset]="getImg()" class="bg-img" alt="">
   <div class="grid gap-3">
     <div class="flex w-full justify-between">
       <span class=" text-[20px] leading-[28px] font-semibold sm:text-[24px] sm:font-medium"> {{section()?.name}} </span>
@@ -9,7 +9,7 @@
         <mat-icon class="material-symbols-rounded">keyboard_arrow_right</mat-icon>
       </button>
     </div>
-    <h4 class="text-[14px] leading-[22px] sm:text-[16px] colorgray">Sigue las clases con Alegría León, nuestra experta en Yoga. </h4>
+    <h4 class="text-[14px] leading-[22px] sm:text-[16px] colorgray">{{section()?.description}}</h4>
   </div>
 
   <swiper-container
@@ -19,14 +19,16 @@
     freemode="true"
     class="overflow-auto"
   >
+
     <swiper-slide *ngFor="let item of section()?.posts">
       <app-card
         [category]="item.category?.name!"
         [time]="item.duration!"
-        [title]="item.description!"
-        [isLock]="!subscribe"
-        url_img="/assets/images/test/back_card_lg.jpg"
+        [title]="item.title!"
+        [isLock]="!isUnLock(item)"
+        [url_img]="item.postDetail!.thumbnail"
         [user]="item.user!"
+        [type]="item.postType?.name!"
       />
     </swiper-slide>
 

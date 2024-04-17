@@ -1,8 +1,50 @@
 <div class="temp-header">
   <img id="logo" srcset="/assets/images/head_logo.webp" alt="">
-  <div class="input-icon-right search">
-    <input type="text" class="input-rounded" placeholder="¿En qué te enfocarás hoy?">
-    <mat-icon class="input-icon material-symbols-rounded" >search</mat-icon>
+  <div class="content-search">
+    <div class="input-icon-right search">
+      <input
+        type="text"
+        [(ngModel)]="searchText"
+        (blur)="showSearch.set(false)"
+        (focus)=" searchText != '' && showSearch.set(true)"
+        (input)="onInputChange($event)"
+        class="input-rounded !text-[#686D76] !placeholder-[#686D76]"
+        placeholder="¿En qué te enfocarás hoy?">
+
+      @if(sectionData().loadingSearch){
+        <mat-icon class="input-icon material-symbols-rounded animate-spin" >progress_activity</mat-icon>
+      }@else {
+        <mat-icon class="input-icon material-symbols-rounded" >search</mat-icon>
+      }
+
+    </div>
+
+    <div class="content-result" *ngIf="showSearch()">
+
+      @for (item of listSearch(); track $index) {
+        <div class="item-result">
+          <div class="img">
+            <img [src]="getImage(item.thumbnail)" alt="">
+          </div>
+
+          <div class="grid">
+            <span class="text-[14px] leading-[19.07px]" > {{item.title}} </span>
+            <span class="text-[10px] leading-[13.62px] font-medium" > {{item.category}} </span>
+          </div>
+        </div>
+      }
+
+      @if(listSearch().length == 0){
+        <div class="p-4 grid gap-1 justify-items-center">
+          <img srcset="/assets/images/head_logo.webp" width="150" alt="">
+          <div class="flex">
+            <mat-icon class="material-symbols-rounded font-light" >info</mat-icon>
+            <span class="font-medium">No se encontraron resultados</span>
+          </div>
+        </div>
+      }
+
+    </div>
   </div>
 
   <div class="options-group">
@@ -22,7 +64,7 @@
           </button>
 
           <mat-menu #menu="matMenu">
-            <div class="flex items-center p-[15px]">
+            <div class="flex items-center gap-2 p-[15px]">
               <mat-icon class="material-symbols-rounded font-light" >verified</mat-icon>
               <span class="text-[16px] leading-[21.79px] font-bold" >Suscríbete a Soy Zen </span>
             </div>
@@ -54,7 +96,7 @@
           <mat-menu #menu="matMenu">
             <div class="menu-data-user">
               <span class="font-bold text-[16px] leading-[21.79px]">Michelle</span>
-              <span class="text-[12px] font-normal leading-[16.34px] text-[#9FA4AE]" >{{'michelle30@email.com'}}</span>
+              <span class="text-[12px] font-normal leading-[16.34px] text-[#9FA4AE]" >{{'register@gmail.com'}}</span>
             </div>
             <mat-divider />
             <button mat-menu-item>
@@ -123,7 +165,7 @@
           <mat-menu #menu="matMenu">
             <div class="menu-data-user">
               <span class="font-bold text-[16px] leading-[21.79px]">Michelle</span>
-              <span class="text-[12px] font-normal leading-[16.34px] text-[#9FA4AE]" >{{'michelle30@email.com'}}</span>
+              <span class="text-[12px] font-normal leading-[16.34px] text-[#9FA4AE]" >{{'subscribe@gmail.com'}}</span>
             </div>
             <mat-divider />
             <button mat-menu-item>

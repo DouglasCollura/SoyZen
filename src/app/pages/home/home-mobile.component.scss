@@ -1,5 +1,15 @@
 @media (width < 600px) {
 
+  .body-home{
+    .content-search{
+      display: grid !important;
+    }
+
+    .filter-option{
+
+      padding: 30px 15px !important;
+    }
+  }
 
   .section-ad{
     display: grid;
@@ -19,4 +29,78 @@
 
 
 }
+@media (width < 820px) {
 
+  .body-home{
+    .content-search{
+      width: 100%;
+      margin: auto;
+      max-width: 450px;
+      display: grid !important;
+    }
+  }
+
+  .modal-filter{
+    z-index: 99;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    &-header{
+      .btn{
+        padding: 5px !important;
+        display: grid;
+        place-content: center;
+        mat-icon{
+          color: black !important;
+        }
+      }
+
+      border-bottom: 1px solid #C7CACF;
+    }
+
+    .body-filter{
+      padding: 20px 10px;
+      display: grid;
+      gap: 10px;
+
+      .item-result{
+        cursor: pointer;
+        display: flex;
+        gap: 10px;
+        padding: 10px;
+
+        .img{
+          width: 40px;
+          height: 40px;
+          min-width: 40px;
+          overflow: hidden;
+
+          img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          border-radius: 10px;
+          -webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          -ms-border-radius: 10px;
+          -o-border-radius: 10px;
+        }
+
+        &:hover{
+          background: rgb(247, 244, 244);
+        }
+        transition: all 0.2s ease-in-out;
+        -webkit-transition: all 0.2s ease-in-out;
+        -moz-transition: all 0.2s ease-in-out;
+        -ms-transition: all 0.2s ease-in-out;
+        -o-transition: all 0.2s ease-in-out;
+      }
+    }
+  }
+}

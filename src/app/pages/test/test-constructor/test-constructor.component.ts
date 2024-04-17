@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Signal, computed, inject, signal, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Signal, computed, inject, signal, OnDestroy, HostListener } from '@angular/core';
 import { TestItemComponent } from '../test-item/test-item.component';
 import { BodyTest, TestGet, TypeTest } from '@interfaces/test.interface';
 import { Router } from '@angular/router';
@@ -29,6 +29,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class TestConstructorComponent implements OnDestroy {
+
 
   constructor(){
     // !!!localStorage.getItem('uuidToken') && this.testService.generateUuidToken().subscribe();
@@ -82,6 +83,7 @@ export default class TestConstructorComponent implements OnDestroy {
   nextStep(){
 
     this.testConstructor.set(null);
+    this.testService.saveProgressTest()
 
     if(this.index() == this.testData()!.length -1 ){
       this.router.navigate(['/send_test_email']);
