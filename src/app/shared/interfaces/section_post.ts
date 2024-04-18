@@ -5,9 +5,12 @@ export interface SectionPost {
   description: string;
   background:  string;
   hasAds:      boolean;
-  ads:         string;
+  ads:         any;
   url_ads:     string;
   posts:       Post[];
+  collaborators:       Collaborators[];
+  type: number;
+  textColor: string;
 }
 
 export interface Post {
@@ -23,13 +26,22 @@ export interface Post {
   postDetail?:  PostDetail;
 }
 
+export interface Collaborators {
+  id?:          number;
+  name?:       string;
+  email?: string;
+  phone?:string;
+  image?:    any;
+
+}
+
 export interface Category {
   id:          number;
   name:        string;
   description: string;
 }
 
-export enum PostMediaType { video = 'video', audio = 'audio' };
+export enum PostMediaType { video = 'video', audio = 'audio', blog = 'blog' };
 
 export interface PostType {
   id:          number;

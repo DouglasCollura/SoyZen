@@ -38,7 +38,8 @@ export class CardComponent {
   @Input() type:string = 'blog';
 
   @ViewChild('modalEvent') modalEvent!: TemplateRef<any>;
-  private urlMedia = environment.urlMedia;
+  public urlMedia = environment.urlMedia;
+
 
   openDialog(): void {
     console.log('lock',this.type)

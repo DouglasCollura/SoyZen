@@ -1,35 +1,16 @@
 <div class="temp-collaborators animate__animated animate__fadeIn">
-  <h1 class=" font-semibold sm:font-medium text-stat sm:text-center text-[20px] leading-[28px] sm:text-[24px]">Colaboradoras</h1>
+  <h1 class=" font-semibold sm:font-medium text-stat sm:text-center text-[20px] leading-[28px] sm:text-[24px]">{{section()?.name}}</h1>
 
   @if(width > 720){
     <div class="list-collabs">
-      <div class="content-collab">
+      <div class="content-collab" *ngFor="let item of section()?.collaborators">
         <div class="avatar">
-          <img srcset="/assets/images/test/user_avatar.jpg" alt="" />
+          <img [srcset]="getImg(item.image)" alt="" />
         </div>
-        <span class="font-semibold sm:text-[20px]">Vanessa Aponte</span>
+        <span class="font-semibold sm:text-[20px]">{{item.name}}</span>
       </div>
 
-      <div class="content-collab">
-        <div class="avatar">
-          <img srcset="/assets/images/test/user_avatar_2.jpg" alt="" />
-        </div>
-        <span class="font-semibold sm:text-[20px]">Fabiola Bejarano</span>
-      </div>
-
-      <div class="content-collab">
-        <div class="avatar">
-          <img srcset="/assets/images/test/user_avatar_3.jpg" alt="" />
-        </div>
-        <span class="font-semibold sm:text-[20px]">Alegría León</span>
-      </div>
-
-      <div class="content-collab">
-        <div class="avatar">
-          <img srcset="/assets/images/test/user_avatar_4.jpg" alt="" />
-        </div>
-        <span class="font-semibold sm:text-[20px]">Llynier Tobia</span>
-      </div>
+      
     </div>
   }
   @else {
@@ -40,40 +21,17 @@
     freemode="true"
     class="overflow-auto"
   >
-    <swiper-slide>
+    <swiper-slide *ngFor="let item of section()?.collaborators">
       <div class="content-collab">
         <div class="avatar">
-          <img srcset="/assets/images/test/user_avatar.jpg" alt="" />
+          <img [srcset]="getImg(item?.image)" alt="" />
         </div>
-        <span class="font-semibold text-[14px] ">Vanessa Aponte</span>
+        <span class="font-semibold text-[14px] ">{{item.name}}</span>
       </div>
     </swiper-slide>
 
-    <swiper-slide>
-      <div class="content-collab">
-        <div class="avatar">
-          <img srcset="/assets/images/test/user_avatar_2.jpg" alt="" />
-        </div>
-        <span class="font-semibold text-[14px] ">Fabiola Bejarano</span>
-      </div>
-    </swiper-slide>
 
-    <swiper-slide>
-      <div class="content-collab">
-        <div class="avatar">
-          <img srcset="/assets/images/test/user_avatar_3.jpg" alt="" />
-        </div>
-        <span class="font-semibold text-[14px] ">Alegría León</span>
-      </div>
-    </swiper-slide>
-    <swiper-slide>
-      <div class="content-collab">
-        <div class="avatar">
-          <img srcset="/assets/images/test/user_avatar_4.jpg" alt="" />
-        </div>
-        <span class="font-semibold text-[14px] ">Llynier Tobia</span>
-      </div>
-    </swiper-slide>
+  
   </swiper-container>
   }
 

@@ -3,7 +3,7 @@
     <img [srcset]="getImg(url_img)" alt="">
     <div class="body">
       <div class="flex justify-between">
-        <div class="chip">
+        <div class="chip" *ngIf="type!='ads' ">
           <mat-icon  class="material-symbols-rounded !w-[16px] !h-[16px] !text-[16px]">watch_later</mat-icon>
           <p class="text-[12px] leading-[16.34px] font-bold"> {{time ?? '0min'}} </p>
         </div>
@@ -15,12 +15,12 @@
 
       </div>
 
-      <h2 class="self-center text-white text-center leading-normal ftsize"> {{title}} </h2>
+      <h2 class="self-center text-white text-center leading-normal ftsize" > {{type!='ads'? title : ''}} </h2>
 
       <div class="flex justify-between px-1 items-center hgt">
-        <p> {{category ?? 'Meditacion'}} </p>
+        <p style="    width: 100%;"> {{type!='ads' ? category : title }} </p>
 
-        @if(isLock){
+        @if(isLock && type!='ads'){
           <mat-icon  class="material-symbols-rounded font-thin text-[32px] !w-[32px] !h-[32px]" svgIcon="my-lock" ></mat-icon>
         }@else{
           <mat-icon  class="material-symbols-rounded font-thin text-[40px] !w-[40px] !h-[40px]" >play_circle_outline</mat-icon>
@@ -30,23 +30,27 @@
   </div>
 
   <div class="avatar-info">
-    <div class="avatar">
-      <img [src]=" user?.image ?? '/assets/images/test/user_avatar.jpg'" alt="">
+    <div class="avatar" *ngIf="type!='ads'">
+      <img [src]=" getImg(user?.image) " alt="">
     </div>
 
     <div class="grid mt-2">
-      <h4 class="!font-semibold !text-[16px] !leading-[22px]">{{ user?.name ?? "Vanessa Aponte"}}</h4>
-      <div class="flex gap-1">
-        <div class="flex items-center">
-          <mat-icon class="material-symbols-rounded font-extralight">favorite_border</mat-icon>
-          <span class="text-sm gray txtft" > 775 </span>
-        </div>
+      <p *ngIf="type==='ads'" style="color:rgba(104, 109, 118, 1);font-size:12px;line-height: 16.34px;">Publicidad</p>
+      <ng-container *ngIf="type!='ads'">
+        <h4 class="!font-semibold !text-[16px] !leading-[22px]">{{ user?.name ?? "Vanessa Aponte"}}</h4>
+        <div class="flex gap-1">
+          <div class="flex items-center">
+            <mat-icon class="material-symbols-rounded font-extralight">favorite_border</mat-icon>
+            <span class="text-sm gray txtft" > 775 </span>
+          </div>
 
-        <div class="flex items-center">
-          <mat-icon class="material-symbols-rounded font-extralight ">remove_red_eye</mat-icon>
-          <span class="text-sm gray txtft" >265</span>
+          <div class="flex items-center">
+            <mat-icon class="material-symbols-rounded font-extralight ">remove_red_eye</mat-icon>
+            <span class="text-sm gray txtft" >265</span>
+          </div>
         </div>
-      </div>
+      </ng-container>
+
     </div>
   </div>
 

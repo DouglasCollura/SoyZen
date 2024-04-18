@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { Post, SectionPost } from '@interfaces/section_post';
 import { Roles } from '@services/auth.service';
 import { CardComponent } from '@shared/components/card/card.component';
+import { CardArticleComponent } from '@shared/components/card_article/card_article.component';
 import { environment } from '../../../../../environments/environment';
 
 @Component({
@@ -14,7 +15,8 @@ import { environment } from '../../../../../environments/environment';
     CommonModule,
     MatIconModule,
     CardComponent,
-    RouterModule
+    RouterModule,
+    CardArticleComponent
   ],
   templateUrl: './section_home.component.html',
   styleUrl: './section_home.component.scss',
@@ -43,5 +45,9 @@ export class SectionHomeComponent {
 
   getImg(){
     return this.section()?.background != '' ?  `${this.urlMedia}${this.section()?.background}` : '/assets/images/bg_yoga.webp'
+  }
+
+  getImg2(url:string){
+    return `${this.urlMedia}${url}`;
   }
 }

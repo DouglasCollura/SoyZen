@@ -2,14 +2,15 @@
   <img [srcset]="getImg()" class="bg-img" alt="">
   <div class="grid gap-3">
     <div class="flex w-full justify-between">
-      <span class=" text-[20px] leading-[28px] font-semibold sm:text-[24px] sm:font-medium"> {{section()?.name}} </span>
+      <span class=" text-[20px] leading-[28px] font-semibold sm:text-[24px] sm:font-medium" [ngStyle]="{'color': section()?.textColor}"> {{section()?.name}} </span>
 
-      <button class="btn flex btn-seemore  items-center !text-[14px] !leading-[19.07px]  !font-semibold" routerLink="yoga">
+      <button class="btn flex btn-seemore  items-center !text-[14px] !leading-[19.07px]  !font-semibold" *ngIf="section()?.name!='Mood Zen del día' " [ngStyle]="{'color': section()?.textColor}" routerLink="yoga">
         VER TODO
         <mat-icon class="material-symbols-rounded">keyboard_arrow_right</mat-icon>
       </button>
     </div>
-    <h4 class="text-[14px] leading-[22px] sm:text-[16px] colorgray">{{section()?.description}}</h4>
+    <mat-divider class="mat-divider" />
+    <h4 class="text-[14px] leading-[22px] sm:text-[16px] colorgray" [ngStyle]="{'color': section()?.textColor}" *ngIf="section()?.name!='Mood Zen del día' ">{{section()?.description}}</h4>
   </div>
 
   <swiper-container
@@ -22,6 +23,7 @@
 
     <swiper-slide *ngFor="let item of section()?.posts">
       <app-card
+      *ngIf="item.postType?.name!='blog' "
         [category]="item.category?.name!"
         [time]="item.duration!"
         [title]="item.title!"
@@ -30,7 +32,31 @@
         [user]="item.user!"
         [type]="item.postType?.name!"
       />
+      <app-card-article
+      *ngIf="item.postType?.name==='blog' "
+      [category]="item.category?.name!"
+      [time]="item.duration!"
+      [title]="item.title!"
+      [isLock]="!isUnLock(item)"
+      [url_img]="item.postDetail!.thumbnail"
+      [user]="item.user!"
+      [type]="item.postType?.name!"
+    />
     </swiper-slide>
 
   </swiper-container>
+
+
+
+  <div class="section-ad" *ngIf="section()?.hasAds">
+    <div class="grid m-auto  max-w-[900px]">
+      <div class="content-ads">
+        <a [href]="section()?.hasAds && section()?.url_ads ? section()?.url_ads :'#'">
+        <img [srcset]="getImg2( section()?.ads  )" alt="">
+      </a>
+      </div>
+      <span class="text-end text-[12px]">Publicidad</span>
+    </div>
+  </div>
+
 </div>

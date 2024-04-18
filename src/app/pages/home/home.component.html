@@ -88,9 +88,13 @@
     </section>
 
     @for (item of sectionDataService().sections; track $index) {
+      @if(item?.type==1){
       <app-section-home [setSection]="item" />
-
-      @if(item?.hasAds){
+      }
+      @if(item?.type==2){
+        <app-collaborators [setSection]="item" />
+        }
+      <!-- @if(item?.hasAds){
         <div class="section-ad">
           <div class="grid m-auto  max-w-[900px]">
             <div class="content-ads">
@@ -101,8 +105,10 @@
             <span class="text-end text-[12px]">Publicidad</span>
           </div>
         </div>
-      }
+      } -->
     }
+    <!-- <app-peace-mind /> -->
+    <!-- <app-zen-today-list /> -->
 <!--
     @defer(on viewport){
     <app-zen-today-list />

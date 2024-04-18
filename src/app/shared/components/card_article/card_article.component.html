@@ -1,6 +1,6 @@
 <div class="content-card-article animate__animated animate__fadeInRight animate__fast">
-  <div class="card">
-    <img [srcset]="url_img" alt="">
+  <div class="card" (click)="openDialog()">
+    <img [srcset]="getImg(url_img)" alt="">
     <div class="body">
       <div class="flex  p-3" [class]="isNew ? 'justify-end': 'justify-between' ">
         @if(isLock){
@@ -17,7 +17,6 @@
         }
       </div>
 
-
       <div class="content-title">
         <span class="self-start font-sm text-white text-start leading-normal title"> {{title}} </span>
       </div>
@@ -26,11 +25,11 @@
 
   <div class="avatar-info">
     <div class="avatar">
-      <img src="/assets/images/test/user_avatar_4.jpg" alt="">
+      <img [src]=" getImg(user?.image) " alt="">
     </div>
 
     <div class="flex justify-between w-full items-center">
-      <h4 class="font-semibold txtCl">Llynier Tobia</h4>
+      <h4 class="font-semibold txtCl">{{ user?.name ?? ""}}</h4>
       <div class="flex items-center">
         <mat-icon class="material-symbols-rounded txtft">remove_red_eye</mat-icon>
         <span class="text-sm txtft" >265</span>
