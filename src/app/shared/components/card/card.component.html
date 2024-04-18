@@ -1,6 +1,6 @@
 <div class="content-card animate__animated animate__fadeInRight animate__fast">
   <div class="card" (click)="openDialog()">
-    <img [srcset]="getImg(url_img)" alt="">
+    <img [ngClass]="type==='audio' ? 'tamanoAudio' : '' "  [srcset]="getImg(url_img)" alt="">
     <div class="body">
       <div class="flex justify-between">
         <div class="chip" *ngIf="type!='ads' ">
