@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { environment } from '../../../environments/environment';
@@ -6,11 +5,6 @@ import { tap } from 'rxjs';
 import { UserAuth } from '@interfaces/user-request.interface';
 import { Router } from '@angular/router';
 
-=======
-import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
->>>>>>> Stashed changes
 export enum Roles {
 
   GUEST = 'guest',
@@ -31,8 +25,7 @@ export interface AuthServiceData{
 
 export class AuthService {
 
-<<<<<<< Updated upstream
-  constructor() { }
+  
   private http = inject(HttpClient);
   private router = inject(Router);
   private urlApi = environment.apiUrl;
@@ -44,9 +37,7 @@ export class AuthService {
   });
 
   public authData = computed(() => this.#authData());
-=======
-  constructor(private http = inject(HttpClient)) { }
->>>>>>> Stashed changes
+  // constructor(private http = inject(HttpClient)) { }
 
   login(data:any){
 
@@ -75,20 +66,4 @@ export class AuthService {
 
   }
 
-<<<<<<< Updated upstream
-=======
-  loginOperator(params:any): Observable<any> {
-    return this.http.post<any>('auth/login', params).pipe(
-      tap((authData) => {
-        if (authData) {
-          // console.log(authData);
-            localStorage.setItem('token', authData.token);
-            localStorage.setItem('phone', JSON.stringify(authData.phone));
-            localStorage.setItem('role', JSON.stringify(authData.tier.name));
- 
-        }
-      })
-    );
-  }
->>>>>>> Stashed changes
 }
