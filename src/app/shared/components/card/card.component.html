@@ -15,7 +15,7 @@
 
       </div>
 
-      <h2 class="self-center text-white text-center leading-normal ftsize" > {{type!='ads'? title : ''}} </h2>
+      <h2 class="self-center text-white text-center leading-normal ftsize" > {{type=='ads' || titleSection==='Taróscopo'? '' : title}} </h2>
 
       <div class="flex justify-between px-1 items-center hgt">
         <p style="    width: 90%;"> {{type!='ads' ? category : title }} </p>

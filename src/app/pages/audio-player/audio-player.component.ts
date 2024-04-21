@@ -41,6 +41,12 @@ export default class AudioPlayerComponent {
 
   private timeOut:any;
 
+
+  getMedia(){
+    return `${this.urlMedia}${this.urlPlayer}`;
+  }
+
+
   onPlayerReady(api: VgApiService) {
     this.vgPlayer = api;
     console.log(api)
