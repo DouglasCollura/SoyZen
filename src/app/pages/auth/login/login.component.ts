@@ -77,7 +77,15 @@ export default class LoginComponent {
       this.authService.login({phoneNumber:`58${this.formNumber.value.code}${this.formNumber.value.phone}`})
     }
 
+<<<<<<< Updated upstream
 
+=======
+    const numberPhone='58'+this.formNumber.controls.code+this.formNumber.controls.phone
+    this.authService.loginOperator(numberPhone).subscribe((response) => {
+        console.log('este es la salida',response)
+    })
+    // this.router.navigate(['/home']);
+>>>>>>> Stashed changes
   }
 
   togglePasswordVisibility() {
