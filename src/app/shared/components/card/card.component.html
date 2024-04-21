@@ -18,7 +18,7 @@
       <h2 class="self-center text-white text-center leading-normal ftsize" > {{type!='ads'? title : ''}} </h2>
 
       <div class="flex justify-between px-1 items-center hgt">
-        <p style="    width: 100%;"> {{type!='ads' ? category : title }} </p>
+        <p style="    width: 90%;"> {{type!='ads' ? category : title }} </p>
 
         @if(isLock && type!='ads'){
           <mat-icon  class="material-symbols-rounded font-thin text-[32px] !w-[32px] !h-[32px]" svgIcon="my-lock" ></mat-icon>
@@ -78,9 +78,9 @@
 </ng-template>
 
 <ng-template #modalVideo>
-  <app-videoplayer [urlPlayer]="urlPlayer" />
+  <app-videoplayer [urlPlayer]="urlPlayer"  />
 </ng-template>
 
 <ng-template #modalAudio>
-  <app-audio-player/>
+  <app-audio-player [urlPlayer]="urlPlayer " [url_img]="url_img" [title]="title" [category]="category"/>
 </ng-template>

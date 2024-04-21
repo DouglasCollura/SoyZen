@@ -18,7 +18,7 @@
     </div> -->
 
     <div class="background_audio">
-      <img srcset="/assets/images/audioplayer/bg_audioplayer.webp" alt="">
+      <img [srcset]="getImg(url_img)" alt="">
       <div class="gradient"></div>
     </div>
 
@@ -31,11 +31,10 @@
         <div class="grid content-start gap-8">
 
 
-          <span class="text-[40px] leading-[32px] text-white text-center" >Meditación</span>
+          <span class="text-[40px] leading-[32px] text-white text-center" >{{category}}</span>
 
           <span class="text-white text-center text-[20px] leading-[28px] font-bold">
-            Conectar con la energía de los 4 <br>
-            elementos de la naturaleza
+            {{title}}
           </span>
         </div>
 
@@ -113,7 +112,7 @@
       preload="auto"
       crossorigin
     >
-      <source src="/assets/audio/test_audio.mpeg" type="audio/mpeg" />
+      <source [src]="getImg(urlPlayer)" type="audio/mpeg" />
     </audio>
 
     <!-- <video [vgMedia]="$any(slave)" #slave id="slaveVideo" preload="auto">

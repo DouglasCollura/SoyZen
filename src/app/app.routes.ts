@@ -72,7 +72,7 @@ export const routes: Routes = [
       },
 
       {
-        path:'post',
+        path:'post/:idPost/:idSection',
         loadComponent: () => import('./pages/post/post.component')
       },
 

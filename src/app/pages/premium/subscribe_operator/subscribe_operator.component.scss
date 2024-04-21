@@ -72,3 +72,25 @@
     border-top-left-radius: 40px;
   }
 }
+::ng-deep{
+  .mat-mdc-dialog-container .mdc-dialog__surface{
+    padding: 15px 1px;
+    border-radius: 20px !important;
+    -webkit-border-radius: 20px !important;
+    -moz-border-radius: 20px !important;
+    -ms-border-radius: 20px !important;
+    -o-border-radius: 20px !important;
+  }
+
+  .full-screen-modal-player{
+    .mat-mdc-dialog-surface{
+      background-color: var(--green) !important;
+      display: grid;
+      align-content: center;
+    }
+  }
+  .tamanoAudio{
+    width: 202px !important;
+
+  }
+}

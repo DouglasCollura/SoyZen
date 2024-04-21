@@ -36,6 +36,8 @@
       <app-card-article
       *ngIf="item.postType?.name==='blog' "
       [category]="item.category?.name!"
+      [idSection]="section()?.id"
+      [idPost]="item.id"
       [time]="item.duration!"
       [title]="item.title!"
       [isLock]="!isUnLock(item)"

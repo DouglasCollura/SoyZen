@@ -54,6 +54,7 @@ export class CardComponent {
           width: '100vw',
           height: '100vh',
           maxWidth:'100vw',
+          // data:
           panelClass: 'full-screen-modal-player'
         });
       }

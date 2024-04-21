@@ -37,6 +37,8 @@ export class CardArticleComponent {
   @Input() category!:string | null;
   @Input({required: true}) url_img!:string;
   @Input() user:any = null;
+  @Input() idSection:any = null;
+  @Input() idPost:any = null;
   @Input() type:string = 'blog';
 
   @ViewChild('modalEvent') modalEvent!: TemplateRef<any>;
@@ -47,7 +49,7 @@ export class CardArticleComponent {
    
     if(!this.isLock){
 
-        this.router.navigateByUrl('home/post');
+        this.router.navigateByUrl('home/post/'+this.idPost+'/'+this.idSection);
       
     }else{
       this.dialog.open(this.modalEvent, {
