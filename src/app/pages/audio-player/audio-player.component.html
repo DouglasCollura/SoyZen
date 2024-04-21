@@ -113,7 +113,7 @@
       preload="auto"
       crossorigin
     >
-      <source src="/assets/audio/test_audio.mpeg" type="audio/mpeg" />
+      <source [src]="getMedia()" type="audio/mpeg" />
     </audio>
 
     <!-- <video [vgMedia]="$any(slave)" #slave id="slaveVideo" preload="auto">
