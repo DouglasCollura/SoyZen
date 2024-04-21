@@ -8,6 +8,7 @@ import { AuthService } from '@services/auth.service';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { OnlyNumberDirective } from '@shared/directives/only-number.directive';
 enum TypeLogin { email, movistar, digitel};
 
 @Component({
@@ -21,7 +22,8 @@ enum TypeLogin { email, movistar, digitel};
     RouterModule,
     MatSelectModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    OnlyNumberDirective
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss','./login-mobile.component.scss'],
@@ -34,10 +36,12 @@ export default class LoginComponent {
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
   private authService = inject(AuthService);
+  public authData = this.authService.authData;
+
   passwordVisible = false;
   public typeLogin= signal<TypeLogin>(TypeLogin.email);
   public typesLogin = TypeLogin;
-  public codePhoneList = signal<string[]>([]);
+  public codePhoneList = signal<any[]>([]);
 
   public form = this.formBuilder.group({
     email: [null, [Validators.required, Validators.email]],
@@ -46,19 +50,34 @@ export default class LoginComponent {
 
   public formNumber = this.formBuilder.group({
     code: ['', [Validators.required]],
-    phone: [null, [Validators.required]],
+    phone: [null, [Validators.required, Validators.minLength(7)]],
   });
 
   login(){
-    if (
-      this.form.invalid
-    ) {
-      this.form.markAllAsTouched();
-      return;
+    if(this.typeLogin() == this.typesLogin.email){
+      if (
+        this.form.invalid
+      ) {
+        this.form.markAllAsTouched();
+        return;
+      }
+
+      this.authService.login(this.form.value)
+      this.router.navigate(['/home']);
+    }else{
+      if (
+        this.formNumber.invalid
+      ) {
+        this.formNumber.markAllAsTouched();
+        return;
+      }
+
+      console.log(`58${this.formNumber.value.code}${this.formNumber.value.phone}`);
+
+      this.authService.login({phoneNumber:`58${this.formNumber.value.code}${this.formNumber.value.phone}`})
     }
 
-    this.authService.login(this.form.value)
-    this.router.navigate(['/home']);
+
   }
 
   togglePasswordVisibility() {
@@ -70,14 +89,13 @@ export default class LoginComponent {
     this.formNumber.reset();
 
     if(type == TypeLogin.movistar){
-      this.codePhoneList.set(['0414','0424']);
+      this.codePhoneList.set([{code:'0414',value:'414'},{code:'0424',value:'424'}]);
       this.typeLogin.set(TypeLogin.movistar);
-      this.formNumber.get('code')?.setValue('0414');
+      this.formNumber.get('code')?.setValue('414');
     }else{
-      this.codePhoneList.set(['0412']);
+      this.codePhoneList.set([{code:'0412',value:'412'}]);
       this.typeLogin.set(TypeLogin.digitel)
-      this.formNumber.get('code')?.setValue('0412');
-
+      this.formNumber.get('code')?.setValue('412');
     }
   }
 
@@ -87,5 +105,13 @@ export default class LoginComponent {
 
   getInputError(field: any){
     return this.form.get(field)?.invalid && this.form.get(field)?.touched
+  }
+
+  getInputNumberError(field: any){
+    return this.formNumber.get(field)?.invalid && this.formNumber.get(field)?.touched
+  }
+
+  getNumberFormError(field:any, type: any){
+    return this.formNumber.get(field)?.invalid && this.formNumber.get(field)?.touched && this.formNumber.get(field)?.hasError(type)
   }
  }
