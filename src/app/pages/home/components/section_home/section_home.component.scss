@@ -31,4 +31,22 @@
     margin-right:  20px;
     width: auto !important;
   }
+
+  .section-ad{
+    display: grid;
+    padding: 60px 20px;
+  }
+
+  .content-ads{
+    overflow: hidden;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+  }
+
+  .mat-divider{
+    border-top-color: #ffffff38 !important
+  }
 }

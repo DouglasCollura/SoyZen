@@ -22,11 +22,13 @@ import { RouterModule } from '@angular/router';
 export default class SignupComponent {
 
   private formBuilder = inject(FormBuilder);
+
   passwordVisible = false;
   public form = this.formBuilder.group({
     email: [null, [Validators.required, Validators.email]],
     password: [null, Validators.required]
   });
+
 
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;

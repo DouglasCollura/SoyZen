@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal, ViewChild} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input, OnInit, signal, ViewChild} from '@angular/core';
 import {VgApiService, VgCoreModule} from '@videogular/ngx-videogular/core';
 import {VgControlsModule} from '@videogular/ngx-videogular/controls';
 import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
 import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-videoplayer',
@@ -27,6 +28,8 @@ export default class VideoplayerComponent {
 
   private vgPlayer:VgApiService | undefined;
   public isPlaying = signal(false);
+  @Input() urlPlayer:string = '';
+  public urlMedia = environment.urlMedia;
 
   public controlVideoPlayer = signal({
     isOver:false,
@@ -34,6 +37,10 @@ export default class VideoplayerComponent {
   });
 
   private timeOut:any;
+
+  getMedia(){
+    return `${this.urlMedia}${this.urlPlayer}`;
+  }
 
   onPlayerReady(api: VgApiService) {
     this.vgPlayer = api;

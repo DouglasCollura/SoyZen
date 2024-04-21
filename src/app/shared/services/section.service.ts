@@ -3,7 +3,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { Observable, tap } from 'rxjs';
-import { SectionPost } from '@interfaces/section_post';
+import { Post, SectionPost } from '@interfaces/section_post';
 
 
 export interface SectionServiceData{
@@ -58,5 +58,26 @@ export class SectionService {
       )
     ).subscribe();
   }
+
+  getPost(id:any){
+
+
+    const response = this.http.get<Post>(`${this.urlApi}/posts/${id}`).pipe(
+ 
+    );
+
+    return response;
+  }
+
+  getSection(id:any){
+
+
+    const response = this.http.get<SectionPost>(`${this.urlApi}/sections/${id}`).pipe(
+ 
+    );
+
+    return response;
+  }
+
 
 }

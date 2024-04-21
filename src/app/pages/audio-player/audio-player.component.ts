@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, signal } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { VgControlsModule } from '@videogular/ngx-videogular/controls';
 import { VgApiService, VgCoreModule } from '@videogular/ngx-videogular/core';
 import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
-
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-audio-player',
   standalone: true,
@@ -28,7 +28,11 @@ export default class AudioPlayerComponent {
 
   private vgPlayer:VgApiService | undefined;
   public isPlaying = signal(false);
-
+  @Input() urlPlayer:string = '';
+  @Input() url_img:string = '';
+  @Input({required: true}) title!:string;
+  @Input() category!:string | null;
+  public urlMedia = environment.urlMedia;
   public controlVideoPlayer = signal({
     isOver:false,
     hideTop:true,
@@ -36,6 +40,12 @@ export default class AudioPlayerComponent {
 
 
   private timeOut:any;
+
+
+  getMedia(){
+    return `${this.urlMedia}${this.urlPlayer}`;
+  }
+
 
   onPlayerReady(api: VgApiService) {
     this.vgPlayer = api;
@@ -71,5 +81,10 @@ export default class AudioPlayerComponent {
         this.controlVideoPlayer.update(value=>({...value, isOver:false}));
       },500)
     },1000);
+  }
+
+  getImg(url:string){
+    return `${this.urlMedia}${url}`;
+
   }
  }

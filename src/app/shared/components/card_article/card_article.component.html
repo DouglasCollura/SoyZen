@@ -1,6 +1,6 @@
 <div class="content-card-article animate__animated animate__fadeInRight animate__fast">
-  <div class="card">
-    <img [srcset]="url_img" alt="">
+  <div class="card" (click)="openDialog()">
+    <img [srcset]="getImg(url_img)" alt="">
     <div class="body">
       <div class="flex  p-3" [class]="isNew ? 'justify-end': 'justify-between' ">
         @if(isLock){
@@ -17,7 +17,6 @@
         }
       </div>
 
-
       <div class="content-title">
         <span class="self-start font-sm text-white text-start leading-normal title"> {{title}} </span>
       </div>
@@ -26,16 +25,36 @@
 
   <div class="avatar-info">
     <div class="avatar">
-      <img src="/assets/images/test/user_avatar_4.jpg" alt="">
+      <img [src]=" getImg(user?.image) " alt="">
     </div>
 
     <div class="flex justify-between w-full items-center">
-      <h4 class="font-semibold txtCl">Llynier Tobia</h4>
+      <h4 class="font-semibold txtCl">{{ user?.name ?? ""}}</h4>
       <div class="flex items-center">
         <mat-icon class="material-symbols-rounded txtft">remove_red_eye</mat-icon>
         <span class="text-sm txtft" >265</span>
       </div>
     </div>
   </div>
+
+  <ng-template #modalEvent>
+    <mat-dialog-actions class="grid">
+      <div class="grid pb-8 w-full">
+        <button class="btn justify-self-end "><mat-icon class="!w-[30px] !h-[30px] text-[30px] font-extralight material-symbols-rounded" mat-dialog-close="true" > close </mat-icon></button>
+  
+        <div class="grid gap-5 text-center justify-items-center w-[300px] m-auto">
+          <span class="text-[28px] font-medium leading-[38.14px]" >Hazte Premium</span>
+  
+          <span class="text-[14px] leading-[22px] font-normal">
+            Suscríbete y obtén full acceso a todos los contenidos y funcionalidades de Soy Zen.
+          </span>
+  
+          <button class="btn-gold" >Suscripción Premium</button>
+        </div>
+      </div>
+  
+  
+    </mat-dialog-actions>
+  </ng-template>
 
 </div>

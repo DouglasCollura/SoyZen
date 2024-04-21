@@ -3,8 +3,8 @@ import { InMemoryScrollingFeature, InMemoryScrollingOptions, provideRouter, with
 import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-
-
+import { jwtInterceptor } from './shared/jwt.interceptor';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 const scrollConfig: InMemoryScrollingOptions = {
   scrollPositionRestoration: 'top',
   anchorScrolling: 'enabled',
@@ -23,5 +23,6 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(
       HttpClientModule
     ),
+    provideHttpClient(withInterceptors([jwtInterceptor])),
   ],
 };

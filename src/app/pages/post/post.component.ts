@@ -1,10 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { Roles } from '@services/auth.service';
 import { CardArticleComponent } from '@shared/components/card_article/card_article.component';
+import { SectionService, SectionServiceData } from '@services/section.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
+import { Post } from '@interfaces/section_post';
 
 @Component({
   selector: 'app-post',
@@ -22,9 +26,79 @@ import { CardArticleComponent } from '@shared/components/card_article/card_artic
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 
 })
-export default class PostComponent {
-
+export default class PostComponent  {
+  post:any
+  section:any
+  idpost:any
+  idsection:any
+  potsitos:any
+  private role = localStorage.getItem('role');
   public subscribe = localStorage.getItem('role') == Roles.SUBSCRIBE;
+  private urlMedia = environment.urlMedia;
+  private router = inject(Router);
+  constructor(private  sectionService: SectionService, private activatedRoute: ActivatedRoute) {
+
+    this.activatedRoute.params.subscribe(param => {
+
+      this.idpost=param['idPost']
+      this.idsection=param['idSection']
+
+      this.loadPost(param['idPost'])
+      this.loadSection(param['idSection']);
+
+    })
+
+ 
+  }
+
+
+  loadPost(id:any){
+    this.sectionService.getPost(id).subscribe((data)=>{
+      console.log('entramos post')
+      this.post=data;
+    
+    })
+  }
+  loadSection(id:any){
+    this.sectionService.getSection(id).subscribe((data)=>{
+       this.potsitos=data.posts;
+
+      console.log('entramos section')
+      this.section=data.posts.filter(post => post.id != this.idpost)
+
+    
+    })
+  }
+  goToPreviousPost() {
+    const previousIndex = this.potsitos.findIndex((post: { id: any; }) => post.id === this.idpost) - 1;
+
+    if (previousIndex >= 0) {
+      this.idpost = this.potsitos[previousIndex].id;
+      this.router.navigate(['home/post/'+this.idpost+'/'+this.idsection]);
+
+    }
+  }
+
+  goToNextPost() {
+    const nextIndex = this.potsitos.findIndex((post: { id: any; }) => post.id === this.idpost) + 1;
+
+    if (nextIndex < this.potsitos.length) {
+      this.idpost = this.potsitos[nextIndex].id;
+      this.router.navigate(['home/post/'+this.idpost+'/'+this.idsection]);
+
+    }
+  }
+
+  getImg2(url:string){
+    return `${this.urlMedia}${url}`;
+  }
+  isUnLock(item:Post){
+
+    return item.tier?.name == Roles.GUEST ||
+          (item.tier?.name == Roles.REGISTER && this.role != Roles.GUEST) ||
+            (item.tier?.name == Roles.SUBSCRIBE && this.role == Roles.SUBSCRIBE);
+  }
+
 
 
 }

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Inject, Input, TemplateRef, ViewChild, booleanAttribute, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Input, TemplateRef, ViewChild, booleanAttribute, inject, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { Router, RouterModule } from '@angular/router';
@@ -27,34 +27,42 @@ export class CardComponent {
   private dialog = inject(MatDialog);
   private router = inject(Router);
 
-
+  @ViewChild('modalVideo') modalVideo!: TemplateRef<any>;
+  @ViewChild('modalAudio') modalAudio!: TemplateRef<any>;
   @Input({transform: booleanAttribute}) isNew:boolean = false;
   @Input({transform: booleanAttribute}) isLock:boolean = false;
   @Input({required: true}) title!:string;
   @Input() time!:string | null;
+  @Input() titleSection!:any;
   @Input() category!:string | null;
   @Input({required: true}) url_img!:string;
   @Input() user:any = null;
   @Input() type:string = 'blog';
+  @Input() urlPlayer:string = '';
+
+
 
   @ViewChild('modalEvent') modalEvent!: TemplateRef<any>;
-  private urlMedia = environment.urlMedia;
+  public urlMedia = environment.urlMedia;
+
 
   openDialog(): void {
     console.log('lock',this.type)
     if(!this.isLock){
 
       if(this.type == PostMediaType.audio){
-        this.dialog.open(AudioPlayerComponent, {
+        this.dialog.open(this.modalAudio, {
           width: '100vw',
           height: '100vh',
           maxWidth:'100vw',
+          // data:
           panelClass: 'full-screen-modal-player'
         });
       }
 
       else if(this.type == PostMediaType.video){
-        this.dialog.open(VideoplayerComponent, {
+
+        this.dialog.open(this.modalVideo, {
           width: '100vw',
           height: '100vh',
           maxWidth:'100vw',
