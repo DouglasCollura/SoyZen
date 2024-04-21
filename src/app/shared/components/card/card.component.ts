@@ -33,6 +33,7 @@ export class CardComponent {
   @Input({transform: booleanAttribute}) isLock:boolean = false;
   @Input({required: true}) title!:string;
   @Input() time!:string | null;
+  @Input() titleSection!:any;
   @Input() category!:string | null;
   @Input({required: true}) url_img!:string;
   @Input() user:any = null;
