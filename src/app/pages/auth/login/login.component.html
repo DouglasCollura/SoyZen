@@ -40,18 +40,19 @@
             <mat-label>Código</mat-label>
             <mat-select formControlName="code">
               @for (item of codePhoneList(); track $index) {
-                <mat-option [value]="item"> {{item}} </mat-option>
+                <mat-option [value]="item.value"> {{item.code}} </mat-option>
               }
             </mat-select>
           </mat-form-field>
           <div class="form-group input-icon-right w-full">
-            <input type="text" class="input" [class.input-error]="getInputError('email')" formControlName="phone" placeholder="Teléfono">
+            <input type="text" class="input" [class.input-error]="getInputNumberError('phone')" [maxlength]="7" formControlName="phone" onlyNumber placeholder="Teléfono">
             <mat-icon class="input-icon material-symbols-rounded" >phone_iphone</mat-icon>
-            <p *ngIf="getTypeError('email', 'required')" class="text-error"> campo requerido </p>
+            <p *ngIf="getNumberFormError('phone', 'required')" class="text-error"> campo requerido </p>
+            <p *ngIf="getNumberFormError('phone', 'minlength')" class="text-error"> la longitud minima es 7</p>
           </div>
         </div>
 
-        <button class="btn-green" id="btn-signup" (click)="login()" > Iniciar Sesión </button>
+        <button class="btn-green items-center flex justify-center" id="btn-signup" (click)="login()" > Iniciar Sesión <mat-icon *ngIf="authData().loading" class="material-symbols-rounded animate-spin" >progress_activity</mat-icon> </button>
       </form>
     }
 
