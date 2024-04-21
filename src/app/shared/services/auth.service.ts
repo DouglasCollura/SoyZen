@@ -25,7 +25,7 @@ export interface AuthServiceData{
 
 export class AuthService {
 
-  constructor() { }
+  
   private http = inject(HttpClient);
   private router = inject(Router);
   private urlApi = environment.apiUrl;
@@ -37,6 +37,7 @@ export class AuthService {
   });
 
   public authData = computed(() => this.#authData());
+  // constructor(private http = inject(HttpClient)) { }
 
   login(data:any){
 

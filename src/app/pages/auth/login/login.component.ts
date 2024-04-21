@@ -77,7 +77,6 @@ export default class LoginComponent {
       this.authService.login({phoneNumber:`58${this.formNumber.value.code}${this.formNumber.value.phone}`})
     }
 
-
   }
 
   togglePasswordVisibility() {
