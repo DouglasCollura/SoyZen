@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, Input, OnInit, signal, ViewChild} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input, OnInit, signal, TemplateRef, ViewChild} from '@angular/core';
 import {VgApiService, VgCoreModule} from '@videogular/ngx-videogular/core';
 import {VgControlsModule} from '@videogular/ngx-videogular/controls';
 import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
 import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -27,9 +27,13 @@ import { environment } from '../../../environments/environment';
 export default class VideoplayerComponent {
 
   private vgPlayer:VgApiService | undefined;
-  public isPlaying = signal(false);
   @Input() urlPlayer:string = '';
+  @ViewChild('modalFeel') modalFeel!: TemplateRef<any>;
+
   public urlMedia = environment.urlMedia;
+  private dialog = inject(MatDialog);
+  public isPlaying = signal(false);
+  public feelSelect = signal<number | null>(null);
 
   public controlVideoPlayer = signal({
     isOver:false,
@@ -76,5 +80,15 @@ export default class VideoplayerComponent {
         this.controlVideoPlayer.update(value=>({...value, isOver:false}));
       },500)
     },1000);
+  }
+
+  openFeelModal(){
+    this.dialog.open(this.modalFeel, {
+      width: '100%',
+      height: 'auto',
+      maxHeight:'300px',
+      maxWidth:'400px',
+      panelClass: 'panel-feel'
+    });
   }
 }
