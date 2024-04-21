@@ -2,7 +2,7 @@
 
   <div class="header-post" >
 
-    <img [srcset]="getImg2(post.postDetail?.thumbnail)" alt=""  >
+    <img [srcset]="getImg2(post()?.postDetail?.thumbnail)" alt=""  >
 
     <div class="flex justify-between py-4">
       <button class="btn" id="btn-close" routerLink="/home" >
@@ -15,7 +15,7 @@
     </div>
 
     <div class="info">
-      <span class="text-white text-[24px] leading-[32px] font-medium">{{post.postDetail.title}}</span>
+      <span class="text-white text-[24px] leading-[32px] font-medium">{{post()?.title}}</span>
       <button>
         <mat-icon class="material-symbols-rounded text-white !w-[32px] !h-[32px] text-[32px] font-extralight" >share</mat-icon>
       </button>
@@ -29,10 +29,10 @@
 
       <div class="flex gap-2">
         <div class="avatar">
-          <img [src]="getImg2(post.user?.image)" alt="">
+          <img [src]="getImg2(post()?.user?.image)" alt="">
         </div>
         <div class="grid content-center">
-          <span class="text-[18px] leading-[22px] font-semibold" >{{post.user?.name}}</span>
+          <span class="text-[18px] leading-[22px] font-semibold" >{{post()?.user?.name}}</span>
           <!-- <span class="text-[14px] leading-[19.07px] font-medium" >27 Oct. 2023</span> -->
         </div>
       </div>
@@ -53,9 +53,9 @@
       </div>
     </div>
 
-  
-      <p class="text-[16px] leading-[24px] font-normal" [innerHTML]="post.postDetail?.content"></p>
-  
+
+      <p class="text-[16px] leading-[24px] font-normal" [innerHTML]="post()?.postDetail?.content"></p>
+
 
 
     <!-- <span class="text-[16px] leading-[24px] font-bold" >¿Cómo afecta el estrés a la salud mental?</span>
@@ -110,9 +110,9 @@
       freemode="true"
       class="overflow-auto"
     >
-  
 
-      <swiper-slide *ngFor="let item of section">
+
+      <swiper-slide *ngFor="let item of section()">
         <app-card-article
           [isLock]="!subscribe"
           [title]="item.title"
@@ -123,7 +123,7 @@
       </swiper-slide>
 
 
-     
+
     </swiper-container>
 
   </div>
