@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.development';
 import { Observable, tap } from 'rxjs';
 import { Post, SectionPost } from '@interfaces/section_post';
 
