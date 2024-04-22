@@ -88,7 +88,11 @@ export default class HeaderComponent implements AfterViewInit {
   public searchText:string = '';
   public listSearch = signal<null | [] | any>(null);
   public showSearch = signal<boolean>(false);
+
   urlPlayer:string = '';
+  url_img:string = '';
+  title:string = '';
+  category:string = '';
 
   constructor(){
     this.notifications.set(this.listNotify);
@@ -143,11 +147,16 @@ export default class HeaderComponent implements AfterViewInit {
 
     if(this.isUnLock(item)){
       this.urlPlayer = item.audioUrl
+      this.url_img = item.thumbnail
+      this.title = item.title
+      this.category = item.category
 
       if(item.posttype == PostMediaType.audio){
         this.dialog.open(this.modalAudio, {
           width: '100%',
           height: '100%',
+          maxWidth:'100%',
+
           // data:
           panelClass: 'full-screen-modal-player'
         });

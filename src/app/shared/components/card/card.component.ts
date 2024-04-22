@@ -54,6 +54,7 @@ export class CardComponent {
         this.dialog.open(this.modalAudio, {
           width: '100%',
           height: '100%',
+          maxWidth:'100%',
           // data:
           panelClass: 'full-screen-modal-player'
         });
