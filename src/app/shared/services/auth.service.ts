@@ -52,7 +52,7 @@ export class AuthService {
       value=> ({...value, loading:true})
     );
 
-    this.http.post<UserAuth>(`https://api-dev.soyzen.com/api/v1/auth/login`, data)
+    this.http.post<UserAuth>(`${this.urlApi}/auth/login`, data)
     .subscribe(
       (data: UserAuth)=>{
         this.#authData.update(
