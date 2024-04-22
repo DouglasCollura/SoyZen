@@ -52,9 +52,8 @@ export class CardComponent {
 
       if(this.type == PostMediaType.audio){
         this.dialog.open(this.modalAudio, {
-          width: '100vw',
-          height: '100vh',
-          maxWidth:'100vw',
+          width: '100%',
+          height: '100%',
           // data:
           panelClass: 'full-screen-modal-player'
         });
@@ -63,9 +62,9 @@ export class CardComponent {
       else if(this.type == PostMediaType.video){
 
         this.dialog.open(this.modalVideo, {
-          width: '100vw',
-          height: '100vh',
-          maxWidth:'100vw',
+          width: '100%',
+          height: '100%',
+          maxWidth:'100%',
           panelClass: 'full-screen-modal-player'
         });
       } else{

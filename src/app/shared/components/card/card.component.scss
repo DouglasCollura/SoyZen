@@ -124,7 +124,7 @@ color:rgba(255, 255, 255, 1)
 
 ::ng-deep{
   .mat-mdc-dialog-container .mdc-dialog__surface{
-    padding: 15px 1px;
+    padding: 0px !important;
     border-radius: 20px !important;
     -webkit-border-radius: 20px !important;
     -moz-border-radius: 20px !important;
@@ -141,6 +141,5 @@ color:rgba(255, 255, 255, 1)
   }
   .tamanoAudio{
     width: 202px !important;
-
   }
 }

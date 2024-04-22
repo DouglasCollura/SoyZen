@@ -40,7 +40,7 @@ export class SectionService {
       value=> ({...value, loadingSearch:true})
     );
 
-    const response = this.http.get<any>(`https://api-dev.soyzen.com/api/v1/posts/all/search?search=${search}&page=1&perPage=10`).pipe(
+    const response = this.http.get<any>(`${this.urlApi}/posts/all/search?search=${search}&page=1&perPage=10`).pipe(
       tap(()=>{
         this.#sectionData.update(
           value=> ({...value, loadingSearch:false})
@@ -63,7 +63,7 @@ export class SectionService {
 
 
     const response = this.http.get<Post>(`${this.urlApi}/posts/${id}`).pipe(
- 
+
     );
 
     return response;
@@ -73,7 +73,7 @@ export class SectionService {
 
 
     const response = this.http.get<SectionPost>(`${this.urlApi}/sections/${id}`).pipe(
- 
+
     );
 
     return response;
