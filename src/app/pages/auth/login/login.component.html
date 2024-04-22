@@ -45,7 +45,7 @@
             </mat-select>
           </mat-form-field>
           <div class="form-group input-icon-right w-full">
-            <input type="text" class="input !w-full" [class.input-error]="getInputNumberError('phone')" [maxlength]="7" formControlName="phone" onlyNumber placeholder="Teléfono">
+            <input type="text" class="input !w-full" [class.input-error]="getInputNumberError('phone')" [maxlength]="7" formControlName="phone" onlyNumber placeholder="Ej: 1234567">
             <mat-icon class="input-icon material-symbols-rounded" >phone_iphone</mat-icon>
             <p *ngIf="getNumberFormError('phone', 'required')" class="text-error"> campo requerido </p>
             <p *ngIf="getNumberFormError('phone', 'minlength')" class="text-error"> la longitud minima es 7</p>

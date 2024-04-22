@@ -77,6 +77,11 @@ export const routes: Routes = [
       },
 
       {
+        path:'post/:idPost',
+        loadComponent: () => import('./pages/post/post.component')
+      },
+
+      {
         path:'audioplayer',
         loadComponent: () => import('./pages/audio-player/audio-player.component')
       },
