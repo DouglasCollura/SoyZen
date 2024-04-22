@@ -9,7 +9,13 @@
   </header>
 
   <div class="content">
-    <h1 class="font-2xl font-medium txt-reg" >Iniciar Sesión</h1>
+    <h1 class="font-2xl font-medium txt-reg" >Iniciar Sesión
+
+      <button style="margin-left: 38%;" class="btn" id="btn-close" (click)="setTypeLogin(typesLogin.email)" *ngIf="typeLogin() != typesLogin.email">
+        <mat-icon class="material-symbols-rounded font-extralight !w-[40px] !h-[40px] text-[40px]"> arrow_back </mat-icon>
+      </button>
+    </h1>
+
 
     @if(typeLogin() == typesLogin.email){
       <form class="form" [formGroup]="form" >

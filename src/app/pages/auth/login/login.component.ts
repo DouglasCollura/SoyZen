@@ -91,10 +91,12 @@ export default class LoginComponent {
       this.codePhoneList.set([{code:'0414',value:'414'},{code:'0424',value:'424'}]);
       this.typeLogin.set(TypeLogin.movistar);
       this.formNumber.get('code')?.setValue('414');
-    }else{
+    }else if(type == TypeLogin.digitel){
       this.codePhoneList.set([{code:'0412',value:'412'}]);
       this.typeLogin.set(TypeLogin.digitel)
       this.formNumber.get('code')?.setValue('412');
+    }else{
+      this.typeLogin.set(TypeLogin.email)
     }
   }
 
@@ -113,4 +115,6 @@ export default class LoginComponent {
   getNumberFormError(field:any, type: any){
     return this.formNumber.get(field)?.invalid && this.formNumber.get(field)?.touched && this.formNumber.get(field)?.hasError(type)
   }
+
+
  }

@@ -59,6 +59,7 @@ export class AuthService {
           _=> ({ userAuth: data , loading:false})
         );
         localStorage.setItem('token', data.token);
+        localStorage.setItem('name', data.name);
         localStorage.setItem('role', data.tier.name)
         this.router.navigate(['/home']);
       }
