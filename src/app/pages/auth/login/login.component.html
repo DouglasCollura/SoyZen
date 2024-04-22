@@ -45,7 +45,7 @@
             </mat-select>
           </mat-form-field>
           <div class="form-group input-icon-right w-full">
-            <input type="text" class="input" [class.input-error]="getInputNumberError('phone')" [maxlength]="7" formControlName="phone" onlyNumber placeholder="Teléfono">
+            <input type="text" class="input !w-full" [class.input-error]="getInputNumberError('phone')" [maxlength]="7" formControlName="phone" onlyNumber placeholder="Teléfono">
             <mat-icon class="input-icon material-symbols-rounded" >phone_iphone</mat-icon>
             <p *ngIf="getNumberFormError('phone', 'required')" class="text-error"> campo requerido </p>
             <p *ngIf="getNumberFormError('phone', 'minlength')" class="text-error"> la longitud minima es 7</p>
@@ -81,12 +81,12 @@
           <img srcset="/assets/images/apple_icon.svg" alt="">
         </button>
       </div>
-      <div class="flex h-[70px] gap-3 justify-center">
-        <button class="btn !bg-[#EDEEF1] !h-full" [class.typeNumberSelect]="typeLogin() == typesLogin.movistar" (click)="setTypeLogin(typesLogin.movistar)" >
-          <img srcset="/assets/images/movistar.png"  class="max-w-[180px]"  alt="">
+      <div class="flex  gap-3 justify-center">
+        <button class="btn !bg-[#EDEEF1] max-h-[75px] !h-full !w-full grid place-content-center" [class.typeNumberSelect]="typeLogin() == typesLogin.movistar" (click)="setTypeLogin(typesLogin.movistar)" >
+          <img srcset="/assets/images/movistar.png"  class="max-w-[140px] sm:max-w-[180px] "  alt="">
         </button>
 
-        <button class="btn !bg-[#EDEEF1]  !h-full !px-12" [class.typeNumberSelect]="typeLogin() == typesLogin.digitel" (click)="setTypeLogin(typesLogin.digitel)" >
+        <button class="btn !bg-[#EDEEF1] max-h-[75px] !h-full !w-full grid place-content-center" [class.typeNumberSelect]="typeLogin() == typesLogin.digitel" (click)="setTypeLogin(typesLogin.digitel)" >
           <img srcset="/assets/images/digitel.png" class="max-w-[120px] !pt-[10px]" alt="">
         </button>
       </div>
