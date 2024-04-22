@@ -52,13 +52,14 @@ export class AuthService {
       value=> ({...value, loading:true})
     );
 
-    this.http.post<UserAuth>(`https://api-dev.soyzen.com/api/v1/auth/login`, data)
+    this.http.post<UserAuth>(`${this.urlApi}/auth/login`, data)
     .subscribe(
       (data: UserAuth)=>{
         this.#authData.update(
           _=> ({ userAuth: data , loading:false})
         );
         localStorage.setItem('token', data.token);
+        localStorage.setItem('name', data.name);
         localStorage.setItem('role', data.tier.name)
         this.router.navigate(['/home']);
       }

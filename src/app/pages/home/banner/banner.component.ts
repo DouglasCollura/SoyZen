@@ -20,4 +20,5 @@ export class BannerComponent {
 
   public roles = Roles;
   public role = localStorage.getItem('role');
+  public name = localStorage.getItem('name');
  }
