@@ -51,9 +51,8 @@ import { Subject, debounceTime } from 'rxjs';
 })
 export default class HomeComponent implements AfterViewInit {
 
-  filter_options = signal<FilterOption[]>([]);
+  // filter_options = signal<FilterOption[]>([]);
   sectionService = inject(SectionService);
-  public sectionDataService = computed<SectionServiceData>(()=>this.sectionService.sectionData());
   private urlMedia = environment.urlMedia;
 
 
@@ -64,9 +63,10 @@ export default class HomeComponent implements AfterViewInit {
   public searchText:string = '';
   public listSearch = signal<null | [] | any>(null);
   public showSearch = signal<boolean>(false);
+  public sectionSelect = signal<number | null>(null);
 
   constructor(){
-    this.filter_options.set(filter_options_data);
+    // this.filter_options.set(filter_options_data);
   }
 
   ngAfterViewInit(): void {
@@ -104,5 +104,15 @@ export default class HomeComponent implements AfterViewInit {
 
   getImg(url:string){
     return `${this.urlMedia}${url}`;
+  }
+
+  selectSection(id:number){
+    this.sectionSelect.set(id);
+    this.sectionService.filterSections(id);
+  }
+
+  removeFilter(){
+    this.sectionSelect.set(null);
+    this.sectionService.getSections()
   }
 }

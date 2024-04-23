@@ -9,6 +9,7 @@ import { Post, SectionPost } from '@interfaces/section_post';
 export interface SectionServiceData{
   loading:boolean,
   sections:SectionPost[],
+  categorias:any[],
   loadingSearch:boolean
 }
 
@@ -25,6 +26,7 @@ export class SectionService {
   #sectionData = signal<SectionServiceData>({
     loading:false,
     loadingSearch:false,
+    categorias:[],
     sections:[],
   })
 
@@ -32,6 +34,7 @@ export class SectionService {
 
   constructor() {
     this.getSections()
+    // this.filterSections(2)
   }
 
   searchPosts(search:string){
@@ -52,9 +55,18 @@ export class SectionService {
   }
 
   getSections(){
-    this.http.get<SectionPost[]>(`${this.urlApi}/sections`).pipe(
+    this.http.get<any>(`${this.urlApi}/sections`).pipe(
       tap(
-        value => this.#sectionData.update(data=> ({...data, sections:value}))
+        value => this.#sectionData.update(data=> ({...data, sections:value.sections, categorias:value.categories}))
+      )
+    ).subscribe();
+  }
+
+  filterSections(id:any){
+
+    this.http.get<any>(`${this.urlApi}/sections/filter-by-category?category=${id}`).pipe(
+      tap(
+        value => this.#sectionData.update(data=> ({...data, sections:value.sections}))
       )
     ).subscribe();
   }

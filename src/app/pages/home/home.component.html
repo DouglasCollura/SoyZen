@@ -74,11 +74,11 @@
       >
         <swiper-slide>
         <mat-chip-listbox multiple="">
-          @for (filter_option of filter_options(); track $index) {
-          <mat-chip-row [class.selected]="filter_option.selected">
-            {{ filter_option.title }}
-            @if(filter_option.selected){
-            <mat-icon matChipRemove class="material-symbols-rounded font-extralight">close</mat-icon>
+          @for (filter_option of sectionData().categorias; track $index) {
+          <mat-chip-row [class.selected]="sectionSelect() == filter_option.id" (click)="selectSection(filter_option.id)" >
+            {{ filter_option.name }}
+            @if(sectionSelect() == filter_option.id){
+            <mat-icon matChipRemove class="material-symbols-rounded font-extralight" (click)="removeFilter()" >close</mat-icon>
             }
           </mat-chip-row>
           }
@@ -87,7 +87,7 @@
     </swiper-container>
     </section>
 
-    @for (item of sectionDataService().sections; track $index) {
+    @for (item of sectionData().sections; track $index) {
       @if(item?.type==1){
       <app-section-home [setSection]="item" />
       }
