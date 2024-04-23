@@ -35,6 +35,7 @@ export default class SubscribeOperatorComponent {
 
   }
   iroperador(){
+    this.dialog.closeAll()
     if(this.operator==='movistar'){
       // window.location.href="https://wap.alamano.com/sbk/lwp.html?s=1166";
       window.open("https://wap.alamano.com/sbk/lwp.html?s=1166", "_blank");
