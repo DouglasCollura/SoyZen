@@ -73,16 +73,22 @@
         class="overflow-auto"
       >
         <swiper-slide>
-        <mat-chip-listbox multiple="">
-          @for (filter_option of sectionData().categorias; track $index) {
-          <mat-chip-row [class.selected]="sectionSelect() == filter_option.id" (click)="selectSection(filter_option.id)" >
-            {{ filter_option.name }}
-            @if(sectionSelect() == filter_option.id){
-            <mat-icon matChipRemove class="material-symbols-rounded font-extralight" (click)="removeFilter()" >close</mat-icon>
+          <mat-chip-listbox multiple="">
+
+            <mat-chip-row (click)="removeFilter()" [class.selected]="sectionSelect() === null">
+              Todas 
+            </mat-chip-row>
+          
+            @for (filter_option of sectionData().categorias; track $index) {
+              <mat-chip-row [class.selected]="sectionSelect() === filter_option.id" (click)="selectSection(filter_option.id)">
+                {{ filter_option.name }}
+                @if(sectionSelect() === filter_option.id){
+                  <mat-icon matChipRemove class="material-symbols-rounded font-extralight" (click)="removeFilter()">close</mat-icon>
+                }
+              </mat-chip-row>
             }
-          </mat-chip-row>
-          }
-        </mat-chip-listbox>
+          </mat-chip-listbox>
+          
       </swiper-slide>
     </swiper-container>
     </section>
