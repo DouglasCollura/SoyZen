@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, signal, CUSTOM_ELEMENTS_SCHEMA, inject, computed, AfterViewInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ChangeDetectionStrategy, Component, signal, CUSTOM_ELEMENTS_SCHEMA, inject, computed, AfterViewInit, Renderer2, ViewChild, TemplateRef, ElementRef } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { filter_options_data } from './data/filter_options_data';
@@ -21,6 +21,9 @@ import { environment } from '../../../environments/environment';
 import { FormsModule } from '@angular/forms';
 import { notifyItem } from '@interfaces/notify-item';
 import { Subject, debounceTime } from 'rxjs';
+import { PostMediaType } from '@interfaces/section_post';
+import { MatDialog } from '@angular/material/dialog';
+import { Roles } from '@services/auth.service';
 
 
 @Component({
@@ -51,10 +54,18 @@ import { Subject, debounceTime } from 'rxjs';
 })
 export default class HomeComponent implements AfterViewInit {
 
+  @ViewChild('modalVideo') modalVideo!: TemplateRef<any>;
+  @ViewChild('modalAudio') modalAudio!: TemplateRef<any>;
+  @ViewChild('modalEvent') modalEvent!: TemplateRef<any>;
+  @ViewChild('inputSearchHome') inputSearch: ElementRef | undefined;
+  @ViewChild('menuHome') menu: ElementRef | undefined;
+
   // filter_options = signal<FilterOption[]>([]);
   sectionService = inject(SectionService);
+  private router = inject(Router);
   private urlMedia = environment.urlMedia;
-
+  private renderer = inject(Renderer2);
+  public role = localStorage.getItem('role');
 
   public notifications = signal<notifyItem[]>([]);
   private inputSubject = new Subject<string>();
@@ -64,10 +75,18 @@ export default class HomeComponent implements AfterViewInit {
   public listSearch = signal<null | [] | any>(null);
   public showSearch = signal<boolean>(false);
   public sectionSelect = signal<number | null>(null);
+  private dialog = inject(MatDialog);
+
+  urlPlayer:string = '';
+  url_img:string = '';
+  title:string = '';
+  category:string = '';
 
   constructor(){
     // this.filter_options.set(filter_options_data);
-
+    this.renderer.listen('window', 'click',(e:Event)=>{
+      this.showSearch() && e.target !== this.inputSearch!.nativeElement && e.target!==this.menu!.nativeElement && this.showSearch.set(false);
+    })
   }
 
   ngAfterViewInit(): void {
@@ -129,5 +148,52 @@ export default class HomeComponent implements AfterViewInit {
   removeFilter(){
     this.sectionSelect.set(null);
     this.sectionService.getSections()
+  }
+
+
+  openPost(item:any){
+    console.log(item)
+
+    if(this.isUnLock(item)){
+      this.urlPlayer = item.audioUrl
+      this.url_img = item.thumbnail
+      this.title = item.title
+      this.category = item.category
+
+      if(item.posttype == PostMediaType.audio){
+        this.dialog.open(this.modalAudio, {
+          width: '100%',
+          height: '100%',
+          maxWidth:'100%',
+          // data:
+          panelClass: 'full-screen-modal-player'
+        });
+      }
+
+      else if(item.posttype == PostMediaType.video){
+        this.urlPlayer = item.videoUrl
+
+        this.dialog.open(this.modalVideo, {
+          width: '100%',
+          height: '100%',
+          maxWidth:'100%',
+          panelClass: 'full-screen-modal-player'
+        });
+      } else{
+        this.router.navigateByUrl(`home/post/${item.id}`);
+      }
+    }else{
+      this.dialog.open(this.modalEvent, {
+        width: '400px',
+        panelClass: 'full-screen-modal'
+      });
+    }
+  }
+
+  isUnLock(item:any){
+
+    return item.tier == Roles.GUEST ||
+          (item.tier == Roles.REGISTER && this.role != Roles.GUEST) ||
+            (item.tier == Roles.SUBSCRIBE && this.role == Roles.SUBSCRIBE);
   }
 }
