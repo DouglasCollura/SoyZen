@@ -15,12 +15,4 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class LandingComponent {
 
-  private router = inject(Router);
-
-  goHome(){
-    localStorage.setItem('token', "");
-    localStorage.setItem('name', "Invitado");
-    localStorage.setItem('role', 'guest')
-    this.router.navigate(['/home']);
-  }
 }

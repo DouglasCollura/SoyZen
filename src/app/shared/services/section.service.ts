@@ -23,6 +23,12 @@ export class SectionService {
   private router = inject(Router);
   private urlApi = environment.apiUrl;
 
+  private optAll = {
+    name:"Todas",
+    id: null,
+    description:''
+  }
+
   #sectionData = signal<SectionServiceData>({
     loading: false,
     loadingSearch: false,
@@ -57,7 +63,7 @@ export class SectionService {
   getSections(){
     this.http.get<any>(`${this.urlApi}/sections`).pipe(
       tap(
-        value => this.#sectionData.update(data=> ({...data, sections:value.sections, categorias:value.categories}))
+        value => this.#sectionData.update(data=> ({...data, sections:value.sections, categorias:[this.optAll,...value.categories]}))
       )
     ).subscribe();
   }

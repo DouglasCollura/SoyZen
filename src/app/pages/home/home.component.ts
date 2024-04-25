@@ -67,7 +67,7 @@ export default class HomeComponent implements AfterViewInit {
 
   constructor(){
     // this.filter_options.set(filter_options_data);
- 
+
   }
 
   ngAfterViewInit(): void {
@@ -121,9 +121,9 @@ export default class HomeComponent implements AfterViewInit {
     return `${this.urlMedia}${url}`;
   }
 
-  selectSection(id:number){
+  selectSection(id:number | null){
     this.sectionSelect.set(id);
-    this.sectionService.filterSections(id);
+    id ?  this.sectionService.filterSections(id) : this.sectionService.getSections();
   }
 
   removeFilter(){

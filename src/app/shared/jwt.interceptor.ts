@@ -3,13 +3,6 @@ import { catchError, tap, throwError } from 'rxjs';
 
 export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
 
-  if(!localStorage.getItem('role')){
-    localStorage.setItem('role','guest');
-    console.log('entramos')
-  }
-
-
-
   const authToken = localStorage.getItem('token');
 
   // Clone the request and add the authorization header
@@ -35,7 +28,7 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
       if (err instanceof HttpErrorResponse) {
         // Handle HTTP errors
         if (err.status === 401) {
-          // Specific handling for unauthorized errors         
+          // Specific handling for unauthorized errors
           console.error('Unauthorized request:', err);
           // You might trigger a re-authentication flow or redirect the user here
         } else {
@@ -48,7 +41,7 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
       }
 
       // Re-throw the error to propagate it further
-      return throwError(() => err); 
+      return throwError(() => err);
     })
   );;
 };
