@@ -100,16 +100,14 @@ export default class HomeComponent implements AfterViewInit {
       const formattedData = res.map((item:any) => {
         // Assuming 'searchTerms' is an array of words to make bold
         const searchTerms = [data]; // Replace with actual search terms
-    
+
         // Replace words in item.title with bold tags
         item.title = item.title.replace(new RegExp(searchTerms.join('|'), 'gi'), (match:any) => `<b class="text-[14px] leading-[19.07px]">${match}</b>`);
-    
+
         return item;
       });
-
-
-    
       this.listSearch.set(formattedData);
+      this.showSearch.set(true);
     })
 
   }

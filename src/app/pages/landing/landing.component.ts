@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -13,4 +13,14 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./landing.component.scss','./landing-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LandingComponent { }
+export class LandingComponent {
+
+  private router = inject(Router);
+
+  goHome(){
+    localStorage.setItem('token', "");
+    localStorage.setItem('name', "Invitado");
+    localStorage.setItem('role', 'guest')
+    this.router.navigate(['/home']);
+  }
+}
