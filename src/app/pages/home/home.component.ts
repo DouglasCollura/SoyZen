@@ -67,6 +67,7 @@ export default class HomeComponent implements AfterViewInit {
 
   constructor(){
     // this.filter_options.set(filter_options_data);
+ 
   }
 
   ngAfterViewInit(): void {

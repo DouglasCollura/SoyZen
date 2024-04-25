@@ -3,6 +3,13 @@ import { catchError, tap, throwError } from 'rxjs';
 
 export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
 
+  if(!localStorage.getItem('role')){
+    localStorage.setItem('role','guest');
+    console.log('entramos')
+  }
+
+
+
   const authToken = localStorage.getItem('token');
 
   // Clone the request and add the authorization header
