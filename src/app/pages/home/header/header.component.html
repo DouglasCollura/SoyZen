@@ -28,7 +28,7 @@
           </div>
 
           <div class="grid">
-            <span class="text-[14px] leading-[19.07px]" > {{item.title}} </span>
+            <span class="text-[14px] leading-[19.07px]" [innerHtml]="item.title">  </span>
             <span class="text-[10px] leading-[13.62px] font-medium" > {{item.category}} </span>
           </div>
         </div>
@@ -54,7 +54,7 @@
           <button class="btn !font-semibold" id="btn-login" routerLink="/auth/login" >
             Iniciar sesión
           </button>
-          <button class="btn-beige" routerLink="/auth/signup">
+          <button class="btn-beige" routerLink="/premium/subscribe_operator">
             Suscríbete
           </button>
 
@@ -69,7 +69,7 @@
               <span class="text-[16px] leading-[21.79px] font-bold" >Suscríbete a Soy Zen </span>
             </div>
 
-            <mat-divider />
+            <mat-divider class="mat-divider"  />
 
             <button mat-menu-item class="!min-h-[40px]" routerLink="/auth/signup">
               <span class="text-[16px] leading-[21.79px] font-bold" >Regístrate </span>

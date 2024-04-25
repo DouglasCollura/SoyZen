@@ -17,7 +17,7 @@
 
       <h2 class="self-center text-white text-center leading-normal ftsize" > {{type=='ads' || titleSection==='Taróscopo'? '' : title}} </h2>
 
-      <div class="flex justify-between px-1 items-center hgt">
+      <div class="flex justify-between px-1 items-center hgt" >
         <p style="    width: 90%;"> {{type!='ads' ? category : title }} </p>
 
         @if(isLock && type!='ads'){
@@ -37,16 +37,16 @@
     <div class="grid mt-2">
       <p *ngIf="type==='ads'" style="color:rgba(104, 109, 118, 1);font-size:12px;line-height: 16.34px;">Publicidad</p>
       <ng-container *ngIf="type!='ads'">
-        <h4 class="!font-semibold !text-[16px] !leading-[22px]">{{ user?.name ?? "Vanessa Aponte"}}</h4>
+        <h4 class="!font-semibold !text-[16px] !leading-[22px]" [ngClass]="textColor=='#373A40' ? 'colortitlegray' : 'colorwhite' " >{{ user?.name ?? ""}}</h4>
         <div class="flex gap-1">
           <div class="flex items-center">
-            <mat-icon class="material-symbols-rounded font-extralight">favorite_border</mat-icon>
-            <span class="text-sm gray txtft" > 775 </span>
+            <mat-icon class="material-symbols-rounded font-extralight" [ngClass]="textColor=='#373A40' ? 'colorgray' : 'colorwhite' ">favorite_border</mat-icon>
+            <span class="text-sm gray txtft" [ngClass]="textColor=='#373A40' ? 'colorgray' : 'colorwhite' "> 775 </span>
           </div>
 
           <div class="flex items-center">
-            <mat-icon class="material-symbols-rounded font-extralight ">remove_red_eye</mat-icon>
-            <span class="text-sm gray txtft" >265</span>
+            <mat-icon class="material-symbols-rounded font-extralight " [ngClass]="textColor=='#373A40' ? 'colorgray' : 'colorwhite' ">remove_red_eye</mat-icon>
+            <span class="text-sm gray txtft" [ngClass]="textColor=='#373A40' ? 'colorgray' : 'colorwhite' ">265</span>
           </div>
         </div>
       </ng-container>

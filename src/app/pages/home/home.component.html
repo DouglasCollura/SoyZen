@@ -44,7 +44,7 @@
               </div>
 
               <div class="grid">
-                <span class="text-[14px] leading-[19.07px]" > {{item.title}} </span>
+                <span class="text-[14px] leading-[19.07px]" [innerHtml]="item.title"> </span>
                 <span class="text-[10px] leading-[13.62px] font-medium" > {{item.category}} </span>
               </div>
             </div>
@@ -80,10 +80,10 @@
             </mat-chip-row>
           
             @for (filter_option of sectionData().categorias; track $index) {
-              <mat-chip-row [class.selected]="sectionSelect() === filter_option.id" (click)="selectSection(filter_option.id)">
+              <mat-chip-row  [class.selected]="sectionSelect() === filter_option.id" (click)="selectSection(filter_option.id)">
                 {{ filter_option.name }}
                 @if(sectionSelect() === filter_option.id){
-                  <mat-icon matChipRemove class="material-symbols-rounded font-extralight" (click)="removeFilter()">close</mat-icon>
+                  <mat-icon matChipRemove class="material-symbols-rounded font-extralight closeWhite" (click)="removeFilter()">close</mat-icon>
                 }
               </mat-chip-row>
             }

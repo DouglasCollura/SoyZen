@@ -40,7 +40,7 @@ export class CardArticleComponent {
   @Input() idSection:any = null;
   @Input() idPost:any = null;
   @Input() type:string = 'blog';
-
+  @Input() textColor:any = '';
   @ViewChild('modalEvent') modalEvent!: TemplateRef<any>;
   public urlMedia = environment.urlMedia;
 

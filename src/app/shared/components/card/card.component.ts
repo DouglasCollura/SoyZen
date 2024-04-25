@@ -39,9 +39,10 @@ export class CardComponent {
   @Input() user:any = null;
   @Input() type:string = 'blog';
   @Input() urlPlayer:string = '';
+  @Input() textColor:any = '';
 
 
-
+  
   @ViewChild('modalEvent') modalEvent!: TemplateRef<any>;
   public urlMedia = environment.urlMedia;
 

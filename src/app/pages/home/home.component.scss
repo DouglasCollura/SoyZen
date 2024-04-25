@@ -20,7 +20,7 @@
     .mat-mdc-chip-action-label{
       font-size: 16px !important;
       font-weight: 600 !important;
-      color: var(--green);
+      color: var(--green) !important;
     }
     .selected.mat-mdc-standard-chip{
       background-color: var(--green) !important;
@@ -78,5 +78,8 @@
     -o-border-radius: 10px;
   }
 }
-
+.closeWhite{
+  font-size: 18.72px;
+  font-weight: 400;
+}
 

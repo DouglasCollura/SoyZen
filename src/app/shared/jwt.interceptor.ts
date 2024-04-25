@@ -1,5 +1,5 @@
-import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
-import { catchError, throwError } from 'rxjs';
+import { HttpErrorResponse, HttpInterceptorFn, HttpResponse } from '@angular/common/http';
+import { catchError, tap, throwError } from 'rxjs';
 
 export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
 
@@ -15,6 +15,15 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
   // Pass the cloned request with the updated header to the next handler
 
   return next(authReq).pipe(
+    tap(event => {
+      if (event instanceof HttpResponse) {
+        // Access and store desired response headers here
+        const responseHeaders = event.headers;
+        // Example: store a specific header
+        const customHeaderValue = responseHeaders.get('X-Tier-Status');
+        // console.log('Custom header value:', event); // Or handle as needed
+      }
+    }),
     catchError((err: any) => {
       if (err instanceof HttpErrorResponse) {
         // Handle HTTP errors

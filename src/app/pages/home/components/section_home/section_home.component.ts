@@ -19,7 +19,7 @@ import { environment } from '../../../../../environments/environment';
     CardArticleComponent
   ],
   templateUrl: './section_home.component.html',
-  styleUrl: './section_home.component.scss',
+  styleUrls: ['./section_home.component.scss','./section_home-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })

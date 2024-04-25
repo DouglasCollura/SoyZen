@@ -6,11 +6,13 @@ import { Observable, tap } from 'rxjs';
 import { Post, SectionPost } from '@interfaces/section_post';
 
 
-export interface SectionServiceData{
-  loading:boolean,
-  sections:SectionPost[],
-  categorias:any[],
-  loadingSearch:boolean
+export interface SectionServiceData {
+  loading: boolean;
+  loadingSearch: boolean;
+  categorias: any[];
+  sections: SectionPost[];
+  // Add the missing property
+  add: (section: SectionPost) => void; // Function to add a section
 }
 
 
@@ -24,11 +26,16 @@ export class SectionService {
   private urlApi = environment.apiUrl;
 
   #sectionData = signal<SectionServiceData>({
-    loading:false,
-    loadingSearch:false,
-    categorias:[],
-    sections:[],
-  })
+    loading: false,
+    loadingSearch: false,
+    categorias: [],
+    sections: [],
+    // Initialize the add property
+    add: (section: SectionPost) => {
+      // Implement logic to add a section to the sections array
+      this.#sectionData.update(data => ({ ...data, sections: [...data.sections, section] }));
+    }
+  });
 
   public sectionData = computed(() => this.#sectionData());
 

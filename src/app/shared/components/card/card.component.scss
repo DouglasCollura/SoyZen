@@ -72,6 +72,7 @@
     padding: 10px 5px;
     display: flex;
     gap: 10px;
+    
 
     // .gray{
     //   color: #686D76;
@@ -87,8 +88,10 @@
         height: 100%;
         position: absolute;
         object-fit: cover;
+       
       }
       border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 1);
       -webkit-border-radius: 50%;
       -moz-border-radius: 50%;
       -ms-border-radius: 50%;
@@ -142,4 +145,14 @@ color:rgba(255, 255, 255, 1)
   .tamanoAudio{
     width: 202px !important;
   }
+
+}
+.colorgray{
+  color: rgba(104, 109, 118, 1);
+}
+.colorwhite{
+  color:rgba(255, 255, 255, 1);
+}
+.colortitlegray{
+  color:#373a40
 }

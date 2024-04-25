@@ -2,15 +2,18 @@
   <img [srcset]="getImg()" class="bg-img" alt="">
   <div class="grid gap-3">
     <div class="flex w-full justify-between">
-      <span class=" text-[20px] leading-[28px] font-semibold sm:text-[24px] sm:font-medium" [ngStyle]="{'color': section()?.textColor}"> {{section()?.name}} </span>
+      <span class=" text-[20px] leading-[28px] font-semibold sm:text-[24px] sm:font-medium" [ngClass]="section()?.textColor=='#373A40' || section()?.textColor=='#373a40'  ? 'colortitlegray' : 'colorwhite' "> {{section()?.name}} </span>
 
-      <button class="btn flex btn-seemore  items-center !text-[14px] !leading-[19.07px]  !font-semibold" *ngIf="section()?.name!='Mood Zen del día' " [ngStyle]="{'color': section()?.textColor}" routerLink="yoga">
+      <button class="btn flex btn-seemore  items-center !text-[14px] !leading-[19.07px]  !font-semibold" *ngIf="section()?.name!='Mood Zen del día' " [ngClass]="section()?.textColor=='#373A40' || section()?.textColor=='#373a40'  ? 'colorgray' : 'colorwhite' " routerLink="yoga">
         VER TODO
         <mat-icon class="material-symbols-rounded">keyboard_arrow_right</mat-icon>
       </button>
     </div>
     <mat-divider class="mat-divider" />
-    <h4 class="text-[14px] leading-[22px] sm:text-[16px] colorgray" [ngStyle]="{'color': section()?.textColor}" *ngIf="section()?.name!='Mood Zen del día' ">{{section()?.description}}</h4>
+
+      <h4 class="text-[14px] leading-[22px] sm:text-[16px] {{ section()?.textColor === '#373A40' || section()?.textColor=='#373a40'  ? 'colorgray' : 'colorwhite' }} {{ section()?.hasAds ? 'marginSectionwithAds' : '' }}" *ngIf="section()?.name!='Mood Zen del día' ">{{section()?.description}}</h4>
+
+
   </div>
 
   <swiper-container
@@ -32,6 +35,7 @@
         [url_img]="item.postDetail!.thumbnail"
         [user]="item.user!"
         [type]="item.postType?.name!"
+        [textColor]="section()?.textColor"
         [urlPlayer]="item.postType?.name == 'audio' ? item.postDetail?.audioUrl! : item.postDetail?.videoUrl!"
       />
       <app-card-article
@@ -43,6 +47,7 @@
       [title]="item.title!"
       [isLock]="!isUnLock(item)"
       [url_img]="item.postDetail!.thumbnail"
+      [textColor]="section()?.textColor"
       [user]="item.user!"
       [type]="item.postType?.name!"
     />
