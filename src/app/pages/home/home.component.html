@@ -6,8 +6,8 @@
       <div class="input-icon-right search">
         <input
           type="text"
+          #inputSearchHome
           [(ngModel)]="searchText"
-          (blur)="showSearch.set(false)"
           (keyup.enter)=" searchText != '' && showSearch.set(true)"x
           (input)="onInputChange($event)"
           class="input-rounded !text-[#686D76] !placeholder-[#686D76]"
@@ -21,7 +21,7 @@
       </div>
 
 
-      <div class="modal-filter" *ngIf="showSearch()">
+      <div class="modal-filter" #menuHome *ngIf="showSearch()">
         <div class="p-3 py-4 flex items-center justify-between w-full modal-filter-header">
 
           <div class="flex items-center">
@@ -38,7 +38,7 @@
 
         <div class="body-filter">
           @for (item of listSearch(); track $index) {
-            <div class="item-result">
+            <div class="item-result" (click)="openPost(item)">
               <div class="img">
                 <img [src]="getImg(item.thumbnail)" alt="">
               </div>
@@ -187,3 +187,33 @@
 
   <!-- <app-footer /> -->
 </div>
+
+
+
+<ng-template #modalEvent>
+  <mat-dialog-actions class="grid">
+    <div class="grid pb-8 w-full">
+      <button class="btn justify-self-end "  mat-dialog-close="true" ><mat-icon class="!w-[30px] !h-[30px] text-[30px] font-extralight material-symbols-rounded"> close </mat-icon></button>
+
+      <div class="grid gap-5 text-center justify-items-center w-[300px] m-auto">
+        <span class="text-[28px] font-medium leading-[38.14px]" >Hazte Premium</span>
+
+        <span class="text-[14px] leading-[22px] font-normal">
+          Suscríbete y obtén full acceso a todos los contenidos y funcionalidades de Soy Zen.
+        </span>
+
+        <button class="btn-gold" >Suscripción Premium</button>
+      </div>
+    </div>
+
+
+  </mat-dialog-actions>
+</ng-template>
+
+<ng-template #modalVideo>
+  <app-videoplayer [urlPlayer]="urlPlayer"  />
+</ng-template>
+
+<ng-template #modalAudio>
+  <app-audio-player [urlPlayer]="urlPlayer " [url_img]="url_img" [title]="title" [category]="category"/>
+</ng-template>
