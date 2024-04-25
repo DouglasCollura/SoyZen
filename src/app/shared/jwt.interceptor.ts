@@ -4,13 +4,25 @@ import { catchError, tap, throwError } from 'rxjs';
 export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
 
   const authToken = localStorage.getItem('token');
-
-  // Clone the request and add the authorization header
-  const authReq = req.clone({
+  var token 
+if(authToken){
+   token = req.clone({
     setHeaders: {
       Authorization: `Bearer ${authToken}`
     }
   });
+}else{
+  token = req.clone({
+    setHeaders: {
+      
+    }
+  });
+}
+
+    const authReq = token
+
+  // Clone the request and add the authorization header
+
 
   // Pass the cloned request with the updated header to the next handler
 
