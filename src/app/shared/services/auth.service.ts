@@ -25,7 +25,7 @@ export interface AuthServiceData{
 
 export class AuthService {
 
-  
+
   private http = inject(HttpClient);
   private router = inject(Router);
   private urlApi = environment.apiUrl;

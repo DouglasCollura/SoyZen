@@ -11,8 +11,6 @@ export interface SectionServiceData {
   loadingSearch: boolean;
   categorias: any[];
   sections: SectionPost[];
-  // Add the missing property
-  add: (section: SectionPost) => void; // Function to add a section
 }
 
 
@@ -30,11 +28,6 @@ export class SectionService {
     loadingSearch: false,
     categorias: [],
     sections: [],
-    // Initialize the add property
-    add: (section: SectionPost) => {
-      // Implement logic to add a section to the sections array
-      this.#sectionData.update(data => ({ ...data, sections: [...data.sections, section] }));
-    }
   });
 
   public sectionData = computed(() => this.#sectionData());

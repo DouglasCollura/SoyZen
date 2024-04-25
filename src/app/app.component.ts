@@ -35,6 +35,11 @@ export class AppComponent {
     this.matIconRegistry.addSvgIcon('my-bell-empty', bellEmpty);
     this.matIconRegistry.addSvgIcon('my-settings', settings);
     this.width = window.screen.width;
+
+    const role = localStorage.getItem('role');
+    if(!role){
+      localStorage.setItem('role', 'guest');
+    }
   }
 
   public width:number = 0;

@@ -72,8 +72,6 @@ export default class LoginComponent {
         return;
       }
 
-      console.log(`58${this.formNumber.value.code}${this.formNumber.value.phone}`);
-
       this.authService.login({phoneNumber:`58${this.formNumber.value.code}${this.formNumber.value.phone}`})
     }
 
