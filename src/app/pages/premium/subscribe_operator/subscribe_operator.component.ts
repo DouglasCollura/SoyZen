@@ -23,6 +23,7 @@ export default class SubscribeOperatorComponent {
   private dialog = inject(MatDialog);
   operator:any
   private router = inject(Router);
+
   openDialog(operador:any): void {
    this.operator=operador
   
@@ -45,6 +46,12 @@ export default class SubscribeOperatorComponent {
       window.open("https://gprs.digitel.com.ve/suscripcionesPreview.do?idSc=100390&ac=reg", "_blank");
       this.router.navigateByUrl('auth/login');
     }
+}
+notRole(){
+  const role = localStorage.getItem('role');
+  if(!role){
+    localStorage.setItem('role', 'guest');
+  }
 }
 
 }
