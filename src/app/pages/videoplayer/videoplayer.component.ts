@@ -48,7 +48,7 @@ export default class VideoplayerComponent {
 
   onPlayerReady(api: VgApiService) {
     this.vgPlayer = api;
-    console.log(api)
+    
   }
 
   playPause(){

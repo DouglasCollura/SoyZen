@@ -33,7 +33,7 @@ if(authToken){
         const responseHeaders = event.headers;
         // Example: store a specific header
         const customHeaderValue = responseHeaders.get('X-Tier-Status');
-        // console.log('Custom header value:', event); // Or handle as needed
+        
       }
     }),
     catchError((err: any) => {

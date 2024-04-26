@@ -61,10 +61,10 @@
     <div class="grid m-auto  max-w-[900px]">
       <div class="content-ads">
         <a [href]="section()?.hasAds && section()?.url_ads ? section()?.url_ads :'#'">
-        <img class="imgAds" [srcset]="getImg2( section()?.ads  )" alt="">
+        <img class=" imgAds" [srcset]="screenWidth < '600' ? getImg2( section()?.adsMobile  ): getImg2( section()?.ads  )" alt="">
       </a>
       </div>
-      <span class="text-end text-[12px] adsDisplay">Publicidad</span>
+      <span class="text-end text-[12px] adsDisplay">Publicidad </span>
     </div>
   </div>
 

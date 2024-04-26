@@ -52,7 +52,7 @@ export default class PostComponent  implements OnInit{
 
   loadPost(id:any){
     this.sectionService.getPost(id).subscribe((data)=>{
-      console.log('entramos post')
+      
       this.post.set(data);
 
     })
@@ -61,7 +61,7 @@ export default class PostComponent  implements OnInit{
     this.sectionService.getSection(id).subscribe((data)=>{
        this.potsitos.set(data.posts);
 
-      console.log('entramos section')
+      
       this.section.set(data.posts.filter(post => post.id != this.idpost))
 
 

@@ -5,6 +5,7 @@ export interface SectionPost {
   description: string;
   background:  string;
   hasAds:      boolean;
+  adsMobile: any;
   ads:         any;
   url_ads:     string;
   posts:       Post[];

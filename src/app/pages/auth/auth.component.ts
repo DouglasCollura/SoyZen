@@ -26,7 +26,7 @@ export class AuthComponent implements OnInit {
   });
 
   public changeUserStatus = effect(() =>{
-    console.log(`observable ${this.userId()}`)
+   
   })
 
   ngOnInit(): void {

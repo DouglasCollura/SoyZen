@@ -117,11 +117,7 @@ export default class HeaderComponent implements AfterViewInit {
       return;
     }
 
-    // this.sectionService.searchPosts(data).subscribe((data)=>{
-    //   this.listSearch.set(data);
-    //   this.showSearch.set(true);
-    //   console.log(data)
-    // })
+ 
 
     this.sectionService.searchPosts(data).subscribe((res) => {
       const formattedData = res.map((item:any) => {
@@ -156,7 +152,7 @@ export default class HeaderComponent implements AfterViewInit {
   }
 
   openPost(item:any){
-      console.log(item)
+      
 
     if(this.isUnLock(item)){
       this.urlPlayer = item.audioUrl

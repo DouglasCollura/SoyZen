@@ -29,9 +29,12 @@ export class CollaboratorsComponent {
   };
   private role = localStorage.getItem('role');
   public section = signal<SectionPost | null>(null);
+  tamano:any
   private urlMedia = environment.urlMedia;
   constructor(){
-    console.log(window.innerWidth)
+   
+
+  
   }
   public width:number = window.innerWidth;
   getImg(url:string){

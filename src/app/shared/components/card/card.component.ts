@@ -48,7 +48,7 @@ export class CardComponent {
 
 
   openDialog(): void {
-    console.log('lock',this.type)
+
     if(!this.isLock){
 
       if(this.type == PostMediaType.audio){

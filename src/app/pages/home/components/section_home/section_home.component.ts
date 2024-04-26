@@ -27,6 +27,7 @@ export class SectionHomeComponent {
 
   @Input({required: true}) set setSection(section:SectionPost){
     this.section.set(section);
+    this.screenWidth = window.innerWidth;  
     // (this.section()!.type == this.type_test.multiple || this.section()?.type == this.type_test.select_icon) && (this.multiList = this.test()!.answers);
     // this.section()!.type == this.type_test.range && this.setRangeValues();
     // this.section()!.type == this.type_test.select_single && (this.select.set(this.test()!.answers[0].id));
@@ -35,6 +36,8 @@ export class SectionHomeComponent {
   private role = localStorage.getItem('role');
   public section = signal<SectionPost | null>(null);
   private urlMedia = environment.urlMedia;
+  public screenWidth: any;  
+
 
   isUnLock(item:Post){
 
