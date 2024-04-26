@@ -9,6 +9,7 @@ import { PostMediaType } from '@interfaces/section_post';
 import AudioPlayerComponent from '../../../pages/audio-player/audio-player.component';
 
 
+
 @Component({
   selector: 'app-card-article',
   standalone: true,
@@ -21,7 +22,7 @@ import AudioPlayerComponent from '../../../pages/audio-player/audio-player.compo
     AudioPlayerComponent
   ],
   templateUrl: './card_article.component.html',
-  styleUrl: './card_article.component.scss',
+  styleUrls: ['./card_article.component.scss','./card_article-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardArticleComponent {

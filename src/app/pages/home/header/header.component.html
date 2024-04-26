@@ -50,17 +50,17 @@
   <div class="options-group">
     @switch (role) {
       @case (roles.GUEST){
-        <div class="flex gap-3">
+        <div class="flex gap-3 gap-0-5">
           <button class="btn !font-semibold" id="btn-login" routerLink="/auth/login" >
             Iniciar sesión
           </button>
-          <button class="btn-beige" routerLink="/premium/subscribe_operator">
+          <button class="btn-beige movile" routerLink="/premium/subscribe_operator">
             Suscríbete
           </button>
 
           <button class="btn-user-menu" [matMenuTriggerFor]="menu">
-            <mat-icon class="material-symbols-rounded text-gold" >account_circle</mat-icon>
-            <img srcset="/assets/images/menu-scale.svg" width="20" alt="">
+            <mat-icon class="material-symbols-rounded text-gold iconoUser" >account_circle</mat-icon>
+            <img srcset="/assets/images/menu-scale.svg" class="imgBar" alt="">
           </button>
 
           <mat-menu #menu="matMenu">
@@ -89,8 +89,8 @@
           </button>
 
           <button class="btn-user-menu" [matMenuTriggerFor]="menu">
-            <mat-icon class="material-symbols-rounded text-gold" >account_circle</mat-icon>
-            <img srcset="/assets/images/menu-scale.svg" width="20" alt="">
+            <mat-icon class="material-symbols-rounded text-gold  iconoUser" >account_circle</mat-icon>
+            <img srcset="/assets/images/menu-scale.svg" class="imgBar" alt="">
           </button>
 
           <mat-menu #menu="matMenu">
@@ -159,8 +159,8 @@
           </button>
 
           <button class="btn-user-menu" [matMenuTriggerFor]="menu">
-            <mat-icon class="material-symbols-rounded text-gold" >account_circle</mat-icon>
-            <img srcset="/assets/images/menu-scale.svg" width="20" alt="">
+            <mat-icon class="material-symbols-rounded text-gold iconoUser" >account_circle</mat-icon>
+            <img srcset="/assets/images/menu-scale.svg" class="imgBar" alt="">
           </button>
           <mat-menu #menu="matMenu">
             <div class="menu-data-user">

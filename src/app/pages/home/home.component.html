@@ -10,13 +10,13 @@
           [(ngModel)]="searchText"
           (keyup.enter)=" searchText != '' && showSearch.set(true)"x
           (input)="onInputChange($event)"
-          class="input-rounded !text-[#686D76] !placeholder-[#686D76]"
+          class="input-rounded !text-[#686D76] !placeholder-[#686D76] radiusMobile"
           placeholder="¿En qué te enfocarás hoy?">
 
         @if(sectionData().loadingSearch){
           <mat-icon class="input-icon material-symbols-rounded animate-spin" >progress_activity</mat-icon>
         }@else {
-          <mat-icon class="input-icon material-symbols-rounded" >search</mat-icon>
+          <mat-icon class="input-icon material-symbols-rounded sizeMobile" >search</mat-icon>
         }
       </div>
 
@@ -77,6 +77,7 @@
 
             @for (filter_option of sectionData().categorias; track $index) {
               <mat-chip-row  [class.selected]="sectionSelect() == filter_option.id" (click)="selectSection(filter_option.id)">
+                <mat-icon matChipRemove class="material-symbols-rounded font-extralight closeWhite" *ngIf="sectionSelect() == filter_option.id && filter_option.id == null" (click)="removeFilter()">close</mat-icon>
                 {{ filter_option.name }}
                 @if(sectionSelect() == filter_option.id && filter_option.id != null){
                   <mat-icon matChipRemove class="material-symbols-rounded font-extralight closeWhite" (click)="removeFilter()">close</mat-icon>

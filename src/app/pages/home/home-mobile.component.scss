@@ -1,4 +1,19 @@
 @media (width < 600px) {
+  .temp-home{
+    height: 100%;
+    display: grid;
+    grid-template-rows: max-content auto;
+  
+  
+    ::ng-deep{
+      .mat-mdc-standard-chip{
+  
+        background: rgba(218, 227, 228, 1) ;
+        outline: 0px solid var(--green);
+  
+      }
+    }
+  }
 
   .body-home{
     .content-search{
@@ -17,6 +32,7 @@
   }
 
   ::ng-deep{
+  
     .mat-mdc-chip-action-label{
       font-size: 14px !important;
     }
@@ -26,7 +42,6 @@
       font-size: 22px !important;
     }
   }
-
 
 }
 @media (width < 820px) {
@@ -103,4 +118,31 @@
       }
     }
   }
+  .radiusMobile{
+    border-radius: 16px;
+  }
+  .sizeMobile{
+    font-size: 25px;
+    height: 25px;
+    width: 25px;
+    color: #686d76;
+  }
+
+  .body-home{
+    display: grid;
+    align-content: start;
+    gap: 0px;
+
+    .filter-option{
+      padding: 30px;
+    }
+
+    .content-search{
+      display: none;
+      padding: 20px 16.5px !important;
+      
+
+    }
+  }
+
 }

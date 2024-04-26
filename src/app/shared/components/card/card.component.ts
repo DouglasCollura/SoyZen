@@ -19,7 +19,7 @@ import AudioPlayerComponent from '../../../pages/audio-player/audio-player.compo
     AudioPlayerComponent
   ],
   templateUrl: './card.component.html',
-  styleUrl: './card.component.scss',
+  styleUrls: ['./card.component.scss','./card-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {

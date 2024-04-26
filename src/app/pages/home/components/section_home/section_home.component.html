@@ -9,7 +9,7 @@
         <mat-icon class="material-symbols-rounded">keyboard_arrow_right</mat-icon>
       </button>
     </div>
-    <mat-divider class="mat-divider" />
+    <mat-divider class="mat-divider" *ngIf="section()?.name==='Taróscopo' "/>
 
       <h4 class="text-[14px] leading-[22px] sm:text-[16px] {{ section()?.textColor === '#373A40' || section()?.textColor=='#373a40'  ? 'colorgray' : 'colorwhite' }} {{ section()?.hasAds ? 'marginSectionwithAds' : '' }}" *ngIf="section()?.name!='Mood Zen del día' ">{{section()?.description}}</h4>
 
@@ -61,10 +61,10 @@
     <div class="grid m-auto  max-w-[900px]">
       <div class="content-ads">
         <a [href]="section()?.hasAds && section()?.url_ads ? section()?.url_ads :'#'">
-        <img [srcset]="getImg2( section()?.ads  )" alt="">
+        <img class="imgAds" [srcset]="getImg2( section()?.ads  )" alt="">
       </a>
       </div>
-      <span class="text-end text-[12px]">Publicidad</span>
+      <span class="text-end text-[12px] adsDisplay">Publicidad</span>
     </div>
   </div>
 

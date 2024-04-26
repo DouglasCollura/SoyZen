@@ -2,5 +2,25 @@
     .marginSectionwithAds{
         margin-right: 8.5rem;
     }
-   
+
+    .temp-section-home { 
+        padding: 40px 16.5px 15px;
+      }
+    
+      .section-ad {
+        
+        padding: 0px;
+    }
+    .imgAds{
+        width: 100%;
+        height: 183px;
+        object-fit: cover;
+      }
+      .adsDisplay{
+        display: none;
+      }
+
+      .colorgray{
+        color: rgba(159, 164, 174, 1);
+      }
 }

@@ -13,7 +13,7 @@ import { Roles } from '@services/auth.service';
     RouterModule
   ],
   templateUrl: './banner.component.html',
-  styleUrl: './banner.component.scss',
+  styleUrls: ['./banner.component.scss','./banner-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BannerComponent {
