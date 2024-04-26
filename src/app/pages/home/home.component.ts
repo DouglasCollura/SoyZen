@@ -24,7 +24,8 @@ import { Subject, debounceTime } from 'rxjs';
 import { PostMediaType } from '@interfaces/section_post';
 import { MatDialog } from '@angular/material/dialog';
 import { Roles } from '@services/auth.service';
-
+import VideoplayerComponent from '../../pages/videoplayer/videoplayer.component';
+import AudioPlayerComponent from '../../pages/audio-player/audio-player.component';
 
 @Component({
   selector: 'app-home',
@@ -45,7 +46,9 @@ import { Roles } from '@services/auth.service';
     DigitalLibraryComponent,
     FooterComponent,
     BannerComponent,
-    SectionHomeComponent
+    SectionHomeComponent,
+    VideoplayerComponent,
+    AudioPlayerComponent
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss','./home-mobile.component.scss'],
@@ -141,10 +144,10 @@ export default class HomeComponent implements AfterViewInit {
 
 
   openPost(item:any){
-   
+   console.log('holis',item)
 
     if(this.isUnLock(item)){
-      this.urlPlayer = item.audioUrl
+      this.urlPlayer = item.posttype=='video'? item.videoUrl : item.audioUrl
       this.url_img = item.thumbnail
       this.title = item.title
       this.category = item.category

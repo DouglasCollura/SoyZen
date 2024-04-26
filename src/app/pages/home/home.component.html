@@ -194,7 +194,7 @@
 <ng-template #modalEvent>
   <mat-dialog-actions class="grid">
     <div class="grid pb-8 w-full">
-      <button class="btn justify-self-end "><mat-icon class="!w-[30px] !h-[30px] text-[30px] font-extralight material-symbols-rounded" mat-dialog-close="true" > close </mat-icon></button>
+      <button class="btn justify-self-end "><mat-icon class="!w-[30px] !h-[30px] text-[30px] font-extralight material-symbols-rounded" mat-dialog-close="true" (click)="close()" > close </mat-icon></button>
 
       <div class="grid gap-5 text-center justify-items-center w-[300px] m-auto">
         <span class="text-[28px] font-medium leading-[38.14px]" >Hazte Premium</span>

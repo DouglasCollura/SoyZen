@@ -39,7 +39,9 @@ export default class VideoplayerComponent {
     isOver:false,
     hideTop:true,
   });
-
+constructor(){
+  console.log('repro')
+}
   private timeOut:any;
 
   getMedia(){
@@ -48,6 +50,7 @@ export default class VideoplayerComponent {
 
   onPlayerReady(api: VgApiService) {
     this.vgPlayer = api;
+    
     
   }
 

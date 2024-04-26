@@ -87,4 +87,13 @@ export default class AudioPlayerComponent {
     return `${this.urlMedia}${url}`;
 
   }
+  titleBold(){
+    // Expresión regular para buscar la etiqueta a reemplazar
+  const regex = /<b class="text-\[14px\] leading-\[19\.07px\]">/;
+
+  // Reemplazar la etiqueta con la nueva
+  const nuevoTexto = this.title.replace(regex, '<b class="text-[20px] leading-[19.07px]">');
+
+  return nuevoTexto;
+}
  }

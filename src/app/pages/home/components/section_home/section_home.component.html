@@ -58,7 +58,7 @@
 
 
   <div class="section-ad" *ngIf="section()?.hasAds">
-    <div class="grid m-auto  max-w-[900px]">
+    <div [ngClass]="screenWidth < '600' ?'grid' : 'm-auto  max-w-[900px]' ">
       <div class="content-ads">
         <a [href]="section()?.hasAds && section()?.url_ads ? section()?.url_ads :'#'">
         <img class=" imgAds" [srcset]="screenWidth < '600' ? getImg2( section()?.adsMobile  ): getImg2( section()?.ads  )" alt="">
