@@ -85,4 +85,8 @@ export class CardComponent {
     return `${this.urlMedia}${url}`;
   }
 
+  close(){
+    this.dialog.closeAll()
+  }
+
  }

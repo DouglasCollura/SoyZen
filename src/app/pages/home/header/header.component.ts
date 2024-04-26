@@ -200,6 +200,8 @@ export default class HeaderComponent implements AfterViewInit {
           (item.tier == Roles.REGISTER && this.role != Roles.GUEST) ||
             (item.tier == Roles.SUBSCRIBE && this.role == Roles.SUBSCRIBE);
   }
-
+  close(){
+    this.dialog.closeAll()
+  }
 
 }

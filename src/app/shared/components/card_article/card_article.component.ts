@@ -63,5 +63,7 @@ export class CardArticleComponent {
   getImg(url:string){
     return `${this.urlMedia}${url}`;
   }
-
+  close(){
+    this.dialog.closeAll()
+  }
  }
