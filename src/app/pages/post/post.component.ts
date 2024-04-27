@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, signal, TemplateRef, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
@@ -9,6 +9,10 @@ import { SectionService, SectionServiceData } from '@services/section.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { Post } from '@interfaces/section_post';
+import { VgApiService, VgCoreModule } from '@videogular/ngx-videogular/core';
+import { VgControlsModule } from '@videogular/ngx-videogular/controls';
+import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
+import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 
 @Component({
   selector: 'app-post',
@@ -18,7 +22,11 @@ import { Post } from '@interfaces/section_post';
     MatIconModule,
     MatDividerModule,
     CardArticleComponent,
-    RouterModule
+    RouterModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
   ],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
@@ -27,6 +35,13 @@ import { Post } from '@interfaces/section_post';
 
 })
 export default class PostComponent  implements OnInit{
+
+
+  $audio!: HTMLAudioElement;
+
+  private vgPlayer:VgApiService | undefined;
+  public isPlaying = signal(false);
+
   post = signal<any>(null);
   section = signal<any>([])
   idpost:any
@@ -49,19 +64,22 @@ export default class PostComponent  implements OnInit{
     })
   }
 
+  onPlayerReady(api: VgApiService) {
+    this.vgPlayer = api;
+  }
 
   loadPost(id:any){
     this.sectionService.getPost(id).subscribe((data)=>{
-      
-      this.post.set(data);
 
+      this.post.set(data);
+      console.log(this.post())
     })
   }
   loadSection(id:any){
     this.sectionService.getSection(id).subscribe((data)=>{
        this.potsitos.set(data.posts);
 
-      
+
       this.section.set(data.posts.filter(post => post.id != this.idpost))
 
 
@@ -86,6 +104,13 @@ export default class PostComponent  implements OnInit{
     }
   }
 
+  playPause(){
+    this.isPlaying() ?
+      this.vgPlayer?.pause() :
+      this.vgPlayer?.play();
+    this.isPlaying.update(e=> !e);
+  }
+
   getImg2(url:string){
     return `${this.urlMedia}${url}`;
   }
@@ -95,7 +120,6 @@ export default class PostComponent  implements OnInit{
           (item.tier?.name == Roles.REGISTER && this.role != Roles.GUEST) ||
             (item.tier?.name == Roles.SUBSCRIBE && this.role == Roles.SUBSCRIBE);
   }
-
 
 
 }

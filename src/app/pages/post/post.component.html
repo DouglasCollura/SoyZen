@@ -43,9 +43,28 @@
       </div>
     </div>
 
+    <div >
+      <vg-player #videoPlayer (onPlayerReady)="onPlayerReady($event)">
+        <audio
+            [vgMedia]="$any(myMedia)"
+            #myMedia
+            id="myMedia"
+            preload="auto"
+            crossorigin
+          >
+          <source *ngIf="post()?.postDetail?.audioUrl" [src]="getImg2(post()?.postDetail?.audioUrl)" />
+        </audio>
+
+      </vg-player>
+    </div>
+
     <div class="play_audio">
-      <mat-icon class="material-symbols-rounded font-extralight !h-[48px] !w-[48px] !text-[48px] text-green"
-      >play_circle</mat-icon>
+      <button (click)="playPause()">
+        <mat-icon class="material-symbols-rounded font-extralight !h-[48px] !w-[48px] !text-[48px] text-green"
+        > {{isPlaying() ?'pause_circle' : 'play_circle'}}</mat-icon>
+
+      </button>
+
 
       <div class="grid content-center">
         <span class="text-[12px] leading-[16.34px] font-normal text-[#686D76]" >Lectura 2 minutos</span>

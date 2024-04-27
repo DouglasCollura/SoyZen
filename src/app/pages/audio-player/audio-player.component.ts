@@ -49,7 +49,6 @@ export default class AudioPlayerComponent {
 
   onPlayerReady(api: VgApiService) {
     this.vgPlayer = api;
-    
   }
 
   playPause(){
