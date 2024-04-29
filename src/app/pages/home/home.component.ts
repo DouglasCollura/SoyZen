@@ -144,7 +144,7 @@ export default class HomeComponent implements AfterViewInit {
 
 
   openPost(item:any){
-   console.log('holis',item)
+  
 
     if(this.isUnLock(item)){
       this.urlPlayer = item.posttype=='video'? item.videoUrl : item.audioUrl
