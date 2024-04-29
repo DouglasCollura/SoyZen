@@ -21,7 +21,7 @@ import { environment } from '../../../environments/environment';
     MatIconModule
   ],
   templateUrl: './videoplayer.component.html',
-  styleUrl: './videoplayer.component.scss',
+  styleUrls: ['./videoplayer.component.scss', './videoplayer-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class VideoplayerComponent {
@@ -50,8 +50,8 @@ constructor(){
 
   onPlayerReady(api: VgApiService) {
     this.vgPlayer = api;
-    
-    
+
+
   }
 
   playPause(){

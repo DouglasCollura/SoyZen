@@ -41,8 +41,13 @@ export class CardComponent {
   @Input() urlPlayer:string = '';
   @Input() textColor:any = '';
 
+  public screenWidth: any;
 
-  
+  constructor(){
+    this.screenWidth = window.innerWidth;
+  }
+
+
   @ViewChild('modalEvent') modalEvent!: TemplateRef<any>;
   public urlMedia = environment.urlMedia;
 
@@ -50,27 +55,28 @@ export class CardComponent {
   openDialog(): void {
 
     if(!this.isLock){
+      if(this.screenWidth > 500){
+        if(this.type == PostMediaType.audio){
+          this.dialog.open(this.modalAudio, {
+            width: '100%',
+            height: '100%',
+            maxWidth:'100%',
+            // data:
+            panelClass: 'full-screen-modal-player'
+          });
+        }
 
-      if(this.type == PostMediaType.audio){
-        this.dialog.open(this.modalAudio, {
-          width: '100%',
-          height: '100%',
-          maxWidth:'100%',
-          // data:
-          panelClass: 'full-screen-modal-player'
-        });
-      }
+        else if(this.type == PostMediaType.video){
 
-      else if(this.type == PostMediaType.video){
-
-        this.dialog.open(this.modalVideo, {
-          width: '100%',
-          height: '100%',
-          maxWidth:'100%',
-          panelClass: 'full-screen-modal-player'
-        });
-      } else{
-        this.router.navigateByUrl('home/post');
+          this.dialog.open(this.modalVideo, {
+            width: '100%',
+            height: '100%',
+            maxWidth:'100%',
+            panelClass: 'full-screen-modal-player'
+          });
+        } else{
+          this.router.navigateByUrl('home/post');
+        }
       }
     }else{
       this.dialog.open(this.modalEvent, {
