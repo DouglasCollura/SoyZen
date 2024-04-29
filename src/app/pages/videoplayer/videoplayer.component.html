@@ -14,8 +14,16 @@
 
     </div>
   </div>
-  <vg-controls [vgAutohide]="true" [vgAutohideTime]="0.5">
+  <vg-controls [vgAutohide]="true" [vgAutohideTime]="1">
     <div class="grid w-full">
+      <div class="gap-5 justify-self-end opt-mobile">
+        <button (click)="openFeelModal()">
+          <mat-icon svgIcon="my-smile-video" ></mat-icon>
+        </button>
+        <button>
+          <mat-icon class="material-symbols-rounded !font-thin" >share</mat-icon>
+        </button>
+      </div>
       <vg-scrub-bar>
         <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
         <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
@@ -60,7 +68,7 @@
           </button>
 
         </div>
-        <div class="flex gap-5">
+        <div class="flex gap-5 opt-video">
           <button (click)="openFeelModal()">
             <mat-icon svgIcon="my-smile-video" ></mat-icon>
           </button>
