@@ -121,8 +121,11 @@
       id="myMedia"
       preload="auto"
       crossorigin
+      [src]="getImg(urlPlayer)" 
     >
-      <source [src]="getImg(urlPlayer)" type="audio/mpeg" />
+   
+
+
     </audio>
 
     <!-- <video [vgMedia]="$any(slave)" #slave id="slaveVideo" preload="auto">
