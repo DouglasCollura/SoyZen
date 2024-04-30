@@ -67,4 +67,15 @@ mat-icon{
   .opt-mobile{
     display: none;
   }
+
+}
+
+
+.bg-message-lock{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  z-index: 9999;
+  background-color: rgba(0,0,0,0.6);
 }

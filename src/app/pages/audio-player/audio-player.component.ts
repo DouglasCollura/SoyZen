@@ -20,7 +20,7 @@ import { environment } from '../../../environments/environment';
     MatDialogModule,
   ],
   templateUrl: './audio-player.component.html',
-  styleUrl: './audio-player.component.scss',
+  styleUrls: ['./audio-player.component.scss', './audio-player-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class AudioPlayerComponent {
@@ -32,6 +32,15 @@ export default class AudioPlayerComponent {
   @Input() url_img:string = '';
   @Input({required: true}) title!:string;
   @Input() category!:string | null;
+  @Input() isLock:boolean = false;
+  @Input() set pause(pause:boolean){
+    if(pause && this.isPlaying()){
+      this.vgPlayer?.pause();
+      this.isPlaying.update(e=> !e);
+    }
+
+  };
+
   public urlMedia = environment.urlMedia;
   public controlVideoPlayer = signal({
     isOver:false,

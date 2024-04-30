@@ -41,21 +41,28 @@
           <button>
             <mat-icon class="material-symbols-rounded font-thin !h-[55px] !w-[55px] !text-[55px]">skip_previous</mat-icon>
           </button>
-          <button (click)="Replay()" >
+          <button (click)="!isLock && Replay()" >
             <mat-icon class="material-symbols-rounded font-thin !h-[38px] !w-[38px] !text-[38px]">replay_10</mat-icon>
           </button>
-          <button class="text-white" id="play" (click)="playPause()">
-            @if(isPlaying()){
-            <mat-icon class="material-symbols-rounded font-thin !h-[48px] !w-[48px] !text-[48px]"
-              >pause_circle</mat-icon
-            >
-            } @else{
-            <mat-icon class="material-symbols-rounded font-thin !h-[48px] !w-[48px] !text-[48px]"
-              >play_circle</mat-icon
-            >
-            }
-          </button>
-          <button (click)="Forward()">
+
+          @if(isLock){
+            <button class="text-white" >
+              <mat-icon  class="material-symbols-rounded font-thin text-[32px] !w-[32px] !h-[32px]" svgIcon="my-lock" ></mat-icon>
+            </button>
+          }@else {
+            <button class="text-white" id="play" (click)="playPause()">
+              @if(isPlaying()){
+              <mat-icon class="material-symbols-rounded font-thin !h-[48px] !w-[48px] !text-[48px]"
+                >pause_circle</mat-icon
+              >
+              } @else{
+              <mat-icon class="material-symbols-rounded font-thin !h-[48px] !w-[48px] !text-[48px]"
+                >play_circle</mat-icon
+              >
+              }
+            </button>
+          }
+          <button (click)="!isLock && Forward()">
             <mat-icon class="material-symbols-rounded font-thin !h-[38px] !w-[38px] !text-[38px]"
               >forward_10</mat-icon
             >
@@ -142,5 +149,17 @@
 
 </ng-template>
 
+@if(isLock){
+  <div class="bg-message-lock">
+      <div class="grid gap-5 text-center justify-items-center w-[300px] m-auto">
+        <span class="text-[28px] font-medium leading-[38.14px] !text-white" >Hazte Premium</span>
 
+        <span class="text-[14px] leading-[22px] font-normal !text-white">
+          Suscríbete y obtén full acceso a todos los contenidos y funcionalidades de Soy Zen.
+        </span>
+
+        <button class="btn-gold"  routerLink="/premium/subscribe_operator"   mat-dialog-close="true" >Suscripción Premium</button>
+      </div>
+  </div>
+}
 <!--  <iframe width="972" height="711" src="https://www.youtube.com/embed/iYYRH4apXDo" title="David Bowie – Space Oddity (Official Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->

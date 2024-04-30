@@ -24,8 +24,9 @@
     class="overflow-auto"
   >
 
-    <swiper-slide *ngFor="let item of section()?.posts">
+    <swiper-slide *ngFor="let item of section()?.posts; let  i = index">
       <app-card
+        (click)="openReel(i,item)"
       *ngIf="item.postType?.name!='blog' "
         [category]="item.category?.name!"
         [time]="item.duration!"

@@ -78,10 +78,7 @@ export class SectionService {
   }
 
   getPost(id:any){
-
-
     const response = this.http.get<Post>(`${this.urlApi}/posts/${id}`).pipe(
-
     );
 
     return response;

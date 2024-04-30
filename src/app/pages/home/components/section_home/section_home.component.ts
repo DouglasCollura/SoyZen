@@ -3,10 +3,13 @@ import { ChangeDetectionStrategy, Component,  CUSTOM_ELEMENTS_SCHEMA, inject, In
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { Post, SectionPost } from '@interfaces/section_post';
-import { Roles } from '@services/auth.service';
+import { AuthService, Roles } from '@services/auth.service';
 import { CardComponent } from '@shared/components/card/card.component';
 import { CardArticleComponent } from '@shared/components/card_article/card_article.component';
 import { environment } from '../../../../../environments/environment';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ReelComponent } from '@shared/components/reel/reel.component';
+import { ReelService } from '@services/reel.service';
 
 @Component({
   selector: 'app-section-home',
@@ -14,9 +17,11 @@ import { environment } from '../../../../../environments/environment';
   imports: [
     CommonModule,
     MatIconModule,
+    MatDialogModule,
     CardComponent,
     RouterModule,
-    CardArticleComponent
+    CardArticleComponent,
+    ReelComponent
   ],
   templateUrl: './section_home.component.html',
   styleUrls: ['./section_home.component.scss','./section_home-mobile.component.scss'],
@@ -27,23 +32,25 @@ export class SectionHomeComponent {
 
   @Input({required: true}) set setSection(section:SectionPost){
     this.section.set(section);
-    this.screenWidth = window.innerWidth;  
     // (this.section()!.type == this.type_test.multiple || this.section()?.type == this.type_test.select_icon) && (this.multiList = this.test()!.answers);
     // this.section()!.type == this.type_test.range && this.setRangeValues();
     // this.section()!.type == this.type_test.select_single && (this.select.set(this.test()!.answers[0].id));
   };
 
+  private dialog = inject(MatDialog);
+  private reelService = inject(ReelService);
+  private authService = inject(AuthService);
   private role = localStorage.getItem('role');
   public section = signal<SectionPost | null>(null);
   private urlMedia = environment.urlMedia;
-  public screenWidth: any;  
+  public screenWidth: any;
 
+  constructor(){
+    this.screenWidth = window.innerWidth;
+  }
 
   isUnLock(item:Post){
-
-    return item.tier?.name == Roles.GUEST ||
-          (item.tier?.name == Roles.REGISTER && this.role != Roles.GUEST) ||
-            (item.tier?.name == Roles.SUBSCRIBE && this.role == Roles.SUBSCRIBE);
+    return this.authService.isUnLock(item);
   }
 
   getImg(){
@@ -52,5 +59,21 @@ export class SectionHomeComponent {
 
   getImg2(url:string){
     return `${this.urlMedia}${url}`;
+  }
+
+  openReel(index:number, item:Post){
+    if(this.screenWidth < 500){
+      if(!this.isUnLock(item)) return;
+
+      if(this.section()?.name == 'Mood Zen del día'){
+        this.reelService.setSectionPost(this.section()!, index);
+        this.dialog.open(ReelComponent, {
+          width: '100%',
+          height:'100%',
+          maxWidth:'100%',
+          panelClass: 'full-screen-modal'
+        });
+      }
+    }
   }
 }

@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 import { tap } from 'rxjs';
 import { UserAuth } from '@interfaces/user-request.interface';
 import { Router } from '@angular/router';
+import { Post } from '@interfaces/section_post';
 
 export enum Roles {
 
@@ -17,6 +18,7 @@ export enum Roles {
 export interface AuthServiceData{
   loading:boolean,
   userAuth:UserAuth | null,
+  role:string | null
 }
 
 @Injectable({
@@ -33,10 +35,15 @@ export class AuthService {
 
   #authData = signal<AuthServiceData>({
     loading:false,
-    userAuth:null
+    userAuth:null,
+    role: null
   });
 
   public authData = computed(() => this.#authData());
+
+  constructor(){
+    !this.#authData().role && this.#authData.update(value=> ({...value, role: localStorage.getItem('role')}));
+  }
   // constructor(private http = inject(HttpClient)) { }
 
   login(data:any){
@@ -56,7 +63,7 @@ export class AuthService {
     .subscribe(
       (data: UserAuth)=>{
         this.#authData.update(
-          _=> ({ userAuth: data , loading:false})
+          _=> ({ userAuth: data , loading:false, role: data.tier.name})
         );
         localStorage.setItem('token', data.token);
         localStorage.setItem('name', data.name);
@@ -65,6 +72,12 @@ export class AuthService {
       }
     )
 
+  }
+
+  isUnLock(item:Post){
+    return item.tier?.name == Roles.GUEST ||
+          (item.tier?.name == Roles.REGISTER && this.#authData().role != Roles.GUEST) ||
+            (item.tier?.name == Roles.SUBSCRIBE && this.#authData().role == Roles.SUBSCRIBE);
   }
 
 }

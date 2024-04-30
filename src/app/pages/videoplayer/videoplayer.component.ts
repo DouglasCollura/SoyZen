@@ -28,7 +28,14 @@ export default class VideoplayerComponent {
 
   private vgPlayer:VgApiService | undefined;
   @Input() urlPlayer:string = '';
+  @Input() isLock:boolean = false;
   @ViewChild('modalFeel') modalFeel!: TemplateRef<any>;
+  @Input() set pause(pause:boolean){
+    if(pause && this.isPlaying()){
+      this.vgPlayer?.pause();
+      this.isPlaying.update(e=> !e);
+    }
+  };
 
   public urlMedia = environment.urlMedia;
   private dialog = inject(MatDialog);

@@ -5,11 +5,11 @@ export interface SectionPost {
   description: string;
   background:  string;
   hasAds:      boolean;
-  adsMobile: any;
+  adsMobile:   any;
   ads:         any;
   url_ads:     string;
   posts:       Post[];
-  collaborators:       Collaborators[];
+  collaborators:Collaborators[];
   type: number;
   textColor: string;
 }

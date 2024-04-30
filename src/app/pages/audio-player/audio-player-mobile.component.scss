@@ -1,0 +1,17 @@
+@media (width < 600px) {
+
+  .temp-audioplayer{
+    ::ng-deep{
+
+      vg-controls{
+        height: 100% !important;
+        padding: 20px !important;
+      }
+    }
+
+    .close{
+      padding: 5px !important;
+    }
+  }
+
+}

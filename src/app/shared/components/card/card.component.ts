@@ -55,7 +55,7 @@ export class CardComponent {
   openDialog(): void {
 
     if(!this.isLock){
-      if(this.screenWidth > 500){
+      if(this.screenWidth > 500 || this.titleSection != 'Mood Zen del día'){
         if(this.type == PostMediaType.audio){
           this.dialog.open(this.modalAudio, {
             width: '100%',

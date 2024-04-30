@@ -1,0 +1,21 @@
+<div class="content-reel">
+
+  <swiper-container
+    #swiper
+    fmSwiper
+    [config]="swiperParams"
+    class="overflow-auto"
+  >
+    <swiper-slide *ngFor="let item of reelDataService().sectionPost?.posts; let i = index" >
+
+      @if(item.postType?.name == postType.video){
+        <app-videoplayer  [isLock]="isLock(item)" [urlPlayer]="item.postDetail?.videoUrl!" [pause]="controlPause()[i].pause" />
+      }
+      @if(item.postType?.name == postType.audio){
+        <app-audio-player [isLock]="isLock(item)" [urlPlayer]="item.postDetail?.audioUrl!" [pause]="controlPause()[i].pause" [url_img]="item.postDetail?.thumbnail!" [title]="item.title!" [category]="item.category?.name!" />
+      }
+
+    </swiper-slide>
+
+  </swiper-container>
+</div>
