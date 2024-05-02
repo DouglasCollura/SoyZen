@@ -11,7 +11,7 @@ apiurl='https://api-dev.soyzen.com/api/v1'
 apiurl='https://api-qa.soyzen.com/api/v1'
 
 } else{
-  apiurl='https://api-qa.soyzen.com/api/v1'
+  apiurl='https://api-dev.soyzen.com/api/v1'
   
 }
 export const environment  = {
@@ -19,7 +19,6 @@ export const environment  = {
 
   apiUrl: apiurl,
   urlMedia: 'https://dev-media.soyzen.com/'
- 
 };
 // Export 'environment'
 
