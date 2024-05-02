@@ -1,16 +1,24 @@
-@media (width < 600px) {
+@media (width < 600px) and (max-device-width: 600px) {
   .temp-home{
     height: 100%;
     display: grid;
     grid-template-rows: max-content auto;
-  
-  
+
+
     ::ng-deep{
       .mat-mdc-standard-chip{
-  
+
         background: rgba(218, 227, 228, 1) ;
         outline: 0px solid var(--green);
-  
+
+      }
+      .subccategory{
+        .mat-mdc-standard-chip{
+
+          background: white !important ;
+          outline: 1px solid var(--green);
+
+        }
       }
     }
   }
@@ -32,7 +40,7 @@
   }
 
   ::ng-deep{
-  
+
     .mat-mdc-chip-action-label{
       font-size: 14px !important;
     }
@@ -44,7 +52,7 @@
   }
 
 }
-@media (width < 820px) {
+@media (width < 820px) and (max-device-width: 820px) {
 
   .body-home{
     .content-search{
@@ -140,7 +148,7 @@
     .content-search{
       display: none;
       padding: 20px 16.5px !important;
-      
+
 
     }
   }

@@ -1,4 +1,4 @@
-@media (width < 500px) {
+@media (width < 500px)  and (max-device-width: 500px){
   .temp-landing {
     #login{
       display: none !important;

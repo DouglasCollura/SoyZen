@@ -1,14 +1,14 @@
-@media (width < 500px) {
+@media (width < 500px)  and (max-device-width: 500px){
     .marginSectionwithAds{
         margin-right: 7.5rem;
     }
 
-    .temp-section-home { 
+    .temp-section-home {
         padding: 40px 16.5px 15px;
       }
-    
+
       .section-ad {
-        
+
         padding: 0px;
     }
     .imgAds{
