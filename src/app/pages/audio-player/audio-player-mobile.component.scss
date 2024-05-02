@@ -1,4 +1,4 @@
-@media (width < 600px) {
+@media (width < 600px) , (max-device-width: 600px) {
 
   .temp-audioplayer{
     ::ng-deep{

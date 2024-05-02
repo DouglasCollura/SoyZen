@@ -1,4 +1,4 @@
-@media (width < 600px) and (max-device-width: 600px) {
+@media (width < 600px) , (max-device-width: 600px) {
   .temp-home{
     height: 100%;
     display: grid;
@@ -55,7 +55,7 @@
   }
 
 }
-@media (width < 820px) and (max-device-width: 820px) {
+@media (width < 820px) , (max-device-width: 820px) {
 
   .body-home{
     .content-search{
@@ -157,3 +157,5 @@
   }
 
 }
+
+
