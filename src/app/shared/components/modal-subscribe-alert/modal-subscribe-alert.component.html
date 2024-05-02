@@ -1,0 +1,22 @@
+<div class="grid px-8 py-4 pb-8 gap-4 justify-items-center">
+
+  <button class="btn justify-self-end !p-0"  mat-dialog-close="true" ><mat-icon class="!w-[26px] !h-[26px] text-[26px] font-light material-symbols-rounded"  > close </mat-icon></button>
+
+  <span class="font-bold text-[20px] leading-[27.24px] text-center" >Manejar Suscripción</span>
+
+  <span class="text-[14px] font-normal leading-[22px] text-center max-w-[270px]">
+    Estás suscrito con tu operadora móvil. <br>
+      Sí cancelas tu suscripción, <strong class="text-[14px] text-[#686D76] leading-[22px]">
+        dejarás de tener acceso al contenido premium de SoyZen.
+      </strong>
+  </span>
+
+  <button class="btn btn-secondary !font-bold !py-2" (click)="exitSubscribe()" mat-dialog-close="true" >
+    Cancelar Suscripción
+  </button>
+
+  <button class="btn btn-green !font-bold !py-2 !px-7" mat-dialog-close="true" >
+    Continuar Suscrito
+  </button>
+
+</div>

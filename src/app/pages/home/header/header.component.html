@@ -130,7 +130,7 @@
         <div class="flex items-center gap-3 ">
           <button class="grid place-content-center" [matMenuTriggerFor]="notify">
             @if(notifications().length > 0){
-              <mat-icon svgIcon="my-bell-notification" x></mat-icon>
+              <mat-icon svgIcon="my-bell-notification" ></mat-icon>
             }@else{
               <mat-icon svgIcon="my-bell-empty" class="!h-[20px]"></mat-icon>
             }
@@ -176,7 +176,7 @@
               <mat-icon class="material-symbols-rounded font-light" >settings</mat-icon>
               <span class="text-[16px] leading-[21.79px] font-bold" >Configuración  </span>
             </button>
-            <button mat-menu-item>
+            <button mat-menu-item (click)="openAlertSubscribe()">
               <mat-icon class="material-symbols-rounded font-light" >check_circle</mat-icon>
               <span class="text-[16px] leading-[21.79px] font-bold" >Manejar Suscripción </span>
             </button>
@@ -227,4 +227,8 @@
 
 <ng-template #modalAudio>
   <app-audio-player [urlPlayer]="urlPlayer " [url_img]="url_img" [title]="title" [category]="category"/>
+</ng-template>
+
+<ng-template #modalSubscribeAlert>
+  <app-modal-subscribe-alert />
 </ng-template>

@@ -16,6 +16,7 @@ import { PostMediaType } from '@interfaces/section_post';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import VideoplayerComponent from '../../videoplayer/videoplayer.component';
 import AudioPlayerComponent from '../../audio-player/audio-player.component';
+import { ModalSubscribeAlertComponent } from '@shared/components/modal-subscribe-alert/modal-subscribe-alert.component';
 
 @Component({
   selector: 'app-header',
@@ -32,6 +33,7 @@ import AudioPlayerComponent from '../../audio-player/audio-player.component';
     VideoplayerComponent,
     AudioPlayerComponent,
     MatDialogModule,
+    ModalSubscribeAlertComponent
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss','./header-mobile.component.scss'],
@@ -43,6 +45,8 @@ export default class HeaderComponent implements AfterViewInit {
   @ViewChild('modalVideo') modalVideo!: TemplateRef<any>;
   @ViewChild('modalAudio') modalAudio!: TemplateRef<any>;
   @ViewChild('modalEvent') modalEvent!: TemplateRef<any>;
+  @ViewChild('modalSubscribeAlert') modalSubscribeAlert!: TemplateRef<any>;
+
   @ViewChild('inputSearch') inputSearch: ElementRef | undefined;
   @ViewChild('menu') menu: ElementRef | undefined;
   private urlMedia = environment.urlMedia;
@@ -117,7 +121,7 @@ export default class HeaderComponent implements AfterViewInit {
       return;
     }
 
- 
+
 
     this.sectionService.searchPosts(data).subscribe((res) => {
       const formattedData = res.map((item:any) => {
@@ -152,7 +156,7 @@ export default class HeaderComponent implements AfterViewInit {
   }
 
   openPost(item:any){
-      
+
 
     if(this.isUnLock(item)){
       this.urlPlayer = item.audioUrl
@@ -199,5 +203,14 @@ export default class HeaderComponent implements AfterViewInit {
   close(){
     this.dialog.closeAll()
   }
+
+  openAlertSubscribe(){
+      this.dialog.open(this.modalSubscribeAlert, {
+        width: 'max-content',
+        height: 'max-content',
+        maxWidth:'auto',
+        // data:
+      });
+    }
 
 }
