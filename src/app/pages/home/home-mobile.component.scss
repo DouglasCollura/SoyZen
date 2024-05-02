@@ -1,4 +1,4 @@
-@media (width < 600px) and (max-device-width: 600px) {
+@media (width < 600px) , (max-device-width: 600px) {
   .temp-home{
     height: 100%;
     display: grid;
@@ -21,6 +21,9 @@
         }
       }
     }
+    .input-rounded {
+      padding:10px 17px;
+  }
   }
 
   .body-home{
@@ -52,7 +55,7 @@
   }
 
 }
-@media (width < 820px) and (max-device-width: 820px) {
+@media (width < 820px) , (max-device-width: 820px) {
 
   .body-home{
     .content-search{
@@ -131,8 +134,8 @@
   }
   .sizeMobile{
     font-size: 25px;
-    height: 25px;
-    width: 25px;
+    height: 25px !important;
+    width: 25px !important;
     color: #686d76;
   }
 
@@ -147,10 +150,12 @@
 
     .content-search{
       display: none;
-      padding: 20px 16.5px !important;
-
+      padding: 30px 16.5px 0px !important;
+      
 
     }
   }
 
 }
+
+

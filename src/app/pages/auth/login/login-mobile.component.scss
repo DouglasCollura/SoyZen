@@ -1,4 +1,4 @@
-@media (width < 500px) {
+@media (width < 500px) , (max-device-width: 500px) {
 
   .temp-login{
     padding: 20px 10px;

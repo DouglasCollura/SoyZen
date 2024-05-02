@@ -1,18 +1,19 @@
-@media (width < 820px) and (max-device-width: 820px){
+@media (width < 820px) , (max-device-width: 820px){
 
   .temp-header {
     .search {
       display: none !important;
     }
   }
+
 }
 
-@media (width < 620px) and (max-device-width: 620px) {
+@media (width < 620px) , (max-device-width: 620px) {
   .temp-header {
     padding: 12px 20px !important;
 
     #logo {
-      width: 137px !important;
+      width: 36.5333vw !important;
     }
 
     #btn-login{
@@ -68,3 +69,7 @@
     width: 25px;
   }
 }
+
+
+
+

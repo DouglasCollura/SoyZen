@@ -1,10 +1,15 @@
-@media (width < 500px)  and (max-device-width: 500px){
+@media (width < 500px)  , (max-device-width: 500px){
     .marginSectionwithAds{
         margin-right: 7.5rem;
     }
 
-    .temp-section-home {
-        padding: 40px 16.5px 15px;
+    .spacing-title-sections{
+      margin: 0px;
+      gap: 0.8rem;
+    }
+
+    .temp-section-home { 
+        padding: 40px 16.5px 30px;
       }
 
       .section-ad {
