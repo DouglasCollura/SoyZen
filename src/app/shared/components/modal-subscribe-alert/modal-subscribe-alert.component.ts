@@ -22,8 +22,19 @@ export class ModalSubscribeAlertComponent {
   private router = inject(Router);
 
   exitSubscribe(){
+    this.openOperator();
     localStorage.clear();
     this.router.navigate(['/'])
     localStorage.setItem('role', 'guest');
+  }
+
+  openOperator(){
+    let phone:string = localStorage.getItem('phone')!;
+
+    if(phone.includes('58412')){
+      window.open(`https://gprs.digitel.com.ve/suscripcionesPreview.do?idSc=100390&ac=eli&s=${phone}`, "_blank");
+    }else{
+      window.open(`https://wap.alamano.com/sbk/servicios/cancelarSuscripcionwpecpt.jsp?s=1166&o=27&tlf=${phone}`, "_blank");
+    }
   }
  }

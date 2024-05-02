@@ -18,7 +18,7 @@ import {MatDialog, MatDialogModule,MatDialogRef} from '@angular/material/dialog'
   styleUrls: ['./subscribe_operator.component.scss', 'subscribe_operator-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class SubscribeOperatorComponent { 
+export default class SubscribeOperatorComponent {
   @ViewChild('modalEvent') modalEvent!: TemplateRef<any>;
   private dialog = inject(MatDialog);
   operator:any
@@ -26,12 +26,12 @@ export default class SubscribeOperatorComponent {
 
   openDialog(operador:any): void {
    this.operator=operador
-  
+
       this.dialog.open(this.modalEvent, {
         width: '400px',
         panelClass: 'full-screen-modal',
-        
-        
+
+
       });
 
   }

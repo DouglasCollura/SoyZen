@@ -209,6 +209,7 @@ export default class HeaderComponent implements AfterViewInit {
         width: 'max-content',
         height: 'max-content',
         maxWidth:'auto',
+
         // data:
       });
     }
