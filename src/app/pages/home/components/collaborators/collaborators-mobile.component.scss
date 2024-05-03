@@ -1,12 +1,12 @@
 @media (width < 600px)  , (max-device-width: 600px){
   .temp-collaborators{
-    padding: 30px 16.5px 40px!important;
+    padding: 30px 0px 40px!important;
   }
 
   .temp-collaborators .content-collab .avatar {
     width: 120px;
     height: 120px;
-  
+    margin: 0px 16.5px;
 }
 .temp-collaborators {
 

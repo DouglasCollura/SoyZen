@@ -78,6 +78,7 @@ export default class HomeComponent implements AfterViewInit {
   public listSearch = signal<null | [] | any>(null);
   public showSearch = signal<boolean>(false);
   public sectionSelect = signal<number | null>(null);
+  public subcategorySelect = signal<number | null>(null);
   private dialog = inject(MatDialog);
 
   urlPlayer:string = '';
@@ -134,17 +135,31 @@ export default class HomeComponent implements AfterViewInit {
 
   selectSection(id:number | null){
     this.sectionSelect.set(id);
+    this.subcategorySelect.set(null);
     id ?  this.sectionService.filterSections(id) : this.sectionService.getSections();
+  }
+
+  selectSubCategory(id:number | null){
+    this.subcategorySelect.set(id);
+
+    id ?  this.sectionService.filterSections(this.sectionSelect(),id) : this.sectionService.getSections();
   }
 
   removeFilter(){
     this.sectionSelect.set(null);
+    this.subcategorySelect.set(null);
+    this.sectionService.clearSubCategory()
     this.sectionService.getSections()
+  }
+
+  removeSubCategory(){
+    this.subcategorySelect.set(null);
+    this.sectionService.filterSections(this.sectionSelect())
   }
 
 
   openPost(item:any){
-  
+
 
     if(this.isUnLock(item)){
       this.urlPlayer = item.posttype=='video'? item.videoUrl : item.audioUrl
