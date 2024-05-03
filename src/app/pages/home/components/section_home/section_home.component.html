@@ -22,9 +22,16 @@
     loop="false"
     freemode="true"
     class="overflow-auto"
+    #swiper
+
   >
 
-    <swiper-slide *ngFor="let item of section()?.posts; let  i = index">
+    <swiper-slide  
+    *ngFor="let item of section()?.posts; let  i = index" [ngClass]="{
+      'swiper-slide-first': i === 0,
+  
+      'swiper-slide-active': i === activeSlideIndex
+    }" >
       <app-card
         (click)="openReel(i,item)"
       *ngIf="item.postType?.name!='blog' "

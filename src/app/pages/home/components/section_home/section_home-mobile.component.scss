@@ -28,4 +28,16 @@
       .colorgray{
         color: rgba(159, 164, 174, 1);
       }
+
+      swiper-container {
+        width: 100%; /* Ancho del contenedor del slider */
+      }
+      
+      .swiper-wrapper {
+        padding: 0; /* Elimina el padding interno del contenedor de diapositivas */
+      }
+      
+      .swiper-slide {
+        position: relative; /* Permite posicionar elementos dentro de las diapositivas */
+      }
 }

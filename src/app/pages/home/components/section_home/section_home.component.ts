@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component,  CUSTOM_ELEMENTS_SCHEMA, inject, Input, signal  } from '@angular/core';
+import { ChangeDetectionStrategy, Component,  CUSTOM_ELEMENTS_SCHEMA, ElementRef, inject, Input, signal, ViewChild  } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { Post, SectionPost } from '@interfaces/section_post';
@@ -10,6 +10,8 @@ import { environment } from '../../../../../environments/environment';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ReelComponent } from '@shared/components/reel/reel.component';
 import { ReelService } from '@services/reel.service';
+import { Swiper } from "swiper";
+import { SwiperEvents } from "swiper/types";
 
 @Component({
   selector: 'app-section-home',
@@ -29,6 +31,9 @@ import { ReelService } from '@services/reel.service';
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SectionHomeComponent {
+  @ViewChild("swiper")
+  swiperRef: ElementRef | undefined;
+
 
   @Input({required: true}) set setSection(section:SectionPost){
     this.section.set(section);
@@ -36,7 +41,7 @@ export class SectionHomeComponent {
     // this.section()!.type == this.type_test.range && this.setRangeValues();
     // this.section()!.type == this.type_test.select_single && (this.select.set(this.test()!.answers[0].id));
   };
-
+  public activeSlideIndex = 0;
   private dialog = inject(MatDialog);
   private reelService = inject(ReelService);
   private authService = inject(AuthService);
@@ -76,4 +81,8 @@ export class SectionHomeComponent {
       }
     }
   }
+  onSwiper() {
+    this.activeSlideIndex = this.swiperRef?.nativeElement.swiper.activeIndex;
+  }
+
 }
