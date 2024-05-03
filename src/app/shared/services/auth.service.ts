@@ -49,7 +49,7 @@ export class AuthService {
   login(data:any){
 
     if(data?.email){
-      if(data.email == 'subscribe@gmail.com') localStorage.setItem('role',Roles.SUBSCRIBE);
+      if(data.email == 'subscribe@gmail.com') {localStorage.setItem('role',Roles.SUBSCRIBE); localStorage.setItem('phone', '04125459173')}
       else if(data.email == 'register@gmail.com') localStorage.setItem('role',Roles.REGISTER);
       else localStorage.setItem('role',Roles.GUEST);
       return

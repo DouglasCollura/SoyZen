@@ -301,6 +301,12 @@ h5, p {
     outline: none;
   }
 
+  &-secondary{
+    @extend .btn;
+    color: var(--green);
+    background-color: var(--light-green)
+  }
+
   &-disable{
     @extend .btn;
     color: white;
