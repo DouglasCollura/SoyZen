@@ -86,8 +86,32 @@
             }
           </mat-chip-listbox>
 
-      </swiper-slide>
-    </swiper-container>
+        </swiper-slide>
+      </swiper-container>
+
+      <!-- <swiper-container
+        slides-per-view="auto"
+        speed="500"
+        loop="false"
+        freemode="true"
+        class="overflow-auto subccategory"
+      >
+        <swiper-slide>
+          <mat-chip-listbox >
+
+            @for (filter_option of sectionData().subcategories; track $index) {
+              <mat-chip-row  [class.selected]="subcategorySelect() == filter_option.id" (click)="selectSubCategory(filter_option.id)">
+                <mat-icon matChipRemove class="material-symbols-rounded font-extralight closeWhite" *ngIf="sectionSelect() == filter_option.id && filter_option.id == null" (click)="removeFilter()">close</mat-icon>
+                {{ filter_option.name }}
+                @if(subcategorySelect() == filter_option.id && filter_option.id != null){
+                  <mat-icon matChipRemove class="material-symbols-rounded font-extralight closeWhite" (click)="removeSubCategory()">close</mat-icon>
+                }
+              </mat-chip-row>
+            }
+          </mat-chip-listbox>
+
+        </swiper-slide>
+      </swiper-container> -->
     </section>
 
     @for (item of sectionData().sections; track $index) {
