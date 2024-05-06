@@ -33,6 +33,7 @@ export class CardArticleComponent {
 
   @Input({transform: booleanAttribute}) isNew:boolean = false;
   @Input({transform: booleanAttribute}) isLock:boolean = false;
+  @Input({transform: booleanAttribute}) isList:boolean = false;
   @Input({required: true}) title!:string;
   @Input() time!:string | null;
   @Input() category!:string | null;
@@ -47,11 +48,11 @@ export class CardArticleComponent {
 
 
   openDialog(): void {
-   
+
     if(!this.isLock){
 
         this.router.navigateByUrl('home/post/'+this.idPost+'/'+this.idSection);
-      
+
     }else{
       this.dialog.open(this.modalEvent, {
         width: '400px',

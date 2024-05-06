@@ -31,6 +31,7 @@ export class CardComponent {
   @ViewChild('modalAudio') modalAudio!: TemplateRef<any>;
   @Input({transform: booleanAttribute}) isNew:boolean = false;
   @Input({transform: booleanAttribute}) isLock:boolean = false;
+  @Input({transform: booleanAttribute}) isList:boolean = false;
   @Input({required: true}) title!:string;
   @Input() time!:string | null;
   @Input() titleSection!:any;

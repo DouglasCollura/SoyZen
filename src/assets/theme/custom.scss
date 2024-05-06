@@ -348,6 +348,14 @@ h5, p {
     font-weight: 500;
     outline: 2px solid;
 
+    &-green {
+      @extend .btn-border;
+      background-color: white;
+      outline-color: var(--green);
+      outline: 1px solid !important;
+      color: var(--green);
+    }
+
     &-gold {
       @extend .btn-border;
       background-color: white;

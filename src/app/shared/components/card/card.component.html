@@ -1,4 +1,4 @@
-<div class="content-card animate__animated animate__fadeInRight animate__fast">
+<div class="content-card animate__animated animate__fadeInRight animate__fast" [class.card-list]="isList" >
   <div class="card" (click)="openDialog()">
     <img [ngClass]="type==='audio' ? 'tamanoAudio' : '' "  [srcset]="getImg(url_img)" alt="">
     <div class="body">
@@ -15,7 +15,7 @@
 
       </div>
 
-      <h2 class="self-center text-white text-center leading-normal ftsize" > {{type=='ads' || titleSection==='Taróscopo'? '' : title}} </h2>
+      <h2 class="self-center text-white text-center sm:leading-[22px] text-[16px] sm:text-[18px] leading-[20px] font-bold" > {{type=='ads' || titleSection==='Taróscopo'? '' : title}} </h2>
 
       <div class="flex justify-between px-1 items-center hgt" >
         <p style="    width: 90%;"> {{type=='ads' || titleSection==='Taróscopo' ? title : category }} </p>
