@@ -100,7 +100,7 @@
           <mat-chip-listbox >
 
             @for (filter_option of sectionData().subcategories; track $index) {
-              <mat-chip-row  [class.selected]="subcategorySelect() == filter_option.id" (click)="selectSubCategory(filter_option.id)" *ngIf="!subcategorySelect() || subcategorySelect() == filter_option.id">
+              <mat-chip-row  [class.selected]="subcategorySelect() == filter_option.id" (click)="selectSubCategory(filter_option.id)" >
                 <mat-icon matChipRemove class="material-symbols-rounded font-extralight closeWhite" *ngIf="sectionSelect() == filter_option.id && filter_option.id == null" (click)="removeFilter()">close</mat-icon>
                 {{ filter_option.name }}
                 @if(subcategorySelect() == filter_option.id && filter_option.id != null){
