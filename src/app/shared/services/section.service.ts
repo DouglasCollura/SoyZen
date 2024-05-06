@@ -12,6 +12,8 @@ export interface SectionServiceData {
   subcategories: any[];
   categorias: any[];
   sections: SectionPost[];
+  posts: Post[];
+  page:number | null;
 }
 
 
@@ -36,6 +38,8 @@ export class SectionService {
     subcategories:[],
     categorias: [],
     sections: [],
+    posts: [],
+    page: null
   });
 
   public sectionData = computed(() => this.#sectionData());
@@ -80,9 +84,27 @@ export class SectionService {
 
   filterSections(id:any, idSub:any = null){
     this.getSubCategories(id)
-    this.http.get<any>(`${this.urlApi}/sections/filter-by-category?category=${id}${idSub ? `&subcategories=${idSub}` : '' }`).pipe(
+    this.http.get<any>(`${this.urlApi}/sections/filter-by-category?category=${id}${idSub ? `&subcategories=${idSub}&page=${this.#sectionData().page ?? 1}&limit=2` : '' }`).pipe(
       tap(
-        value => this.#sectionData.update(data=> ({...data, sections: value.sections}))
+        value => {
+          if(idSub){
+            !this.#sectionData().page && this.#sectionData.update(data=> ({...data,page: 1}))
+            let filter = value.sections.map((e:any)=> e.posts);
+            filter = filter.flat()
+
+            this.#sectionData.update(data=> ({...data, sections: [], posts: this.#sectionData().page &&  this.#sectionData().page != 1? [...this.#sectionData().posts, ...filter] : filter, page:this.#sectionData().page ?? 1}))
+
+            if(value.totalRecordsCount > (this.#sectionData().page! * 2)){
+              this.#sectionData.update(data=> ({...data,page: this.#sectionData().page! + 1}))
+            }else{
+              this.#sectionData.update(data=> ({...data,page: null}))
+            }
+
+          }else{
+            this.#sectionData.update(data=> ({...data, sections: value.sections, posts:[], page: null}))
+
+          }
+        }
       )
     ).subscribe();
   }
@@ -102,5 +124,9 @@ export class SectionService {
 
   clearSubCategory(){
     this.#sectionData.update(value=> ({...value, subcategories:[]}))
+  }
+
+  clearPosts(){
+    this.#sectionData.update(value=> ({...value, posts:[], page:null}))
   }
 }

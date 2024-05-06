@@ -108,16 +108,16 @@
   .hgt{
     height: 32px;
   }
-  .ftsize{
+  // .ftsize{
 
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 22px;
-    letter-spacing: 0em;
-    text-align: center;
-    color:rgba(255, 255, 255, 1)
+  //   font-size: 18px;
+  //   font-weight: 700;
+  //   line-height: 22px;
+  //   letter-spacing: 0em;
+  //   text-align: center;
+  //   color:rgba(255, 255, 255, 1)
 
-  }
+  // }
 
   .txtft{
     font-size: 14px;
@@ -156,5 +156,22 @@
   color:#373a40
 }
 .tamanoAudio{
-  width: 202px ;
+  width: 202px !important;
+}
+
+
+.card-list{
+  padding: 0px !important;
+  max-width: 167px !important;
+  .card{
+    min-width: 0 !important;
+    max-width: 167px !important;
+
+    .body{
+      padding: 10px 5px !important;
+    }
+  }
+  img{
+    max-width: 167px !important;
+  }
 }

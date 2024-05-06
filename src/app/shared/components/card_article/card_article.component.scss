@@ -157,6 +157,23 @@
   }
   .tamanoAudio{
     width: 202px !important;
+  }
+}
 
+.card-list{
+  padding: 0px !important;
+  max-width: 167px !important;
+  .card{
+    min-width: 0 !important;
+    max-width: 167px !important;
+
+  }
+  img{
+    max-width: 167px !important;
+  }
+
+  .content-title{
+    height: auto !important;
+    max-height: max-content !important;
   }
 }

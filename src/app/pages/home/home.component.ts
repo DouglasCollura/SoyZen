@@ -23,9 +23,11 @@ import { notifyItem } from '@interfaces/notify-item';
 import { Subject, debounceTime } from 'rxjs';
 import { PostMediaType } from '@interfaces/section_post';
 import { MatDialog } from '@angular/material/dialog';
-import { Roles } from '@services/auth.service';
+import { AuthService, Roles } from '@services/auth.service';
 import VideoplayerComponent from '../../pages/videoplayer/videoplayer.component';
 import AudioPlayerComponent from '../../pages/audio-player/audio-player.component';
+import { CardComponent } from '@shared/components/card/card.component';
+import { CardArticleComponent } from '@shared/components/card_article/card_article.component';
 
 @Component({
   selector: 'app-home',
@@ -48,7 +50,9 @@ import AudioPlayerComponent from '../../pages/audio-player/audio-player.componen
     BannerComponent,
     SectionHomeComponent,
     VideoplayerComponent,
-    AudioPlayerComponent
+    AudioPlayerComponent,
+    CardComponent,
+    CardArticleComponent
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss','./home-mobile.component.scss'],
@@ -69,6 +73,7 @@ export default class HomeComponent implements AfterViewInit {
   private urlMedia = environment.urlMedia;
   private renderer = inject(Renderer2);
   public role = localStorage.getItem('role');
+  private authservice = inject(AuthService);
 
   public notifications = signal<notifyItem[]>([]);
   private inputSubject = new Subject<string>();
@@ -141,8 +146,12 @@ export default class HomeComponent implements AfterViewInit {
 
   selectSubCategory(id:number | null){
     this.subcategorySelect.set(id);
-
+    this.sectionService.clearPosts()
     id ?  this.sectionService.filterSections(this.sectionSelect(),id) : this.sectionService.getSections();
+  }
+
+  loadpaginate(){
+    this.sectionService.filterSections(this.sectionSelect(),this.subcategorySelect());
   }
 
   removeFilter(){
@@ -199,9 +208,7 @@ export default class HomeComponent implements AfterViewInit {
 
   isUnLock(item:any){
 
-    return item.tier == Roles.GUEST ||
-          (item.tier == Roles.REGISTER && this.role != Roles.GUEST) ||
-            (item.tier == Roles.SUBSCRIBE && this.role == Roles.SUBSCRIBE);
+    return this.authservice.isUnLock(item);
   }
   close(){
     this.dialog.closeAll()

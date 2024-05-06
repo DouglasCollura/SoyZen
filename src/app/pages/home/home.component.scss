@@ -5,6 +5,12 @@
 
 
   ::ng-deep{
+    swiper-slide{
+      margin: 0px;
+      margin-left: 0px;
+      margin-right:  0px;
+      width: auto !important;
+    }
 
     .mat-mdc-standard-chip{
 
@@ -101,4 +107,3 @@
   font-size: 18.72px;
   font-weight: 400;
 }
-
