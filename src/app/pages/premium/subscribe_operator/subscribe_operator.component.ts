@@ -26,13 +26,14 @@ export default class SubscribeOperatorComponent {
 
   openDialog(operador:any): void {
    this.operator=operador
+   this.iroperador()
 
-      this.dialog.open(this.modalEvent, {
-        width: '400px',
-        panelClass: 'full-screen-modal',
+      // this.dialog.open(this.modalEvent, {
+      //   width: '400px',
+      //   panelClass: 'full-screen-modal',
 
 
-      });
+      // });
 
   }
   iroperador(){
