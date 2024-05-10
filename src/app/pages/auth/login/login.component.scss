@@ -99,3 +99,43 @@
 .typeNumberSelect{
   outline: 2px solid var(--green);
 }
+.separation{
+  margin-left: 3px;
+}
+.colorText{
+  color: rgb(55, 58, 64);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19.07px;
+}
+.margen{
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.coltxt{
+  font-size: 12px;
+  line-height: 16.34px;
+  font-weight: 600;
+}
+
+.txtDown{
+  font-size: 14px;
+    line-height: 19.07px;
+    font-weight: 400;
+}
+
+.txtDown600{
+  font-size: 14px;
+    line-height: 19.07px;
+    font-weight: 600;
+}
+.txtTerm, .txtTerm a{
+  font-size: 12px;
+  line-height: 22px;
+  font-weight: 700;
+  color: rgba(55, 58, 64, 1);
+
+}
+.padd{
+  padding: 0 10%;
+}
