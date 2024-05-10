@@ -1,5 +1,5 @@
-<div class="temp-yoga">
-  <div class="grid p-0 sm:p-6 gap-5">
+<div class="temp-yoga ">
+  <div class="grid p-0 ">
     <button class="btn" routerLink="/home">
       <mat-icon
         class="material-symbols-rounded font-extralight !w-[40px] !h-[40px] text-[40px]"
@@ -14,11 +14,11 @@
       [srcset]="getImg(sectionData().sectionDetail!.icon)"
       alt=""
     />
-    <span class="text-[24px] leading-[32px] font-medium text-center">
+    <span class="text-[24px] leading-[32px] font-medium text-center mtb">
       {{ sectionData().sectionDetail?.name }}
     </span>
 
-    <div class=" max-w-[392px] m-auto w-full">
+    <div class=" max-w-[392px] m-auto w-full mb">
       <div class="content-search m-auto">
         <div class="input-icon-right search">
           <input
