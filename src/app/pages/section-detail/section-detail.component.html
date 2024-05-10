@@ -1,0 +1,122 @@
+<div class="temp-yoga">
+  <div class="grid p-0 sm:p-6 gap-5">
+    <button class="btn" routerLink="/home">
+      <mat-icon
+        class="material-symbols-rounded font-extralight !w-[40px] !h-[40px] text-[40px]"
+      >
+        arrow_back
+      </mat-icon>
+    </button>
+
+    <img
+      class="justify-self-center"
+      *ngIf="sectionData().sectionDetail?.icon"
+      [srcset]="getImg(sectionData().sectionDetail!.icon)"
+      alt=""
+    />
+    <span class="text-[24px] leading-[32px] font-medium text-center">
+      {{ sectionData().sectionDetail?.name }}
+    </span>
+
+    <div class=" max-w-[392px] m-auto w-full">
+      <div class="content-search m-auto">
+        <div class="input-icon-right search">
+          <input
+            type="text"
+            [(ngModel)]="searchText"
+            #inputSearchDetail
+            (focus)="searchText != '' && showSearch.set(true)"
+            (input)="onInputChange($event)"
+            class="input-rounded !text-[#686D76] !placeholder-[#686D76]"
+            placeholder="¿En qué te enfocarás hoy?"
+          />
+
+          @if(sectionData().loadingSearch){
+          <mat-icon class="input-icon material-symbols-rounded animate-spin"
+            >progress_activity</mat-icon
+          >
+          }@else {
+          <mat-icon class="input-icon material-symbols-rounded"
+            >search</mat-icon
+          >
+          }
+        </div>
+
+        <div class="content-result" #menuDetail *ngIf="showSearch()">
+          @for (item of listSearch(); track $index) {
+          <div class="item-result"  (click)="openPost(item)">
+            <div class="img">
+              <img [src]="getImage(item.thumbnail)" alt="" />
+            </div>
+
+            <div class="grid">
+              <span
+                class="text-[14px] leading-[19.07px]"
+                [innerHtml]="item.title"
+              >
+              </span>
+              <span class="text-[10px] leading-[13.62px] font-medium">
+                {{ item.category }}
+              </span>
+            </div>
+          </div>
+          } @if(listSearch().length == 0){
+          <div class="p-4 grid gap-1 justify-items-center">
+            <img srcset="/assets/images/head_logo.webp" width="150" alt="" />
+            <div class="flex">
+              <mat-icon class="material-symbols-rounded font-light"
+                >info</mat-icon
+              >
+              <span class="font-medium">No se encontraron resultados</span>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    @for (item of sectionData().sectionDetail?.sections; track $index) {
+    @if(item.type == sectionDetailType.RECENT || item.type ==
+    sectionDetailType.SUBCATEGORY){
+    <app-section-detail-swiper [setSection]="item" />
+    } @else if (item.type == sectionDetailType.TEXT) {
+    <div class="section-text" [innerHTML]="transform(item.content!)"></div>
+    }@else {
+    <div class="section-info-init">
+      <div class="info" [innerHTML]="transform(item.content!)"></div>
+
+      <div class="img">
+        <img [srcset]="getImg(item.image)" alt="" />
+      </div>
+    </div>
+    } }
+  </div>
+</div>
+
+
+
+<ng-template #modalEvent>
+  <mat-dialog-actions class="grid">
+    <div class="grid pb-8 w-full">
+      <button class="btn justify-self-end "><mat-icon class="!w-[30px] !h-[30px] text-[30px] font-extralight material-symbols-rounded" mat-dialog-close="true" > close </mat-icon></button>
+
+      <div class="grid gap-5 text-center justify-items-center w-[300px] m-auto">
+        <span class="text-[28px] font-medium leading-[38.14px]" >Hazte Premium</span>
+
+        <span class="text-[14px] leading-[22px] font-normal">
+          Suscríbete y obtén full acceso a todos los contenidos y funcionalidades de Soy Zen.
+        </span>
+
+        <button class="btn-gold" routerLink="/premium/subscribe_operator" (click)="close()" >Suscripción Premium</button>
+      </div>
+    </div>
+  </mat-dialog-actions>
+</ng-template>
+
+<ng-template #modalVideo>
+  <app-videoplayer [urlPlayer]="urlPlayer"  />
+</ng-template>
+
+<ng-template #modalAudio>
+  <app-audio-player [urlPlayer]="urlPlayer " [url_img]="url_img" [title]="title" [category]="category"/>
+</ng-template>

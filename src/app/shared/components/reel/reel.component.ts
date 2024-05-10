@@ -3,10 +3,11 @@ import { AfterViewInit, CUSTOM_ELEMENTS_SCHEMA, ChangeDetectionStrategy, Compone
 import AudioPlayerComponent from '../../../pages/audio-player/audio-player.component';
 import VideoplayerComponent from '../../../pages/videoplayer/videoplayer.component';
 import { ReelService, SectionReelService } from '@services/reel.service';
-import { Post, PostMediaType, PostType, SectionPost } from '@interfaces/section_post';
+import {  SectionPost } from '@interfaces/section_post';
 import { Swiper, SwiperOptions } from 'swiper/types';
 import { SwiperDirective } from '@shared/directives/fmSwiper.directive';
 import { AuthService } from '@services/auth.service';
+import { Post, PostMediaType } from '@interfaces/post';
 
 @Component({
   selector: 'app-reel',

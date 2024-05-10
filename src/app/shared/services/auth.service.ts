@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 import { tap } from 'rxjs';
 import { UserAuth } from '@interfaces/user-request.interface';
 import { Router } from '@angular/router';
-import { Post } from '@interfaces/section_post';
+import { Post } from '@interfaces/post';
 
 export enum Roles {
 
@@ -18,7 +18,8 @@ export enum Roles {
 export interface AuthServiceData{
   loading:boolean,
   userAuth:UserAuth | null,
-  role:string | null
+  role:string | null,
+  notifications:Notification[]
 }
 
 @Injectable({
@@ -36,7 +37,8 @@ export class AuthService {
   #authData = signal<AuthServiceData>({
     loading:false,
     userAuth:null,
-    role: null
+    role: null,
+    notifications: []
   });
 
   public authData = computed(() => this.#authData());
@@ -63,14 +65,28 @@ export class AuthService {
     .subscribe(
       (data: UserAuth)=>{
         this.#authData.update(
-          _=> ({ userAuth: data , loading:false, role: data.tier.name})
+          value=> ({ ...value ,userAuth: data , loading:false, role: data.tier.name})
         );
         localStorage.setItem('token', data.token);
         localStorage.setItem('name', data.name);
         localStorage.setItem('role', data.tier.name)
+        localStorage.setItem('userId', data.id.toString())
         this.router.navigate(['/home']);
       }
     )
+
+  }
+
+  getNotification(){
+    const userId = localStorage.getItem('userId')
+    if(!userId) return;
+
+    return this.http.get<any>(`${this.urlApi}/notifications/user/${userId}`)
+    .subscribe((data)=>{
+      console.log(data)
+      this.#authData.update(value=> ({...value, notifications:data}))
+
+    })
 
   }
 

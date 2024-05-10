@@ -65,6 +65,10 @@ export const routes: Routes = [
         path:'yoga',
         loadComponent: () => import('./pages/yoga/yoga.component')
       },
+      {
+        path:'section/:id',
+        loadComponent: () => import('./pages/section-detail/section-detail.component')
+      },
 
       {
         path:'filter-category',

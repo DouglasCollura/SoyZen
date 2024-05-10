@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component,  CUSTOM_ELEMENTS_SCHEMA, inject, Input, signal  } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
-import { Post, SectionPost } from '@interfaces/section_post';
+import { SectionPost } from '@interfaces/section_post';
 import { Roles } from '@services/auth.service';
 import { CardComponent } from '@shared/components/card/card.component';
 import { environment } from '../../../../../environments/environment';
+import { Post } from '@interfaces/post';
 @Component({
   selector: 'app-collaborators',
   standalone: true,
@@ -32,9 +33,9 @@ export class CollaboratorsComponent {
   tamano:any
   private urlMedia = environment.urlMedia;
   constructor(){
-   
 
-  
+
+
   }
   public width:number = window.innerWidth;
   getImg(url:string){

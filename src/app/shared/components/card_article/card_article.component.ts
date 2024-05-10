@@ -5,9 +5,7 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { Router, RouterModule } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import VideoplayerComponent from '../../../pages/videoplayer/videoplayer.component';
-import { PostMediaType } from '@interfaces/section_post';
 import AudioPlayerComponent from '../../../pages/audio-player/audio-player.component';
-
 
 
 @Component({

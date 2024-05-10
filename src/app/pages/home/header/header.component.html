@@ -143,11 +143,11 @@
 
                   <button class="text-[14px] leading-[24px] font-semibold  "  [class]="notifications().length > 0 ? 'text-blue' : 'text-disable' " (click) ="$event.stopPropagation(); clearNotify()" >Borrar todo</button>
                 </div>
-                @for (item of notifications(); track $index) {
+                @for (item of authData().notifications; track $index) {
                   <app-nofity-item [notify]="item" />
                 }
 
-                @if(notifications().length == 0){
+                @if(authData().notifications.length == 0){
                   <div class="grid justify-items-center content-center">
                     <img src="/assets/images/notify/logo_notify.png" alt="">
                     <span class="text-[14px] leading-[19.07px] font-semibold" >Aún no tienes <br/>

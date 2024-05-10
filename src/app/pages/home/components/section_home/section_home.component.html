@@ -4,7 +4,7 @@
     <div class="flex w-full justify-between">
       <span class=" text-[20px] leading-[28px] font-semibold sm:text-[24px] sm:font-medium" [ngClass]="section()?.textColor=='#373A40' || section()?.textColor=='#373a40'  ? 'colortitlegray' : 'colorwhite' "> {{section()?.name}} </span>
 
-      <button class="btn flex btn-seemore  items-center !text-[14px] !leading-[19.07px]  !font-semibold" *ngIf="section()?.name!='Mood Zen del día' " [ngClass]="section()?.textColor=='#373A40' || section()?.textColor=='#373a40'  ? 'colorgray' : 'colorwhite' " routerLink="yoga">
+      <button class="btn flex btn-seemore  items-center !text-[14px] !leading-[19.07px]  !font-semibold" *ngIf="section()?.name!='Mood Zen del día' " [ngClass]="section()?.textColor=='#373A40' || section()?.textColor=='#373a40'  ? 'colorgray' : 'colorwhite' " routerLink="section/1">
         VER TODO
         <mat-icon class="material-symbols-rounded">keyboard_arrow_right</mat-icon>
       </button>
@@ -34,18 +34,12 @@
     }" >
       <app-card
         (click)="openReel(i,item)"
-      *ngIf="item.postType?.name!='blog' "
-        [category]="item.category?.name!"
-        [time]="item.duration!"
-        [title]="item.title!"
+        *ngIf="item.postType?.name!='blog'"
+        [post]="item"
         [titleSection]="section()?.name"
-        [isLock]="!isUnLock(item)"
-        [url_img]="item.postDetail!.thumbnail"
-        [user]="item.user!"
-        [type]="item.postType?.name!"
         [textColor]="section()?.textColor"
-        [urlPlayer]="item.postType?.name == 'audio' ? item.postDetail?.audioUrl! : item.postDetail?.videoUrl!"
       />
+
       <app-card-article
       *ngIf="item.postType?.name==='blog' "
       [category]="item.category?.name!"

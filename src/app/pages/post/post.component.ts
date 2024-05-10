@@ -8,11 +8,11 @@ import { CardArticleComponent } from '@shared/components/card_article/card_artic
 import { SectionService, SectionServiceData } from '@services/section.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
-import { Post } from '@interfaces/section_post';
 import { VgApiService, VgCoreModule } from '@videogular/ngx-videogular/core';
 import { VgControlsModule } from '@videogular/ngx-videogular/controls';
 import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
+import { Post } from '@interfaces/post';
 
 @Component({
   selector: 'app-post',

@@ -1,0 +1,201 @@
+.temp-yoga{
+  display: grid;
+  gap: 20px;
+}
+
+
+::ng-deep{
+
+  .mat-mdc-standard-chip{
+
+    background: white !important;
+    outline: 1px solid var(--violet);
+
+    border-radius: 6px !important;
+    -webkit-border-radius: 6px !important;
+    -moz-border-radius: 6px !important;
+    -ms-border-radius: 6px !important;
+    -o-border-radius: 6px !important;
+  }
+  .mat-mdc-chip-action-label{
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: var(--violet);
+  }
+  .mdc-evolution-chip__text-label{
+    --mdc-chip-label-text-color:var(--violet)
+  }
+  .selected.mat-mdc-standard-chip{
+    background-color: var(--violet) !important;
+  }
+  .selected .mat-mdc-chip-action-label{
+    color: white !important;
+    font-weight: 500 !important;
+  }
+  .selected mat-icon{
+    color: white !important;
+  }
+  .mat-mdc-chip-focus-overlay{
+    background-color: transparent !important;
+  }
+  .mat-mdc-chip-remove{
+    opacity: 1 !important;
+  }
+
+  // .filter-select.mat-mdc-standard-chip{
+  //   background-color: var(--green) !important;
+  // }
+}
+
+::ng-deep{
+  swiper-slide{
+    margin: 0px;
+    margin-left: 0px;
+    margin-right:  20px;
+    width: auto !important;
+  }
+}
+
+
+.section-recent{
+  padding: 20px;
+  background: url('/assets/images/sections/bg_yoga_violet.webp');
+  background-repeat: no-repeat;
+  background-size:  100% 100%;
+  background-position: center;
+  min-height: 300px;
+  display: grid;
+  gap: 20px;
+}
+
+.section-init{
+  padding: 20px;
+  min-height: 300px;
+  display: grid;
+  gap: 20px;
+}
+
+.section-text{
+  padding: 20px;
+  background: url('/assets/images/sections/bg_yoga_green.webp');
+  background-repeat: no-repeat;
+  background-size:  100% 100%;
+  background-position: center;
+  min-height: 300px;
+  display: grid;
+  gap: 15px;
+  align-content: center;
+  text-align: center;
+}
+
+.text-magistral{
+  font-family: "Magistral Honesty";
+}
+
+.section-program{
+  padding: 60px 30px;
+  background: url('/assets/images/sections/bg_yoga_program.webp');
+  background-repeat: no-repeat;
+  background-size:  cover;
+  background-position: center;
+  min-height: 500px;
+  display: grid;
+  gap: 15px;
+  align-content: start;
+}
+
+.section-info-init{
+  display: grid;
+  grid-template-columns: auto 40%;
+  background: url('/assets/images/sections/bg_yoga_init.webp');
+  background-repeat: no-repeat;
+  background-size:  cover;
+  background-position: center;
+  min-height: 500px;
+
+  .info{
+    padding: 50px 60px;
+    max-width: 606px;
+    margin: auto;
+    *{
+      color: white;
+      text-align: justify;
+    }
+    display: grid;
+    gap: 30px;
+    align-content: center;
+  }
+
+  .img{
+    position: relative;
+    overflow: hidden;
+    border-bottom-left-radius: 200px;
+    img{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+
+
+.content-search{
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+
+  .content-result{
+    width: 100%;
+    max-width: 400px;
+    max-height: 270px;
+    overflow-y: auto;
+    z-index: 99;
+    position: absolute;
+    display: grid;
+    gap: 10px;
+    width: 100%;
+    background: white;
+    outline: 1.5px solid #E0E2E7;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+  }
+
+  .item-result{
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+
+    .img{
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      overflow: hidden;
+
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      border-radius: 10px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      -ms-border-radius: 10px;
+      -o-border-radius: 10px;
+    }
+
+    &:hover{
+      background: rgb(247, 244, 244);
+    }
+    transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+  }
+}

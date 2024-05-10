@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, signal, AfterViewInit, computed, Renderer2, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
-import { Roles } from '@services/auth.service';
+import { AuthService, AuthServiceData, Roles } from '@services/auth.service';
 import {MatMenuModule} from '@angular/material/menu';
 import { Router, RouterModule } from '@angular/router';
 import { NofityItemComponent } from '@shared/components/nofity-item/nofity-item.component';
@@ -12,11 +12,11 @@ import { Subject, debounceTime } from 'rxjs';
 import { SectionService, SectionServiceData } from '@services/section.service';
 import { environment } from '../../../../environments/environment';
 import { FormsModule } from '@angular/forms';
-import { PostMediaType } from '@interfaces/section_post';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import VideoplayerComponent from '../../videoplayer/videoplayer.component';
 import AudioPlayerComponent from '../../audio-player/audio-player.component';
 import { ModalSubscribeAlertComponent } from '@shared/components/modal-subscribe-alert/modal-subscribe-alert.component';
+import { PostMediaType } from '@interfaces/post';
 
 @Component({
   selector: 'app-header',
@@ -55,6 +55,9 @@ export default class HeaderComponent implements AfterViewInit {
   private renderer = inject(Renderer2);
   private dialog = inject(MatDialog);
 
+  private authService = inject(AuthService);
+
+
   public roles = Roles;
   public role = localStorage.getItem('role');
   public listNotify: notifyItem[] = [
@@ -88,6 +91,8 @@ export default class HeaderComponent implements AfterViewInit {
   public notifications = signal<notifyItem[]>([]);
   private inputSubject = new Subject<string>();
   public sectionData = computed<SectionServiceData>(()=> this.sectionService.sectionData());
+  public authData = computed<AuthServiceData>(()=> this.authService.authData());
+
 
   public searchText:string = '';
   public listSearch = signal<null | [] | any>(null);
@@ -111,8 +116,9 @@ export default class HeaderComponent implements AfterViewInit {
     this.inputSubject.pipe(debounceTime(500)).subscribe((e:any) => {
       this.searchInvestigator(e)
     });
-  }
+    this.authService.getNotification()
 
+  }
 
   searchInvestigator(data:any) {
     if(data == ''){
@@ -120,8 +126,6 @@ export default class HeaderComponent implements AfterViewInit {
       this.showSearch.set(false);
       return;
     }
-
-
 
     this.sectionService.searchPosts(data).subscribe((res) => {
       const formattedData = res.map((item:any) => {
@@ -205,13 +209,13 @@ export default class HeaderComponent implements AfterViewInit {
   }
 
   openAlertSubscribe(){
-      this.dialog.open(this.modalSubscribeAlert, {
-        width: 'max-content',
-        height: 'max-content',
-        maxWidth:'auto',
+    this.dialog.open(this.modalSubscribeAlert, {
+      width: 'max-content',
+      height: 'max-content',
+      maxWidth:'auto',
 
-        // data:
-      });
-    }
+      // data:
+    });
+  }
 
 }

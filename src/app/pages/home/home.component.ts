@@ -21,13 +21,13 @@ import { environment } from '../../../environments/environment';
 import { FormsModule } from '@angular/forms';
 import { notifyItem } from '@interfaces/notify-item';
 import { Subject, debounceTime } from 'rxjs';
-import { PostMediaType } from '@interfaces/section_post';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService, Roles } from '@services/auth.service';
 import VideoplayerComponent from '../../pages/videoplayer/videoplayer.component';
 import AudioPlayerComponent from '../../pages/audio-player/audio-player.component';
 import { CardComponent } from '@shared/components/card/card.component';
 import { CardArticleComponent } from '@shared/components/card_article/card_article.component';
+import { PostMediaType } from '@interfaces/post';
 
 @Component({
   selector: 'app-home',
@@ -168,7 +168,6 @@ export default class HomeComponent implements AfterViewInit {
 
 
   openPost(item:any){
-
 
     if(this.isUnLock(item)){
       this.urlPlayer = item.posttype=='video'? item.videoUrl : item.audioUrl

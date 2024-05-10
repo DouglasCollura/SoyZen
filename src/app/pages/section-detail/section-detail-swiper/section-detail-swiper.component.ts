@@ -1,21 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component,  CUSTOM_ELEMENTS_SCHEMA, ElementRef, inject, Input, signal, ViewChild  } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, ChangeDetectionStrategy, Component, Input, inject, signal } from '@angular/core';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
-import { SectionPost } from '@interfaces/section_post';
-import { AuthService, Roles } from '@services/auth.service';
+import { AuthService } from '@services/auth.service';
 import { CardComponent } from '@shared/components/card/card.component';
 import { CardArticleComponent } from '@shared/components/card_article/card_article.component';
-import { environment } from '../../../../../environments/environment';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ReelComponent } from '@shared/components/reel/reel.component';
+import { environment } from '../../../../environments/environment';
+import { Section } from '@interfaces/section_detail';
 import { ReelService } from '@services/reel.service';
-import { Swiper } from "swiper";
-import { SwiperEvents } from "swiper/types";
 import { Post } from '@interfaces/post';
 
 @Component({
-  selector: 'app-section-home',
+  selector: 'app-section-detail-swiper',
   standalone: true,
   imports: [
     CommonModule,
@@ -26,28 +24,24 @@ import { Post } from '@interfaces/post';
     CardArticleComponent,
     ReelComponent
   ],
-  templateUrl: './section_home.component.html',
-  styleUrls: ['./section_home.component.scss','./section_home-mobile.component.scss'],
+  templateUrl: './section-detail-swiper.component.html',
+  styleUrls:[ './section-detail-swiper.component.scss', './section-detail-swiper-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
+
 })
-export class SectionHomeComponent {
-  @ViewChild("swiper")
-  swiperRef: ElementRef | undefined;
+export class SectionDetailSwiperComponent {
 
 
-  @Input({required: true}) set setSection(section:SectionPost){
+  @Input({required: true}) set setSection(section:Section){
     this.section.set(section);
-    // (this.section()!.type == this.type_test.multiple || this.section()?.type == this.type_test.select_icon) && (this.multiList = this.test()!.answers);
-    // this.section()!.type == this.type_test.range && this.setRangeValues();
-    // this.section()!.type == this.type_test.select_single && (this.select.set(this.test()!.answers[0].id));
   };
   public activeSlideIndex = 0;
   private dialog = inject(MatDialog);
   private reelService = inject(ReelService);
   private authService = inject(AuthService);
   private role = localStorage.getItem('role');
-  public section = signal<SectionPost | null>(null);
+  public section = signal<Section | null>(null);
   private urlMedia = environment.urlMedia;
   public screenWidth: any;
 
@@ -60,7 +54,7 @@ export class SectionHomeComponent {
   }
 
   getImg(){
-    return this.section()?.background != '' ?  `${this.urlMedia}${this.section()?.background}` : '/assets/images/bg_yoga.webp'
+    return this.section()?.background ?  `${this.urlMedia}${this.section()?.background}` : '/assets/images/bg_yoga.webp'
   }
 
   getImg2(url:string){
@@ -72,7 +66,7 @@ export class SectionHomeComponent {
       if(!this.isUnLock(item)) return;
 
       if(this.section()?.name == 'Mood Zen del día'){
-        this.reelService.setSectionPost(this.section()!, index);
+        // this.reelService.setSectionPost(this.section()!, index);
         this.dialog.open(ReelComponent, {
           width: '100%',
           height:'100%',
@@ -82,8 +76,5 @@ export class SectionHomeComponent {
       }
     }
   }
-  onSwiper() {
-    this.activeSlideIndex = this.swiperRef?.nativeElement.swiper.activeIndex;
-  }
 
-}
+ }

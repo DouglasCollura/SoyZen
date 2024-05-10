@@ -14,10 +14,11 @@ import { notifyItem, typeNotify } from '@interfaces/notify-item';
 })
 export class NofityItemComponent {
 
-  @Input({required: true}) notify!:notifyItem;
+  @Input({required: true}) notify!:Notification;
 
   getLogo(){
-    return `/assets/images/notify/${this.notify.type == typeNotify.zen ? 'zen.png' : 'yoga.png'}`;
+    return `/assets/images/notify/zen.png`;
+    // return `/assets/images/notify/${this.notify.type == typeNotify.zen ? 'zen.png' : 'yoga.png'}`;
   }
 
 }

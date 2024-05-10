@@ -3,15 +3,19 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment.development';
 import { Observable, tap } from 'rxjs';
-import { Post, SectionPost } from '@interfaces/section_post';
+import {  SectionPost } from '@interfaces/section_post';
+import { Post } from '@interfaces/post';
+import { SectionDetail } from '@interfaces/section_detail';
 
 
 export interface SectionServiceData {
   loading: boolean;
   loadingSearch: boolean;
+  loadingLike:boolean;
   subcategories: any[];
   categorias: any[];
   sections: SectionPost[];
+  sectionDetail:SectionDetail | null;
   posts: Post[];
   page:number | null;
 }
@@ -35,9 +39,11 @@ export class SectionService {
   #sectionData = signal<SectionServiceData>({
     loading: false,
     loadingSearch: false,
+    loadingLike:false,
     subcategories:[],
     categorias: [],
     sections: [],
+    sectionDetail:null,
     posts: [],
     page: null
   });
@@ -49,13 +55,13 @@ export class SectionService {
     // this.filterSections(2)
   }
 
-  searchPosts(search:string){
+  searchPosts(search:string, category:string | null = null){
 
     this.#sectionData.update(
       value=> ({...value, loadingSearch:true})
     );
 
-    const response = this.http.get<any>(`${this.urlApi}/posts/all/search?search=${search}&page=1&perPage=10`).pipe(
+    const response = this.http.get<any>(`${this.urlApi}/posts/all/search?search=${search}&page=1&perPage=10${category ? '&category='+category : ''}`).pipe(
       tap(()=>{
         this.#sectionData.update(
           value=> ({...value, loadingSearch:false})
@@ -120,6 +126,31 @@ export class SectionService {
     const response = this.http.get<SectionPost>(`${this.urlApi}/sections/${id}`).pipe(
     );
     return response;
+  }
+
+  setLikePost(idPost:number){
+
+    const userId = localStorage.getItem('userId');
+    if(!userId) return;
+
+    this.#sectionData.update(value=> ({...value, loadingLike:true}))
+    return this.http.post<any>(`${this.urlApi}/likes`, {
+      "postId": idPost,
+      "userId": userId
+    })
+    .pipe(
+      tap(()=>{
+        this.#sectionData.update(value=> ({...value, loadingLike:false}))
+      })
+    )
+  }
+
+  getSectionDetail(id:any){
+    this.http.get<SectionDetail>(`${this.urlApi}/page-category/category/${id}`).subscribe(
+      (data)=>{
+        this.#sectionData.update(value=> ({...value, sectionDetail:data}))
+      }
+    );
   }
 
   clearSubCategory(){

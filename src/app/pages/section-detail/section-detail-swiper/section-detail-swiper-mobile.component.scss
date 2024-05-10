@@ -1,0 +1,44 @@
+@media (width < 500px)  , (max-device-width: 500px){
+  .marginSectionwithAds{
+      margin-right: 7.5rem;
+  }
+
+  .spacing-title-sections{
+    margin: 0px;
+    padding: 0px 16.5px;
+    gap: 0.8rem;
+  }
+
+  .temp-section-home {
+      padding: 40px 0px;
+    }
+
+    .section-ad {
+
+      padding: 0px 15.5px;
+  }
+  .imgAds{
+      width: 100%;
+      height: 183px;
+      object-fit: cover;
+    }
+    .adsDisplay{
+      display: none;
+    }
+
+    .colorgray{
+      color: rgba(159, 164, 174, 1);
+    }
+
+    swiper-container {
+      width: 100%; /* Ancho del contenedor del slider */
+    }
+
+    .swiper-wrapper {
+      padding: 0; /* Elimina el padding interno del contenedor de diapositivas */
+    }
+
+    .swiper-slide {
+      position: relative; /* Permite posicionar elementos dentro de las diapositivas */
+    }
+}
