@@ -61,10 +61,18 @@
     gap: 10px;
 
     .btn{
+    
+      // width: max-content;
       background-color: #EDEEF1;
-      width: max-content;
+      width: -webkit-fill-available;
       padding: 15px 40px;
       display: flex;
+      border-radius: 10px;
+      // -webkit-border-radius: 10px;
+      // -moz-border-radius: 10px;
+      // -ms-border-radius: 10px;
+      // -o-border-radius: 10px;
+      justify-content: center;
       img{
         width: 30px;
         height: 30px;
@@ -138,4 +146,10 @@
 }
 .padd{
   padding: 0 10%;
+}
+.imgMovistar{
+  width: 109px;
+}
+.imgDigitel{
+  width: 79px;
 }
