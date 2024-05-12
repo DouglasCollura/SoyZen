@@ -21,6 +21,7 @@ import AudioPlayerComponent from '../audio-player/audio-player.component';
 import { ModalSubscribeAlertComponent } from '@shared/components/modal-subscribe-alert/modal-subscribe-alert.component';
 import { MatDialog } from '@angular/material/dialog';
 import { PostMediaType } from '@interfaces/post';
+import { CardArticleComponent } from '@shared/components/card_article/card_article.component';
 
 @Component({
   selector: 'app-section-detail',
@@ -32,8 +33,11 @@ import { PostMediaType } from '@interfaces/post';
     VideoplayerComponent,
     AudioPlayerComponent,
     ModalSubscribeAlertComponent,
+    MatChipsModule,
     RouterModule,
     FormsModule,
+    CardComponent,
+    CardArticleComponent
   ],
   templateUrl: './section-detail.component.html',
   styleUrls: ['./section-detail.component.scss', './section-detail-mobile.component.scss'],
@@ -66,6 +70,7 @@ export default class SectionDetailComponent implements AfterViewInit {
   filter_options = signal<FilterOption[]>([]);
   public subscribe = localStorage.getItem('role') == Roles.SUBSCRIBE;
   public sectionData = computed<SectionServiceData>(()=> this.sectionService.sectionData());
+  public subcategorySelect = signal<number | null>(null);
   public sectionDetailType = SectionDetailType;
   public urlMedia = environment.urlMedia;
   private sanitizer = inject(DomSanitizer)
@@ -83,6 +88,7 @@ export default class SectionDetailComponent implements AfterViewInit {
      ({ id }) => {
       this.id = id;
       this.sectionService.getSectionDetail(id)
+      this.sectionService.getSubCategories(id);
     }
     );
 
@@ -194,4 +200,23 @@ export default class SectionDetailComponent implements AfterViewInit {
       // data:
     });
   }
+
+  selectSubCategory(id:number | null){
+    this.subcategorySelect.set(id);
+    this.sectionService.clearPostDetail()
+    id ?  this.sectionService.getPostDetail(id) : this.sectionService.getSectionDetail(id);
+  }
+
+
+  loadpaginate(){
+    this.sectionService.getPostDetail(this.subcategorySelect());
+  }
+
+
+  removeFilter(){
+    this.subcategorySelect.set(null);
+    this.sectionService.clearPostDetail()
+    this.sectionService.getSectionDetail(this.id)
+  }
+
  }

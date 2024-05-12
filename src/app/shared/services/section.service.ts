@@ -18,6 +18,8 @@ export interface SectionServiceData {
   sectionDetail:SectionDetail | null;
   posts: Post[];
   page:number | null;
+  postsDetail: Post[];
+  pageDetail:number | null;
 }
 
 
@@ -44,6 +46,8 @@ export class SectionService {
     categorias: [],
     sections: [],
     sectionDetail:null,
+    postsDetail: [],
+    pageDetail: null,
     posts: [],
     page: null
   });
@@ -98,7 +102,14 @@ export class SectionService {
             let filter = value.sections.map((e:any)=> e.posts);
             filter = filter.flat()
 
-            this.#sectionData.update(data=> ({...data, sections: [], posts: this.#sectionData().page &&  this.#sectionData().page != 1? [...this.#sectionData().posts, ...filter] : filter, page:this.#sectionData().page ?? 1}))
+            this.#sectionData.update(
+              data=> ({
+                ...data,
+                sectionDetail: null,
+                posts: this.#sectionData().page &&  this.#sectionData().page != 1 ?
+                [...this.#sectionData().posts, ...filter] : filter,
+                page:this.#sectionData().page ?? 1}
+              ))
 
             if(value.totalRecordsCount > (this.#sectionData().page! * 2)){
               this.#sectionData.update(data=> ({...data,page: this.#sectionData().page! + 1}))
@@ -153,11 +164,39 @@ export class SectionService {
     );
   }
 
+  getPostDetail(id:any){
+    this.http.get<any>(`${this.urlApi}/posts/subcategory/${id}?page=${this.#sectionData().pageDetail ?? 1}&perPage=10`).pipe(
+      tap((value)=>{
+        !this.#sectionData().pageDetail && this.#sectionData.update(data=> ({...data,pageDetail: 1}))
+            let filter = value.content;
+            // filter = filter.flat()
+            this.#sectionData.update(
+              data=> ({
+                ...data,
+                sectionDetail: null,
+                postsDetail: this.#sectionData().pageDetail &&  this.#sectionData().pageDetail != 1 ?
+                [...this.#sectionData().postsDetail, ...filter] : filter,
+                pageDetail:this.#sectionData().pageDetail ?? 1}
+              ))
+
+            if(value.total > (this.#sectionData().pageDetail! * 10)){
+              this.#sectionData.update(data=> ({...data,pageDetail: this.#sectionData().pageDetail! + 1}))
+            }else{
+              this.#sectionData.update(data=> ({...data,pageDetail: null}))
+            }
+      })
+    ).subscribe();
+  }
+
   clearSubCategory(){
     this.#sectionData.update(value=> ({...value, subcategories:[]}))
   }
 
   clearPosts(){
     this.#sectionData.update(value=> ({...value, posts:[], page:null}))
+  }
+
+  clearPostDetail(){
+    this.#sectionData.update(value=> ({...value, postsDetail:[], pageDetail:null}))
   }
 }

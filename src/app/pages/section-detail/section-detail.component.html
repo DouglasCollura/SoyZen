@@ -18,7 +18,7 @@
       {{ sectionData().sectionDetail?.name }}
     </span>
 
-    <div class=" max-w-[392px] m-auto w-full mb">
+    <div class=" max-w-[392px] m-auto w-full mb-[40px]">
       <div class="content-search m-auto">
         <div class="input-icon-right search">
           <input
@@ -75,21 +75,76 @@
       </div>
     </div>
 
-    @for (item of sectionData().sectionDetail?.sections; track $index) {
-    @if(item.type == sectionDetailType.RECENT || item.type ==
-    sectionDetailType.SUBCATEGORY){
-    <app-section-detail-swiper [setSection]="item" />
-    } @else if (item.type == sectionDetailType.TEXT) {
-    <div class="section-text" [innerHTML]="transform(item.content!)"></div>
-    }@else {
-    <div class="section-info-init">
-      <div class="info" [innerHTML]="transform(item.content!)"></div>
 
-      <div class="img">
-        <img [srcset]="getImg(item.image)" alt="" />
+    <section class="filter-option m-auto mb-[20px]">
+      <swiper-container
+        slides-per-view="auto"
+        speed="500"
+        loop="false"
+        freemode="true"
+        class="overflow-auto"
+      >
+        <swiper-slide>
+          <mat-chip-listbox>
+            @for (filter_option of sectionData().subcategories; track $index) {
+            <mat-chip-row  [class.selected]="subcategorySelect() == filter_option.id" (click)="selectSubCategory(filter_option.id)" *ngIf="!subcategorySelect() || subcategorySelect() == filter_option.id">
+              {{ filter_option.name }}
+              @if(subcategorySelect() == filter_option.id && filter_option.id != null){
+                <mat-icon matChipRemove class="material-symbols-rounded font-extralight closeWhite" (click)="removeFilter()">close</mat-icon>
+              }
+            </mat-chip-row>
+            }
+          </mat-chip-listbox>
+        </swiper-slide>
+      </swiper-container>
+    </section>
+
+    @for (item of sectionData().sectionDetail?.sections; track $index) {
+      @if(item.type == sectionDetailType.RECENT || item.type ==
+      sectionDetailType.SUBCATEGORY){
+      <app-section-detail-swiper [setSection]="item" />
+      } @else if (item.type == sectionDetailType.TEXT) {
+      <div class="section-text" [innerHTML]="transform(item.content!)"></div>
+      }@else {
+      <div class="section-info-init">
+        <div class="info" [innerHTML]="transform(item.content!)"></div>
+
+        <div class="img">
+          <img [srcset]="getImg(item.image)" alt="" />
+        </div>
       </div>
-    </div>
-    } }
+      }
+    }
+
+
+    <div class="flex flex-wrap justify-between sm:justify-start px-2 gap-2 sm:pl-4">
+
+      @for (item of sectionData().postsDetail; track $index) {
+        <app-card
+          isList="true"
+          *ngIf="item.postType?.name!='blog' "
+            [post]="item"
+            textColor="#373A40"
+          />
+          <app-card-article
+          isList="true"
+          *ngIf="item.postType?.name==='blog' "
+          [category]="item.category?.name!"
+          [idPost]="item.id"
+          [time]="item.duration!"
+          [title]="item.title!"
+          [isLock]="!isUnLock(item)"
+          [url_img]="item.postDetail!.thumbnail"
+          [user]="item.user!"
+          [type]="item.postType?.name!"
+        />
+      }
+      </div>
+      <div class="grid place-content-center p-4" *ngIf="sectionData().postsDetail.length > 0 && sectionData().pageDetail"  >
+        <button class="btn-border-green !text-[16px] !font-bold  !px-10 !py-3" (click)="loadpaginate()">
+          Cargar Más Meditaciones
+        </button>
+      </div>
   </div>
 </div>
 
