@@ -29,7 +29,7 @@ import { Post } from '@interfaces/post';
     VgBufferingModule,
   ],
   templateUrl: './post.component.html',
-  styleUrl: './post.component.scss',
+  styleUrls: ['./post.component.scss','./post-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 

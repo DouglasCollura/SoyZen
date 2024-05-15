@@ -150,9 +150,16 @@
 
   .full-screen-modal-player{
     .mat-mdc-dialog-surface{
-      background-color: var(--green) !important;
+      background-color: black !important;
       display: grid;
       align-content: center;
+    }
+    .mdc-dialog__surface{
+      border-radius: 0px !important;
+      -webkit-border-radius: 0px !important;
+      -moz-border-radius: 0px !important;
+      -ms-border-radius: 0px !important;
+      -o-border-radius: 0px !important;
     }
   }
   .tamanoAudio{

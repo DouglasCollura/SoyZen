@@ -106,11 +106,13 @@
 <ng-template #modalFeel>
   @if(feelSelect() != 4){
     <div class="grid px-5 gap-8">
-      <mat-icon class="justify-self-end material-symbols-rounded !font-thin !w-[30px] !h-[30px] !text-[30px] !text-black"  mat-dialog-close="true" >close</mat-icon>
+      <button mat-dialog-close="true" class="!pt-4 justify-self-end">
+        <mat-icon class="justify-self-end  material-symbols-rounded !font-light !w-[35px] !h-[35px] !text-[35px] !text-[#686D76]"  >close</mat-icon>
+      </button>
 
-      <span class="text-[20px] font-bold leading-[27.24px] text-center" >¿Cómo te sentiste?</span>
+      <span class="text-[20px] font-bold leading-[27.24px] text-center !text-[var(--dark-gray)]" >¿Cómo te sentiste?</span>
 
-      <div class="flex justify-around pb-[50px]">
+      <div class="flex justify-around pb-[50px] content-flex-feel">
         <button class="grid justify-items-center" (click)="feelSelect.set(1)">
           <img src="/assets/images/feelings/excelente_card.svg" alt="">
           <span class="text-[12px] leading-[16.34px] font-normal" >Excelente</span>
@@ -134,14 +136,16 @@
     </div>
   } @else {
     <div class="grid px-5 gap-5 justify-items-center pb-6">
-      <mat-icon class="justify-self-end material-symbols-rounded !font-thin !w-[30px] !h-[30px] !text-[30px] !text-black"  mat-dialog-close="true" >close</mat-icon>
-
-      <button class="grid justify-items-center" >
-        <img src="/assets/images/feelings/sin_animos_card.svg" alt="">
-        <span class="text-[12px] leading-[16.34px] font-normal" >Sin ánimos</span>
+      <button mat-dialog-close="true" class="!pt-4 justify-self-end">
+        <mat-icon class="justify-self-end  material-symbols-rounded !font-light !w-[35px] !h-[35px] !text-[35px] !text-[#686D76]"  >close</mat-icon>
       </button>
 
-      <span class="text-[16px] leading-[22px] font-bold text-center">No temas, siempre puedes volver a empezar. Te recomendamos hacer otra sesión.</span>
+      <button class="flex justify-items-center items-center gap-2" >
+        <img src="/assets/images/feelings/sin_animos_card.svg" alt="">
+        <span class="text-[16px] leading-[21.79px] font-semibold !text-[#686D76]" >Sin ánimos</span>
+      </button>
+
+      <span class="text-[16px] leading-[22px] font-bold text-center !text-[var(--dark-gray)]">No temas, siempre puedes volver a empezar. Te recomendamos hacer otra sesión.</span>
 
       <button class="btn-green">Ver Meditación</button>
     </div>
@@ -163,3 +167,8 @@
   </div>
 }
 <!--  <iframe width="972" height="711" src="https://www.youtube.com/embed/iYYRH4apXDo" title="David Bowie – Space Oddity (Official Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+
+<ng-template #modalInfo>
+  <h1>asdasdasdas</h1>
+
+</ng-template>

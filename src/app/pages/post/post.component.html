@@ -43,7 +43,7 @@
       </div>
     </div>
 
-    <div >
+    <div style="display: none;">
       <vg-player #videoPlayer (onPlayerReady)="onPlayerReady($event)">
         <audio
             [vgMedia]="$any(myMedia)"
@@ -118,9 +118,9 @@
 
 
   <div class="section-interest">
-    <mat-divider />
+    <mat-divider class="!mx-[20px]" />
 
-    <span class="text-[20px] leading-[28px] font-bold text-center" >Te puede interesar...</span>
+    <span class="text-[20px] leading-[28px] font-bold text-start sm:text-center px-[20px]" >Te puede interesar...</span>
 
     <swiper-container
       slides-per-view="auto"

@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, signal } from '@angular/core';
-import { MatDialogModule } from '@angular/material/dialog';
+import { ChangeDetectionStrategy, Component, Input, TemplateRef, ViewChild, inject, signal } from '@angular/core';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { VgControlsModule } from '@videogular/ngx-videogular/controls';
 import { VgApiService, VgCoreModule } from '@videogular/ngx-videogular/core';
 import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { environment } from '../../../environments/environment';
+import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
 @Component({
   selector: 'app-audio-player',
   standalone: true,
@@ -17,6 +18,7 @@ import { environment } from '../../../environments/environment';
     VgOverlayPlayModule,
     VgBufferingModule,
     MatIconModule,
+    MatBottomSheetModule,
     MatDialogModule,
   ],
   templateUrl: './audio-player.component.html',
@@ -25,9 +27,11 @@ import { environment } from '../../../environments/environment';
 })
 export default class AudioPlayerComponent {
 
-
+  @ViewChild('modalFeel') modalFeel!: TemplateRef<any>;
+  @ViewChild('modalInfo') modalInfo!: TemplateRef<any>;
   private vgPlayer:VgApiService | undefined;
   public isPlaying = signal(false);
+  private dialog = inject(MatDialog);
   @Input() urlPlayer:string = '';
   @Input() url_img:string = '';
   @Input({required: true}) title!:string;
@@ -40,6 +44,7 @@ export default class AudioPlayerComponent {
     }
 
   };
+  private  _bottomSheet = inject(MatBottomSheet);
 
   public urlMedia = environment.urlMedia;
   public controlVideoPlayer = signal({
@@ -49,6 +54,7 @@ export default class AudioPlayerComponent {
 
 
   private timeOut:any;
+  public feelSelect = signal<number | null>(null);
 
 
   getMedia(){
@@ -95,13 +101,32 @@ export default class AudioPlayerComponent {
     return `${this.urlMedia}${url}`;
 
   }
+
   titleBold(){
-    // Expresión regular para buscar la etiqueta a reemplazar
-  const regex = /<b class="text-\[14px\] leading-\[19\.07px\]">/;
+      // Expresión regular para buscar la etiqueta a reemplazar
+    const regex = /<b class="text-\[14px\] leading-\[19\.07px\]">/;
 
-  // Reemplazar la etiqueta con la nueva
-  const nuevoTexto = this.title.replace(regex, '<b class="text-[20px] leading-[19.07px]">');
+    // Reemplazar la etiqueta con la nueva
+    const nuevoTexto = this.title.replace(regex, '<b class="text-[20px] leading-[19.07px]">');
 
-  return nuevoTexto;
-}
+    return nuevoTexto;
+  }
+
+  openBottomSheet(): void {
+    this._bottomSheet.open(this.modalInfo);
+  }
+
+  openFeelModal(){
+    this.dialog.open(this.modalFeel, {
+      width: '100%',
+      height: 'auto',
+      maxHeight:'300px',
+      maxWidth:'400px',
+      panelClass: 'panel-feel'
+    });
+  }
+
+  closeSheet(): void {
+    this._bottomSheet.dismiss();
+  }
  }

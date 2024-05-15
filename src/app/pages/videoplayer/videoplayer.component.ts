@@ -7,6 +7,7 @@ import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { environment } from '../../../environments/environment';
+import {MatBottomSheet, MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-videoplayer',
@@ -18,7 +19,8 @@ import { environment } from '../../../environments/environment';
     VgOverlayPlayModule,
     VgBufferingModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    MatBottomSheetModule
   ],
   templateUrl: './videoplayer.component.html',
   styleUrls: ['./videoplayer.component.scss', './videoplayer-mobile.component.scss'],
@@ -30,6 +32,7 @@ export default class VideoplayerComponent {
   @Input() urlPlayer:string = '';
   @Input() isLock:boolean = false;
   @ViewChild('modalFeel') modalFeel!: TemplateRef<any>;
+  @ViewChild('modalInfo') modalInfo!: TemplateRef<any>;
   @Input() set pause(pause:boolean){
     if(pause && this.isPlaying()){
       this.vgPlayer?.pause();
@@ -38,6 +41,7 @@ export default class VideoplayerComponent {
   };
 
   public urlMedia = environment.urlMedia;
+  private  _bottomSheet = inject(MatBottomSheet);
   private dialog = inject(MatDialog);
   public isPlaying = signal(false);
   public feelSelect = signal<number | null>(null);
@@ -100,5 +104,9 @@ constructor(){
       maxWidth:'400px',
       panelClass: 'panel-feel'
     });
+  }
+
+  openBottomSheet(): void {
+    this._bottomSheet.open(this.modalInfo);
   }
 }

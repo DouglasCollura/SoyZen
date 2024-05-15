@@ -39,7 +39,7 @@
         </div>
 
         <div class="grid gap-6 self-end justify-self-end mb-5">
-          <button>
+          <button  (click)="openFeelModal()">
             <mat-icon class="material-symbols-rounded font-thin !h-[28px] !w-[28px] !text-[28px]" svgIcon="my-smile-video"></mat-icon>
           </button>
 
@@ -47,7 +47,7 @@
             <mat-icon class="material-symbols-rounded font-thin !h-[32px] !w-[32px] !text-[32px]">share</mat-icon>
           </button>
 
-          <button>
+          <button (click)="openBottomSheet()">
             <mat-icon class="material-symbols-rounded font-thin !h-[32px] !w-[32px] !text-[32px]">info</mat-icon>
           </button>
         </div>
@@ -120,10 +120,10 @@
       #myMedia
       id="myMedia"
       preload="auto"
-      
-      [src]="getImg(urlPlayer)" 
+
+      [src]="getImg(urlPlayer)"
     >
-   
+
 
 
     </audio>
@@ -146,3 +146,68 @@
     </div>
   }
 </div>
+
+
+<ng-template #modalFeel>
+  @if(feelSelect() != 4){
+    <div class="grid px-5 gap-8">
+      <button mat-dialog-close="true" class="!pt-4 justify-self-end">
+        <mat-icon class="justify-self-end  material-symbols-rounded !font-light !w-[35px] !h-[35px] !text-[35px] !text-[#686D76]"  >close</mat-icon>
+      </button>
+
+      <span class="text-[20px] font-bold leading-[27.24px] text-center !text-[var(--dark-gray)]" >¿Cómo te sentiste?</span>
+
+      <div class="flex justify-around pb-[50px] content-flex-feel">
+        <button class="grid justify-items-center" (click)="feelSelect.set(1)">
+          <img src="/assets/images/feelings/excelente_card.svg" alt="">
+          <span class="text-[12px] leading-[16.34px] font-normal" >Excelente</span>
+        </button>
+
+        <button class="grid justify-items-center" (click)="feelSelect.set(2)">
+          <img src="/assets/images/feelings/bien_card.svg" alt="">
+          <span class="text-[12px] leading-[16.34px] font-normal" >Bien</span>
+        </button>
+
+        <button class="grid justify-items-center" (click)="feelSelect.set(3)">
+          <img src="/assets/images/feelings/indiferente_card.svg" alt="">
+          <span class="text-[12px] leading-[16.34px] font-normal" >Indiferente</span>
+        </button>
+
+        <button class="grid justify-items-center" (click)="feelSelect.set(4)">
+          <img src="/assets/images/feelings/sin_animos_card.svg" alt="">
+          <span class="text-[12px] leading-[16.34px] font-normal" >Sin ánimos</span>
+        </button>
+      </div>
+    </div>
+  } @else {
+    <div class="grid px-5 gap-5 justify-items-center pb-6">
+      <button mat-dialog-close="true" class="!pt-4 justify-self-end">
+        <mat-icon class="justify-self-end  material-symbols-rounded !font-light !w-[35px] !h-[35px] !text-[35px] !text-[#686D76]"  >close</mat-icon>
+      </button>
+
+      <button class="flex justify-items-center items-center gap-2" >
+        <img src="/assets/images/feelings/sin_animos_card.svg" alt="">
+        <span class="text-[16px] leading-[21.79px] font-semibold !text-[#686D76]" >Sin ánimos</span>
+      </button>
+
+      <span class="text-[16px] leading-[22px] font-bold text-center !text-[var(--dark-gray)]">No temas, siempre puedes volver a empezar. Te recomendamos hacer otra sesión.</span>
+
+      <button class="btn-green">Ver Meditación</button>
+    </div>
+  }
+
+</ng-template>
+<ng-template #modalInfo>
+  <div class="temp-info" (click)="closeSheet()">
+    <span class="text-[20px] leading-[27.24px] font-bold" >Conectar con la energía de los 4 elementos de la naturaleza.</span>
+
+    <span class="text-[16px] leading-[24px] font-normal">
+      Los cuatro elementos de la naturaleza son aire, agua, tierra y fuego. Cada elemento tiene su propia energía única y puede ser utilizado para ayudarnos a conectar con la naturaleza y con nosotros mismos.
+    </span>
+
+    <span class="text-[16px] leading-[24px] font-normal">
+      Esta meditación te ayudará a conectar con la energía de los cuatro elementos y a usarla para relajarte, sanar y energizar tu cuerpo.
+    </span>
+  </div>
+
+</ng-template>
