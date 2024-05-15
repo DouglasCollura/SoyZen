@@ -175,3 +175,11 @@
     max-width: 167px !important;
   }
 }
+
+.overflow-card-text{
+  overflow: hidden;
+  max-height: 70px;
+  // display: -webkit-box;
+  // -webkit-line-clamp: 3;
+  // -webkit-box-orient: vertical;
+}
