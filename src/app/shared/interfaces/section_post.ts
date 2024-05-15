@@ -13,6 +13,7 @@ export interface SectionPost {
   collaborators?:Collaborators[];
   type: number;
   textColor?: string;
+  category:any;
 }
 
 export interface Collaborators {
