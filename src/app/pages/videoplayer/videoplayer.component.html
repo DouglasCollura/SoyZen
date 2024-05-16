@@ -38,7 +38,7 @@
       <div class="content-control">
         <div class="flex w-full items-center justify-center gap-7 h-[50px]">
 
-          <button>
+          <button  (click)="!isLock && ReplayMore()">
             <mat-icon class="material-symbols-rounded font-thin !h-[55px] !w-[55px] !text-[55px]">skip_previous</mat-icon>
           </button>
           <button (click)="!isLock && Replay()" >
@@ -68,7 +68,7 @@
             >
           </button>
 
-          <button>
+          <button (click)="!isLock && ForwardMore()">
             <mat-icon class="material-symbols-rounded font-thin !h-[55px] !w-[55px] !text-[55px]">
               skip_next
             </mat-icon>

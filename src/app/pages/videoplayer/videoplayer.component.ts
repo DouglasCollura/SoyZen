@@ -82,6 +82,16 @@ constructor(){
     this.vgPlayer!.currentTime = (time + 10 > this.vgPlayer?.duration) ? (this.vgPlayer?.duration-1) : (time + 10);
   }
 
+  ReplayMore(){
+    let time = this.vgPlayer?.currentTime;
+    this.vgPlayer!.currentTime = (time - 15 < 0) ? 0 : (time - 15);
+  }
+
+  ForwardMore(){
+    let time = this.vgPlayer?.currentTime;
+    this.vgPlayer!.currentTime = (time + 15 > this.vgPlayer?.duration) ? (this.vgPlayer?.duration-1) : (time + 15);
+  }
+
   showTopControl(){
     if(!this.controlVideoPlayer().isOver){
       this.controlVideoPlayer.update(value=>({...value, isOver:true,hideTop:false}));
