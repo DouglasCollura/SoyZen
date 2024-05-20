@@ -12,6 +12,7 @@ export interface Post {
   postType:     PostType;
   tier:         Category;
   user:         User;
+  date:any;
   postDetail:   PostDetail;
 }
 
