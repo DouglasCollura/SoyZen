@@ -30,7 +30,7 @@
     }" >
       <app-card
         (click)="openReel(i,item)"
-        *ngIf="item.postType?.name!='blog'"
+        *ngIf="item.postType.name!='blog'"
         [post]="item"
         [titleSection]="section()?.name"
         textColor="#373A40"
@@ -38,7 +38,7 @@
 
       <app-card-article
       *ngIf="item.postType?.name==='blog' "
-      [category]="item.category?.name!"
+      [category]="item.category.name!"
       [idSection]="section()?.id"
       [idPost]="item.id"
       [time]="item.duration!"
@@ -46,7 +46,7 @@
       [isLock]="!isUnLock(item)"
       [url_img]="item.postDetail!.thumbnail"
       [user]="item.user!"
-      [type]="item.postType?.name!"
+      [type]="item.postType.name!"
       textColor="#373A40"
 
     />

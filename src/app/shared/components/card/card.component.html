@@ -5,7 +5,7 @@
       <div class="flex justify-between">
         <div class="chip" *ngIf="post.postType.name != postTypes.ads">
           <mat-icon  class="material-symbols-rounded !w-[16px] !h-[16px] !text-[16px]">watch_later</mat-icon>
-          <p class="text-[12px] leading-[16.34px] font-bold"> {{post.duration ?? '0 min'}} </p>
+          <p class="text-[12px] leading-[16.34px] font-bold"> {{post.duration ? post.duration : '0 min'}} </p>
         </div>
         @if(isNew){
           <div class="chip new">
@@ -36,9 +36,9 @@
     <div class="grid mt-2">
       <p *ngIf="post.postType.name == postTypes.ads" style="color:rgba(104, 109, 118, 1);font-size:12px;line-height: 16.34px;">Publicidad</p>
       <ng-container *ngIf="post.postType.name != postTypes.ads">
-        <h4 class="!font-semibold !text-[16px] !leading-[22px]" [ngClass]="textColor=='#373A40' ? 'colortitlegray' : 'colorwhite' " >{{ post.user.name ?? ""}}</h4>
+        <h4 class="!font-semibold !text-[16px] !leading-[22px]" [ngClass]="textColor=='#373A40' ? 'colortitlegray' : 'colorwhite' " >{{ post.user.name ? post.user.name :  ""}}</h4>
         <div class="flex gap-1">
-          <div class="flex items-center">
+          <div class="flex ">
 
             <button (click)="likePost()">
               @if(post.likeMe){
@@ -50,7 +50,7 @@
             <span class="text-sm gray txtft" [ngClass]="textColor=='#373A40' ? 'colorgray' : 'colorwhite' "> {{post.countLikes}} </span>
           </div>
 
-          <div class="flex items-center">
+          <div class="flex ">
             <mat-icon class="material-symbols-rounded font-extralight " [ngClass]="textColor=='#373A40' ? 'colorgray' : 'colorwhite' ">remove_red_eye</mat-icon>
             <span class="text-sm gray txtft" [ngClass]="textColor=='#373A40' ? 'colorgray' : 'colorwhite' ">265</span>
           </div>

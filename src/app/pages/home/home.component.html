@@ -141,27 +141,27 @@
       <app-card
         isList="true"
         *ngIf="item.postType?.name!='blog' "
-          [category]="item.category?.name!"
+          [category]="item.category.name!"
           [time]="item.duration!"
           [title]="item.title!"
           textColor="#373A40"
           [isLock]="!isUnLock(item)"
           [url_img]="item.postDetail!.thumbnail"
           [user]="item.user!"
-          [type]="item.postType?.name!"
-          [urlPlayer]="item.postType?.name == 'audio' ? item.postDetail?.audioUrl! : item.postDetail?.videoUrl!"
+          [type]="item.postType.name!"
+          [urlPlayer]="item.postType.name == 'audio' ? item.postDetail.audioUrl! : item.postDetail.videoUrl!"
         />
         <app-card-article
         isList="true"
         *ngIf="item.postType?.name==='blog' "
-        [category]="item.category?.name!"
+        [category]="item.category.name!"
         [idPost]="item.id"
         [time]="item.duration!"
         [title]="item.title!"
         [isLock]="!isUnLock(item)"
         [url_img]="item.postDetail!.thumbnail"
         [user]="item.user!"
-        [type]="item.postType?.name!"
+        [type]="item.postType.name!"
       />
     }
     </div>
