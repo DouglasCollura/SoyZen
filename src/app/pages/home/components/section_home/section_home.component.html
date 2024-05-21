@@ -42,7 +42,7 @@
 
       <app-card-article
       *ngIf="item.postType?.name==='blog' "
-      [category]="item.category?.name!"
+      [category]="item.category.name!"
       [idSection]="section()?.id"
       [idPost]="item.id"
       [time]="item.duration!"
@@ -51,7 +51,7 @@
       [url_img]="item.postDetail!.thumbnail"
       [textColor]="section()?.textColor"
       [user]="item.user!"
-      [type]="item.postType?.name!"
+      [type]="item.postType.name!"
     />
     </swiper-slide>
 

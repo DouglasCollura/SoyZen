@@ -2,7 +2,7 @@
   <img [srcset]="getImg()" class="bg-img" alt="">
   <div class="grid spacing-title-sections">
     <div class="flex w-full justify-between">
-      <span class=" text-[20px] leading-[28px] font-semibold sm:text-[24px] sm:font-medium colortitlegray" > {{section()?.name}} </span>
+      <span class=" text-[20px] leading-[28px] font-semibold sm:text-[24px] sm:font-medium colortitlegray" > {{section()?.title}} </span>
 
       <button class="btn flex btn-seemore  items-center !text-[14px] !leading-[19.07px]  !font-semibold" *ngIf="section()?.name!='Mood Zen del día' " routerLink="yoga">
         VER TODO
@@ -38,7 +38,7 @@
 
       <app-card-article
       *ngIf="item.postType?.name==='blog' "
-      [category]="item.category?.name!"
+      [category]="item.category.name!"
       [idSection]="section()?.id"
       [idPost]="item.id"
       [time]="item.duration!"
@@ -46,7 +46,7 @@
       [isLock]="!isUnLock(item)"
       [url_img]="item.postDetail!.thumbnail"
       [user]="item.user!"
-      [type]="item.postType?.name!"
+      [type]="item.postType.name!"
       textColor="#373A40"
 
     />

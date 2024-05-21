@@ -13,6 +13,7 @@ export interface SectionDetail {
   icon:     string;
   color:    string;
   template: Template;
+  title:        null | string;
   sections: Section[];
 }
 

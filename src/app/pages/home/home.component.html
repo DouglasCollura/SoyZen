@@ -147,14 +147,14 @@
         <app-card-article
         isList="true"
         *ngIf="item.postType?.name==='blog' "
-        [category]="item.category?.name!"
+        [category]="item.category.name!"
         [idPost]="item.id"
         [time]="item.duration!"
         [title]="item.title!"
         [isLock]="!isUnLock(item)"
         [url_img]="item.postDetail!.thumbnail"
         [user]="item.user!"
-        [type]="item.postType?.name!"
+        [type]="item.postType.name!"
       />
     }
     </div>

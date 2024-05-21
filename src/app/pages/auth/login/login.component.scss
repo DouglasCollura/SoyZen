@@ -153,3 +153,25 @@
 .imgDigitel{
   width: 79px;
 }
+
+.text-error{
+  padding-left: 14px;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: -28px;
+}
+
+.icon{
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+}
+
+.ft-text{
+  font-size: 10px;
+}
+
+.colorIcon{
+  color: var(--red) !important;
+}
