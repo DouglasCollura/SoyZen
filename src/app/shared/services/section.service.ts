@@ -13,6 +13,8 @@ export interface SectionServiceData {
   loadingSearch: boolean;
   loadingLike:boolean;
   subcategories: any[];
+  categoriasDetail: any[];
+  subcategoriesDetail: any[];
   categorias: any[];
   sections: SectionPost[];
   sectionDetail:SectionDetail | null;
@@ -44,6 +46,8 @@ export class SectionService {
     loadingLike:false,
     subcategories:[],
     categorias: [],
+    subcategoriesDetail:[],
+    categoriasDetail: [],
     sections: [],
     sectionDetail:null,
     postsDetail: [],
@@ -84,10 +88,10 @@ export class SectionService {
     ).subscribe();
   }
 
-  getSubCategories(id:string){
+  getSubCategories(id:string, isDetail:boolean = false){
     this.http.get<any>(`${this.urlApi}/subcategories/category/${id}`).pipe(
       tap(
-        value => this.#sectionData.update(data=> ({...data, subcategories:value}))
+        value => isDetail ? this.#sectionData.update(data=> ({...data, subcategoriesDetail:value})) : this.#sectionData.update(data=> ({...data, subcategories:value}))
       )
     ).subscribe();
   }
@@ -105,7 +109,7 @@ export class SectionService {
             this.#sectionData.update(
               data=> ({
                 ...data,
-                sectionDetail: null,
+                sections: [],
                 posts: this.#sectionData().page &&  this.#sectionData().page != 1 ?
                 [...this.#sectionData().posts, ...filter] : filter,
                 page:this.#sectionData().page ?? 1}

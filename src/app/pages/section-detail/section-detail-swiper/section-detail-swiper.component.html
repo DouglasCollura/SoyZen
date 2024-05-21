@@ -31,7 +31,7 @@
       <app-card
         (click)="openReel(i,item)"
         *ngIf="item.postType?.name!='blog'"
-        [post]="item"
+        [setPost]="item"
         [titleSection]="section()?.name"
         textColor="#373A40"
       />

@@ -1,11 +1,11 @@
 <div class="content-card animate__animated animate__fadeInRight animate__fast" [class.card-list]="isList" >
   <div class="card" (click)="openDialog()">
-    <img [class.tamanoAudio]="post.postType.name == postTypes.audio"  [srcset]="getImg(post.postDetail.thumbnail)" alt="">
+    <img [class.tamanoAudio]="post()?.postType?.name == postTypes.audio"  [srcset]="getImg(post()?.postDetail?.thumbnail!)" alt="">
     <div class="body">
       <div class="flex justify-between">
-        <div class="chip" *ngIf="post.postType.name != postTypes.ads">
+        <div class="chip" *ngIf="post()?.postType?.name != postTypes.ads">
           <mat-icon  class="material-symbols-rounded !w-[16px] !h-[16px] !text-[16px]">watch_later</mat-icon>
-          <p class="text-[12px] leading-[16.34px] font-bold"> {{post.duration ?? '0 min'}} </p>
+          <p class="text-[12px] leading-[16.34px] font-bold"> {{post()!.duration ?? '0 min'}} </p>
         </div>
         @if(isNew){
           <div class="chip new">
@@ -14,12 +14,12 @@
         }
       </div>
 
-      <h2 class="self-center text-white text-center sm:leading-[22px] text-[16px] sm:text-[18px] leading-[20px] font-bold overflow-card-text" > {{post.postType.name == postTypes.ads || titleSection==='Taróscopo'? '' : post.title}} </h2>
+      <h2 class="self-center text-white text-center sm:leading-[22px] text-[16px] sm:text-[18px] leading-[20px] font-bold overflow-card-text" > {{post()!.postType.name == postTypes.ads || titleSection==='Taróscopo'? '' : post()!.title}} </h2>
 
       <div class="flex justify-between px-1 items-center hgt" >
-        <p style="    width: 90%;"  > {{post.postType.name == postTypes.ads || titleSection==='Taróscopo' ? post.title : post.category ? post.category.name : post.subcategory.name }} </p>
+        <p style="    width: 90%;"  > {{post()?.postType?.name == postTypes.ads || titleSection==='Taróscopo' ? post()!.title : post()!.category ? post()!.category.name : post()!.subcategory.name }} </p>
 
-        @if(!isUnLock() && post.postType.name != postTypes.ads){
+        @if(!isUnLock() && post()?.postType?.name != postTypes.ads){
           <mat-icon  class="material-symbols-rounded font-thin text-[32px] !w-[32px] !h-[32px]" svgIcon="my-lock" ></mat-icon>
         }@else{
           <mat-icon  class="material-symbols-rounded font-thin text-[40px] !w-[40px] !h-[40px]" >play_circle_outline</mat-icon>
@@ -29,25 +29,25 @@
   </div>
 
   <div class="avatar-info">
-    <div class="avatar" *ngIf="post.postType.name != postTypes.ads">
-      <img [src]=" getImg(post.user.image) " alt="">
+    <div class="avatar" *ngIf="post()?.postType?.name != postTypes.ads">
+      <img [src]=" getImg(post()!.user.image) " alt="">
     </div>
 
     <div class="grid mt-2">
-      <p *ngIf="post.postType.name == postTypes.ads" style="color:rgba(104, 109, 118, 1);font-size:12px;line-height: 16.34px;">Publicidad</p>
-      <ng-container *ngIf="post.postType.name != postTypes.ads">
-        <h4 class="!font-semibold !text-[16px] !leading-[22px]" [ngClass]="textColor=='#373A40' ? 'colortitlegray' : 'colorwhite' " >{{ post.user.name ?? ""}}</h4>
+      <p *ngIf="post()!.postType.name == postTypes.ads" style="color:rgba(104, 109, 118, 1);font-size:12px;line-height: 16.34px;">Publicidad</p>
+      <ng-container *ngIf="post()!.postType.name != postTypes.ads">
+        <h4 class="!font-semibold !text-[16px] !leading-[22px]" [ngClass]="textColor=='#373A40' ? 'colortitlegray' : 'colorwhite' " >{{ post()!.user.name ?? ""}}</h4>
         <div class="flex gap-1">
           <div class="flex items-center">
 
             <button (click)="likePost()">
-              @if(post.likeMe){
+              @if(post()!.likeMe){
                 <mat-icon class="material-icons-sharp font-extralight text-red" >favorite</mat-icon>
               }@else {
                 <mat-icon class="material-symbols-rounded font-extralight" [ngClass]="textColor=='#373A40' ? 'colorgray' : 'colorwhite' ">favorite_border</mat-icon>
               }
             </button>
-            <span class="text-sm gray txtft" [ngClass]="textColor=='#373A40' ? 'colorgray' : 'colorwhite' "> {{post.countLikes}} </span>
+            <span class="text-sm gray txtft" [ngClass]="textColor=='#373A40' ? 'colorgray' : 'colorwhite' "> {{post()!.countLikes}} </span>
           </div>
 
           <div class="flex items-center">
@@ -84,9 +84,9 @@
 </ng-template>
 
 <ng-template #modalVideo>
-  <app-videoplayer [urlPlayer]="post.postDetail.videoUrl"  />
+  <app-videoplayer [urlPlayer]="post()?.postDetail?.videoUrl!"  />
 </ng-template>
 
 <ng-template #modalAudio>
-  <app-audio-player [urlPlayer]="post.postDetail.audioUrl " [url_img]="post.postDetail.thumbnail" [title]="post.title" [category]="post.category ? post.category.name : post.subcategory.name"/>
+  <app-audio-player [urlPlayer]="post()?.postDetail?.audioUrl! " [url_img]="post()!.postDetail.thumbnail" [title]="post()!.title" [category]="post()!.category ? post()!.category.name : post()!.subcategory.name"/>
 </ng-template>

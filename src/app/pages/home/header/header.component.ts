@@ -4,11 +4,11 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import { AuthService, AuthServiceData, Roles } from '@services/auth.service';
 import {MatMenuModule} from '@angular/material/menu';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router, RouterModule } from '@angular/router';
 import { NofityItemComponent } from '@shared/components/nofity-item/nofity-item.component';
 import { notifyItem, typeNotify } from '@interfaces/notify-item';
 import { FooterComponent } from '@shared/components/layout/footer/footer.component';
-import { Subject, debounceTime } from 'rxjs';
+import { Subject, debounceTime, filter, tap } from 'rxjs';
 import { SectionService, SectionServiceData } from '@services/section.service';
 import { environment } from '../../../../environments/environment';
 import { FormsModule } from '@angular/forms';
@@ -17,6 +17,7 @@ import VideoplayerComponent from '../../videoplayer/videoplayer.component';
 import AudioPlayerComponent from '../../audio-player/audio-player.component';
 import { ModalSubscribeAlertComponent } from '@shared/components/modal-subscribe-alert/modal-subscribe-alert.component';
 import { PostMediaType } from '@interfaces/post';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-header',
@@ -54,7 +55,6 @@ export default class HeaderComponent implements AfterViewInit {
   private sectionService = inject(SectionService);
   private renderer = inject(Renderer2);
   private dialog = inject(MatDialog);
-
   private authService = inject(AuthService);
 
 
@@ -88,15 +88,23 @@ export default class HeaderComponent implements AfterViewInit {
     },
   ];
 
+  private routeActive = inject(Router);
   public notifications = signal<notifyItem[]>([]);
   private inputSubject = new Subject<string>();
   public sectionData = computed<SectionServiceData>(()=> this.sectionService.sectionData());
   public authData = computed<AuthServiceData>(()=> this.authService.authData());
-
+  public route = toSignal(this.routeActive.events.pipe(
+    filter(event => event instanceof NavigationEnd),
+    tap(
+      (data)=> this.routeActual.set(this.router.url)
+    )
+)
+ );
 
   public searchText:string = '';
   public listSearch = signal<null | [] | any>(null);
   public showSearch = signal<boolean>(false);
+  public routeActual = signal<string>('');
 
   urlPlayer:string = '';
   url_img:string = '';
@@ -105,6 +113,7 @@ export default class HeaderComponent implements AfterViewInit {
 
   constructor(){
     this.notifications.set(this.listNotify);
+    this.routeActual.set(this.router.url);
 
     this.renderer.listen('window', 'click',(e:Event)=>{
       this.showSearch() && e.target !== this.inputSearch!.nativeElement && e.target!==this.menu!.nativeElement && this.showSearch.set(false);
@@ -112,11 +121,11 @@ export default class HeaderComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-
     this.inputSubject.pipe(debounceTime(500)).subscribe((e:any) => {
       this.searchInvestigator(e)
     });
-    this.authService.getNotification()
+    this.authService.getNotification();
+
 
   }
 
@@ -216,6 +225,10 @@ export default class HeaderComponent implements AfterViewInit {
 
       // data:
     });
+  }
+
+  showInput(){
+    return !this.routeActual().includes('section')
   }
 
 }

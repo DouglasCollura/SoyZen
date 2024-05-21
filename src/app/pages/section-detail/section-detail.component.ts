@@ -88,7 +88,7 @@ export default class SectionDetailComponent implements AfterViewInit {
      ({ id }) => {
       this.id = id;
       this.sectionService.getSectionDetail(id)
-      this.sectionService.getSubCategories(id);
+      this.sectionService.getSubCategories(id, true);
     }
     );
 

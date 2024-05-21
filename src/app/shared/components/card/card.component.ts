@@ -39,7 +39,13 @@ export class CardComponent {
   @Input() titleSection!:any;
   @Input() urlPlayer:string = '';
   @Input() textColor:any = '';
-  @Input() post!:Post;
+  @Input() set setPost(post:Post){
+    console.log('asd')
+
+    this.post.set(post);
+  };
+
+  public post = signal<null | Post>(null);
 
 
   public postTypes = PostMediaType;
@@ -59,7 +65,7 @@ export class CardComponent {
 
     if(this.isUnLock()){
       if(this.screenWidth > 500 || this.titleSection != 'Mood Zen del día'){
-        if(this.post.postType.name == PostMediaType.audio){
+        if(this.post()!.postType.name == PostMediaType.audio){
           this.dialog.open(this.modalAudio, {
             width: '100%',
             height: '100%',
@@ -69,7 +75,7 @@ export class CardComponent {
           });
         }
 
-        else if(this.post.postType.name == PostMediaType.video){
+        else if(this.post()!.postType.name == PostMediaType.video){
 
           this.dialog.open(this.modalVideo, {
             width: '100%',
@@ -91,7 +97,10 @@ export class CardComponent {
   }
 
   likePost(){
-    this.sectionService.setLikePost(this.post.id)?.subscribe((data:any)=> this.post = data.post)
+    this.sectionService.setLikePost(this.post()!.id)?.subscribe((data:any)=> {
+      this.post.update(dat=> ({...dat!, likeMe:true, countLikes: dat!.countLikes + 1}));
+
+    })
   }
 
   getImg(url:string){
@@ -99,7 +108,7 @@ export class CardComponent {
   }
 
   isUnLock(){
-    return this.authService.isUnLock(this.post);
+    return this.authService.isUnLock(this.post()!);
   }
 
 

@@ -86,7 +86,7 @@
       >
         <swiper-slide>
           <mat-chip-listbox>
-            @for (filter_option of sectionData().subcategories; track $index) {
+            @for (filter_option of sectionData().subcategoriesDetail; track $index) {
             <mat-chip-row  [class.selected]="subcategorySelect() == filter_option.id" (click)="selectSubCategory(filter_option.id)" *ngIf="!subcategorySelect() || subcategorySelect() == filter_option.id">
               {{ filter_option.name }}
               @if(subcategorySelect() == filter_option.id && filter_option.id != null){
@@ -123,7 +123,7 @@
         <app-card
           isList="true"
           *ngIf="item.postType?.name!='blog' "
-            [post]="item"
+            [setPost]="item"
             textColor="#373A40"
           />
           <app-card-article
