@@ -33,9 +33,12 @@ export class ReelComponent implements AfterViewInit{
   public reelDataService = computed<SectionReelService>(()=>this.reelService.reelDataService());
 
   public controlPause = signal<any>(null);
+  public screenWidth: any;
 
   constructor(){
     this.controlPause.set(this.reelDataService().sectionPost?.posts.map(e => ({...e, pause:false})));
+    this.screenWidth = window.innerWidth;
+    this.swiperParams.direction = this.screenWidth > 500 ? 'horizontal' : 'vertical'
   }
 
   ngAfterViewInit(): void {
@@ -53,8 +56,8 @@ export class ReelComponent implements AfterViewInit{
 
   }
 
+
   public swiperParams: SwiperOptions = {
-    direction:'vertical',
     slidesPerView:1,
     loop:false,
     init:false,
@@ -65,4 +68,34 @@ export class ReelComponent implements AfterViewInit{
     return !this.authService.isUnLock(item);
   }
 
+
+  canNext(index:number){
+    return index < this.reelDataService().sectionPost?.posts.length!
+  }
+
+
+  nexMedia(index:number){
+    console.log(index < this.reelDataService().sectionPost?.posts.length!)
+    if(this.canNext(index)){
+      setTimeout(()=>{
+        this.swiperComponent?.slideNext();
+      },100)
+    }
+
+  }
+
+  canPrev(index:number){
+    return index > 0
+  }
+
+
+  prevMedia(index:number){
+    console.log(index < this.reelDataService().sectionPost?.posts.length!)
+    if(this.canPrev(index)){
+      setTimeout(()=>{
+        this.swiperComponent?.slidePrev();
+      },100)
+    }
+
+  }
 }

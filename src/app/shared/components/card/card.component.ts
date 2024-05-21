@@ -40,8 +40,6 @@ export class CardComponent {
   @Input() urlPlayer:string = '';
   @Input() textColor:any = '';
   @Input() set setPost(post:Post){
-    console.log('asd')
-
     this.post.set(post);
   };
 
@@ -61,10 +59,9 @@ export class CardComponent {
 
 
   openDialog(): void {
-    console.log('post ', this.post);
 
     if(this.isUnLock()){
-      if(this.screenWidth > 500 || this.titleSection != 'Mood Zen del día'){
+      if(this.screenWidth > 500 && this.titleSection != 'Mood Zen del día'){
         if(this.post()!.postType.name == PostMediaType.audio){
           this.dialog.open(this.modalAudio, {
             width: '100%',

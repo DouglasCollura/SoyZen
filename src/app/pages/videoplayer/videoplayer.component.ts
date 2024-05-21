@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, Input, OnInit, signal, TemplateRef, ViewChild} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnInit, Output, signal, TemplateRef, ViewChild} from '@angular/core';
 import {VgApiService, VgCoreModule} from '@videogular/ngx-videogular/core';
 import {VgControlsModule} from '@videogular/ngx-videogular/controls';
 import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
@@ -39,6 +39,8 @@ export default class VideoplayerComponent {
       this.isPlaying.update(e=> !e);
     }
   };
+  @Output() nextMedia = new EventEmitter<boolean>();
+  @Output() prevMedia = new EventEmitter<boolean>();
 
   public urlMedia = environment.urlMedia;
   private  _bottomSheet = inject(MatBottomSheet);
@@ -83,15 +85,12 @@ constructor(){
   }
 
   ReplayMore(){
-    let time = this.vgPlayer?.currentTime;
-    this.vgPlayer!.currentTime = (time - 15 < 0) ? 0 : (time - 15);
+    this.prevMedia.emit(true);
   }
 
   ForwardMore(){
-    let time = this.vgPlayer?.currentTime;
-    this.vgPlayer!.currentTime = (time + 15 > this.vgPlayer?.duration) ? (this.vgPlayer?.duration-1) : (time + 15);
+    this.nextMedia.emit(true);
   }
-
   showTopControl(){
     if(!this.controlVideoPlayer().isOver){
       this.controlVideoPlayer.update(value=>({...value, isOver:true,hideTop:false}));

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, TemplateRef, ViewChild, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, TemplateRef, ViewChild, inject, signal } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
@@ -42,14 +42,16 @@ export default class AudioPlayerComponent {
       this.vgPlayer?.pause();
       this.isPlaying.update(e=> !e);
     }
-
   };
+  @Output() nextMedia = new EventEmitter<boolean>();
+  @Output() prevMedia = new EventEmitter<boolean>();
   private  _bottomSheet = inject(MatBottomSheet);
 
   public urlMedia = environment.urlMedia;
   public controlVideoPlayer = signal({
     isOver:false,
     hideTop:true,
+
   });
 
 
@@ -84,13 +86,11 @@ export default class AudioPlayerComponent {
   }
 
   ReplayMore(){
-    let time = this.vgPlayer?.currentTime;
-    this.vgPlayer!.currentTime = (time - 15 < 0) ? 0 : (time - 15);
+    this.prevMedia.emit(true);
   }
 
   ForwardMore(){
-    let time = this.vgPlayer?.currentTime;
-    this.vgPlayer!.currentTime = (time + 15 > this.vgPlayer?.duration) ? (this.vgPlayer?.duration-1) : (time + 15);
+    this.nextMedia.emit(true);
   }
 
 
