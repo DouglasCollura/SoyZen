@@ -129,11 +129,11 @@
 ::ng-deep{
   .mat-mdc-dialog-container .mdc-dialog__surface{
     padding: 0px !important;
-    border-radius: 20px !important;
-    -webkit-border-radius: 20px !important;
-    -moz-border-radius: 20px !important;
-    -ms-border-radius: 20px !important;
-    -o-border-radius: 20px !important;
+    border-radius: 0px!important;
+    -webkit-border-radius: 0px!important;
+    -moz-border-radius: 0px!important;
+    -ms-border-radius: 0px!important;
+    -o-border-radius: 0px!important;
   }
 
   .full-screen-modal-player{
