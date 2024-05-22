@@ -1,10 +1,11 @@
 import { Injectable, computed, signal } from '@angular/core';
+import { Post, PostMediaType } from '@interfaces/post';
 import { SectionPost } from '@interfaces/section_post';
 
 
 
 export interface SectionReelService {
-  sectionPost: SectionPost | null,
+  sectionPost: Post[] | null,
   indexSection:number | null
 }
 
@@ -22,7 +23,8 @@ export class ReelService {
   public reelDataService = computed(() => this.#reelDataService());
 
 
-  setSectionPost(sectionPost:SectionPost, indexSection:number){
+  setSectionPost(sectionPosts:Post[], indexSection:number){
+    let sectionPost:Post[] = sectionPosts.filter(data => data.postType.name != 'blog')
     this.#reelDataService.set({sectionPost, indexSection});
     console.log(sectionPost, indexSection);
   }

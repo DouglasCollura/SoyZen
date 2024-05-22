@@ -27,7 +27,9 @@ import VideoplayerComponent from '../../pages/videoplayer/videoplayer.component'
 import AudioPlayerComponent from '../../pages/audio-player/audio-player.component';
 import { CardComponent } from '@shared/components/card/card.component';
 import { CardArticleComponent } from '@shared/components/card_article/card_article.component';
-import { PostMediaType } from '@interfaces/post';
+import { Post, PostMediaType } from '@interfaces/post';
+import { ReelService } from '@services/reel.service';
+import { ReelComponent } from '@shared/components/reel/reel.component';
 
 @Component({
   selector: 'app-home',
@@ -52,7 +54,9 @@ import { PostMediaType } from '@interfaces/post';
     VideoplayerComponent,
     AudioPlayerComponent,
     CardComponent,
-    CardArticleComponent
+    CardArticleComponent,
+    ReelComponent
+
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss','./home-mobile.component.scss'],
@@ -85,6 +89,7 @@ export default class HomeComponent implements AfterViewInit {
   public sectionSelect = signal<number | null>(null);
   public subcategorySelect = signal<number | null>(null);
   private dialog = inject(MatDialog);
+  private reelService = inject(ReelService);
 
   urlPlayer:string = '';
   url_img:string = '';
@@ -203,6 +208,20 @@ export default class HomeComponent implements AfterViewInit {
         panelClass: 'full-screen-modal'
       });
     }
+  }
+
+  openReel(index:number, item:Post){
+    if(!this.isUnLock(item)) return;
+
+    // if(this.section()?.name == 'Mood Zen del día'){
+      this.reelService.setSectionPost(this.sectionData().posts, index);
+      this.dialog.open(ReelComponent, {
+        width: '100%',
+        height:'100%',
+        maxWidth:'100%',
+        panelClass: 'full-screen-modal'
+      });
+    // }
   }
 
   isUnLock(item:any){

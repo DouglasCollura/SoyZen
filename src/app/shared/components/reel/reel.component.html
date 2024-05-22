@@ -6,7 +6,7 @@
     [config]="swiperParams"
     class="overflow-auto"
   >
-    <swiper-slide *ngFor="let item of reelDataService().sectionPost?.posts; let i = index" >
+    <swiper-slide *ngFor="let item of reelDataService().sectionPost; let i = index" >
 
       @if(item.postType.name == postType.video){
         <app-videoplayer

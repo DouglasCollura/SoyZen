@@ -70,15 +70,15 @@ export class SectionHomeComponent {
   openReel(index:number, item:Post){
     if(!this.isUnLock(item)) return;
 
-    if(this.section()?.name == 'Mood Zen del día'){
-      this.reelService.setSectionPost(this.section()!, index);
+    // if(this.section()?.name == 'Mood Zen del día'){
+      this.reelService.setSectionPost(this.section()!.posts, index);
       this.dialog.open(ReelComponent, {
         width: '100%',
         height:'100%',
         maxWidth:'100%',
         panelClass: 'full-screen-modal'
       });
-    }
+    // }
   }
   onSwiper() {
     this.activeSlideIndex = this.swiperRef?.nativeElement.swiper.activeIndex;

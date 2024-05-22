@@ -62,19 +62,16 @@ export class SectionDetailSwiperComponent {
   }
 
   openReel(index:number, item:Post){
-    if(this.screenWidth < 500){
+    console.log('asdasd')
       if(!this.isUnLock(item)) return;
 
-      if(this.section()?.name == 'Mood Zen del día'){
-        // this.reelService.setSectionPost(this.section()!, index);
-        this.dialog.open(ReelComponent, {
-          width: '100%',
-          height:'100%',
-          maxWidth:'100%',
-          panelClass: 'full-screen-modal'
-        });
-      }
-    }
+      this.reelService.setSectionPost(this.section()!.posts, index);
+      this.dialog.open(ReelComponent, {
+        width: '100%',
+        height:'100%',
+        maxWidth:'100%',
+        panelClass: 'full-screen-modal'
+      });
   }
 
  }

@@ -20,8 +20,10 @@ import VideoplayerComponent from '../videoplayer/videoplayer.component';
 import AudioPlayerComponent from '../audio-player/audio-player.component';
 import { ModalSubscribeAlertComponent } from '@shared/components/modal-subscribe-alert/modal-subscribe-alert.component';
 import { MatDialog } from '@angular/material/dialog';
-import { PostMediaType } from '@interfaces/post';
+import { Post, PostMediaType } from '@interfaces/post';
 import { CardArticleComponent } from '@shared/components/card_article/card_article.component';
+import { ReelService } from '@services/reel.service';
+import { ReelComponent } from '@shared/components/reel/reel.component';
 
 @Component({
   selector: 'app-section-detail',
@@ -37,7 +39,8 @@ import { CardArticleComponent } from '@shared/components/card_article/card_artic
     RouterModule,
     FormsModule,
     CardComponent,
-    CardArticleComponent
+    CardArticleComponent,
+    ReelComponent
   ],
   templateUrl: './section-detail.component.html',
   styleUrls: ['./section-detail.component.scss', './section-detail-mobile.component.scss'],
@@ -66,6 +69,7 @@ export default class SectionDetailComponent implements AfterViewInit {
   public showSearch = signal<boolean>(false);
   private inputSubject = new Subject<string>();
   private dialog = inject(MatDialog);
+  private reelService = inject(ReelService);
 
   filter_options = signal<FilterOption[]>([]);
   public subscribe = localStorage.getItem('role') == Roles.SUBSCRIBE;
@@ -200,6 +204,23 @@ export default class SectionDetailComponent implements AfterViewInit {
       // data:
     });
   }
+
+
+  openReel(index:number, item:Post){
+
+    if(this.isUnLock(item)) return;
+
+    // if(this.section()?.name == 'Mood Zen del día'){
+      this.reelService.setSectionPost(this.sectionData().postsDetail, index);
+      this.dialog.open(ReelComponent, {
+        width: '100%',
+        height:'100%',
+        maxWidth:'100%',
+        panelClass: 'full-screen-modal'
+      });
+    // }
+  }
+
 
   selectSubCategory(id:number | null){
     this.subcategorySelect.set(id);

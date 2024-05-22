@@ -36,7 +36,7 @@ export class ReelComponent implements AfterViewInit{
   public screenWidth: any;
 
   constructor(){
-    this.controlPause.set(this.reelDataService().sectionPost?.posts.map(e => ({...e, pause:false})));
+    this.controlPause.set(this.reelDataService().sectionPost?.map(e => ({...e, pause:false})));
     this.screenWidth = window.innerWidth;
     this.swiperParams.direction = this.screenWidth > 500 ? 'horizontal' : 'vertical'
   }
@@ -70,12 +70,12 @@ export class ReelComponent implements AfterViewInit{
 
 
   canNext(index:number){
-    return index < this.reelDataService().sectionPost?.posts.length!
+    return index < this.reelDataService().sectionPost?.length!
   }
 
 
   nexMedia(index:number){
-    console.log(index < this.reelDataService().sectionPost?.posts.length!)
+    console.log(index < this.reelDataService().sectionPost?.length!)
     if(this.canNext(index)){
       setTimeout(()=>{
         this.swiperComponent?.slideNext();
@@ -90,7 +90,7 @@ export class ReelComponent implements AfterViewInit{
 
 
   prevMedia(index:number){
-    console.log(index < this.reelDataService().sectionPost?.posts.length!)
+    console.log(index < this.reelDataService().sectionPost?.length!)
     if(this.canPrev(index)){
       setTimeout(()=>{
         this.swiperComponent?.slidePrev();

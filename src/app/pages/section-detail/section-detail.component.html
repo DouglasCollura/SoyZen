@@ -121,6 +121,7 @@
 
       @for (item of sectionData().postsDetail; track $index) {
         <app-card
+          (click)="openReel($index,item)"
           isList="true"
           *ngIf="item.postType?.name!='blog' "
             [setPost]="item"
