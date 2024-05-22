@@ -32,12 +32,15 @@
           <mat-icon (click)="togglePasswordVisibility()" class="input-icon material-symbols-rounded" [class.colorIcon]="getInputError('password')" >{{passwordVisible ? 'visibility_off' : 'visibility'}}</mat-icon>
           <div>
 
-            <span *ngIf="getTypeError('email', 'required') || getTypeError('password', 'required')" class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Campo requerido .</span> </span>
-            <span *ngIf="getTypeError('password', 'password')" class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Contraseña inválida. Intenta nuevamente.</span> </span>
-            <span *ngIf="getTypeError('email', 'email')" class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Correo inválido. Intenta nuevamente.</span> </span>
+            @if(getTypeError('email', 'required') || getTypeError('password', 'required')){
+              <span class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Campo requerido .</span> </span>
+            }@else {
+              <span *ngIf="errorType() == 2" class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Contraseña inválida. Intenta nuevamente.</span> </span>
+              <span *ngIf="errorType() == 1" class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Correo inválido. Intenta nuevamente.</span> </span>
+            }
 
           </div>
-        
+
         </div>
 
 
