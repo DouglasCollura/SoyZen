@@ -76,17 +76,17 @@ export default class LoginComponent implements AfterViewInit {
       }
 
       this.authService.login(this.form.value)
-      .subscribe({
-        next:()=>{
-          this.router.navigate(['/home']);
+      // .subscribe({
+      //   next:()=>{
+      //     this.router.navigate(['/home']);
 
-        },
-        error:({error})=>{
-          (error.message == 'Invalid email' || error.message == "User not found") && this.errorType.set(1);
-          error.message == "Invalid credentials" && this.errorType.set(2);
-          console.log(error)
-        }
-    })
+      //   },
+      //   error:({error})=>{
+      //     (error.message == 'Invalid email' || error.message == "User not found") && this.errorType.set(1);
+      //     error.message == "Invalid credentials" && this.errorType.set(2);
+      //     console.log(error)
+      //   }
+    // })
     }else{
       if (
         this.formNumber.invalid

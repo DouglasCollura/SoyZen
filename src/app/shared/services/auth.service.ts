@@ -60,10 +60,11 @@ export class AuthService {
     this.#authData.update(
       value=> ({...value, loading:true})
     );
-
+    console.log('esta es el data',data)
     return this.http.post<UserAuth>(`${this.urlApi}/auth/login`, data)
-    .pipe(
-      tap((data: UserAuth)=>{
+    .subscribe((data: UserAuth)=>{
+      // tap((data: UserAuth)=>{
+        console.log('entramos')
         this.#authData.update(
           value=> ({ ...value ,userAuth: data , loading:false, role: data.tier.name})
         );
@@ -72,8 +73,9 @@ export class AuthService {
         localStorage.setItem('name', data.name);
         localStorage.setItem('role', data.tier.name)
         localStorage.setItem('userId', data.id.toString())
-      })
-    )
+        this.router.navigate(['/home']);
+       })
+    // )
 
   }
 

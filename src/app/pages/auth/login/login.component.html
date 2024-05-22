@@ -45,7 +45,7 @@
 
 
 
-        <button class="btn-green" id="btn-signup" (click)="login()" > Iniciar Sesión <mat-icon *ngIf="authData().loading" class="material-symbols-rounded animate-spin" >progress_activity</mat-icon> </button>
+        <button class="btn-green" id="btn-signup" [ngClass]="form.invalid ? 'desa' : '' " (click)="login()" > Iniciar Sesión <mat-icon *ngIf="authData().loading" class="material-symbols-rounded animate-spin" >progress_activity</mat-icon> </button>
 
       </form>
     }
@@ -66,7 +66,7 @@
             <mat-icon class="input-icon material-symbols-rounded" [class.colorIcon]="getInputNumberError('phone')">phone_iphone</mat-icon>
 
 
-            <span *ngIf="getNumberFormError('phone', 'minlength')" class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  La longitud minima es 7.</span> </span>
+            <span *ngIf="getNumberFormError('phone', 'minlength')" class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  La longitud mínima es 7.</span> </span>
 
             <span *ngIf="getNumberFormError('phone', 'required')" class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Campo requerido.</span> </span>
           </div>
