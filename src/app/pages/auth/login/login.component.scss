@@ -166,6 +166,7 @@
   width: 16px;
   height: 16px;
   font-size: 16px;
+  margin-right: 5px;
 }
 
 .ft-text{
@@ -174,4 +175,8 @@
 
 .colorIcon{
   color: var(--red) !important;
+}
+.input-error {
+
+  color: var(--red);
 }
