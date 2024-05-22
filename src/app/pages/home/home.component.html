@@ -140,7 +140,8 @@
     @for (item of sectionData().posts; track $index) {
       <app-card
         isList="true"
-        (click)="openReel($index,item)"
+        [index]="$index"
+        [setPosts]="sectionData().posts!"
         *ngIf="item.postType?.name!='blog' "
           [setPost]="item"
           textColor="#373A40"

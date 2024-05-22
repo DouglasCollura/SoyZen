@@ -9,6 +9,8 @@ import AudioPlayerComponent from '../../../pages/audio-player/audio-player.compo
 import { PostMediaType, Post } from '@interfaces/post';
 import { AuthService } from '@services/auth.service';
 import { SectionService } from '@services/section.service';
+import { ReelService } from '@services/reel.service';
+import { ReelComponent } from '../reel/reel.component';
 
 @Component({
   selector: 'app-card',
@@ -19,7 +21,8 @@ import { SectionService } from '@services/section.service';
     MatDialogModule,
     RouterModule,
     VideoplayerComponent,
-    AudioPlayerComponent
+    AudioPlayerComponent,
+    ReelComponent
   ],
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss','./card-mobile.component.scss'],
@@ -31,6 +34,7 @@ export class CardComponent {
   private router = inject(Router);
   private authService = inject(AuthService);
   private sectionService = inject(SectionService);
+  private reelService = inject(ReelService);
 
   @ViewChild('modalVideo') modalVideo!: TemplateRef<any>;
   @ViewChild('modalAudio') modalAudio!: TemplateRef<any>;
@@ -39,12 +43,16 @@ export class CardComponent {
   @Input() titleSection!:any;
   @Input() urlPlayer:string = '';
   @Input() textColor:any = '';
+  @Input() index:number = 0;
   @Input() set setPost(post:Post){
     this.post.set(post);
   };
+  @Input() set setPosts(posts:Post[]){
+    this.posts.set(posts);
+  };
 
   public post = signal<null | Post>(null);
-
+  public posts = signal<null | Post[]>(null);
 
   public postTypes = PostMediaType;
   public screenWidth: any;
@@ -61,29 +69,12 @@ export class CardComponent {
   openDialog(): void {
 
     if(this.isUnLock()){
-      // if(this.screenWidth > 500 && this.titleSection != 'Mood Zen del día'){
-      //   if(this.post()!.postType.name == PostMediaType.audio){
-      //     this.dialog.open(this.modalAudio, {
-      //       width: '100%',
-      //       height: '100%',
-      //       maxWidth:'100%',
-      //       // data:
-      //       panelClass: 'full-screen-modal-player'
-      //     });
-      //   }
-
-      //   else if(this.post()!.postType.name == PostMediaType.video){
-
-      //     this.dialog.open(this.modalVideo, {
-      //       width: '100%',
-      //       height: '100%',
-      //       maxWidth:'100%',
-      //       panelClass: 'full-screen-modal-player'
-      //     });
-      //   } else{
-      //     this.router.navigateByUrl('home/post');
-      //   }
-      // }
+        if(this.post()!.postType.name != PostMediaType.blog){
+          console.log('asd')
+         this.openReel();
+        } else{
+          this.router.navigateByUrl('home/post');
+        }
     }else{
       this.dialog.open(this.modalEvent, {
         width: '400px',
@@ -91,6 +82,20 @@ export class CardComponent {
       });
     }
 
+  }
+
+
+  openReel(){
+    console.log('index ', this.index)
+    if(!this.isUnLock()) return;
+
+      this.reelService.setSectionPost(this.posts()!, this.index);
+      this.dialog.open(ReelComponent, {
+        width: '100%',
+        height:'100%',
+        maxWidth:'100%',
+        panelClass: 'full-screen-modal'
+      });
   }
 
   likePost(){

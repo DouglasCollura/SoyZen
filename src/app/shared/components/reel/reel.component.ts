@@ -45,7 +45,7 @@ export class ReelComponent implements AfterViewInit{
     this.swiperComponent = this.swiperRef?.nativeElement.swiper
     setTimeout(()=>{
       this.swiperComponent?.slideTo(this.reelService.reelDataService().indexSection!, 0);
-    },100)
+    },200)
 
     this.swiperComponent?.on('slideChange', (event) => {
       let newControl = this.controlPause();

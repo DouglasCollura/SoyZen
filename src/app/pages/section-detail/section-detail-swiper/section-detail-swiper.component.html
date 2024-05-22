@@ -29,9 +29,10 @@
       'swiper-slide-active': i === activeSlideIndex
     }" >
       <app-card
-        (click)="openReel(i,item)"
         *ngIf="item.postType?.name!='blog'"
         [setPost]="item"
+        [setPosts]="section()?.posts!"
+        [index]="i"
         [titleSection]="section()?.name"
         textColor="#373A40"
       />

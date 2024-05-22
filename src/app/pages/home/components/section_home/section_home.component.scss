@@ -43,6 +43,14 @@
     width: auto !important;
   }
 
+  .mat-mdc-dialog-container, .mdc-dialog__surface{
+    border-radius: 0px !important;
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    -ms-border-radius: 0px !important;
+    -o-border-radius: 0px !important;
+  }
+
   .section-ad{
     display: grid;
     padding: 60px 20px;

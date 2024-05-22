@@ -7,6 +7,22 @@
       margin-right: 0px !important;
       width: revert-layer !important;
     }
+
+    .mat-mdc-dialog-container .mdc-dialog__surface{
+      border-radius: 0px !important;
+      -webkit-border-radius: 0px !important;
+      -moz-border-radius: 0px !important;
+      -ms-border-radius: 0px !important;
+      -o-border-radius: 0px !important;
+    }
   }
 
+}
+
+.mat-mdc-dialog-container, .mdc-dialog__surface{
+  border-radius: 0px !important;
+  -webkit-border-radius: 0px !important;
+  -moz-border-radius: 0px !important;
+  -ms-border-radius: 0px !important;
+  -o-border-radius: 0px !important;
 }

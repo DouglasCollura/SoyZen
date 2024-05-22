@@ -5,6 +5,13 @@
 
 
   ::ng-deep{
+    .mat-mdc-dialog-container .mdc-dialog__surface{
+      border-radius: 0px !important;
+      -webkit-border-radius: 0px !important;
+      -moz-border-radius: 0px !important;
+      -ms-border-radius: 0px !important;
+      -o-border-radius: 0px !important;
+    }
     swiper-slide{
       margin: 0px;
       margin-left: 0px;
