@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,6 +9,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { OnlyNumberDirective } from '@shared/directives/only-number.directive';
+import { tap } from 'rxjs';
 enum TypeLogin { email, movistar, digitel};
 
 @Component({
@@ -31,7 +32,9 @@ enum TypeLogin { email, movistar, digitel};
 })
 
 
-export default class LoginComponent {
+export default class LoginComponent implements AfterViewInit {
+
+
 
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
@@ -42,6 +45,7 @@ export default class LoginComponent {
   public typeLogin= signal<TypeLogin>(TypeLogin.email);
   public typesLogin = TypeLogin;
   public codePhoneList = signal<any[]>([]);
+  public errorType = signal<number | null>(null);
 
   public form = this.formBuilder.group({
     email: [null, [Validators.required, Validators.email]],
@@ -53,6 +57,15 @@ export default class LoginComponent {
     phone: [null, [Validators.required, Validators.minLength(7)]],
   });
 
+  ngAfterViewInit(): void {
+    // this.form.valueChanges.pipe(
+    //   tap(()=>{
+    //     console.log('change')
+    //     this.errorType.set(null)
+    //   })
+    // )
+  }
+
   login(){
     if(this.typeLogin() == this.typesLogin.email){
       if (
@@ -63,7 +76,17 @@ export default class LoginComponent {
       }
 
       this.authService.login(this.form.value)
-      this.router.navigate(['/home']);
+      .subscribe({
+        next:()=>{
+          this.router.navigate(['/home']);
+
+        },
+        error:({error})=>{
+          (error.message == 'Invalid email' || error.message == "User not found") && this.errorType.set(1);
+          error.message == "Invalid credentials" && this.errorType.set(2);
+          console.log(error)
+        }
+    })
     }else{
       if (
         this.formNumber.invalid

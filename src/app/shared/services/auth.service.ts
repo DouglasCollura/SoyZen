@@ -50,29 +50,29 @@ export class AuthService {
 
   login(data:any){
 
-    if(data?.email){
-      if(data.email == 'subscribe@gmail.com') {localStorage.setItem('role',Roles.SUBSCRIBE); localStorage.setItem('phone', '04125459173')}
-      else if(data.email == 'register@gmail.com') localStorage.setItem('role',Roles.REGISTER);
-      else localStorage.setItem('role',Roles.GUEST);
-      return
-    }
+    // if(data?.email){
+    //   if(data.email == 'subscribe@gmail.com') {localStorage.setItem('role',Roles.SUBSCRIBE); localStorage.setItem('phone', '04125459173')}
+    //   else if(data.email == 'register@gmail.com') localStorage.setItem('role',Roles.REGISTER);
+    //   else localStorage.setItem('role',Roles.GUEST);
+    //   return
+    // }
 
     this.#authData.update(
       value=> ({...value, loading:true})
     );
 
-    this.http.post<UserAuth>(`${this.urlApi}/auth/login`, data)
-    .subscribe(
-      (data: UserAuth)=>{
+    return this.http.post<UserAuth>(`${this.urlApi}/auth/login`, data)
+    .pipe(
+      tap((data: UserAuth)=>{
         this.#authData.update(
           value=> ({ ...value ,userAuth: data , loading:false, role: data.tier.name})
         );
+
         localStorage.setItem('token', data.token);
         localStorage.setItem('name', data.name);
         localStorage.setItem('role', data.tier.name)
         localStorage.setItem('userId', data.id.toString())
-        this.router.navigate(['/home']);
-      }
+      })
     )
 
   }
