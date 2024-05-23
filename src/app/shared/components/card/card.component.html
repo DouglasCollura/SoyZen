@@ -52,7 +52,7 @@
 
           <div class="flex ">
             <mat-icon class="material-symbols-rounded font-extralight " [ngClass]="textColor=='#373A40' ? 'colorgray' : 'colorwhite' ">remove_red_eye</mat-icon>
-            <span class="text-sm gray txtft" [ngClass]="textColor=='#373A40' ? 'colorgray' : 'colorwhite' ">265</span>
+            <span class="text-sm gray txtft" [ngClass]="textColor=='#373A40' ? 'colorgray' : 'colorwhite' "> {{post()!.countViews}} </span>
           </div>
         </div>
       </ng-container>

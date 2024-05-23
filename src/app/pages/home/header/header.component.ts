@@ -105,6 +105,8 @@ export default class HeaderComponent implements AfterViewInit {
   public listSearch = signal<null | [] | any>(null);
   public showSearch = signal<boolean>(false);
   public routeActual = signal<string>('');
+  public nombre = localStorage.getItem('name');
+  public email = localStorage.getItem('email');
 
   urlPlayer:string = '';
   url_img:string = '';

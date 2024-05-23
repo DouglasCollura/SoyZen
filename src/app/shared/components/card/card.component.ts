@@ -99,10 +99,16 @@ export class CardComponent {
   }
 
   likePost(){
-    this.sectionService.setLikePost(this.post()!.id)?.subscribe((data:any)=> {
-      this.post.update(dat=> ({...dat!, likeMe:true, countLikes: dat!.countLikes + 1}));
+    if(this.post()?.likeMe){
+      this.sectionService.deleteLikePost(this.post()!.id)?.subscribe((data:any)=> {
+        this.post.update(dat=> ({...dat!, likeMe:false, countLikes: dat!.countLikes - 1}));
+      })
+    }else{
+      this.sectionService.setLikePost(this.post()!.id)?.subscribe((data:any)=> {
+        this.post.update(dat=> ({...dat!, likeMe:true, countLikes: dat!.countLikes + 1}));
+      })
+    }
 
-    })
   }
 
   getImg(url:string){

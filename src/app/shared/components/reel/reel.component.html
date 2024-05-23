@@ -15,10 +15,12 @@
           [pause]="controlPause()[i].pause"
           (nextMedia)="nexMedia(i)"
           (prevMedia)="prevMedia(i)"
+          [setItem]="item"
         />
       }
       @if(item.postType.name == postType.audio){
         <app-audio-player
+          [setItem]="item"
           [isLock]="isLock(item)"
           [urlPlayer]="item.postDetail.audioUrl!"
           [pause]="controlPause()[i].pause"

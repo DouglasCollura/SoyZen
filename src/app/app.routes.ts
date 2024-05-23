@@ -1,10 +1,12 @@
 import { Routes } from '@angular/router';
 import { LandingComponent } from './pages/landing/landing.component';
+import { authGuard, unauthGuard } from '@shared/guards/auth.guard';
 
 export const routes: Routes = [
 
   {
     path:'',
+    canActivate:[unauthGuard],
     component: LandingComponent
   },
   {
@@ -21,6 +23,7 @@ export const routes: Routes = [
   },
   {
     path:'auth',
+    canActivate:[unauthGuard],
     children:[
       {
         path:'signup',
@@ -38,6 +41,7 @@ export const routes: Routes = [
   },
   {
     path:"premium",
+    canActivate:[unauthGuard],
     children:[
       {
         path:"",

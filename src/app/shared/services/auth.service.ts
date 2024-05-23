@@ -60,22 +60,20 @@ export class AuthService {
     this.#authData.update(
       value=> ({...value, loading:true})
     );
-    console.log('esta es el data',data)
     return this.http.post<UserAuth>(`${this.urlApi}/auth/login`, data)
-    .subscribe((data: UserAuth)=>{
-      // tap((data: UserAuth)=>{
-        console.log('entramos')
+    .pipe(
+      tap((data: UserAuth)=>{
         this.#authData.update(
           value=> ({ ...value ,userAuth: data , loading:false, role: data.tier.name})
         );
 
         localStorage.setItem('token', data.token);
         localStorage.setItem('name', data.name);
+        localStorage.setItem('email', data.email);
         localStorage.setItem('role', data.tier.name)
         localStorage.setItem('userId', data.id.toString())
-        this.router.navigate(['/home']);
        })
-    // )
+    )
 
   }
 
@@ -90,6 +88,10 @@ export class AuthService {
 
     })
 
+  }
+
+  finalLoading(){
+    this.#authData.update((data)=> ({...data, loading:false}))
   }
 
   isUnLock(item:Post){

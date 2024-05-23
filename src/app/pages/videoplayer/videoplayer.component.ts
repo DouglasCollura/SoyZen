@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { environment } from '../../../environments/environment';
 import {MatBottomSheet, MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import { Post } from '@interfaces/post';
 
 @Component({
   selector: 'app-videoplayer',
@@ -39,6 +40,9 @@ export default class VideoplayerComponent {
       this.isPlaying.update(e=> !e);
     }
   };
+  @Input() set setItem(item:Post){
+    this.post.set(item);
+  };
   @Output() nextMedia = new EventEmitter<boolean>();
   @Output() prevMedia = new EventEmitter<boolean>();
 
@@ -47,6 +51,7 @@ export default class VideoplayerComponent {
   private dialog = inject(MatDialog);
   public isPlaying = signal(false);
   public feelSelect = signal<number | null>(null);
+  public post = signal<Post | null>(null);
 
   public controlVideoPlayer = signal({
     isOver:false,

@@ -8,6 +8,7 @@ import { VgApiService, VgCoreModule } from '@videogular/ngx-videogular/core';
 import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { environment } from '../../../environments/environment';
 import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { Post } from '@interfaces/post';
 @Component({
   selector: 'app-audio-player',
   standalone: true,
@@ -43,9 +44,14 @@ export default class AudioPlayerComponent {
       this.isPlaying.update(e=> !e);
     }
   };
+
+  @Input() set setItem(item:Post){
+    this.post.set(item);
+  };
   @Output() nextMedia = new EventEmitter<boolean>();
   @Output() prevMedia = new EventEmitter<boolean>();
   private  _bottomSheet = inject(MatBottomSheet);
+  public post = signal<Post | null>(null);
 
   public urlMedia = environment.urlMedia;
   public controlVideoPlayer = signal({
