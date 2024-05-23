@@ -33,7 +33,7 @@
 
           <span class="text-[40px] leading-[32px] text-white text-center" >{{category}}</span>
 
-          <span class="text-white text-center text-[20px] leading-[28px] font-bold" [innerHtml]="titleBold()">
+          <span class="text-white text-center text-[20px] leading-[28px] font-bold margin-subtitle" [innerHtml]="titleBold()">
 
           </span>
         </div>
@@ -153,8 +153,8 @@
 <ng-template #modalFeel>
   @if(feelSelect() != 4){
     <div class="grid px-5 gap-8">
-      <button mat-dialog-close="true" class="!pt-4 justify-self-end">
-        <mat-icon class="justify-self-end  material-symbols-rounded !font-light !w-[35px] !h-[35px] !text-[35px] !text-[#686D76]"  >close</mat-icon>
+      <button mat-dialog-close="true" class="!pt-5 pr-3 justify-self-end btn-no-outline">
+        <mat-icon class="justify-self-end  material-symbols-rounded !font-light !w-[35px] !h-[35px] !text-[32px] !text-[#686D76]"  >close</mat-icon>
       </button>
 
       <span class="text-[20px] font-bold leading-[27.24px] text-center !text-[var(--dark-gray)]" >¿Cómo te sentiste?</span>

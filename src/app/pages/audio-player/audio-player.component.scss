@@ -127,10 +127,16 @@
   }
 }
 
+.btn-no-outline{
+  outline: none;
+}
 
 .content-flex-feel{
+  gap: 20px;
+  justify-content: center;
   button{
     gap: 10px;
+    width: 75px;
     span{
       color: var(--dark-gray);
     }
@@ -144,8 +150,20 @@
     border-top-left-radius: 30px !important;
     border-top-right-radius: 30px !important;
   }
+
+  .panel-feel .mat-mdc-dialog-container .mdc-dialog__surface{
+    padding: 15px 1px;
+    border-radius: 20px !important;
+    -webkit-border-radius: 20px !important;
+    -moz-border-radius: 20px !important;
+    -ms-border-radius: 20px !important;
+    -o-border-radius: 20px !important;
+  }
 }
 
+.margin-subtitle{
+  margin: 0 140px;
+}
 
 .temp-info{
   display: grid;
