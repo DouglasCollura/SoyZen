@@ -6,6 +6,7 @@ export interface Post {
   duration:     string;
   orderSection: number;
   countLikes:   number;
+  countViews:   number;
   likeMe:       boolean;
   category:     Category;
   subcategory:  Category;

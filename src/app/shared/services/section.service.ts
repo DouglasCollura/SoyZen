@@ -160,6 +160,25 @@ export class SectionService {
     )
   }
 
+  deleteLikePost(idPost:number){
+
+    const userId = localStorage.getItem('userId');
+    if(!userId) return;
+
+    this.#sectionData.update(value=> ({...value, loadingLike:true}))
+    return this.http.delete<any>(`${this.urlApi}/likes`, {
+      body:{
+        "postId": idPost,
+        "userId": userId
+      }
+    })
+    .pipe(
+      tap(()=>{
+        this.#sectionData.update(value=> ({...value, loadingLike:false}))
+      })
+    )
+  }
+
   getSectionDetail(id:any){
     this.http.get<SectionDetail>(`${this.urlApi}/page-category/category/${id}`).subscribe(
       (data)=>{
