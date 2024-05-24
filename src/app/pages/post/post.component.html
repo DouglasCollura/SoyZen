@@ -15,7 +15,7 @@
     </div>
 
     <div class="info">
-      <span class="text-white text-[24px] leading-[32px] font-medium">{{post()?.title}}</span>
+      <span class="text-white text-[24px] leading-[32px] font-medium ">{{post()?.title}}</span>
       <button>
         <mat-icon class="material-symbols-rounded text-white !w-[32px] !h-[32px] text-[32px] font-extralight" >share</mat-icon>
       </button>
@@ -28,12 +28,12 @@
     <div class="flex justify-between">
 
       <div class="flex gap-2">
-        <div class="avatar">
+        <div class="avatar mobileAvatar">
           <img [src]="getImg2(post()?.user?.image)" alt="">
         </div>
-        <div class="grid content-center">
-          <span class="text-[18px] leading-[22px] font-semibold" >{{post()?.user?.name}}</span>
-          <span class="text-[14px] leading-[19.07px] font-medium" >{{post()?.postDetail?.date | date:'d MMM. y'}}</span>
+        <div class="grid content-center clasConter">
+          <span class="text-[18px] sm:text-[16px] leading-[22px] font-semibold txtpeq1" >{{post()?.user?.name}}</span>
+          <span class="text-[14px] sm:text-[12px] leading-[19.07px] font-medium txtClear txtpeq2">{{post()?.postDetail?.date | date:'d MMM. y'}}</span>
         </div>
       </div>
 

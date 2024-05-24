@@ -28,4 +28,22 @@
     }
   }
 
+  .mobileAvatar{
+    width: 8.53vw !important;
+    height: 8.53vw !important;
+  }
+
+  .clasConter{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 8px;
+  }
+
+  .txtpeq1{
+    font-size: 16px;
+  }
+  .txtpeq2{
+    font-size: 12px;
+  }
 }

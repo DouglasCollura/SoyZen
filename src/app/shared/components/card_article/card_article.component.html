@@ -1,6 +1,6 @@
 <div class="content-card-article animate__animated animate__fadeInRight animate__fast" [class.card-list]="isList" >
-  <div class="card" (click)="openDialog()">
-    <img [srcset]="getImg(url_img)" alt="">
+  <div class="card maxwidthVideo"  (click)="openDialog()">
+    <img class="maxwidthVideo" [srcset]="getImg(url_img)" alt="">
     <div class="body">
       <div class="flex  p-3" [class]="isNew ? 'justify-end': 'justify-between' ">
         @if(isLock){

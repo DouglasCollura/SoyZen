@@ -1,6 +1,6 @@
-<div class="content-card animate__animated animate__fadeInRight animate__fast" [class.card-list]="isList" >
-  <div class="card" (click)="openDialog()">
-    <img [class.tamanoAudio]="post()?.postType?.name == postTypes.audio"  [srcset]="getImg(post()?.postDetail?.thumbnail!)" alt="">
+<div class="content-card  animate__animated animate__fadeInRight animate__fast" [class.card-list]="isList" >
+  <div class="card " [ngClass]="post()!.postType.name =='video' || post()!.postType.name =='ads' ? 'maxwidthVideo' : 'maxwidthAudio' " (click)="openDialog()">
+    <img  [ngClass]="post()!.postType.name =='video' || post()!.postType.name =='ads' ? 'maxwidthVideo' : 'maxwidthAudio' "   [srcset]="getImg(post()?.postDetail?.thumbnail!)" alt="">
     <div class="body">
       <div class="flex justify-between">
         <div class="chip" *ngIf="post()?.postType?.name != postTypes.ads">
@@ -22,7 +22,7 @@
         @if(!isUnLock() && post()?.postType?.name != postTypes.ads){
           <mat-icon  class="material-symbols-rounded font-thin text-[32px] !w-[32px] !h-[32px]" svgIcon="my-lock" ></mat-icon>
         }@else{
-          <mat-icon  class="material-symbols-rounded font-thin text-[40px] !w-[40px] !h-[40px]" >play_circle_outline</mat-icon>
+          <mat-icon  class="material-symbols-rounded font-thin text-[40px] !w-[40px] !h-[40px] iconitoMpobile" >play_circle_outline</mat-icon>
         }
       </div>
     </div>

@@ -12,4 +12,30 @@
     //     width: 255px ;
     //   }
 
+    .maxwidthVideo{
+        max-width: 68vw;
+        min-width: 255px;
+        min-height: 202px;
+        max-height: 31vw;
+    }
+
+    .maxwidthAudio{
+        max-width: 44vw !important;
+        min-width: 167px !important;
+        min-height: 202px !important;
+        max-height: 31vw !important;
+    }
+
+    .avatar{
+       width: 8.53vw !important; 
+       height: 8.53vw !important; 
+    }
+    
+    .iconitoMpobile{
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+    }
 }
