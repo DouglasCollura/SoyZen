@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnInit, Output, signal, TemplateRef, ViewChild} from '@angular/core';
-import {VgApiService, VgCoreModule} from '@videogular/ngx-videogular/core';
+import {VgApiService, VgCoreModule, VgEvents} from '@videogular/ngx-videogular/core';
 import {VgControlsModule} from '@videogular/ngx-videogular/controls';
 import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
 import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
@@ -9,6 +9,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { environment } from '../../../environments/environment';
 import {MatBottomSheet, MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { Post } from '@interfaces/post';
+import { SectionService } from '@services/section.service';
 
 @Component({
   selector: 'app-videoplayer',
@@ -30,6 +31,7 @@ import { Post } from '@interfaces/post';
 export default class VideoplayerComponent {
 
   private vgPlayer:VgApiService | undefined;
+
   @Input() urlPlayer:string = '';
   @Input() isLock:boolean = false;
   @ViewChild('modalFeel') modalFeel!: TemplateRef<any>;
@@ -52,14 +54,13 @@ export default class VideoplayerComponent {
   public isPlaying = signal(false);
   public feelSelect = signal<number | null>(null);
   public post = signal<Post | null>(null);
-
+  private sectionService = inject(SectionService);
   public controlVideoPlayer = signal({
     isOver:false,
     hideTop:true,
   });
-constructor(){
-  console.log('repro')
-}
+
+
   private timeOut:any;
 
   getMedia(){
@@ -69,6 +70,12 @@ constructor(){
   onPlayerReady(api: VgApiService) {
     this.vgPlayer = api;
 
+    this.vgPlayer.getDefaultMedia().subscriptions.ended.subscribe(
+      () => {
+          this.vgPlayer!.getDefaultMedia().currentTime = 0;
+          this.viewPost()
+      }
+  );
 
   }
 
@@ -122,5 +129,10 @@ constructor(){
 
   openBottomSheet(): void {
     this._bottomSheet.open(this.modalInfo);
+  }
+
+
+  viewPost(){
+    this.sectionService.setViewPost(this.post()!.id)?.subscribe()
   }
 }

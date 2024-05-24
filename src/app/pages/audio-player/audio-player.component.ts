@@ -9,6 +9,7 @@ import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { environment } from '../../../environments/environment';
 import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { Post } from '@interfaces/post';
+import { SectionService } from '@services/section.service';
 @Component({
   selector: 'app-audio-player',
   standalone: true,
@@ -30,6 +31,8 @@ export default class AudioPlayerComponent {
 
   @ViewChild('modalFeel') modalFeel!: TemplateRef<any>;
   @ViewChild('modalInfo') modalInfo!: TemplateRef<any>;
+  private sectionService = inject(SectionService);
+
   private vgPlayer:VgApiService | undefined;
   public isPlaying = signal(false);
   private dialog = inject(MatDialog);
@@ -72,6 +75,11 @@ export default class AudioPlayerComponent {
 
   onPlayerReady(api: VgApiService) {
     this.vgPlayer = api;
+    this.vgPlayer.getDefaultMedia().subscriptions.ended.subscribe(
+      () => {
+          this.vgPlayer!.getDefaultMedia().currentTime = 0;
+          this.viewPost()
+      })
   }
 
   playPause(){
@@ -145,5 +153,10 @@ export default class AudioPlayerComponent {
 
   closeSheet(): void {
     this._bottomSheet.dismiss();
+  }
+
+
+  viewPost(){
+    this.sectionService.setViewPost(this.post()!.id)?.subscribe()
   }
  }

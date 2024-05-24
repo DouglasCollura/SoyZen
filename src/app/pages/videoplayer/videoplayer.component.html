@@ -1,4 +1,4 @@
-<vg-player #videoPlayer (onPlayerReady)="onPlayerReady($event)"  (mousemove)="showTopControl()">
+<vg-player #videoPlayer (onPlayerReady)="onPlayerReady($event)"   (mousemove)="showTopControl()">
   <div class="controlTop animate__animated " [class]="controlVideoPlayer().hideTop ? 'animate__fadeOut' : 'animate__fadeIn'" *ngIf="controlVideoPlayer().isOver">
     <div class="flex justify-between">
       <h1 class="text-white text-[16px] leading-[32px] font-bold"> {{post()?.title}} </h1>

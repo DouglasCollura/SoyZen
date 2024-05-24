@@ -42,6 +42,7 @@
       />
 
       <app-card-article
+        [setPost]="item"
       *ngIf="item.postType?.name==='blog' "
       [category]="item.category.name!"
       [idSection]="section()?.id"

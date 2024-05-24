@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Inject, Input, TemplateRef, ViewChild, booleanAttribute, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Input, TemplateRef, ViewChild, booleanAttribute, inject, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { Router, RouterModule } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import VideoplayerComponent from '../../../pages/videoplayer/videoplayer.component';
 import AudioPlayerComponent from '../../../pages/audio-player/audio-player.component';
+import { Post } from '@interfaces/post';
 
 
 @Component({
@@ -41,8 +42,12 @@ export class CardArticleComponent {
   @Input() idPost:any = null;
   @Input() type:string = 'blog';
   @Input() textColor:any = '';
+  @Input() set setPost(post:Post){
+    this.post.set(post);
+  };
   @ViewChild('modalEvent') modalEvent!: TemplateRef<any>;
   public urlMedia = environment.urlMedia;
+  public post = signal<null | Post>(null);
 
 
   openDialog(): void {
