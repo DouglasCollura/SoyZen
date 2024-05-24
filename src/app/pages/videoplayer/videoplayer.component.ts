@@ -86,6 +86,11 @@ export default class VideoplayerComponent {
     this.isPlaying.update(e=> !e);
   }
 
+  stop(){
+    this.vgPlayer?.pause();
+    this.vgPlayer!.currentTime = 0;
+  }
+
   Replay(){
     let time = this.vgPlayer?.currentTime;
     this.vgPlayer!.currentTime = (time - 10 < 0) ? 0 : (time - 10);

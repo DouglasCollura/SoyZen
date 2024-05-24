@@ -36,41 +36,44 @@
         <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
       </div>
       <div class="content-control">
-        <div class="flex w-full items-center justify-center gap-7 h-[50px]">
+        <div class="flex items-center justify-center gap-7 h-[50px]">
 
-          <button  (click)="!isLock && ReplayMore()">
+          <!-- <button  (click)="!isLock && ReplayMore()">
             <mat-icon class="material-symbols-rounded font-thin !h-[55px] !w-[55px] !text-[55px]">skip_previous</mat-icon>
-          </button>
-          <button (click)="!isLock && Replay()" >
-            <mat-icon class="material-symbols-rounded font-thin !h-[38px] !w-[38px] !text-[38px]">replay_10</mat-icon>
-          </button>
+          </button> -->
+
 
           @if(isLock){
             <button class="text-white" >
-              <mat-icon  class="material-symbols-rounded font-thin text-[32px] !w-[32px] !h-[32px]" svgIcon="my-lock" ></mat-icon>
+              <mat-icon  class="material-symbols-rounded font-normal text-[32px] !w-[32px] !h-[32px]" svgIcon="my-lock" ></mat-icon>
             </button>
           }@else {
             <button class="text-white" id="play" (click)="playPause()">
               @if(isPlaying()){
-              <mat-icon class="material-symbols-rounded font-thin !h-[48px] !w-[48px] !text-[48px]"
+              <mat-icon class="material-symbols-rounded font-normal !h-[38px] !w-[38px] !text-[38px]"
                 >pause_circle</mat-icon
               >
               } @else{
-              <mat-icon class="material-symbols-rounded font-thin !h-[48px] !w-[48px] !text-[48px]"
+              <mat-icon class="material-symbols-rounded font-normal !h-[38px] !w-[38px] !text-[38px]"
                 >play_circle</mat-icon
               >
               }
             </button>
           }
+
+          <button (click)="!isLock && Replay()" >
+            <mat-icon class="material-symbols-rounded font-normal !h-[38px] !w-[38px] !text-[38px]">replay_10</mat-icon>
+          </button>
+
           <button (click)="!isLock && Forward()">
-            <mat-icon class="material-symbols-rounded font-thin !h-[38px] !w-[38px] !text-[38px]"
+            <mat-icon class="material-symbols-rounded font-normal !h-[38px] !w-[38px] !text-[38px]"
               >forward_10</mat-icon
             >
           </button>
 
-          <button (click)="!isLock && ForwardMore()">
-            <mat-icon class="material-symbols-rounded font-thin !h-[55px] !w-[55px] !text-[55px]">
-              skip_next
+          <button (click)="!isLock && stop()">
+            <mat-icon class="material-symbols-sharp font-normal !h-[45px] !w-[45px] !text-[45px]">
+              stop
             </mat-icon>
           </button>
 
