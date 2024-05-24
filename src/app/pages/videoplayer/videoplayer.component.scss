@@ -2,6 +2,14 @@
   display: block;
 }
 ::ng-deep{
+  .panel-feel .mat-mdc-dialog-container .mdc-dialog__surface{
+    padding: 15px 1px;
+    border-radius: 20px !important;
+    -webkit-border-radius: 20px !important;
+    -moz-border-radius: 20px !important;
+    -ms-border-radius: 20px !important;
+    -o-border-radius: 20px !important;
+  }
   vg-player{
     position: absolute !important;
     aspect-ratio: 16 / 9;
@@ -31,7 +39,10 @@
     height: 30px !important;
   }
 
+ 
+
 }
+
 
 #play{
   mat-icon{
@@ -80,9 +91,16 @@ mat-icon{
   background-color: rgba(0,0,0,0.6);
 }
 
+.btn-no-outline{
+  outline: none;
+}
+
 .content-flex-feel{
+  gap: 20px;
+  justify-content: center;
   button{
     gap: 10px;
+    width: 75px;
     span{
       color: var(--dark-gray);
     }
