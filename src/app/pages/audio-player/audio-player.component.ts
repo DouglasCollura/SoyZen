@@ -144,9 +144,9 @@ export default class AudioPlayerComponent {
   openFeelModal(){
     this.dialog.open(this.modalFeel, {
       width: '100%',
-      height: 'auto',
-      maxHeight:'300px',
-      maxWidth:'400px',
+      height: '100%',
+      maxHeight:'320px',
+      maxWidth:'505px',
       panelClass: 'panel-feel'
     });
   }
