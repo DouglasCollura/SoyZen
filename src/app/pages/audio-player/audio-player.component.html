@@ -200,8 +200,15 @@
 
 </ng-template>
 <ng-template #modalInfo>
+  <div class="line-close-modal"></div>
   <div class="temp-info" (click)="closeSheet()">
-    <span class="text-[20px] leading-[27.24px] font-bold" > {{post()?.description}} </span>
+    <span class="text-[20px] leading-[27.24px] font-bold" > {{post()?.title}} </span>
+
+
+
+    <div class="text-[16px] leading-[24px] font-normal" [innerHtml]="post()?.description">
+    </div>
+
 
   </div>
 

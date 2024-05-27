@@ -159,6 +159,16 @@
     -ms-border-radius: 20px !important;
     -o-border-radius: 20px !important;
   }
+
+  .line-close-modal{
+    width: 82px;
+    height: 6px;
+    background: #EDEEF1;
+    margin: 5px auto;
+    top: 35px;
+    position: relative;
+    border-radius: 11%;
+  }
 }
 
 .margin-subtitle{
