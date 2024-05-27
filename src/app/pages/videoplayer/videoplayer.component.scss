@@ -114,3 +114,13 @@ mat-icon{
 .padSpan{
   padding: 5px 88px;
   }
+  video {
+
+    z-index: 1;
+    }
+
+    vg-controls {
+     
+      z-index: 99999;
+
+      }
