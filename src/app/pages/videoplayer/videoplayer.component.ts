@@ -117,9 +117,9 @@ export default class VideoplayerComponent {
     clearTimeout(this.timeOut);
 
     this.timeOut = setTimeout(()=>{
-      this.controlVideoPlayer.update(value=>({...value, hideTop:true}));
+      // this.controlVideoPlayer.update(value=>({...value, hideTop:true}));
       setTimeout(()=>{
-        this.controlVideoPlayer.update(value=>({...value, isOver:false}));
+        // this.controlVideoPlayer.update(value=>({...value, isOver:false}));
       },500)
     },1000);
   }

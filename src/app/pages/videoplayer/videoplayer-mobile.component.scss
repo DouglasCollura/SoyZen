@@ -14,3 +14,22 @@
     }
 
 }
+
+
+@media (orientation: landscape) and (height < 450px) , (max-device-height: 450px) {
+  .content-control{
+    display: flex !important;
+  }
+  .content-control{
+    .btns-controls{
+      justify-content: start !important;
+      mat-icon{
+        height: 40px !important;
+        width: 40px !important;
+        font-size: 40px !important;
+      }
+    }
+
+  }
+}
+

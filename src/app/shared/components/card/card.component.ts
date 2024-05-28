@@ -70,7 +70,6 @@ export class CardComponent {
 
     if(this.isUnLock()){
         if(this.post()!.postType.name != PostMediaType.blog){
-          console.log('asd')
          this.openReel();
         } else{
           this.router.navigateByUrl('home/post');
@@ -86,7 +85,6 @@ export class CardComponent {
 
 
   openReel(){
-    console.log('index ', this.index)
     if(!this.isUnLock()) return;
 
       this.reelService.setSectionPost(this.posts()!, this.index);
