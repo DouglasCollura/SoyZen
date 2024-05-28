@@ -107,8 +107,8 @@ export default class VideoplayerComponent {
     this.prevMedia.emit(true);
   }
 
-  ForwardMore(){
-    this.nextMedia.emit(true);
+  ForwardMore(isModal: boolean = false){
+    this.nextMedia.emit(!isModal);
   }
   showTopControl(){
     if(!this.controlVideoPlayer().isOver){
@@ -117,9 +117,9 @@ export default class VideoplayerComponent {
     clearTimeout(this.timeOut);
 
     this.timeOut = setTimeout(()=>{
-      // this.controlVideoPlayer.update(value=>({...value, hideTop:true}));
+      this.controlVideoPlayer.update(value=>({...value, hideTop:true}));
       setTimeout(()=>{
-        // this.controlVideoPlayer.update(value=>({...value, isOver:false}));
+        this.controlVideoPlayer.update(value=>({...value, isOver:false}));
       },500)
     },1000);
   }

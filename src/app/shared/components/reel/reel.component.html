@@ -13,7 +13,7 @@
           [isLock]="isLock(item)"
           [urlPlayer]="item.postDetail.videoUrl!"
           [pause]="controlPause()[i].pause"
-          (nextMedia)="nexMedia(i)"
+          (nextMedia)="nexMedia(i, $event)"
           (prevMedia)="prevMedia(i)"
           [setItem]="item"
         />

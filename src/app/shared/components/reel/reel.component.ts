@@ -70,12 +70,15 @@ export class ReelComponent implements AfterViewInit{
 
 
   canNext(index:number){
-    return index < this.reelDataService().sectionPost?.length!
+    return index < this.reelDataService().sectionPost?.length! - 1
   }
 
 
-  nexMedia(index:number){
-    console.log(index < this.reelDataService().sectionPost?.length!)
+  nexMedia(index:number, isModal:boolean = true){
+    if(!isModal && !this.canNext(index)){
+      this.prevMedia(index);
+      return;
+    }
     if(this.canNext(index)){
       setTimeout(()=>{
         this.swiperComponent?.slideNext();
