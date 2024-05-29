@@ -103,8 +103,8 @@ export default class AudioPlayerComponent {
     this.prevMedia.emit(true);
   }
 
-  ForwardMore(){
-    this.nextMedia.emit(true);
+  ForwardMore(isModal: boolean = false){
+    this.nextMedia.emit(!isModal);
   }
 
 
