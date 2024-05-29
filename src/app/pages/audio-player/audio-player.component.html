@@ -194,7 +194,7 @@
 
       <span class="text-[16px] leading-[22px] font-bold text-center !text-[var(--dark-gray)] padSpan">No temas, siempre puedes volver a empezar. Te recomendamos hacer otra sesión.</span>
 
-      <button class="btn-green" (click)="!isLock && ForwardMore(true)">Ver Meditación</button>
+      <button class="btn-green" mat-dialog-close="true" (click)="!isLock && ForwardMore(true)">Ver Meditación</button>
     </div>
   }
 
