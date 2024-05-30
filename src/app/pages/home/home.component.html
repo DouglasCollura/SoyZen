@@ -114,13 +114,22 @@
       </swiper-container>
     </section>
 
+
     @for (item of sectionData().sections; track $index) {
       @if(item?.type==1){
-      <app-section-home [setSection]="item" />
+        @defer(on viewport){
+          <app-section-home [setSection]="item" />
+        }@placeholder (minimum 1s) {
+          <app-skeleton-section class="overflow-hidden" />
+        }
       }
       @if(item?.type==2){
-        <app-collaborators [setSection]="item" />
+        @defer(on viewport){
+          <app-collaborators [setSection]="item" />
+        }@placeholder (minimum 0.5s) {
+          <app-skeleton-section class="overflow-hidden" />
         }
+      }
       <!-- @if(item?.hasAds){
         <div class="section-ad">
           <div class="grid m-auto  max-w-[900px]">

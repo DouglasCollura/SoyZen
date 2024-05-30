@@ -180,7 +180,6 @@ export class SectionService {
   }
 
   setViewPost(idPost:number){
-
     const userId = localStorage.getItem('userId');
     if(!userId) return;
 
@@ -194,6 +193,27 @@ export class SectionService {
         this.#sectionData.update(value=> ({...value, loadingLike:false}))
       })
     )
+  }
+
+  getFeedback(idPost:any){
+    const userId = localStorage.getItem('userId');
+    if(!userId) return;
+    const response = this.http.get<any>(`${this.urlApi}/feedback/user/${userId}/post/${idPost}`).pipe(
+    );
+    return response;
+  }
+
+
+  setFeelPost(data:any){
+
+    const userId = localStorage.getItem('userId');
+    if(!userId) return;
+
+    this.http.post<any>(`${this.urlApi}/feedback-user-posts`,{
+      "post": {id:data.idPost},
+      "feedback":{id:data.feedback},
+      "user": {id:parseInt(userId)}
+    }).subscribe();
   }
 
   getSectionDetail(id:any){

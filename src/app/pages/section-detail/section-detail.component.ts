@@ -24,6 +24,7 @@ import { Post, PostMediaType } from '@interfaces/post';
 import { CardArticleComponent } from '@shared/components/card_article/card_article.component';
 import { ReelService } from '@services/reel.service';
 import { ReelComponent } from '@shared/components/reel/reel.component';
+import { SkeletonSectionComponent } from '@shared/components/skeleton_section/skeleton_section.component';
 
 @Component({
   selector: 'app-section-detail',
@@ -40,7 +41,8 @@ import { ReelComponent } from '@shared/components/reel/reel.component';
     FormsModule,
     CardComponent,
     CardArticleComponent,
-    ReelComponent
+    ReelComponent,
+    SkeletonSectionComponent
   ],
   templateUrl: './section-detail.component.html',
   styleUrls: ['./section-detail.component.scss', './section-detail-mobile.component.scss'],

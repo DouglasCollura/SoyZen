@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, TemplateRef, ViewChild, inject, signal } from '@angular/core';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { VgControlsModule } from '@videogular/ngx-videogular/controls';
@@ -31,6 +31,8 @@ export default class AudioPlayerComponent {
 
   @ViewChild('modalFeel') modalFeel!: TemplateRef<any>;
   @ViewChild('modalInfo') modalInfo!: TemplateRef<any>;
+  @ViewChild('modalFeelMeditation') modalFeelMeditation!: TemplateRef<any>;
+
   private sectionService = inject(SectionService);
 
   private vgPlayer:VgApiService | undefined;
@@ -47,6 +49,7 @@ export default class AudioPlayerComponent {
       this.isPlaying.update(e=> !e);
     }
   };
+  private ctrlModals:MatDialogRef<any> | null = null;
 
   @Input() set setItem(item:Post){
     this.post.set(item);
@@ -103,8 +106,8 @@ export default class AudioPlayerComponent {
     this.prevMedia.emit(true);
   }
 
-  ForwardMore(){
-    this.nextMedia.emit(true);
+  ForwardMore(isModal: boolean = false){
+    this.nextMedia.emit(!isModal);
   }
 
 
@@ -159,4 +162,29 @@ export default class AudioPlayerComponent {
   viewPost(){
     this.sectionService.setViewPost(this.post()!.id)?.subscribe()
   }
+
+  setFeedback(id:any){
+    this.feelSelect.set(id)
+    if(id == 5){
+      this.ctrlModals?.close();
+      this.dialog.open(this.modalFeelMeditation, {
+        width: '100%',
+        height: '100%',
+        maxHeight:'320px',
+        maxWidth:'505px',
+        panelClass: 'panel-feel'
+      });
+    }
+    this.sectionService.setFeelPost({idPost:this.post()?.id, feedback: id})
+  }
+
+  getFeedBack(){
+    this.sectionService.getFeedback(this.post()!.id)?.subscribe(
+      (data)=>{
+        console.log(data)
+        this.feelSelect.set(data.id);
+      }
+    )
+  }
+
  }

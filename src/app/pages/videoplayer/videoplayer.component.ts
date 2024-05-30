@@ -5,7 +5,7 @@ import {VgControlsModule} from '@videogular/ngx-videogular/controls';
 import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
 import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { environment } from '../../../environments/environment';
 import {MatBottomSheet, MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { Post } from '@interfaces/post';
@@ -30,11 +30,16 @@ import { SectionService } from '@services/section.service';
 })
 export default class VideoplayerComponent {
 
+  constructor(){
+  }
+
   private vgPlayer:VgApiService | undefined;
 
   @Input() urlPlayer:string = '';
   @Input() isLock:boolean = false;
   @ViewChild('modalFeel') modalFeel!: TemplateRef<any>;
+  @ViewChild('modalFeelMeditation') modalFeelMeditation!: TemplateRef<any>;
+
   @ViewChild('modalInfo') modalInfo!: TemplateRef<any>;
   @Input() set pause(pause:boolean){
     if(pause && this.isPlaying()){
@@ -44,6 +49,7 @@ export default class VideoplayerComponent {
   };
   @Input() set setItem(item:Post){
     this.post.set(item);
+    this.getFeedBack();
   };
   @Output() nextMedia = new EventEmitter<boolean>();
   @Output() prevMedia = new EventEmitter<boolean>();
@@ -55,6 +61,9 @@ export default class VideoplayerComponent {
   public feelSelect = signal<number | null>(null);
   public post = signal<Post | null>(null);
   private sectionService = inject(SectionService);
+
+  private ctrlModals:MatDialogRef<any> | null = null;
+
   public controlVideoPlayer = signal({
     isOver:false,
     hideTop:true,
@@ -125,7 +134,7 @@ export default class VideoplayerComponent {
   }
 
   openFeelModal(){
-    this.dialog.open(this.modalFeel, {
+    this.ctrlModals = this.dialog.open(this.modalFeel, {
       width: '100%',
       height: '100%',
       maxHeight:'320px',
@@ -138,8 +147,37 @@ export default class VideoplayerComponent {
     this._bottomSheet.open(this.modalInfo);
   }
 
+  setFeedback(id:any){
+    this.feelSelect.set(id)
+    if(id == 5){
+      this.ctrlModals?.close();
+      this.dialog.open(this.modalFeelMeditation, {
+        width: '100%',
+        height: '100%',
+        maxHeight:'320px',
+        maxWidth:'505px',
+        panelClass: 'panel-feel'
+      });
+    }
+    this.sectionService.setFeelPost({idPost:this.post()?.id, feedback: id})
+
+  }
+
 
   viewPost(){
     this.sectionService.setViewPost(this.post()!.id)?.subscribe()
+  }
+
+  getImg(url:string){
+    return `${this.urlMedia}${url}`;
+  }
+
+  getFeedBack(){
+    this.sectionService.getFeedback(this.post()!.id)?.subscribe(
+      (data)=>{
+        console.log(data)
+        this.feelSelect.set(data.id);
+      }
+    )
   }
 }

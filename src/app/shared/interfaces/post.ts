@@ -12,9 +12,20 @@ export interface Post {
   subcategory:  Category;
   postType:     PostType;
   tier:         Category;
+  feedbacks: Feedback[];
   user:         User;
   date:any;
   postDetail:   PostDetail;
+}
+
+
+export interface Feedback {
+  id:          number;
+  title:       string;
+  description: string;
+  image:       string;
+  created_at:  Date;
+  updated_at:  Date;
 }
 
 
