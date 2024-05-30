@@ -1,12 +1,5 @@
 @media (width < 400px) , (max-device-width: 400px) {
 
-  .opt-video{
-    display: none !important;
-  }
-
-  .opt-mobile{
-    display: grid !important;
-  }
 
   video {
 
@@ -14,9 +7,26 @@
     }
 
 }
+@media  (orientation: portrait) and (width < 400px) , (max-device-width: 400px) {
+
+  .opt-video{
+    display: none !important;
+  }
+
+  .opt-mobile{
+    display: grid !important;
+  }
+}
 
 
 @media (orientation: landscape) and (height < 450px) , (max-device-height: 450px) {
+  .opt-video{
+    display: flex !important;
+  }
+
+  .opt-mobile{
+    display: none !important;
+  }
   .content-control{
     display: flex !important;
   }
