@@ -24,6 +24,9 @@ export class AppComponent {
     const bellNotification = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/bell_notification.svg');
     const bellEmpty = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/bell_empty.svg');
     const settings = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/settings.svg');
+    const email = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/mail.svg');
+    const eye = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/eye-empty.svg');
+    const eyeoff = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/eye-off.svg');
     this.matIconRegistry.addSvgIcon('my-cancel', safeIconUrl);
     this.matIconRegistry.addSvgIcon('my-lock', lockIconUrl);
     this.matIconRegistry.addSvgIcon('my-facebook-white', facebookIconUrl);
@@ -34,6 +37,9 @@ export class AppComponent {
     this.matIconRegistry.addSvgIcon('my-bell-notification', bellNotification);
     this.matIconRegistry.addSvgIcon('my-bell-empty', bellEmpty);
     this.matIconRegistry.addSvgIcon('my-settings', settings);
+    this.matIconRegistry.addSvgIcon('my-email', email);
+    this.matIconRegistry.addSvgIcon('my-eye', eye);
+    this.matIconRegistry.addSvgIcon('my-eyeoff', eyeoff);
     this.width = window.screen.width;
 
     const role = localStorage.getItem('role');
