@@ -39,7 +39,7 @@
 
       <div class="flex items-center">
         <mat-icon class="material-symbols-rounded font-extralight ">remove_red_eye</mat-icon>
-        <span class="text-sm gray txtft" >265</span>
+        <span class="text-sm gray txtft" >{{post().countViews ? post().countViews : '0'}} </span>
       </div>
     </div>
 
@@ -133,6 +133,7 @@
 
       <swiper-slide *ngFor="let item of section()">
         <app-card-article
+        [setPost]="item"
           [isLock]="!subscribe"
           [title]="item.title"
           [url_img]="item.postDetail?.thumbnail"
