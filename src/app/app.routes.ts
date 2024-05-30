@@ -41,7 +41,6 @@ export const routes: Routes = [
   },
   {
     path:"premium",
-    canActivate:[unauthGuard],
     children:[
       {
         path:"",
