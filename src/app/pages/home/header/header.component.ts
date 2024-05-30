@@ -59,7 +59,7 @@ export default class HeaderComponent implements AfterViewInit {
 
 
   public roles = Roles;
-  public role = localStorage.getItem('role');
+  public role = signal<string | null>('');
   public listNotify: notifyItem[] = [
     {
       type: typeNotify.zen,
@@ -105,8 +105,8 @@ export default class HeaderComponent implements AfterViewInit {
   public listSearch = signal<null | [] | any>(null);
   public showSearch = signal<boolean>(false);
   public routeActual = signal<string>('');
-  public nombre = localStorage.getItem('name');
-  public email = localStorage.getItem('email');
+  public nombre = signal<string | null>('');
+  public email = signal<string | null>('');
 
   urlPlayer:string = '';
   url_img:string = '';
@@ -116,6 +116,9 @@ export default class HeaderComponent implements AfterViewInit {
   constructor(){
     this.notifications.set(this.listNotify);
     this.routeActual.set(this.router.url);
+    this.nombre.set(localStorage.getItem('name'));
+    this.email.set(localStorage.getItem('email'));
+    this.role.set( localStorage.getItem('role'));
 
     this.renderer.listen('window', 'click',(e:Event)=>{
       this.showSearch() && e.target !== this.inputSearch!.nativeElement && e.target!==this.menu!.nativeElement && this.showSearch.set(false);
@@ -212,8 +215,8 @@ export default class HeaderComponent implements AfterViewInit {
   isUnLock(item:any){
 
     return item.tier == Roles.GUEST ||
-          (item.tier == Roles.REGISTER && this.role != Roles.GUEST) ||
-            (item.tier == Roles.SUBSCRIBE && this.role == Roles.SUBSCRIBE);
+          (item.tier == Roles.REGISTER && this.role() != Roles.GUEST) ||
+            (item.tier == Roles.SUBSCRIBE && this.role() == Roles.SUBSCRIBE);
   }
   close(){
     this.dialog.closeAll()
