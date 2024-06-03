@@ -86,4 +86,39 @@
     margin-left: 2px;
     text-decoration: underline;
   }
+
+  .ftIcon{
+    font-size:24px !important;
+    width:24px !important;
+    height:24px !important;
+
+  }
+
+  .colorIcon{
+    color: var(--red) !important;
+  }
+  .input-error {
+  
+    color: var(--red);
+  }
+
+  .text-error{
+    padding-left: 14px;
+    display: flex;
+      justify-content: center;
+      align-items: center;
+      bottom: -28px;
+  }
+
+  .ft-text{
+    font-size: 10px;
+  }
+
+  .icon{
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    margin-right: 5px;
+  }
+  
 }

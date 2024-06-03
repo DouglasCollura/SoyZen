@@ -17,14 +17,23 @@
     <form class="form" [formGroup]="form" >
 
       <div class="form-group input-icon-right">
-        <input type="text" class="input" formControlName="email" placeholder="Email">
-        <mat-icon class="input-icon material-symbols-rounded" svgIcon="my-email" ></mat-icon>
+        <input type="text" class="input" [class.input-error]="getInputError('email')" formControlName="email" placeholder="Email">
+        <mat-icon class="input-icon material-symbols-rounded" [class.colorIcon]="getInputError('email')" svgIcon="my-email" ></mat-icon>
       </div>
 
       <div class="form-group input-icon-right">
-        <input type="{{ passwordVisible ? 'text' : 'password' }}" class="input" formControlName="password" placeholder="Contraseña">
-        <mat-icon (click)="togglePasswordVisibility()" class="input-icon material-symbols-rounded !w-[20px] !h-[20px] !text-[20px]" [svgIcon]="passwordVisible ? 'my-eyeoff' : 'my-eye'"></mat-icon>
+        <input type="{{ passwordVisible ? 'text' : 'password' }}" [class.input-error]="getInputError('password')"  class="input" formControlName="password" placeholder="Contraseña">
+        <mat-icon (click)="togglePasswordVisibility()" [class.colorIcon]="getInputError('password')" class="input-icon material-symbols-rounded ftIcon !w-[20px] !h-[20px] !text-[20px]" [svgIcon]="passwordVisible ? 'my-eyeoff' : 'my-eye'"></mat-icon>
+        <div>
 
+          @if(getTypeError('email', 'required') || getTypeError('password', 'required')){
+            <span class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Campo requerido.</span> </span>
+          }@else {
+            <!-- <span *ngIf="errorType() == 2" class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Contraseña inválida. Intenta nuevamente.</span> </span> -->
+            <span *ngIf="getTypeError('email', 'email') " class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Correo inválido. Intenta nuevamente.</span> </span>
+          }
+
+        </div>
       </div>
 
       <button class="btn-green" id="btn-signup"  > Crear cuenta </button>

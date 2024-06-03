@@ -6,12 +6,12 @@
   <div class="grid gap-4 justify-items-center max-w-[400px] mx-auto content-send">
     <img srcset="/assets/images/isotype.svg" alt="" />
 
-    <h1 class=" text-lx sm:text-3xl text-center font-medium title">
-      ¡Hemos creado tu programa especial de 21 días!
+    <h1 class=" text-lx sm:text-3xl text-center font-medium title separation">
+      ¡Embárcate en un viaje de transformación!
     </h1>
 
-    <h3 class="text-center font-semibold leading-[22px] second">
-      Deja tus datos, te lo enviaremos por correo electrónico.
+    <h3 class="text-center font-semibold leading-[22px] second separation">
+      Descubre herramientas y recursos para cultivar paz interior, mejorar salud mental y conectar con tu espiritualidad.
     </h3>
 
     <div class="form-group w-full  sm:w-11/12 input-icon-right">
@@ -19,9 +19,14 @@
       <mat-icon class="input-icon material-symbols-rounded" svgIcon="my-email" ></mat-icon>
     </div>
 
+    <div class="form-group w-full  sm:w-11/12 input-icon-right">
+      <input type="{{ passwordVisible ? 'text' : 'password' }}" class="input w-full" formControlName="password" placeholder="Contraseña">
+        <mat-icon (click)="togglePasswordVisibility()" class="input-icon material-symbols-rounded ftIcon !w-[20px] !h-[20px] !text-[20px]" [svgIcon]="passwordVisible ? 'my-eyeoff' : 'my-eye'"></mat-icon>
+    </div>
+
     <button class="btn-green" >Registrar email</button>
 
-    <h3 class="my-4 text-center text-[20px] leading-[34px] sm:text-[18px] sm:leading-[24.52px] txtt">¡También <b class="txtt base:text-[20px] base:leading-[34px] sm:text-[18px] sm:leading-[24.52px]">disfrutarás</b> de un <b class="txtt text-[20px] leading-[34px] sm:text-[18px] sm:leading-[24.52px]">acceso Freemium</b> a nuestro portal web!</h3>
+    <h3 class="my-4 text-center text-[20px] leading-[34px] sm:text-[18px] sm:leading-[24.52px] txtt"><b class="txtt text-[20px] leading-[34px] sm:text-[18px] sm:leading-[24.52px]">Conecta con personas afines</b> y obtén el apoyo necesario <b class="txtt text-[20px] leading-[34px] sm:text-[18px] sm:leading-[24.52px]">para tu bienestar.</b> </h3>
 
   </div>
 

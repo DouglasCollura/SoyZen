@@ -15,4 +15,10 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./sent_test_email.component.scss', './send_test_email-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class SentTestEmailComponent { }
+
+export default class SentTestEmailComponent {
+  passwordVisible = false;
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
+  }
+ }

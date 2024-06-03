@@ -34,4 +34,10 @@ export default class SignupComponent {
     this.passwordVisible = !this.passwordVisible;
   }
 
+  getTypeError(field: any, type: any) {
+    return this.form.get(field)?.invalid && this.form.get(field)?.touched && this.form.get(field)?.hasError(type)
+  }
+  getInputError(field: any){
+    return this.form.get(field)?.invalid && this.form.get(field)?.touched
+  }
 }
