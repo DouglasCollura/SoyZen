@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatIconModule } from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -22,12 +23,25 @@ import { RouterModule } from '@angular/router';
 export default class SignupComponent {
 
   private formBuilder = inject(FormBuilder);
+  private authService = inject(AuthService);
 
   passwordVisible = false;
   public form = this.formBuilder.group({
     email: [null, [Validators.required, Validators.email]],
     password: [null, Validators.required]
   });
+
+  signup(){
+    if (
+      this.form.invalid
+    ) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    this.authService.signup(this.form.value).subscribe()
+
+  }
 
 
   togglePasswordVisibility() {
