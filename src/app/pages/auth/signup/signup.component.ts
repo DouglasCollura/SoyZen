@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '@services/auth.service';
+import { tap } from 'rxjs';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-signup',
@@ -14,22 +16,34 @@ import { AuthService } from '@services/auth.service';
     MatIconModule,
     ReactiveFormsModule,
     MatDividerModule,
-    RouterModule
+    RouterModule,
+    MatSnackBarModule
   ],
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss', './signup-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class SignupComponent {
+export default class SignupComponent implements AfterViewInit{
 
   private formBuilder = inject(FormBuilder);
+  private router = inject(Router);
   private authService = inject(AuthService);
-
+  public errMessage = signal<string | null>(null);
+  private _snackBar = inject(MatSnackBar);
+  public authData = this.authService.authData;
   passwordVisible = false;
   public form = this.formBuilder.group({
     email: [null, [Validators.required, Validators.email]],
     password: [null, Validators.required]
   });
+
+  ngAfterViewInit(){
+    this.form.valueChanges.pipe(
+      tap(()=>{
+        this.errMessage() && this.errMessage.set(null)
+      })
+    ).subscribe()
+  }
 
   signup(){
     if (
@@ -39,7 +53,22 @@ export default class SignupComponent {
       return;
     }
 
-    this.authService.signup(this.form.value).subscribe()
+    this.authService.signup(this.form.value).subscribe(
+      {
+        next:(value) => {
+          this._snackBar.open('Has sido registrado exitosamente.', '', {
+            duration:2000,
+            horizontalPosition: 'left',
+            verticalPosition: 'bottom',
+          });
+          this.router.navigate(['/auth/login']);
+        },
+        error:(err) => {
+          this.errMessage.set(err.error.message);
+          this.authService.finalLoading()
+        },
+      }
+    )
 
   }
 

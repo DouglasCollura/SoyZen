@@ -85,7 +85,11 @@ export class AuthService {
       value=> ({...value, loading:true})
     );
     data = {...data, name:''}
-    return this.http.post<UserAuth>(`${this.urlApi}/users`, data)
+    return this.http.post<UserAuth>(`${this.urlApi}/users`, data).pipe(tap(()=>{
+      this.#authData.update(
+        value=> ({...value, loading:false})
+      );
+    }))
     // .pipe(
     //   tap((data: UserAuth)=>{
     //     this.#authData.update(

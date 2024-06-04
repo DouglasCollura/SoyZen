@@ -33,10 +33,12 @@
             <span *ngIf="getTypeError('email', 'email') " class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Correo inválido. Intenta nuevamente.</span> </span>
           }
 
+          <span *ngIf="errMessage()" class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  {{errMessage(  )}} </span> </span>
+
         </div>
       </div>
 
-      <button class="btn-green" id="btn-signup" (click)="signup()"  > Crear cuenta </button>
+      <button class="btn-green" id="btn-signup" (click)="signup()"  > Crear cuenta <mat-icon *ngIf="authData().loading" class="material-symbols-rounded animate-spin" >progress_activity</mat-icon> </button>
       <!-- routerLink="/auth/account-success"  -->
 
     </form>
