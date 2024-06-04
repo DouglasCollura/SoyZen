@@ -64,7 +64,7 @@ export default class SignupComponent implements AfterViewInit{
           this.router.navigate(['/auth/login']);
         },
         error:(err) => {
-          this.errMessage.set(err.error.message);
+          err?.error?.message ? this.errMessage.set(err?.error?.message) : this.errMessage.set('ha ocurrido un error');
           this.authService.finalLoading()
         },
       }

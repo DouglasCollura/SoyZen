@@ -35,6 +35,7 @@
             @if(getTypeError('email', 'required') || getTypeError('password', 'required')){
               <span class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Campo requerido.</span> </span>
             }@else {
+              <span *ngIf="errorType() == 1" class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Ha ocurrido un error.</span> </span>
               <span *ngIf="errorType() == 2" class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Contraseña inválida. Intenta nuevamente.</span> </span>
               <span *ngIf="getTypeError('email', 'email') || errorType() == 1" class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Correo inválido. Intenta nuevamente.</span> </span>
             }

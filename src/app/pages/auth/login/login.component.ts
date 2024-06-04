@@ -82,10 +82,16 @@ export default class LoginComponent implements AfterViewInit {
 
         },
         error:({error})=>{
+          this.authService.finalLoading()
+
+          if(!error?.message){
+            this.errorType.set(1);
+            return;
+          }
+
           (error.message == 'Invalid email' || error.message == "User not found") && this.errorType.set(1);
           error.message == "Invalid credentials" && this.errorType.set(2);
           console.log(error)
-          this.authService.finalLoading()
 
         },
         complete:()=>{

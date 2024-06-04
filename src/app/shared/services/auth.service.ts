@@ -66,13 +66,13 @@ export class AuthService {
         this.#authData.update(
           value=> ({ ...value ,userAuth: data , loading:false, role: data.tier.name})
         );
-        if(data.tier.name!='guest'){
+        if(data?.tier?.name!='guest'){
           localStorage.setItem('token', data.token);
         }
 
         localStorage.setItem('name', data.name);
         localStorage.setItem('email', data.email);
-        localStorage.setItem('role', data.tier.name)
+        localStorage.setItem('role', data?.tier?.name)
         localStorage.setItem('userId', data.id.toString())
        })
     )
