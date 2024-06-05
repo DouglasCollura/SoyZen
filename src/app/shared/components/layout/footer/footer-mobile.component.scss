@@ -1,5 +1,6 @@
-@media (width < 600px) {
+@media (width < 600px) , (max-device-width: 600px) {
   .temp-footer{
+    background-image: url('/assets/images/bg_footer_mobile.svg') !important;
     padding: 30px 20px;
     padding-top: 50px !important;
   }

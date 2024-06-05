@@ -1,3 +1,9 @@
-@media (width < 500px)  , (max-device-width: 500px){
+@media (width < 600px)  , (max-device-width: 600px){
+  .section-info-init{
+    grid-template-columns: auto !important;
 
+    .img{
+      display: none !important;
+    }
+  }
 }

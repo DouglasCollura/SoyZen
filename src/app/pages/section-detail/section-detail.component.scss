@@ -83,13 +83,18 @@
   background-position: center;
   min-height: 300px;
   display: grid;
-  gap: 15px;
   align-content: center;
   text-align: center;
 }
 
 .text-magistral{
-  font-family: "Magistral Honesty";
+  font-family: "Magistral Honesty" !important;
+  *{
+    font-family: "Magistral Honesty" !important;
+  }
+  span{
+    font-family: "Magistral Honesty" !important;
+  }
 }
 
 .section-program{

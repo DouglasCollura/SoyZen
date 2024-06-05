@@ -1,5 +1,5 @@
 <div class="temp-yoga ">
-  <div class="grid p-0 ">
+    <div class="grid p-0 ">
     <button class="btn" routerLink="/home">
       <mat-icon
         class="material-symbols-rounded font-extralight !w-[40px] !h-[40px] text-[40px]"
@@ -108,7 +108,7 @@
          <app-skeleton-section class="overflow-hidden" />
         }
       } @else if (item.type == sectionDetailType.TEXT) {
-      <div class="section-text" [innerHTML]="transform(item.content!)"></div>
+      <div class="section-text text-magistral" [innerHTML]="transform(item.content!)"></div>
       }@else {
       <div class="section-info-init">
         <div class="info" [innerHTML]="transform(item.content!)"></div>
