@@ -21,6 +21,7 @@ export interface Section {
   id:           number;
   name:         string;
   title:        null | string;
+  color:        null | string;
   subtitle:     null;
   background:   null | string;
   content:      null | string;

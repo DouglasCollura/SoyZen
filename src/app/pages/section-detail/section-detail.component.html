@@ -88,7 +88,7 @@
           <mat-chip-listbox>
             @for (filter_option of sectionData().subcategoriesDetail; track $index) {
             <mat-chip-row  [class.selected]="subcategorySelect() == filter_option.id" (click)="selectSubCategory(filter_option.id)" *ngIf="!subcategorySelect() || subcategorySelect() == filter_option.id">
-              {{ filter_option.name }}
+              {{ filter_option?.name }}
               @if(subcategorySelect() == filter_option.id && filter_option.id != null){
                 <mat-icon matChipRemove class="material-symbols-rounded font-extralight closeWhite" (click)="removeFilter()">close</mat-icon>
               }
@@ -134,15 +134,15 @@
           />
           <app-card-article
           isList="true"
-          *ngIf="item.postType.name==='blog' "
-          [category]="item.category.name!"
+          *ngIf="item.postType?.name==='blog' "
+          [category]="item.category ? item.category.name! : '' "
           [idPost]="item.id"
           [time]="item.duration!"
           [title]="item.title!"
           [isLock]="!isUnLock(item)"
           [url_img]="item.postDetail!.thumbnail"
           [user]="item.user!"
-          [type]="item.postType.name!"
+          [type]="item.postType ? item.postType.name! : '' "
         />
       }
       </div>

@@ -20,7 +20,9 @@
   height: 100%;
   z-index: -1;
 }
-
+.bg-fill{
+  object-fit: fill;
+}
 .btn-seemore{
   color:#686D76;
 }
