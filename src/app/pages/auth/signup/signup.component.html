@@ -30,7 +30,20 @@
             <span class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Campo requerido.</span> </span>
           }@else {
             <!-- <span *ngIf="errorType() == 2" class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Contraseña inválida. Intenta nuevamente.</span> </span> -->
-            <span *ngIf="getTypeError('email', 'email') " class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Correo inválido. Intenta nuevamente.</span> </span>
+            @if(getTypeError('email', 'email')){
+              <span class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Correo inválido. Intenta nuevamente.</span> </span>
+            }
+
+            @else if(getTypeError('password', 'pattern')){
+              <span class="text-error ft-text">
+                La contraseña debe contener al menos una mayúscula, una minúscula y un número.
+              </span>
+            }@else if(getTypeError('password', 'minlength')){
+              <span class="text-error ft-text">
+                La contraseña debe tener minimo 8 caracteres.
+              </span>
+            }
+
           }
 
           <span *ngIf="errMessage()" class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  {{errMessage(  )}} </span> </span>

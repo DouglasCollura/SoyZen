@@ -34,7 +34,7 @@ export default class SignupComponent implements AfterViewInit{
   passwordVisible = false;
   public form = this.formBuilder.group({
     email: [null, [Validators.required, Validators.email]],
-    password: [null, Validators.required]
+    password: [null, [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).+$'), Validators.minLength(8)]]
   });
 
   ngAfterViewInit(){
