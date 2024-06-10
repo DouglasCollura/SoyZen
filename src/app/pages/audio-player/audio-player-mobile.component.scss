@@ -35,6 +35,9 @@
 .gap-8{
   gap: 1rem;
 }
+.padSpan{
+  padding: 0;
+}
 }
 
 @media (orientation: landscape) and (height < 450px) , (max-device-height: 450px){
