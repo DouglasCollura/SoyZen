@@ -163,9 +163,9 @@ export default class AudioPlayerComponent {
     this.sectionService.setViewPost(this.post()!.id)?.subscribe()
   }
 
-  setFeedback(id:any){
+  setFeedback(id:any,name:any){
     this.feelSelect.set(id)
-    if(id == 5){
+    if(name == 'Sin ánimo'){
       this.ctrlModals?.close();
       this.dialog.open(this.modalFeelMeditation, {
         width: '100%',

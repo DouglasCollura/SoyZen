@@ -162,7 +162,7 @@
     <div class="flex justify-around pb-[50px] content-flex-feel">
 
       @for (item of post()?.feedbacks; track $index) {
-        <button class="grid justify-items-center p-[5px]" [class.feel-select]="feelSelect() == item.id" (click)="setFeedback(item.id)">
+        <button class="grid justify-items-center p-[5px]" [class.feel-select]="feelSelect() == item.id" mat-dialog-close="true"  (click)="setFeedback(item.id,item.title)">
           <img [src]="getImg(item.image)" alt="">
           <span class="text-[12px] leading-[16.34px] font-normal" > {{item.title}} </span>
         </button>

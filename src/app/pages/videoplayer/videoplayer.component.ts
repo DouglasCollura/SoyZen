@@ -147,9 +147,9 @@ export default class VideoplayerComponent {
     this._bottomSheet.open(this.modalInfo);
   }
 
-  setFeedback(id:any){
+  setFeedback(id:any,name:any){
     this.feelSelect.set(id)
-    if(id == 5){
+    if(name == 'Sin ánimo'){
       this.ctrlModals?.close();
       this.dialog.open(this.modalFeelMeditation, {
         width: '100%',
@@ -160,7 +160,6 @@ export default class VideoplayerComponent {
       });
     }
     this.sectionService.setFeelPost({idPost:this.post()?.id, feedback: id})
-
   }
 
 
