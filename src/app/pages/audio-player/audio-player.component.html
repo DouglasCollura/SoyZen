@@ -164,7 +164,7 @@
       @for (item of post()?.feedbacks; track $index) {
         <button class="grid justify-items-center p-[5px]" [class.feel-select]="feelSelect() == item.id" (click)="setFeedback(item.id)">
           <img [src]="getImg(item.image)" alt="">
-          <span class="text-[12px] leading-[16.34px] font-normal" > {{item.description}} </span>
+          <span class="text-[12px] leading-[16.34px] font-normal" > {{item.title}} </span>
         </button>
       }
 <!--
