@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, TemplateRef, ViewChild, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, Output, TemplateRef, ViewChild, inject, signal } from '@angular/core';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
@@ -27,7 +27,7 @@ import { SectionService } from '@services/section.service';
   styleUrls: ['./audio-player.component.scss', './audio-player-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class AudioPlayerComponent {
+export default class AudioPlayerComponent  {
 
   @ViewChild('modalFeel') modalFeel!: TemplateRef<any>;
   @ViewChild('modalInfo') modalInfo!: TemplateRef<any>;
@@ -44,6 +44,7 @@ export default class AudioPlayerComponent {
   @Input() category!:string | null;
   @Input() isLock:boolean = false;
   @Input() set pause(pause:boolean){
+    this.feelSelect.set(null)
     if(pause && this.isPlaying()){
       this.vgPlayer?.pause();
       this.isPlaying.update(e=> !e);
@@ -58,6 +59,7 @@ export default class AudioPlayerComponent {
   @Output() prevMedia = new EventEmitter<boolean>();
   private  _bottomSheet = inject(MatBottomSheet);
   public post = signal<Post | null>(null);
+  private modalFeelCtrl:any;
 
   public urlMedia = environment.urlMedia;
   public controlVideoPlayer = signal({
@@ -145,13 +147,13 @@ export default class AudioPlayerComponent {
   }
 
   openFeelModal(){
-    this.dialog.open(this.modalFeel, {
+    this.modalFeelCtrl = this.dialog.open(this.modalFeel, {
       width: '100%',
       height: '100%',
       maxHeight:'320px',
       maxWidth:'505px',
       panelClass: 'panel-feel'
-    });
+    })
   }
 
   closeSheet(): void {

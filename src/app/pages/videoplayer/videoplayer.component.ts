@@ -42,6 +42,7 @@ export default class VideoplayerComponent {
 
   @ViewChild('modalInfo') modalInfo!: TemplateRef<any>;
   @Input() set pause(pause:boolean){
+    this.feelSelect.set(null)
     if(pause && this.isPlaying()){
       this.vgPlayer?.pause();
       this.isPlaying.update(e=> !e);
