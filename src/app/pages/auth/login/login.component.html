@@ -21,23 +21,37 @@
       <form class="form" [formGroup]="form" >
 
         <div class="form-group input-icon-right">
-          <input type="text" class="input" [class.input-error]="getInputError('email')" formControlName="email" placeholder="Email">
-          <mat-icon class="input-icon material-symbols-rounded" svgIcon="my-email" [class.colorIcon]="getInputError('email')" ></mat-icon>
+          <input type="text" class="input" [class.input-error]="getInputError('email') || errorType() == 1" formControlName="email" placeholder="Email">
+          <mat-icon class="input-icon material-symbols-rounded" svgIcon="my-email" [class.colorIcon]="getInputError('email') ||  errorType() == 1" ></mat-icon>
 
 
         </div>
 
         <div class="form-group input-icon-right">
-          <input type="{{ passwordVisible ? 'text' : 'password' }}" class="input"  [class.input-error]="getInputError('password')" formControlName="password" placeholder="Contraseña">
-          <mat-icon (click)="togglePasswordVisibility()" class="input-icon material-symbols-rounded !w-[20px] !h-[20px] !text-[20px]" [svgIcon]="passwordVisible ? 'my-eyeoff' : 'my-eye'" [class.colorIcon]="getInputError('password')" ></mat-icon>
+          <input type="{{ passwordVisible ? 'text' : 'password' }}" class="input"  [class.input-error]="getInputError('password') || errorType() == 2" formControlName="password" placeholder="Contraseña">
+          <mat-icon (click)="togglePasswordVisibility()" class="input-icon material-symbols-rounded !w-[20px] !h-[20px] !text-[20px]" [svgIcon]="passwordVisible ? 'my-eyeoff' : 'my-eye'" [class.colorIcon]="getInputError('password') || errorType() == 2" ></mat-icon>
           <div>
 
-            @if(getTypeError('email', 'required') || getTypeError('password', 'required')){
+            <!-- @if(getTypeError('email', 'required') || getTypeError('password', 'required')){
               <span class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Campo requerido.</span> </span>
             }@else {
               <span *ngIf="errorType() == 1" class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Ha ocurrido un error.</span> </span>
               <span *ngIf="errorType() == 2" class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Contraseña inválida. Intenta nuevamente.</span> </span>
               <span *ngIf="getTypeError('email', 'email') || errorType() == 1" class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Correo inválido. Intenta nuevamente.</span> </span>
+            } -->
+
+
+            @if(getTypeError('email', 'required') || getTypeError('password', 'required')){
+              <span class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Campo requerido.</span> </span>
+            }@else {
+              <!-- <span *ngIf="errorType() == 2" class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Contraseña inválida. Intenta nuevamente.</span> </span> -->
+              @if(errorType() == 1){
+                <span class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Correo inválido. Intenta nuevamente.</span> </span>
+              }@else if(errorType() == 2){
+                <span  class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Contraseña inválida. Intenta nuevamente.</span> </span>
+              }@else if(getTypeError('email', 'email') || errorType() == 1){
+                <span  class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Correo inválido. Intenta nuevamente.</span> </span>
+              }
             }
 
           </div>

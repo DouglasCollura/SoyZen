@@ -34,7 +34,8 @@ export default class SignupComponent implements AfterViewInit{
   passwordVisible = false;
   public form = this.formBuilder.group({
     email: [null, [Validators.required, Validators.email]],
-    password: [null, [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).+$'), Validators.minLength(8)]]
+    password: [null, [Validators.required,  Validators.minLength(6)]]
+    // Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).+$'),
   });
 
   ngAfterViewInit(){
@@ -72,7 +73,12 @@ export default class SignupComponent implements AfterViewInit{
 
   }
 
-
+  limitPasswordInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.value.length > 10) {
+      input.value = input.value.substring(0, 10);
+    }
+  }
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
   }

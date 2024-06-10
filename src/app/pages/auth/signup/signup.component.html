@@ -22,7 +22,7 @@
       </div>
 
       <div class="form-group input-icon-right">
-        <input type="{{ passwordVisible ? 'text' : 'password' }}" [class.input-error]="getInputError('password')"  class="input" formControlName="password" placeholder="Contraseña">
+        <input type="{{ passwordVisible ? 'text' : 'password' }}" [class.input-error]="getInputError('password')"  class="input" formControlName="password" (input)="limitPasswordInput($event)" placeholder="Contraseña">
         <mat-icon (click)="togglePasswordVisibility()" [class.colorIcon]="getInputError('password')" class="input-icon material-symbols-rounded ftIcon !w-[20px] !h-[20px] !text-[20px]" [svgIcon]="passwordVisible ? 'my-eyeoff' : 'my-eye'"></mat-icon>
         <div>
 
@@ -31,18 +31,23 @@
           }@else {
             <!-- <span *ngIf="errorType() == 2" class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Contraseña inválida. Intenta nuevamente.</span> </span> -->
             @if(getTypeError('email', 'email')){
-              <span class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Correo inválido. Intenta nuevamente.</span> </span>
-            }
-
-            @else if(getTypeError('password', 'pattern')){
+              <span class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Formato inválido. Intenta nuevamente.</span> </span>
+            }@else if(getTypeError('password', 'maxlength')){
               <span class="text-error ft-text">
-                La contraseña debe contener al menos una mayúscula, una minúscula y un número.
+                La contraseña debe ser maximo 10 caracteres.
               </span>
             }@else if(getTypeError('password', 'minlength')){
               <span class="text-error ft-text">
-                La contraseña debe tener minimo 8 caracteres.
+                La contraseña debe ser mínimo 6 caracteres.
               </span>
             }
+
+
+            <!-- @else if(getTypeError('password', 'pattern')){
+              <span class="text-error ft-text">
+                La contraseña debe contener al menos una mayúscula, una minúscula y un número.
+              </span>
+            } -->
 
           }
 
