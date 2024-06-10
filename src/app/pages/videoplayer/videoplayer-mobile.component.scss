@@ -5,6 +5,18 @@
 
     z-index: 1;
     }
+    .desktoponly{
+      margin-left: 0 !important;
+    }
+
+}
+@media (width < 600px) , (max-device-width: 600px) {
+
+
+
+    .desktoponly{
+      margin-left: 0 !important;
+    }
 
 }
 @media  (orientation: portrait) and (width < 400px) , (max-device-width: 400px) {
@@ -15,6 +27,9 @@
 
   .opt-mobile{
     display: grid !important;
+  }
+  .desktoponly{
+    margin-left: 0 !important;
   }
 }
 
@@ -42,7 +57,7 @@
 
   }
   .desktoponly{
-    margin-left: inherit;
+    margin-left: 0 !important;
   }
 
   .padSpan{

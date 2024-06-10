@@ -38,6 +38,9 @@
 .padSpan{
   padding: 0;
 }
+.desktoponly{
+  margin-left: inherit;
+}
 }
 
 @media (orientation: landscape) and (height < 450px) , (max-device-height: 450px){
@@ -54,6 +57,9 @@
 
   .close{
     padding: 0px !important;
+  }
+  .desktoponly{
+    margin-left: inherit;
   }
 }
 
