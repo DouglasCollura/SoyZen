@@ -1,6 +1,7 @@
 @media (width < 500px) , (max-device-width: 500px) {
 
   .temp-create-account-success {
+    gap: 30px;
     .header{
       padding: 15px 10px;
       img{
@@ -23,8 +24,8 @@
 
     .top {
       justify-self: start;
-      padding: 15px;
-      padding-top: 50px;
+      padding: 25px 15px 15px;
+      // padding-top: 50px;
       gap: 5px !important;
       // #title{
       //   font-size: 24px !important;
@@ -32,7 +33,7 @@
     }
 
     .info{
-      gap: 40px;
+      // gap: 40px;
     }
   }
 .text-3xl{
