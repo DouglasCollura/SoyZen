@@ -608,6 +608,44 @@ text-align: left;
 
   }
 
+  .parrafoLargewhite{
+    font-family: "Magistral Honesty" !important;
+    color: #ffffff;
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+text-align: justify;
+
+  }
+  .parrafoTitleLargewhite{
+    font-family: "Magistral Honesty" !important;
+    color: #ffffff; 
+font-size: 38px;
+font-weight: 400;
+line-height: 43.93px;
+text-align: left;
+
+  }
+
+  .parrafoLargeblack{
+    font-family: "Magistral Honesty" !important;
+    color: #373A40;
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+text-align: justify;
+
+  }
+  .parrafoTitleLargeblack{
+    font-family: "Magistral Honesty" !important;
+    color: #373A40; 
+font-size: 38px;
+font-weight: 400;
+line-height: 43.93px;
+text-align: left;
+
+  }
+
   .info h1,h2,h3,h4{
     text-align: justify;
   }
@@ -651,4 +689,38 @@ line-height: 42px;
 text-align: left;
 
     }
+
+    .parrafoLargeblack{
+      color: #373A40;
+       font-size: 16px;
+       font-weight: 400;
+       line-height: 22px;
+       text-align: justify;
+ 
+     }
+     .parrafoTitleLargeblack{
+       color: #373A40;
+ font-size: 32px;
+ font-weight: 400;
+ line-height: 42px;
+ text-align: left;
+ 
+     }
+
+     .parrafoLargewhite{
+      color: #fff;
+       font-size: 16px;
+       font-weight: 400;
+       line-height: 22px;
+       text-align: justify;
+ 
+     }
+     .parrafoTitleLargewhite{
+       color: #fff;
+ font-size: 32px;
+ font-weight: 400;
+ line-height: 42px;
+ text-align: left;
+ 
+     }
   }
