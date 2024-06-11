@@ -54,7 +54,7 @@ export class SectionDetailSwiperComponent {
   }
 
   getImg(){
-    return this.section()?.background ?  `${this.urlMedia}${this.section()?.background}` : '/assets/images/bg_yoga.webp'
+    return this.section()?.background ?  `${this.urlMedia}${this.section()?.background}` : ''
   }
 
   getImg2(url:string){

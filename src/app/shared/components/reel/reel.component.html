@@ -7,29 +7,32 @@
     class="overflow-auto"
   >
     <swiper-slide *ngFor="let item of reelDataService().sectionPost; let i = index" >
-        @if(item.postType.name == postType.video){
-          <app-videoplayer
-            [isLock]="isLock(item)"
-            [urlPlayer]="item.postDetail.videoUrl!"
-            [pause]="controlPause()[i].pause"
-            (nextMedia)="nexMedia(i, $event)"
-            (prevMedia)="prevMedia(i)"
-            [setItem]="item"
-          />
-        }
-        @if(item.postType.name == postType.audio){
-          <app-audio-player
-            [setItem]="item"
-            [isLock]="isLock(item)"
-            [urlPlayer]="item.postDetail.audioUrl!"
-            [pause]="controlPause()[i].pause"
-            [url_img]="item.postDetail.thumbnail!"
-            [title]="item.title!"
-            [category]="item.category.name!"
-            (nextMedia)="nexMedia(i)"
-            (prevMedia)="prevMedia(i)"
-          />
-        }
+
+      @if(item.postType.name == postType.video){
+        <app-videoplayer
+          [isLock]="isLock(item)"
+          [urlPlayer]="item.postDetail.videoUrl!"
+          [pause]="controlPause()[i].pause"
+          (nextMedia)="nexMedia(i, $event)"
+          (prevMedia)="prevMedia(i)"
+          [setItem]="item"
+        />
+      }
+      @if(item.postType.name == postType.audio){
+        <app-audio-player
+          [setItem]="item"
+          [isLock]="isLock(item)"
+          [urlPlayer]="item.postDetail.audioUrl!"
+          [pause]="controlPause()[i].pause"
+          [url_img]="item.postDetail.thumbnail!"
+          [title]="item.title!"
+          [category]="item.category.name!"
+          (nextMedia)="nexMedia(i)"
+          (prevMedia)="prevMedia(i)"
+        />
+      }
+
     </swiper-slide>
+
   </swiper-container>
 </div>

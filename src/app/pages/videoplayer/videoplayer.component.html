@@ -36,7 +36,7 @@
         <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
       </div>
       <div class="content-control">
-        <div class="flex w-full items-center justify-center gap-7 h-[50px] btns-controls desktoponly">
+        <div class="flex w-full items-center justify-center gap-3 md:gap-7  h-[50px] btns-controls desktoponly">
 
           <button  (click)="!isLock && ReplayMore()">
             <mat-icon class="material-symbols-rounded font-thin !h-[55px] !w-[55px] !text-[55px]">skip_previous</mat-icon>
@@ -112,7 +112,7 @@
 
       <span class="text-[20px] font-bold leading-[27.24px] text-center !text-[var(--dark-gray)]" >¿Cómo te sentiste?</span>
 
-      <div class="flex justify-around pb-[50px] content-flex-feel">
+      <div class="flex justify-around pb-[50px] pt-[15px] content-flex-feel">
         @for (item of post()?.feedbacks; track $index) {
           <button class="grid justify-items-center p-[5px]" mat-dialog-close="true" [class.feel-select]="feelSelect() == item.id" (click)="setFeedback(item.id,item.title)">
             <img [src]="getImg(item.image)" alt="">
