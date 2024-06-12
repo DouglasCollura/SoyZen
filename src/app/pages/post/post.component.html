@@ -39,7 +39,7 @@
 
       <div class="flex items-center">
         <mat-icon class="material-symbols-rounded font-extralight ">remove_red_eye</mat-icon>
-        <span class="text-sm gray txtft" >{{post().countViews ? post().countViews : '0'}} </span>
+        <span class="text-sm gray txtft" >{{post()?.countViews ? post()?.countViews : '0'}} </span>
       </div>
     </div>
 
@@ -50,7 +50,7 @@
             #myMedia
             id="myMedia"
             preload="auto"
-            
+
           >
           <source *ngIf="post()?.postDetail?.audioUrl" [src]="getImg2(post()?.postDetail?.audioUrl)" />
         </audio>

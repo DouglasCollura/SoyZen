@@ -73,6 +73,8 @@ export default class PostComponent  implements OnInit{
 
       this.post.set(data);
       console.log(this.post())
+      this.viewPost()
+
     })
   }
   loadSection(id:any){
@@ -119,6 +121,11 @@ export default class PostComponent  implements OnInit{
     return item.tier?.name == Roles.GUEST ||
           (item.tier?.name == Roles.REGISTER && this.role != Roles.GUEST) ||
             (item.tier?.name == Roles.SUBSCRIBE && this.role == Roles.SUBSCRIBE);
+  }
+
+
+  viewPost(){
+    this.sectionService.setViewPost(this.post()!.id)?.subscribe()
   }
 
 
