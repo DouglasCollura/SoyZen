@@ -27,7 +27,9 @@
 }
 @media (width < 600px) , (max-device-width: 600px) {
 
-
+    .btn-modal-feel{
+      padding: 10px 30px !important;
+    }
 
     .desktoponly{
       margin-left: 0 !important;

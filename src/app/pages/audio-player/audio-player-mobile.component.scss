@@ -1,5 +1,9 @@
 @media (width < 600px) , (max-device-width: 600px) {
 
+  .btn-modal-feel{
+    padding: 10px 30px !important;
+  }
+
   .temp-audioplayer{
     ::ng-deep{
 
