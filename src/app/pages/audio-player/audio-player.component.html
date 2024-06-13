@@ -159,7 +159,7 @@
     <span class="text-[20px] font-bold leading-[27.24px] text-center !text-[var(--dark-gray)]" >¿Cómo te sentiste?</span>
 
 
-    <div class="flex justify-around pb-[50px] content-flex-feel">
+    <div class="flex justify-around pb-[50px] pt-[15px] content-flex-feel">
 
       @for (item of post()?.feedbacks; track $index) {
         <button class="grid justify-items-center p-[5px]" [class.feel-select]="feelSelect() == item.id" mat-dialog-close="true"  (click)="setFeedback(item.id,item.title)">
@@ -199,7 +199,7 @@
       <span class="text-[16px] leading-[21.79px] font-semibold !text-[#686D76]" >Sin ánimos</span>
     </button>
 
-    <span class="text-[16px] leading-[22px] font-bold text-center !text-[var(--dark-gray)] padSpan">No temas, siempre puedes volver a empezar. Te recomendamos hacer otra sesión.</span>
+    <span class="text-[16px] leading-[22px] font-bold text-center !text-[var(--dark-gray)] padSpan">No temas pajuo, siempre puedes volver a empezar. Te recomendamos hacer otra sesión.</span>
 
     <button class="btn-green btn-modal-feel"  mat-dialog-close="true" (click)="!isLock && ForwardMore(true)">Ver Meditación</button>
   </div>
