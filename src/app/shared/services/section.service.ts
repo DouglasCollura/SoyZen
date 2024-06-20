@@ -22,6 +22,9 @@ export interface SectionServiceData {
   page:number | null;
   postsDetail: Post[];
   pageDetail:number | null;
+  nameSection: string | null;
+  iconSection: string | null;
+  colorSection: string | null;
 }
 
 
@@ -53,7 +56,10 @@ export class SectionService {
     postsDetail: [],
     pageDetail: null,
     posts: [],
-    page: null
+    page: null,
+    nameSection:'',
+    iconSection:'',
+    colorSection:''
   });
 
   public sectionData = computed(() => this.#sectionData());
@@ -220,7 +226,7 @@ export class SectionService {
     this.http.get<SectionDetail>(`${this.urlApi}/page-category/category/${id}`).subscribe(
       (data)=>{
         console.log('section ', data);
-        this.#sectionData.update(value=> ({...value, sectionDetail:data}))
+        this.#sectionData.update(value=> ({...value, sectionDetail:data, nameSection:data.name, colorSection: data.color, iconSection:data.icon}))
       }
     );
   }
@@ -228,6 +234,8 @@ export class SectionService {
   getPostDetail(id:any){
     this.http.get<any>(`${this.urlApi}/posts/subcategory/${id}?page=${this.#sectionData().pageDetail ?? 1}&perPage=10`).pipe(
       tap((value)=>{
+        console.log('section ', value);
+
         !this.#sectionData().pageDetail && this.#sectionData.update(data=> ({...data,pageDetail: 1}))
             let filter = value.content;
             // filter = filter.flat()

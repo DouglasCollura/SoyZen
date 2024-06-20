@@ -36,7 +36,6 @@ export class SectionDetailSwiperComponent {
 
   @Input({required: true}) set setSection(section:Section){
     this.section.set(section);
-    console.log('color', section.name)
   };
 
   // @Input({required: true}) set setTitleSection(titleSection:String){

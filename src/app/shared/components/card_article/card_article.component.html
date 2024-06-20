@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <div class="avatar-info">
+  <div class="avatar-info" *ngIf="!isList">
     <div class="avatar">
       <img [src]=" getImg(user?.image) " alt="">
     </div>
