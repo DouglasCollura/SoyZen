@@ -119,6 +119,10 @@ export default class SectionDetailComponent implements AfterViewInit {
     return `${this.urlMedia}${url}`;
   }
 
+  getBgByUrl(url:string | null){
+    return `url(${this.urlMedia}${url})`;
+  }
+
 
   searchInvestigator(data:any) {
     if(data == ''){
