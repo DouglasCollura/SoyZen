@@ -36,7 +36,7 @@
     <div class="grid mt-2">
       <p *ngIf="post()!.postType.name == postTypes.ads" style="color:rgba(104, 109, 118, 1);font-size:12px;line-height: 16.34px;">Publicidad</p>
       <ng-container *ngIf="post()!.postType.name != postTypes.ads">
-        <h4 class="!font-semibold !text-[16px] !leading-[22px] mb3p" [ngClass]="textColor=='#373A40' ? 'colortitlegray' : 'colorwhite' " >{{ post()!.user.name ?  post()!.user.name : ""}}</h4>
+        <h4 class="!font-semibold !text-[16px] !leading-[22px] mb3p" [ngClass]="textColor=='#373A40' || textColor=='#373a40' ? 'colortitlegray' : 'colorwhite' " >{{ post()!.user.name ?  post()!.user.name : ""}}</h4>
         <div class="flex gap-2">
           <div class="flex ">
 
@@ -44,15 +44,15 @@
               @if(post()!.likeMe){
                 <mat-icon class="material-icons-sharp font-extralight text-red" >favorite</mat-icon>
               }@else {
-                <mat-icon class="material-symbols-rounded font-extralight" [ngClass]="textColor=='#373A40' ? 'colorgray' : 'colorwhite' ">favorite_border</mat-icon>
+                <mat-icon class="material-symbols-rounded font-extralight" [ngClass]="textColor=='#373A40' || textColor=='#373a40' ? 'colorgray' : 'colorwhite' ">favorite_border</mat-icon>
               }
             </button>
-            <span class="text-sm gray txtft mlf3" [ngClass]="textColor=='#373A40' ? 'colorgray' : 'colorwhite' "> {{post()!.countLikes}} </span>
+            <span class="text-sm gray txtft mlf3" [ngClass]="textColor=='#373A40' || textColor=='#373a40' ? 'colorgray' : 'colorwhite' "> {{post()!.countLikes}} </span>
           </div>
 
           <div class="flex ">
-            <mat-icon class="material-symbols-rounded font-extralight " [ngClass]="textColor=='#373A40' ? 'colorgray' : 'colorwhite' ">remove_red_eye</mat-icon>
-            <span class="text-sm gray txtft mlf3" [ngClass]="textColor=='#373A40' ? 'colorgray' : 'colorwhite' "> {{post()!.countViews}} </span>
+            <mat-icon class="material-symbols-rounded font-extralight " [ngClass]="textColor=='#373A40' || textColor=='#373a40' ? 'colorgray' : 'colorwhite' ">remove_red_eye</mat-icon>
+            <span class="text-sm gray txtft mlf3" [ngClass]="textColor=='#373A40' || textColor=='#373a40' ? 'colorgray' : 'colorwhite' "> {{post()!.countViews}} </span>
           </div>
         </div>
       </ng-container>

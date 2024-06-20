@@ -112,7 +112,7 @@
 .section-info-init{
   display: grid;
   grid-template-columns: auto 40%;
-  background: url('/assets/images/sections/bg_yoga_init.webp');
+  // background: url('/assets/images/sections/bg_yoga_init.webp');
   background-repeat: no-repeat;
   background-size:  100% 100%;
   background-position: center;
@@ -295,4 +295,7 @@
   // .filter-select.mat-mdc-standard-chip{
   //   background-color: var(--green) !important;
   // }
+  .bg-fill{
+    object-fit: fill;
+  }
 }

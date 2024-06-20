@@ -241,5 +241,7 @@ export default class SectionDetailComponent implements AfterViewInit {
     this.sectionService.clearPostDetail()
     this.sectionService.getSectionDetail(this.id)
   }
-
+  getBackgroundImageUrl(url: string) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
  }

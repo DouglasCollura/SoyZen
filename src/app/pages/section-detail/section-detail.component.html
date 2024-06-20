@@ -87,6 +87,7 @@
         <swiper-slide>
           <mat-chip-listbox>
             @for (filter_option of sectionData().subcategoriesDetail; track $index) {
+              
             <mat-chip-row [style]="{
               'outline':'1px solid '+sectionData().colorSection+' !important',
               'background-color': subcategorySelect() == filter_option.id ? sectionData().colorSection ? sectionData().colorSection : '#9180A0'+' !important' : 'white',
@@ -117,7 +118,9 @@
       } @else if (item.type == sectionDetailType.TEXT  ) {
       <div class="section-text text-magistral"  [innerHTML]="transform(item.content!)"></div>
       }@else {
-      <div class="section-info-init">
+   
+      <div class="section-info-init" [style.background-image]="getBackgroundImageUrl(getImg(item.background))">
+        
         <div class="info" [innerHTML]="transform(item.content!)"></div>
 
         <div class="img">
