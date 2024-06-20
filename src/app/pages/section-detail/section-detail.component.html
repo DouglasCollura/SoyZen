@@ -90,7 +90,7 @@
 
             <mat-chip-row [style]="{
               'outline':'1px solid '+sectionData().colorSection+' !important',
-              'background-color': subcategorySelect() == filter_option.id ? sectionData().colorSection ? sectionData().colorSection : '#9180A0'+' !important' : 'white',
+              'background-color': subcategorySelect() == filter_option.id ? sectionData().colorSection ? sectionData().colorSection+' !important' : '#9180A0'+' !important' : 'white',
               }"
               (click)="selectSubCategory(filter_option.id)"
             >
