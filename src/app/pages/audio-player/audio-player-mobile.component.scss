@@ -5,6 +5,7 @@
   }
 
   .temp-audioplayer{
+    height: 100%;
     ::ng-deep{
 
       vg-controls{
@@ -16,6 +17,7 @@
     .close{
       padding: 5px !important;
     }
+ 
   }
 
 
@@ -44,6 +46,9 @@
 }
 .desktoponly{
   margin-left: inherit;
+}
+.padSpan{
+  padding: 5px 11.5vw;
 }
 }
 

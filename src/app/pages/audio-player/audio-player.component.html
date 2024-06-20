@@ -159,7 +159,7 @@
     <span class="text-[20px] font-bold leading-[27.24px] text-center !text-[var(--dark-gray)]" >¿Cómo te sentiste?</span>
 
 
-    <div class="flex justify-around pb-[50px] content-flex-feel">
+    <div class="flex justify-around pb-[50px] pt-[15px] content-flex-feel">
 
       @for (item of post()?.feedbacks; track $index) {
         <button class="grid justify-items-center p-[5px]" [class.feel-select]="feelSelect() == item.id" mat-dialog-close="true"  (click)="setFeedback(item.id,item.title)">
