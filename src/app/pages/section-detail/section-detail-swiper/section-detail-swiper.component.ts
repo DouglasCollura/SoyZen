@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { CUSTOM_ELEMENTS_SCHEMA, ChangeDetectionStrategy, Component, Input, inject, signal } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, ChangeDetectionStrategy, Component, Input, computed, inject, signal } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
@@ -11,6 +11,7 @@ import { environment } from '../../../../environments/environment';
 import { Section } from '@interfaces/section_detail';
 import { ReelService } from '@services/reel.service';
 import { Post } from '@interfaces/post';
+import { SectionService, SectionServiceData } from '@services/section.service';
 
 @Component({
   selector: 'app-section-detail-swiper',
@@ -35,15 +36,24 @@ export class SectionDetailSwiperComponent {
 
   @Input({required: true}) set setSection(section:Section){
     this.section.set(section);
+    console.log('color', section.name)
   };
+
+  // @Input({required: true}) set setTitleSection(titleSection:String){
+  //   this.titleSection.set(titleSection);
+  // };
+
   public activeSlideIndex = 0;
   private dialog = inject(MatDialog);
   private reelService = inject(ReelService);
   private authService = inject(AuthService);
   private role = localStorage.getItem('role');
   public section = signal<Section | null>(null);
+  public titleSection = signal<String | null>(null);
   private urlMedia = environment.urlMedia;
   public screenWidth: any;
+  private sectionService = inject(SectionService);
+  public sectionData = computed<SectionServiceData>(()=> this.sectionService.sectionData());
 
   constructor(){
     this.screenWidth = window.innerWidth;
@@ -62,7 +72,6 @@ export class SectionDetailSwiperComponent {
   }
 
   openReel(index:number, item:Post){
-    console.log('asdasd')
       if(!this.isUnLock(item)) return;
 
       this.reelService.setSectionPost(this.section()!.posts, index);

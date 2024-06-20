@@ -114,7 +114,7 @@
   grid-template-columns: auto 40%;
   background: url('/assets/images/sections/bg_yoga_init.webp');
   background-repeat: no-repeat;
-  background-size:  cover;
+  background-size:  100% 100%;
   background-position: center;
   min-height: 500px;
 
@@ -217,6 +217,10 @@
 
 }
 
+.info h2,h3,h4{
+  text-align: justify;
+}
+
 
 
 ::ng-deep{
@@ -244,7 +248,7 @@
     color: var(--violet) !important;
   }
   .selected.mat-mdc-standard-chip{
-    background-color: var(--violet) !important;
+    // background-color: var(--violet) !important;
   }
 
   .selected .mat-mdc-chip-action-label{
@@ -256,7 +260,7 @@
   }
   .subccategory{
     .selected.mat-mdc-standard-chip{
-      background-color: var(--violet) !important;
+      // background-color: var(--violet) !important;
     }
     .selected .mat-mdc-chip-action-label{
       color: var(--violet) !important;

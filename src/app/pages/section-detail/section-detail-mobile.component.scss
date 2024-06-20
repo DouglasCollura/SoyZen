@@ -2,8 +2,16 @@
   .section-info-init{
     grid-template-columns: auto !important;
 
+    .info{
+      padding: 25px 15px;
+    }
+
     .img{
       display: none !important;
     }
+  }
+
+  .section-text{
+    padding: 4px !important;
   }
 }

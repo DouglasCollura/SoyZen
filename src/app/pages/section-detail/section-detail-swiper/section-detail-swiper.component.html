@@ -33,8 +33,8 @@
         [setPost]="item"
         [setPosts]="section()?.posts!"
         [index]="i"
-        [titleSection]="section()?.name"
-        textColor="#373A40"
+        [titleSection]="sectionData()?.sectionDetail?.name"
+        [textColor]="section()?.color == '' || !section()?.color ? '#373A40' : section()?.color"
       />
 
       <app-card-article
@@ -49,8 +49,7 @@
       [url_img]="item.postDetail!.thumbnail"
       [user]="item.user!"
       [type]="item.postType ? item.postType.name! : ''"
-      textColor="#373A40"
-
+      [textColor]="section()?.color ?? '#373A40'"
     />
     </swiper-slide>
 

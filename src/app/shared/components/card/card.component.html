@@ -14,10 +14,10 @@
         }
       </div>
 
-      <h2 class="self-center text-white text-center sm:leading-[22px] text-[16px] sm:text-[18px] leading-[20px] font-bold overflow-card-text" > {{post()!.postType.name == postTypes.ads || titleSection==='Taróscopo'? '' : post()!.title}} </h2>
+      <h2 class="self-center text-white text-center sm:leading-[22px] text-[16px] sm:text-[18px] leading-[20px] font-bold overflow-card-text" > {{post()!.postType.name == postTypes.ads || titleSection==='Taróscopo' || titleSection==='Astrología' ? '' : post()!.title}} </h2>
 
       <div class="flex justify-between px-1 items-center hgt" >
-        <p style="    width: 90%;"  > {{post()?.postType?.name == postTypes.ads || titleSection==='Taróscopo' ? post()!.title : post()!.category ? post()!.category.name : post()!.subcategory.name }} </p>
+        <p style="    width: 90%;"  > {{post()?.postType?.name == postTypes.ads || titleSection==='Taróscopo' || titleSection==='Astrología'  ? post()!.title : post()!.category ? post()!.category.name : post()!.subcategory.name }} </p>
 
         @if(!isUnLock() && post()?.postType?.name != postTypes.ads){
           <mat-icon  class="material-symbols-rounded font-thin text-[32px] !w-[32px] !h-[32px]" svgIcon="my-lock" ></mat-icon>
@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <div class="avatar-info">
+  <div class="avatar-info" *ngIf="!isList">
     <div class="avatar" *ngIf="post()?.postType?.name != postTypes.ads">
       <img [src]=" getImg(post()!.user.image) " alt="">
     </div>

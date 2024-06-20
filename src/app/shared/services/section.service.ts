@@ -219,6 +219,7 @@ export class SectionService {
   getSectionDetail(id:any){
     this.http.get<SectionDetail>(`${this.urlApi}/page-category/category/${id}`).subscribe(
       (data)=>{
+        console.log('section ', data);
         this.#sectionData.update(value=> ({...value, sectionDetail:data}))
       }
     );

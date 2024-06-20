@@ -112,7 +112,6 @@ export default class SectionDetailComponent implements AfterViewInit {
   }
 
   transform(html: string): any {
-    console.log('este content',html)
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 

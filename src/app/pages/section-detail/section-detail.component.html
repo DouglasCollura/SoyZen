@@ -76,7 +76,7 @@
     </div>
 
 
-    <section class="filter-option m-auto mb-[20px]">
+    <section class="filter-option m-auto mb-[35px]">
       <swiper-container
         slides-per-view="auto"
         speed="500"
@@ -87,10 +87,17 @@
         <swiper-slide>
           <mat-chip-listbox>
             @for (filter_option of sectionData().subcategoriesDetail; track $index) {
-            <mat-chip-row  [class.selected]="subcategorySelect() == filter_option.id" (click)="selectSubCategory(filter_option.id)" *ngIf="!subcategorySelect() || subcategorySelect() == filter_option.id">
-              {{ filter_option?.name }}
+            <mat-chip-row [style]="{
+              'outline':'1px solid '+sectionData().sectionDetail?.color+' !important',
+              'background-color': subcategorySelect() == filter_option.id ? sectionData().sectionDetail?.color ? sectionData().sectionDetail?.color : '#9180A0'+' !important' : 'white',
+              }"
+              (click)="selectSubCategory(filter_option.id)"
+            >
+              <span [style]="{'color': subcategorySelect() == filter_option.id ? 'white !important' : sectionData().sectionDetail?.color ? sectionData().sectionDetail?.color+' !important' : '#9180A0'}" >{{ filter_option?.name }}</span>
               @if(subcategorySelect() == filter_option.id && filter_option.id != null){
-                <mat-icon matChipRemove class="material-symbols-rounded font-extralight closeWhite" (click)="removeFilter()">close</mat-icon>
+                <mat-icon
+                [style]="{'color': subcategorySelect() == filter_option.id ? 'white !important' : sectionData().sectionDetail?.color+' !important'}"
+                matChipRemove class="material-symbols-rounded font-extralight closeWhite" (click)="removeFilter()">close</mat-icon>
               }
             </mat-chip-row>
             }
@@ -103,7 +110,7 @@
       @if(item.type == sectionDetailType.RECENT || item.type ==
       sectionDetailType.SUBCATEGORY){
         @defer(on viewport){
-          <app-section-detail-swiper [setSection]="item" />
+          <app-section-detail-swiper [setSection]="item"   />
         }@placeholder (minimum 0.5s) {
          <app-skeleton-section class="overflow-hidden" />
         }
@@ -121,16 +128,17 @@
     }
 
 
-    <div class="flex flex-wrap justify-between sm:justify-start px-2 gap-2 sm:pl-4">
+    <div class="flex flex-wrap justify-between sm:justify-start px-2 py-3 gap-2 sm:pl-4">
 
       @for (item of sectionData().postsDetail; track $index) {
         <app-card
           [setPosts]="sectionData().postsDetail!"
           [index]="$index"
           isList="true"
+          [titleSection]="sectionData().sectionDetail?.name"
+          [textColor]="sectionData().sectionDetail?.color == '' || !sectionData().sectionDetail?.color ? '#373A40' : sectionData().sectionDetail?.color"
           *ngIf="item.postType?.name!='blog' "
-            [setPost]="item"
-            textColor="#373A40"
+          [setPost]="item"
           />
           <app-card-article
           isList="true"

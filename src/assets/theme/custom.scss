@@ -576,7 +576,7 @@ input[type=radio]:checked:before{
   line-height: 44px;
   letter-spacing: 0.05em;
   text-align: center;
-  
+
   }
 
   .claseDestopSolo{
@@ -590,7 +590,6 @@ text-align: center;
   }
 
   .parrafoLarge{
-    font-family: "Magistral Honesty" !important;
     color: #ffffff;
 font-size: 16px;
 font-weight: 400;
@@ -600,7 +599,7 @@ text-align: justify;
   }
   .parrafoTitleLarge{
     font-family: "Magistral Honesty" !important;
-    color: #ffffff; 
+    color: #ffffff;
 font-size: 38px;
 font-weight: 400;
 line-height: 43.93px;
@@ -609,7 +608,6 @@ text-align: left;
   }
 
   .parrafoLargewhite{
-    font-family: "Magistral Honesty" !important;
     color: #ffffff;
 font-size: 16px;
 font-weight: 400;
@@ -619,7 +617,7 @@ text-align: justify;
   }
   .parrafoTitleLargewhite{
     font-family: "Magistral Honesty" !important;
-    color: #ffffff; 
+    color: #ffffff;
 font-size: 38px;
 font-weight: 400;
 line-height: 43.93px;
@@ -628,7 +626,6 @@ text-align: left;
   }
 
   .parrafoLargeblack{
-    font-family: "Magistral Honesty" !important;
     color: #373A40;
 font-size: 16px;
 font-weight: 400;
@@ -638,16 +635,12 @@ text-align: justify;
   }
   .parrafoTitleLargeblack{
     font-family: "Magistral Honesty" !important;
-    color: #373A40; 
+    color: #373A40;
 font-size: 38px;
 font-weight: 400;
 line-height: 43.93px;
 text-align: left;
 
-  }
-
-  .info h1,h2,h3,h4{
-    text-align: justify;
   }
 
   .ql-align-center{
@@ -696,7 +689,7 @@ text-align: left;
        font-weight: 400;
        line-height: 22px;
        text-align: justify;
- 
+
      }
      .parrafoTitleLargeblack{
        color: #373A40;
@@ -704,7 +697,7 @@ text-align: left;
  font-weight: 400;
  line-height: 42px;
  text-align: left;
- 
+
      }
 
      .parrafoLargewhite{
@@ -713,7 +706,7 @@ text-align: left;
        font-weight: 400;
        line-height: 22px;
        text-align: justify;
- 
+
      }
      .parrafoTitleLargewhite{
        color: #fff;
@@ -721,6 +714,6 @@ text-align: left;
  font-weight: 400;
  line-height: 42px;
  text-align: left;
- 
+
      }
   }
