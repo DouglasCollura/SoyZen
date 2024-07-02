@@ -144,7 +144,7 @@
       } -->
     }
 
-    <div class="flex flex-wrap justify-between sm:justify-start px-2 gap-6  sm:pl-4 " [ngClass]="sectionData().posts.length > 0 ? 'paddinEspace' : '' ">
+    <div class="content-list-cards px-2 gap-6  sm:pl-4 " [ngClass]="sectionData().posts.length > 0 ? 'paddinEspace' : '' ">
 
     @for (item of sectionData().posts; track $index) {
       <app-card

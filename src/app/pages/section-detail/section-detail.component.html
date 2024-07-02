@@ -152,9 +152,8 @@
       </div>
     </div>
     } }
-      <div class="w-full m-auto grid py-9 px-3">
+      <div *ngIf="sectionData().postsDetail.length > 0"  class="w-full m-auto grid py-9 px-3">
         <div
-          *ngIf="sectionData().postsDetail.length > 0"
           class="content-list-cards"
         >
           @for (item of sectionData().postsDetail; track $index) {

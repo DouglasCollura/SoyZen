@@ -117,3 +117,14 @@
 .paddinEspace{
   padding: 1rem 4rem 7rem 4rem;
 }
+
+
+.content-list-cards{
+  display: grid;
+  // display: flex;
+  gap: 32px 24px;
+  // flex-wrap: wrap;
+
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(202px, 202px));
+}
