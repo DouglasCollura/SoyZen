@@ -48,8 +48,10 @@
   margin-left: inherit;
 }
 .padSpan{
-  padding: 5px 11.5vw;
+  // padding: 5px 11.5vw;
+  padding: 0px 10.5vw;
 }
+
 }
 
 @media (orientation: landscape) and (height < 450px) , (max-device-height: 450px){
