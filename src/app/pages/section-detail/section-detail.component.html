@@ -152,10 +152,10 @@
       </div>
     </div>
     } }
-      <div class=" grid justify-center  justify-items-center  ">
+      <div class="max-w-[1300px] w-full m-auto grid my-9">
         <div
           *ngIf="sectionData().postsDetail.length > 0"
-          class="flex flex-wrap justify-between sm:justify-start px-2 py-3 gap-6 sm:pl-4 w-[90%] max-w-[1300px]"
+          class="content-list-cards"
         >
           @for (item of sectionData().postsDetail; track $index) {
           <app-card

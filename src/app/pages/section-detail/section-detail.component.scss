@@ -304,3 +304,10 @@
     object-fit: fill;
   }
 }
+
+.content-list-cards{
+  display: grid;
+  gap: 30px;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(202px, 202px));
+}
