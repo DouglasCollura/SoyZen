@@ -114,9 +114,9 @@
   display: grid;
   grid-template-columns: auto 40%;
   // background: url('/assets/images/sections/bg_yoga_init.webp');
-  background-repeat: no-repeat;
-  background-size:  100% 100%;
-  background-position: center;
+  background-repeat: no-repeat !important;
+  background-size:  100% 100% !important;
+  background-position: center !important;
   min-height: 500px;
 
   .info{

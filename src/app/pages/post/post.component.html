@@ -16,9 +16,9 @@
 
     <div class="info">
       <span class="text-white text-[24px] leading-[32px] font-medium ">{{post()?.title}}</span>
-      <button>
+      <!-- <button>
         <mat-icon class="material-symbols-rounded text-white !w-[32px] !h-[32px] text-[32px] font-extralight" >share</mat-icon>
-      </button>
+      </button> -->
     </div>
 
   </div>
@@ -58,7 +58,7 @@
       </vg-player>
     </div>
 
-    <div class="play_audio">
+    <div class="play_audio"  *ngIf="post()?.postDetail?.audioUrl">
       <button (click)="playPause()">
         <mat-icon class="material-symbols-rounded font-extralight !h-[48px] !w-[48px] !text-[48px] text-green"
         > {{isPlaying() ?'pause_circle' : 'play_circle'}}</mat-icon>
@@ -73,7 +73,7 @@
     </div>
 
 
-      <p class="text-[16px] leading-[24px] font-normal" [innerHTML]="post()?.postDetail?.content"></p>
+      <p class="text-[16px] leading-[24px] font-normal" [innerHTML]="sanitizeContent(post()?.postDetail?.content)"></p>
 
 
 
