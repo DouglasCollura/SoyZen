@@ -13,7 +13,8 @@ import { VgControlsModule } from '@videogular/ngx-videogular/controls';
 import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { Post } from '@interfaces/post';
-
+import { Sanitizer } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-post',
   standalone: true,
@@ -54,7 +55,7 @@ export default class PostComponent  implements OnInit{
   private router = inject(Router);
   private sectionService = inject(SectionService)
   private activatedRoute = inject(ActivatedRoute);
-
+  constructor(private sanitizer: DomSanitizer) {}
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(param => {
       this.idpost=param['idPost']
@@ -67,7 +68,9 @@ export default class PostComponent  implements OnInit{
   onPlayerReady(api: VgApiService) {
     this.vgPlayer = api;
   }
-
+  sanitizeContent(content: string) {
+    return this.sanitizer.bypassSecurityTrustHtml(content);
+  }
   loadPost(id:any){
     this.sectionService.getPost(id).subscribe((data)=>{
 
