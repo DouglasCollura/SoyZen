@@ -82,4 +82,9 @@ export class SectionDetailSwiperComponent {
       });
   }
 
+  selectSubCategory(id:number | null){
+    this.sectionService.clearPostDetail()
+    id ?  this.sectionService.getPostDetail(id) : this.sectionService.getSectionDetail(id);
+  }
+
  }
