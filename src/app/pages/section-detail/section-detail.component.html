@@ -1,5 +1,5 @@
-<div class="temp-yoga ">
-    <div class="grid p-0 ">
+<div class="temp-yoga">
+  <div class="grid p-0">
     <button class="btn" routerLink="/home">
       <mat-icon
         class="material-symbols-rounded font-extralight !w-[40px] !h-[40px] text-[40px]"
@@ -18,7 +18,7 @@
       {{ sectionData().nameSection }}
     </span>
 
-    <div class=" max-w-[392px] m-auto w-full mb-[40px]">
+    <div class="max-w-[392px] m-auto w-full mb-[40px]">
       <div class="content-search m-auto">
         <div class="input-icon-right search">
           <input
@@ -44,7 +44,7 @@
 
         <div class="content-result" #menuDetail *ngIf="showSearch()">
           @for (item of listSearch(); track $index) {
-          <div class="item-result"  (click)="openPost(item)">
+          <div class="item-result" (click)="openPost(item)">
             <div class="img">
               <img [src]="getImage(item.thumbnail)" alt="" />
             </div>
@@ -75,7 +75,6 @@
       </div>
     </div>
 
-
     <section class="filter-option m-auto mb-[35px]">
       <swiper-container
         slides-per-view="auto"
@@ -86,19 +85,41 @@
       >
         <swiper-slide>
           <mat-chip-listbox>
-            @for (filter_option of sectionData().subcategoriesDetail; track $index) {
+            @for (filter_option of sectionData().subcategoriesDetail; track
+            $index) {
 
-            <mat-chip-row [style]="{
+            <mat-chip-row
+              [style]="{
               'outline':'1px solid '+sectionData().colorSection+' !important',
               'background-color': subcategorySelect() == filter_option.id ? sectionData().colorSection ? sectionData().colorSection+' !important' : '#9180A0'+' !important' : 'white',
               }"
               (click)="selectSubCategory(filter_option.id)"
             >
-              <span [style]="{'color': subcategorySelect() == filter_option.id ? 'white !important' : sectionData().colorSection ? sectionData().colorSection+' !important' : '#9180A0'}" >{{ filter_option?.name }}</span>
-              @if(subcategorySelect() == filter_option.id && filter_option.id != null){
-                <mat-icon
-                [style]="{'color': subcategorySelect() == filter_option.id ? 'white !important' : sectionData().colorSection+' !important'}"
-                matChipRemove class="material-symbols-rounded font-extralight closeWhite" (click)="removeFilter()">close</mat-icon>
+              <span
+                [style]="{
+                  color:
+                    subcategorySelect() == filter_option.id
+                      ? 'white !important'
+                      : sectionData().colorSection
+                      ? sectionData().colorSection + ' !important'
+                      : '#9180A0'
+                }"
+                >{{ filter_option?.name }}</span
+              >
+              @if(subcategorySelect() == filter_option.id && filter_option.id !=
+              null){
+              <mat-icon
+                [style]="{
+                  color:
+                    subcategorySelect() == filter_option.id
+                      ? 'white !important'
+                      : sectionData().colorSection + ' !important'
+                }"
+                matChipRemove
+                class="material-symbols-rounded font-extralight closeWhite"
+                (click)="removeFilter()"
+                >close</mat-icon
+              >
               }
             </mat-chip-row>
             }
@@ -108,89 +129,123 @@
     </section>
 
     @for (item of sectionData().sectionDetail?.sections; track $index) {
-      @if(item.type == sectionDetailType.RECENT || item.type ==
-      sectionDetailType.SUBCATEGORY){
-        @defer(on viewport){
-          <app-section-detail-swiper [setSection]="item"   />
-        }@placeholder (minimum 0.5s) {
-         <app-skeleton-section class="overflow-hidden" />
-        }
-      } @else if (item.type == sectionDetailType.TEXT  ) {
-      <div class="section-text text-magistral"  [innerHTML]="transform(item.content!)"></div>
-      }@else {
+    @if(item.type == sectionDetailType.RECENT || item.type ==
+    sectionDetailType.SUBCATEGORY){ @defer(on viewport){
+    <app-section-detail-swiper [setSection]="item" />
+    }@placeholder (minimum 0.5s) {
+    <app-skeleton-section class="overflow-hidden" />
+    } } @else if (item.type == sectionDetailType.TEXT ) {
+    <div
+      class="section-text text-magistral"
+      [innerHTML]="transform(item.content!)"
+    ></div>
+    }@else {
 
-      <div class="section-info-init"
-        [style]="{'background':getBgByUrl(item.background)}"
-      >
+    <div
+      class="section-info-init"
+      [style]="{ background: getBgByUrl(item.background) }"
+    >
+      <div class="info" [innerHTML]="transform(item.content!)"></div>
 
-        <div class="info" [innerHTML]="transform(item.content!)"></div>
-
-        <div class="img">
-          <img [srcset]="getImg(item.image)" alt="" />
-        </div>
+      <div class="img">
+        <img [srcset]="getImg(item.image)" alt="" />
       </div>
-      }
-    }
-
-
-    <div  *ngIf="sectionData().postsDetail.length > 0" class="flex flex-wrap justify-between sm:justify-start px-2 py-3 gap-6 sm:pl-4">
-
-      @for (item of sectionData().postsDetail; track $index) {
-        <app-card
-          [setPosts]="sectionData().postsDetail!"
-          [index]="$index"
-          isList="true"
-          [titleSection]="sectionData().nameSection"
-          [textColor]="sectionData().sectionDetail?.color == '' || !sectionData().sectionDetail?.color ? '#373A40' : sectionData().sectionDetail?.color"
-          *ngIf="item.postType?.name!='blog' "
-          [setPost]="item"
+    </div>
+    } }
+      <div class=" grid justify-center  justify-items-center  ">
+        <div
+          *ngIf="sectionData().postsDetail.length > 0"
+          class="flex flex-wrap justify-between sm:justify-start px-2 py-3 gap-6 sm:pl-4 w-[90%] max-w-[1300px]"
+        >
+          @for (item of sectionData().postsDetail; track $index) {
+          <app-card
+            [setPosts]="sectionData().postsDetail!"
+            [index]="$index"
+            isList="true"
+            [titleSection]="sectionData().nameSection"
+            [textColor]="
+              sectionData().sectionDetail?.color == '' ||
+              !sectionData().sectionDetail?.color
+                ? '#373A40'
+                : sectionData().sectionDetail?.color
+            "
+            *ngIf="item.postType?.name != 'blog'"
+            [setPost]="item"
           />
           <app-card-article
-          isList="true"
-          *ngIf="item.postType?.name==='blog' "
-          [category]="item.category ? item.category.name! : '' "
-          [idPost]="item.id"
-          [time]="item.duration!"
-          [title]="item.title!"
-          [isLock]="!isUnLock(item)"
-          [url_img]="item.postDetail!.thumbnail"
-          [user]="item.user!"
-          [type]="item.postType ? item.postType.name! : '' "
-        />
-      }
-      </div>
-      <div class="grid place-content-center p-4" *ngIf="sectionData().postsDetail.length > 0 && sectionData().pageDetail"  >
-        <button class="btn-border-green !text-[16px] !font-bold  !px-10 !py-3" (click)="loadpaginate()">
-          Cargar Más Meditaciones
-        </button>
+            isList="true"
+            *ngIf="item.postType?.name === 'blog'"
+            [category]="item.category ? item.category.name! : ''"
+            [idPost]="item.id"
+            [time]="item.duration!"
+            [title]="item.title!"
+            [isLock]="!isUnLock(item)"
+            [url_img]="item.postDetail!.thumbnail"
+            [user]="item.user!"
+            [type]="item.postType ? item.postType.name! : ''"
+          />
+          }
+        </div>
+        <div
+          class="grid place-content-center p-4"
+          *ngIf="
+            sectionData().postsDetail.length > 0 && sectionData().pageDetail
+          "
+        >
+          <button
+            class="btn-border-green !text-[16px] !font-bold !px-10 !py-3"
+            (click)="loadpaginate()"
+          >
+            Cargar Más Meditaciones
+          </button>
+        </div>
       </div>
   </div>
 </div>
 
-
-
 <ng-template #modalEvent>
   <mat-dialog-actions class="grid">
     <div class="grid pb-8 w-full">
-      <button class="btn justify-self-end "><mat-icon class="!w-[30px] !h-[30px] text-[30px] font-extralight material-symbols-rounded" mat-dialog-close="true" > close </mat-icon></button>
+      <button class="btn justify-self-end">
+        <mat-icon
+          class="!w-[30px] !h-[30px] text-[30px] font-extralight material-symbols-rounded"
+          mat-dialog-close="true"
+        >
+          close
+        </mat-icon>
+      </button>
 
       <div class="grid gap-5 text-center justify-items-center w-[300px] m-auto">
-        <span class="text-[28px] font-medium leading-[38.14px]" >Hazte Premium</span>
+        <span class="text-[28px] font-medium leading-[38.14px]"
+          >Hazte Premium</span
+        >
 
         <span class="text-[14px] leading-[22px] font-normal">
-          Suscríbete y obtén full acceso a todos los contenidos y funcionalidades de Soy Zen.
+          Suscríbete y obtén full acceso a todos los contenidos y
+          funcionalidades de Soy Zen.
         </span>
 
-        <button class="btn-gold" routerLink="/premium/subscribe_operator" (click)="close()" >Suscripción Premium</button>
+        <button
+          class="btn-gold"
+          routerLink="/premium/subscribe_operator"
+          (click)="close()"
+        >
+          Suscripción Premium
+        </button>
       </div>
     </div>
   </mat-dialog-actions>
 </ng-template>
 
 <ng-template #modalVideo>
-  <app-videoplayer [urlPlayer]="urlPlayer"  />
+  <app-videoplayer [urlPlayer]="urlPlayer" />
 </ng-template>
 
 <ng-template #modalAudio>
-  <app-audio-player [urlPlayer]="urlPlayer " [url_img]="url_img" [title]="title" [category]="category"/>
+  <app-audio-player
+    [urlPlayer]="urlPlayer"
+    [url_img]="url_img"
+    [title]="title"
+    [category]="category"
+  />
 </ng-template>

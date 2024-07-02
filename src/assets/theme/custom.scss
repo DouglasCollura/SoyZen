@@ -600,7 +600,7 @@ text-align: justify;
   .parrafoTitleLarge{
     font-family: "Magistral Honesty" !important;
     color: #ffffff;
-font-size: 38px;
+font-size: 42px;
 font-weight: 400;
 line-height: 43.93px;
 text-align: left;
@@ -618,13 +618,20 @@ text-align: justify;
   .parrafoTitleLargewhite{
     font-family: "Magistral Honesty" !important;
     color: #ffffff;
-font-size: 38px;
+font-size: 42px;
 font-weight: 400;
 line-height: 43.93px;
 text-align: left;
 
   }
+  .section-info-init{
+    .info{
 
+      h2{
+        text-align: justify !important;
+      }
+    }
+  }
   .parrafoLargeblack{
     color: #373A40;
 font-size: 16px;
@@ -636,7 +643,7 @@ text-align: justify;
   .parrafoTitleLargeblack{
     font-family: "Magistral Honesty" !important;
     color: #373A40;
-font-size: 38px;
+font-size: 42px;
 font-weight: 400;
 line-height: 43.93px;
 text-align: left;

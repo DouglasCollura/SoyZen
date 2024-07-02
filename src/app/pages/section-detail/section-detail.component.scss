@@ -85,6 +85,7 @@
   display: grid;
   align-content: center;
   text-align: center;
+
 }
 
 .text-magistral{
@@ -129,6 +130,10 @@
     display: grid;
     gap: 30px;
     align-content: center;
+
+    h2{
+      text-align: justify !important;
+    }
   }
 
   .img{
