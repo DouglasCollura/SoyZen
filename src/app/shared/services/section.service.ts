@@ -261,6 +261,10 @@ export class SectionService {
     this.#sectionData.update(value=> ({...value, subcategories:[]}))
   }
 
+  clearCategory(){
+    this.#sectionData.update(value=> ({...value, posts:[]}))
+  }
+
   clearPosts(){
     this.#sectionData.update(value=> ({...value, posts:[], page:null}))
   }
