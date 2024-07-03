@@ -162,6 +162,7 @@ export default class HomeComponent implements AfterViewInit {
   removeFilter(){
     this.sectionSelect.set(null);
     this.subcategorySelect.set(null);
+    this.sectionService.clearCategory()
     this.sectionService.clearSubCategory()
     this.sectionService.getSections()
   }

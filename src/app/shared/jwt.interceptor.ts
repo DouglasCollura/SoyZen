@@ -3,6 +3,11 @@ import { catchError, tap, throwError } from 'rxjs';
 
 export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
 
+  const role = localStorage.getItem('role');
+    if(!role){
+      localStorage.setItem('role', 'guest');
+    }
+
   const authToken = localStorage.getItem('token');
   var token 
 if(authToken){

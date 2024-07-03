@@ -7,7 +7,7 @@
         arrow_back
       </mat-icon>
     </button>
-
+<ng-container *ngIf="sectionData()">
     <img
       class="justify-self-center"
       *ngIf="sectionData().iconSection"
@@ -201,7 +201,8 @@
           </button>
         </div>
       </div>
-  </div>
+    </ng-container>
+  </div> <!--LLEGA HASTA AQUI-->
 </div>
 
 <ng-template #modalEvent>

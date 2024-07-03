@@ -115,7 +115,8 @@
   font-weight: 400;
 }
 .paddinEspace{
-  padding: 1rem 4rem 7rem 4rem;
+  // padding: 1rem 4rem 7rem 4rem;
+  padding: 1rem 2rem 7rem 2rem;
 }
 
 
@@ -127,4 +128,8 @@
 
   // justify-content: center;
   // grid-template-columns: repeat(auto-fit, minmax(202px, 202px));
+}
+.paddinslt{
+  padding-left: 16.5px !important;
+  padding-right: 16.5px !important;
 }
