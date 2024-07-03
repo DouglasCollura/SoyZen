@@ -12,7 +12,7 @@ import { ReelComponent } from '@shared/components/reel/reel.component';
 import { ReelService } from '@services/reel.service';
 import { Swiper } from "swiper";
 import { SwiperEvents } from "swiper/types";
-import { Post } from '@interfaces/post';
+import { Post, PostMediaType } from '@interfaces/post';
 
 @Component({
   selector: 'app-section-home',
@@ -79,6 +79,12 @@ export class SectionHomeComponent {
         panelClass: 'full-screen-modal'
       });
     // }
+  }
+  getIndexByItem(item:Post){
+    let filterPost = this.section()?.posts.filter( (data)=> data.postType.name != 'blog');
+    let index = filterPost?.findIndex(data=> data == item);
+    console.log(`index ${index}`);
+    return index;
   }
   onSwiper() {
     this.activeSlideIndex = this.swiperRef?.nativeElement.swiper.activeIndex;

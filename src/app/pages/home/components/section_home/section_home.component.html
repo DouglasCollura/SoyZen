@@ -35,7 +35,7 @@
       <app-card
         *ngIf="item.postType?.name!='blog'"
         [setPost]="item"
-        [index]="i"
+        [index]="getIndexByItem(item)!"
         [setPosts]="section()?.posts!"
         [titleSection]="section()?.name"
         [textColor]="section()?.textColor"
