@@ -95,6 +95,7 @@ export class SectionService {
   }
 
   getSubCategories(id:string, isDetail:boolean = false){
+    isDetail && this.#sectionData.update(data=> ({...data, subcategoriesDetail:[]}))
     this.http.get<any>(`${this.urlApi}/subcategories/category/${id}`).pipe(
       tap(
         value => isDetail ? this.#sectionData.update(data=> ({...data, subcategoriesDetail:value})) : this.#sectionData.update(data=> ({...data, subcategories:value}))
@@ -223,6 +224,8 @@ export class SectionService {
   }
 
   getSectionDetail(id:any){
+    this.#sectionData.update(value=> ({...value, sectionDetail:null, nameSection:null, colorSection: null, iconSection:null}))
+
     this.http.get<SectionDetail>(`${this.urlApi}/page-category/category/${id}`).subscribe(
       (data)=>{
         console.log('section ', data);
