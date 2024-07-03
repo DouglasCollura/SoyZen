@@ -306,11 +306,11 @@
 }
 
 .content-list-cards{
-  display: grid;
-  // display: flex;
+  // display: grid;
+  display: flex;
   gap: 32px 24px;
-  // flex-wrap: wrap;
+  flex-wrap: wrap;
 
-  justify-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(202px, 202px));
+  // justify-content: center;
+  // grid-template-columns: repeat(auto-fit, minmax(202px, 202px));
 }
