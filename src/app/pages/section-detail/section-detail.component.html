@@ -127,14 +127,16 @@
         </swiper-slide>
       </swiper-container>
     </section>
+    <app-skeleton-section *ngIf="!sectionData().sectionDetail" class="overflow-hidden" />
 
     @for (item of sectionData().sectionDetail?.sections; track $index) {
     @if(item.type == sectionDetailType.RECENT || item.type ==
-    sectionDetailType.SUBCATEGORY){ @defer(on viewport){
-    <app-section-detail-swiper [setSection]="item" />
-    }@placeholder (minimum 0.5s) {
-    <app-skeleton-section class="overflow-hidden" />
-    } } @else if (item.type == sectionDetailType.TEXT ) {
+    sectionDetailType.SUBCATEGORY){
+      @defer(on viewport){
+        	<app-section-detail-swiper [setSection]="item" />
+      }@placeholder (minimum 0.5s) {
+        <app-skeleton-section class="overflow-hidden" />
+      } } @else if (item.type == sectionDetailType.TEXT ) {
     <div
       class="section-text text-magistral"
       [innerHTML]="transform(item.content!)"
