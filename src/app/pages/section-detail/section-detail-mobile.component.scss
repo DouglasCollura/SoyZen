@@ -1,7 +1,9 @@
 @media (width < 600px)  , (max-device-width: 600px){
   .section-info-init{
     grid-template-columns: auto !important;
-    background: url('/assets/images/sections/bg_yoga_init_mobile.svg') !important;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    // background: url('/assets/images/sections/bg_yoga_init_mobile.svg') !important;
 
     .info{
       padding: 25px 15px;
