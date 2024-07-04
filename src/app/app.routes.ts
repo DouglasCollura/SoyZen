@@ -62,7 +62,8 @@ export const routes: Routes = [
     children:[
       {
         path:'',
-        loadComponent: () => import('./pages/home/home.component')
+        loadComponent: () => import('./pages/home/home.component'),
+       
       },
       {
         path:'yoga',

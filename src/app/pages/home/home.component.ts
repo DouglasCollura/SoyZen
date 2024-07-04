@@ -98,9 +98,7 @@ export default class HomeComponent implements AfterViewInit {
 
   constructor(){
     // this.filter_options.set(filter_options_data);
-    this.renderer.listen('window', 'click',(e:Event)=>{
-      this.showSearch() && e.target !== this.inputSearch!.nativeElement && e.target!==this.menu!.nativeElement && this.showSearch.set(false);
-    })
+
   }
 
   ngAfterViewInit(): void {
