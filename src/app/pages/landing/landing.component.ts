@@ -14,5 +14,11 @@ import { Router, RouterModule } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingComponent {
+	constructor(){
+		 const role = localStorage.getItem('role');
+	    if(!role){
+	      localStorage.setItem('role', 'guest');
+	    }
+	}
 
 }

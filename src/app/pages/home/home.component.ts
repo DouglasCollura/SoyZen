@@ -101,6 +101,10 @@ export default class HomeComponent implements AfterViewInit {
     this.renderer.listen('window', 'click',(e:Event)=>{
       this.showSearch() && e.target !== this.inputSearch!.nativeElement && e.target!==this.menu!.nativeElement && this.showSearch.set(false);
     })
+    const role = localStorage.getItem('role');
+    if(!role){
+      localStorage.setItem('role', 'guest');
+    }
   }
 
   ngAfterViewInit(): void {
