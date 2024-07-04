@@ -15,4 +15,13 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class LandingComponent {
 
+  private router = inject(Router);
+
+  gotToHome(){
+
+    localStorage.setItem('role', 'guest');
+    this.router.navigateByUrl('/home').then(() => {
+      window.location.reload();
+    });
+  }
 }
