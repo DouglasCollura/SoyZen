@@ -1,4 +1,5 @@
-@media (width < 820px) , (max-device-width: 820px){
+@media (width < 820px),
+(max-device-width: 820px) {
 
   .temp-header {
     .search {
@@ -8,7 +9,8 @@
 
 }
 
-@media (width < 620px) , (max-device-width: 620px) {
+@media (width < 620px),
+(max-device-width: 620px) {
   .temp-header {
     padding: 12px 25px !important;
 
@@ -16,7 +18,7 @@
       width: 36.5333vw !important;
     }
 
-    #btn-login{
+    #btn-login {
       display: none !important;
     }
 
@@ -26,11 +28,11 @@
     padding: 20px !important;
   }
 
-  .btn-white{
+  .btn-white {
     padding: 10px 50px !important;
   }
 
-  .landing-guest{
+  .landing-guest {
 
     .main {
       padding: 10px 14px !important;
@@ -41,42 +43,79 @@
           text-align: left;
         }
 
-        button{
+        button {
           width: 100%;
         }
       }
     }
   }
-  .movile{
+
+  .movile {
     padding: 4px 12px;
     border-radius: 20px;
   }
-  .gap-0-5{
-    gap: 0.5rem ;
+
+  .gap-0-5 {
+    gap: 0.5rem;
   }
-  .btn-user-menu{
+
+  .btn-user-menu {
     padding: 1px 5px !important;
   }
-  .iconoUser{
+
+  .iconoUser {
     height: 28px;
     width: 28px;
     font-size: 28px;
     font-weight: 300;
   }
 
-  .imgBar{
+  .imgBar {
     height: 28px;
     width: 25px;
   }
 
-  .temp-header .btn-user-menu{
-  
+  .temp-header .btn-user-menu {
+
     border-radius: 50px !important;
     -webkit-border-radius: 50px !important;
     -moz-border-radius: 50px !important;
     -ms-border-radius: 50px !important;
     -o-border-radius: 50px !important;
-}
+  }
+
+  .body-notify {
+    padding: 10px 20px;
+    display: grid;
+    gap: 10px;
+    height: 100%;
+    grid-template-rows: max-content max-content auto;
+  }
+
+  .notify-back-arrrow {
+    display: grid !important;
+  }
+
+
+  ::ng-deep {
+    .mat-mdc-menu-panel:has(.body-notify) {
+      max-width: 100vw;
+      width: 100vw;
+      min-height: 100vh !important;
+
+      button {
+        mat-icon {
+          margin-right: 5px !important;
+        }
+      }
+
+      border-radius: 0px !important;
+      -webkit-border-radius: 0px !important;
+      -moz-border-radius: 0px !important;
+      -ms-border-radius: 0px !important;
+      -o-border-radius: 0px !important;
+    }
+  }
 
 }
 
@@ -89,5 +128,3 @@ only screen and (min-device-pixel-ratio: 3) {
 
   }
 }
-
-

@@ -224,7 +224,7 @@ export class SectionService {
   }
 
   getSectionDetail(id:any){
-    this.#sectionData.update(value=> ({...value, sectionDetail:null, nameSection:null, colorSection: null, iconSection:null}))
+    this.#sectionData.update(value=> ({...value, sectionDetail:null, nameSection:null, colorSection: null, iconSection:null, postsDetail:[]}))
 
     this.http.get<SectionDetail>(`${this.urlApi}/page-category/category/${id}`).subscribe(
       (data)=>{

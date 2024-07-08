@@ -127,7 +127,7 @@
         </swiper-slide>
       </swiper-container>
     </section>
-    <app-skeleton-section *ngIf="!sectionData().sectionDetail" class="overflow-hidden" />
+    <app-skeleton-section *ngIf="!sectionData().sectionDetail && sectionData().postsDetail.length == 0" class="overflow-hidden" />
 
     @for (item of sectionData().sectionDetail?.sections; track $index) {
     @if(item.type == sectionDetailType.RECENT || item.type ==

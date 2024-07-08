@@ -124,6 +124,10 @@ export class AuthService {
     this.#authData.update((data)=> ({...data, loading:false}))
   }
 
+  clearNotification(){
+    this.#authData.update((data)=> ({...data, notifications:[]}));
+  }
+
   isUnLock(item:Post){
     return item.tier?.name == Roles.GUEST ||
           (item.tier?.name == Roles.REGISTER && this.#authData().role != Roles.GUEST) ||

@@ -169,8 +169,9 @@ export default class HeaderComponent implements AfterViewInit {
     this.router.navigate(['/'])
   }
 
-  clearNotify(){
-    this.notifications.set([])
+  clearNotify(event:any){
+    event.stopPropagation();
+    this.authService.clearNotification()
   }
 
   openPost(item:any){
