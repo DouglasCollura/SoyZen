@@ -21,6 +21,10 @@ export interface AuthServiceData{
   role:string | null,
   notifications:Notification[]
 }
+export interface LinkServiceData{
+
+  link:any
+}
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +45,13 @@ export class AuthService {
     notifications: []
   });
 
+  #linkData = signal<LinkServiceData>({
+
+    link: []
+  });
+
   public authData = computed(() => this.#authData());
+  public linkData = computed(() => this.#linkData());
 
   constructor(){
     !this.#authData().role && this.#authData.update(value=> ({...value, role: localStorage.getItem('role')}));
@@ -115,6 +125,19 @@ export class AuthService {
     .subscribe((data)=>{
       console.log(data)
       this.#authData.update(value=> ({...value, notifications:data}))
+
+    })
+
+  }
+
+  getCancelar(){
+    const userId = localStorage.getItem('userId')
+    if(!userId) return;
+
+    return this.http.get<any>(`${this.urlApi}/auth/cancelacion`)
+    .subscribe((data)=>{
+      console.log(data)
+      this.#linkData.update(value=> ({...value, link:data}))
 
     })
 

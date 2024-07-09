@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, signal, AfterViewInit, computed, Renderer2, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
-import { AuthService, AuthServiceData, Roles } from '@services/auth.service';
+import { AuthService, AuthServiceData, LinkServiceData, Roles } from '@services/auth.service';
 import {MatMenuModule} from '@angular/material/menu';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router, RouterModule } from '@angular/router';
 import { NofityItemComponent } from '@shared/components/nofity-item/nofity-item.component';
@@ -93,6 +93,7 @@ export default class HeaderComponent implements AfterViewInit {
   private inputSubject = new Subject<string>();
   public sectionData = computed<SectionServiceData>(()=> this.sectionService.sectionData());
   public authData = computed<AuthServiceData>(()=> this.authService.authData());
+  public linkData = computed<LinkServiceData>(()=> this.authService.linkData());
   public route = toSignal(this.routeActive.events.pipe(
     filter(event => event instanceof NavigationEnd),
     tap(
@@ -130,6 +131,7 @@ export default class HeaderComponent implements AfterViewInit {
       this.searchInvestigator(e)
     });
     this.authService.getNotification();
+    this.authService.getCancelar()
 
 
   }

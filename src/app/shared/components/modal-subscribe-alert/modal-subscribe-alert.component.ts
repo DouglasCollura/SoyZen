@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
-
+import { toSignal } from '@angular/core/rxjs-interop';
+import { SectionService, SectionServiceData } from '@services/section.service';
+import { AuthService, AuthServiceData, LinkServiceData, Roles } from '@services/auth.service';
 @Component({
   selector: 'app-modal-subscribe-alert',
   standalone: true,
@@ -20,10 +22,20 @@ import { Router, RouterModule } from '@angular/router';
 export class ModalSubscribeAlertComponent {
 
   private router = inject(Router);
+  private authService = inject(AuthService);
+  public linkData = computed<LinkServiceData>(()=> this.authService.linkData());
+  constructor(){}
 
-  exitSubscribe(){
-    this.openOperator();
+  ngAfterViewInit(): void {
+    this.authService.getCancelar()
+
+
+  }
+  // linkData().link?.link 
+  exitSubscribe(link:any){
+
     localStorage.clear();
+    window.open(`${link}`, "_blank");
     this.router.navigate(['/'])
     localStorage.setItem('role', 'guest');
   }
