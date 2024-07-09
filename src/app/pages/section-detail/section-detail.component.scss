@@ -314,3 +314,15 @@
   // justify-content: center;
   // grid-template-columns: repeat(auto-fit, minmax(202px, 202px));
 }
+
+::ng-deep{
+  .full-screen-modal{
+    overflow: hidden;
+    border-radius: 20px !important;
+    -webkit-border-radius: 20px !important;
+    -moz-border-radius: 20px !important;
+    -ms-border-radius: 20px !important;
+    -o-border-radius: 20px !important;
+  }
+
+}
