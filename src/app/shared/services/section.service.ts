@@ -105,7 +105,7 @@ export class SectionService {
 
   filterSections(id:any, idSub:any = null){
     this.getSubCategories(id)
-    this.http.get<any>(`${this.urlApi}/sections/filter-by-category?category=${id}${idSub ? `&subcategories=${idSub}&page=${this.#sectionData().page ?? 1}&limit=2` : '' }`).pipe(
+    this.http.get<any>(`${this.urlApi}/sections/filter-by-category?category=${id}${idSub ? `&subcategory=${idSub}&page=${this.#sectionData().page ?? 1}&limit=2` : '' }`).pipe(
       tap(
         value => {
           if(idSub){
