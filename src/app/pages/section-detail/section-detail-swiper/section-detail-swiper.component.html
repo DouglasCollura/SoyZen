@@ -2,7 +2,7 @@
   <img *ngIf="getImg() " [srcset]="getImg()   " class="bg-img" [ngClass]="section()?.title==='Recientes' ? 'bg-fill' : '' " alt="">
   <div class="grid spacing-title-sections">
     <div class="flex w-full justify-between">
-      <span [style.color]="section()?.color ? section()?.color : 'black'" class=" text-[20px] leading-[28px] font-semibold sm:text-[24px] sm:font-medium colortitlegray" > {{section()?.title}} </span>
+      <span [style.color]="section()?.type=='RECENT' && sectionData().nameSection=='Yoga' ? '#ffffff' : section()?.color ? section()?.color : 'black'" class=" text-[20px] leading-[28px] font-semibold sm:text-[24px] sm:font-medium colortitlegray" > {{section()?.title}} </span>
 
       <button   class="btn flex btn-seemore  items-center !text-[14px] !leading-[19.07px]  !font-semibold" *ngIf="section()?.name!='Mood Zen del día' && section()?.name!='Recientes' && sectionData()?.nameSection!='Astrología' && sectionData()?.nameSection!='Astrologia' " (click)="selectSubCategory(section()?.subcategory?.id!)">
         VER TODO
