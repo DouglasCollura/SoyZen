@@ -86,8 +86,6 @@ export default class HomeComponent implements AfterViewInit {
   public searchText:string = '';
   public listSearch = signal<null | [] | any>(null);
   public showSearch = signal<boolean>(false);
-  public sectionSelect = signal<number | null>(null);
-  public subcategorySelect = signal<number | null>(null);
   private dialog = inject(MatDialog);
   private reelService = inject(ReelService);
 
@@ -142,32 +140,32 @@ export default class HomeComponent implements AfterViewInit {
   }
 
   selectSection(id:number | null){
-    this.sectionSelect.set(id);
-    this.subcategorySelect.set(null);
+    this.sectionService.setIdCategoryHomeFilter(id);
+    this.sectionService.clearIdSubCategoryHomeFilter();
     id ?  this.sectionService.filterSections(id) : this.sectionService.getSections();
   }
 
   selectSubCategory(id:number | null){
-    this.subcategorySelect.set(id);
+    this.sectionService.setIdSubCategoryHomeFilter(id);
     this.sectionService.clearPosts()
-    id ?  this.sectionService.filterSections(this.sectionSelect(),id) : this.sectionService.getSections();
+    id ?  this.sectionService.filterSections(this.sectionData().idCategoryHomeFilter,id) : this.sectionService.getSections();
   }
 
   loadpaginate(){
-    this.sectionService.filterSections(this.sectionSelect(),this.subcategorySelect());
+    this.sectionService.filterSections(this.sectionData().idCategoryHomeFilter,this.sectionData().idSubCategoryHomeFilter);
   }
 
   removeFilter(){
-    this.sectionSelect.set(null);
-    this.subcategorySelect.set(null);
+    this.sectionService.clearIdCategoryHomeFilter();
+    this.sectionService.clearIdSubCategoryHomeFilter();
     this.sectionService.clearCategory()
     this.sectionService.clearSubCategory()
     this.sectionService.getSections()
   }
 
   removeSubCategory(){
-    this.subcategorySelect.set(null);
-    this.sectionService.filterSections(this.sectionSelect())
+    this.sectionService.clearIdSubCategoryHomeFilter();
+    this.sectionService.filterSections(this.sectionData().idCategoryHomeFilter)
   }
 
 

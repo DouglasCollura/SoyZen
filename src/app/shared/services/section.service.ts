@@ -18,6 +18,8 @@ export interface SectionServiceData {
   categorias: any[];
   sections: SectionPost[];
   sectionDetail:SectionDetail | null;
+  idCategoryHomeFilter: number | null;
+  idSubCategoryHomeFilter: number | null;
   posts: Post[];
   page:number | null;
   postsDetail: Post[];
@@ -59,7 +61,9 @@ export class SectionService {
     page: null,
     nameSection:'',
     iconSection:'',
-    colorSection:''
+    colorSection:'',
+    idCategoryHomeFilter:null,
+    idSubCategoryHomeFilter:null,
   });
 
   public sectionData = computed(() => this.#sectionData());
@@ -256,6 +260,22 @@ export class SectionService {
             }
       })
     ).subscribe();
+  }
+
+  setIdCategoryHomeFilter(id:number | null){
+    this.#sectionData.update(value=> ({...value, idCategoryHomeFilter:id}))
+  }
+
+  setIdSubCategoryHomeFilter(id:number | null){
+    this.#sectionData.update(value=> ({...value, idSubCategoryHomeFilter:id}))
+  }
+
+  clearIdCategoryHomeFilter(){
+    this.#sectionData.update(value=> ({...value, idCategoryHomeFilter:null}))
+  }
+
+  clearIdSubCategoryHomeFilter(){
+    this.#sectionData.update(value=> ({...value, idSubCategoryHomeFilter:null}))
   }
 
   clearSubCategory(){
