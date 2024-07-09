@@ -110,15 +110,13 @@ export class SectionService {
         value => {
           if(idSub){
             !this.#sectionData().page && this.#sectionData.update(data=> ({...data,page: 1}))
-            let filter = value.sections.map((e:any)=> e.posts);
-            filter = filter.flat()
 
             this.#sectionData.update(
               data=> ({
                 ...data,
                 sections: [],
                 posts: this.#sectionData().page &&  this.#sectionData().page != 1 ?
-                [...this.#sectionData().posts, ...filter] : filter,
+                [...this.#sectionData().posts, ...value.posts] : value.posts,
                 page:this.#sectionData().page ?? 1}
               ))
 
