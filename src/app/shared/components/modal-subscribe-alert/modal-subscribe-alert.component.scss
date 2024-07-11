@@ -21,3 +21,10 @@
   padding-left: 3rem;
   padding-right: 3rem;
 }
+
+@media (width < 600px) , (max-device-width: 600px) {
+  .pl3r3{
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

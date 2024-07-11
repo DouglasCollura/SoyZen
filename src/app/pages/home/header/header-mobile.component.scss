@@ -6,6 +6,7 @@
       display: none !important;
     }
   }
+ 
 
 }
 
@@ -125,10 +126,12 @@ only screen and (-min--moz-device-pixel-ratio: 3),
 only screen and (-o-min-device-pixel-ratio: 3/1),
 only screen and (min-device-pixel-ratio: 3) {
   .temp-header {
-    padding: 12px 10vw 12px 22px !important;
+    padding: 12px 5vw 12px 10px !important;
 
   }
-
+  .content-search{
+    display:none;
+  }
   .centrar{
     height: 80vh;
   }

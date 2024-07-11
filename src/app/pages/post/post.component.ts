@@ -64,6 +64,14 @@ export default class PostComponent  implements OnInit{
     private sanitizer: DomSanitizer,
 
     ) {}
+
+    detectDevice() {
+      const userAgent = navigator.userAgent;
+  
+      this.isMobile = /Android|iPhone|iPad|Mobile/i.test(userAgent);
+      this.isTablet = /iPad|Tablet/i.test(userAgent);
+      this.isDesktop = !this.isMobile && !this.isTablet;
+    }
   ngOnInit(): void {
 
     
