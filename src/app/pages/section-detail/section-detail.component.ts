@@ -164,10 +164,11 @@ totalRow:any
     console.log('posts', posts.postsDetail);
     // console.log('totalWidth', totalWidth);
     console.log('rowCount', rowCount);
+    console.log('page detail', posts.pageDetail);
   
     this.showLoadMoreButton = rowCount > 2;
   
-    if(posts.postsDetail.length>10){
+    if(posts.postsDetail.length>20 &&  posts.pageDetail! >2 ||  !posts.pageDetail   ){
       this.postsForTwoColumns=[]
       this.postsForTwoColumns=posts.postsDetail
     }

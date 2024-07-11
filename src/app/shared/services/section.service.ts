@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { Observable, tap } from 'rxjs';
 import {  SectionPost } from '@interfaces/section_post';
 import { Post } from '@interfaces/post';
@@ -237,7 +237,7 @@ export class SectionService {
   }
 
   getPostDetail(id:any){
-    this.http.get<any>(`${this.urlApi}/posts/subcategory/${id}?page=${this.#sectionData().pageDetail ?? 1}&perPage=10`).pipe(
+    this.http.get<any>(`${this.urlApi}/posts/subcategory/${id}?page=${this.#sectionData().pageDetail ?? 1}&perPage=20`).pipe(
       tap((value)=>{
         console.log('section ', value);
 
