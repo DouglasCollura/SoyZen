@@ -93,6 +93,7 @@ export default class HomeComponent implements AfterViewInit {
   url_img:string = '';
   title:string = '';
   category:string = '';
+  clickco=0
   public showLoadMoreButton: boolean = false;
   postsForTwoColumns:any=[]
 
@@ -160,8 +161,9 @@ export default class HomeComponent implements AfterViewInit {
     console.log('page detail', posts);
   
     this.showLoadMoreButton = rowCount > 2;
-  
-    if(posts.posts.length>20 &&  posts.page! >2 ||  !posts.page   ){
+    console.log('entramos',this.clickco)
+    if(posts.posts.length>20 || ( posts.posts.length < 20 && !posts.page && posts.posts.length > this.postsForTwoColumns.length && this.clickco==1) &&  (posts.page! >2 ||  !posts.page   )  ){
+      // console.log('entramos')
       this.postsForTwoColumns=[]
       this.postsForTwoColumns=posts.posts
     }
@@ -226,8 +228,11 @@ export default class HomeComponent implements AfterViewInit {
     id ?  this.sectionService.filterSections(this.sectionData().idCategoryHomeFilter,id) : this.sectionService.getSections();
   }
 
-  loadpaginate(){
+  loadpaginate(clickt?: any){
+    this.clickco=1
     this.sectionService.filterSections(this.sectionData().idCategoryHomeFilter,this.sectionData().idSubCategoryHomeFilter);
+    const post=this.sectionData()
+
   }
 
   removeFilter(){

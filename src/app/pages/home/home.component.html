@@ -182,7 +182,7 @@
       <div
         class="grid place-content-center p-4"
         *ngIf="
-          sectionData().posts.length > 0 && sectionData().page
+          sectionData().posts.length > 0 && (sectionData().page || sectionData().posts.length> postsForTwoColumns.length  )
         "
       >
         <button
