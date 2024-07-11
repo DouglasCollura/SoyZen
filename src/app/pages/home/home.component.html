@@ -94,7 +94,7 @@
         speed="500"
         loop="false"
         freemode="true"
-        class="overflow-auto subccategory"
+        class="overflow-auto subccategory pt-2"
       >
         <swiper-slide>
           <mat-chip-listbox >
@@ -144,7 +144,57 @@
       } -->
     }
 
-    <div class="content-list-cards sm:max-w-[90%] px-2 gap-6  sm:pl-4 " [ngClass]="sectionData().posts.length > 0 ? 'paddinEspace' : '' ">
+    <div *ngIf="sectionData().posts.length > 0"  class="sm:w-[90%] m-auto grid py-9 px-3">
+  
+      <div
+        class="content-list-cards"
+        *ngIf="showLoadMoreButton2"
+      >
+      
+        @for (item of postsForTwoColumns; track $index) {
+        <app-card
+          [setPosts]="sectionData().postsDetail!"
+          [index]="$index"
+          isList="true"
+          [titleSection]="sectionData().nameSection"
+          [textColor]="
+            sectionData().sectionDetail?.color == '' ||
+            !sectionData().sectionDetail?.color
+              ? '#373A40'
+              : sectionData().sectionDetail?.color
+          "
+          *ngIf="item.postType?.name != 'blog'"
+          [setPost]="item"
+        />
+        <app-card-article
+          isList="true"
+          *ngIf="item.postType?.name === 'blog'"
+          [category]="item.category ? item.category.name! : ''"
+          [idPost]="item.id"
+          [time]="item.duration!"
+          [title]="item.title!"
+          [url_img]="item.postDetail!.thumbnail"
+          [user]="item.user!"
+          [type]="item.postType ? item.postType.name! : ''"
+        />
+        }
+      </div>
+      <div
+        class="grid place-content-center p-4"
+        *ngIf="
+          sectionData().posts.length > 0 && sectionData().page
+        "
+      >
+        <button
+          class="btn-border-green !text-[16px] !font-bold !px-10 !py-3 !mt-14 !mb-8"
+          (click)="loadpaginate()"
+        >
+          Cargar Más Meditaciones
+        </button>
+      </div>
+    </div>
+
+    <!-- <div class="content-list-cards sm:max-w-[90%] px-2 gap-6  sm:pl-4 " [ngClass]="sectionData().posts.length > 0 ? 'paddinEspace' : '' ">
     @for (item of sectionData().posts; track $index) {
       <app-card
         isList="true"
@@ -167,12 +217,13 @@
         [type]="item.postType.name!"
       />
     }
+      page
     </div>
     <div class="grid place-content-center p-4" *ngIf="sectionData().posts.length > 0 && sectionData().page"  >
       <button class="btn-border-green !text-[16px] !font-bold  !px-10 !py-3" (click)="loadpaginate()">
         Cargar Más Meditaciones
       </button>
-    </div>
+    </div> -->
 
     <!-- <app-peace-mind /> -->
     <!-- <app-zen-today-list /> -->

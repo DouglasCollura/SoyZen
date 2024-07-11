@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, signal, CUSTOM_ELEMENTS_SCHEMA, inject, computed, AfterViewInit, Renderer2, ViewChild, TemplateRef, ElementRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal, CUSTOM_ELEMENTS_SCHEMA, inject, computed, AfterViewInit, Renderer2, ViewChild, TemplateRef, ElementRef, HostListener } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
@@ -93,11 +93,86 @@ export default class HomeComponent implements AfterViewInit {
   url_img:string = '';
   title:string = '';
   category:string = '';
+  public showLoadMoreButton: boolean = false;
+  postsForTwoColumns:any=[]
 
   constructor(){
     // this.filter_options.set(filter_options_data);
 
   }
+  
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.calculateRows();
+  }
+ 
+  calculateRows() {
+    const windowWidth = window.innerWidth;
+    const containerWidth = (windowWidth * 0.9) - 24;
+    // console.log('containerWidth', containerWidth);
+    // console.log('windowWidth', windowWidth);
+    let totalWidth = 0;
+    let rowCount = 1;
+    const marginBetweenPosts = 12; 
+  
+    const posts = this.sectionData();
+    console.log('hola',posts)
+    const postsForTwoColumns: any[] = []; // Arreglo para almacenar los posts de las dos primeras columnas
+  
+    for (let post of posts?.posts) {
+      let postWidth = 0;
+      switch (post.postType.name) {
+        case 'audio':
+          postWidth = 202;
+          break;
+        case 'video':
+          postWidth = 310;
+          break;
+        case 'blog':
+          postWidth = 372;
+          break;
+        default:
+          postWidth = 202; 
+      }
+  
+      if (totalWidth + postWidth + marginBetweenPosts > containerWidth) {
+        rowCount++;
+        totalWidth = 0;
+      }
+  
+      totalWidth += postWidth + marginBetweenPosts;
+  
+      // Si el post está en las dos primeras columnas, agregarlo al arreglo
+      if (rowCount <= 2) {
+        postsForTwoColumns.push(post);
+        // this.postsForTwoColumns.push(postsForTwoColumns)
+      }
+  
+      // console.log('postWidth', postWidth);
+      // console.log('post name', post.title);
+    }
+  
+    console.log('postsForTwoColumns', postsForTwoColumns);
+    this.postsForTwoColumns=postsForTwoColumns
+    console.log('posts', posts.posts);
+    // console.log('totalWidth', totalWidth);
+    console.log('rowCount', rowCount);
+    console.log('page detail', posts);
+  
+    this.showLoadMoreButton = rowCount > 2;
+  
+    if(posts.posts.length>20 &&  posts.page! >2 ||  !posts.page   ){
+      this.postsForTwoColumns=[]
+      this.postsForTwoColumns=posts.posts
+    }
+  
+    // Aquí puedes hacer lo que necesites con postsForTwoColumns, como asignarlo a una propiedad de tu clase
+    // this.postsForTwoColumns = postsForTwoColumns;
+
+    console.log('estos serian los post',this.postsForTwoColumns)
+  }
+  
+
 
   ngAfterViewInit(): void {
 
@@ -227,5 +302,11 @@ export default class HomeComponent implements AfterViewInit {
   }
   close(){
     this.dialog.closeAll()
+  }
+
+  get showLoadMoreButton2() {
+    // Llama a calculateRows() para determinar si mostrar el botón de carga
+    this.calculateRows();
+    return true;
   }
 }
