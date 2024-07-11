@@ -15,6 +15,8 @@ import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { Post } from '@interfaces/post';
 import { Sanitizer } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { DeviceDetectorService } from 'ngx-device-detector';
+
 @Component({
   selector: 'app-post',
   standalone: true,
@@ -36,7 +38,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 })
 export default class PostComponent  implements OnInit{
-
+  deviceInfo:any = null;
+  isMobile: boolean = false;
+  isTablet: boolean = false;
+  isDesktop: boolean = false;
 
   $audio!: HTMLAudioElement;
 
@@ -55,8 +60,21 @@ export default class PostComponent  implements OnInit{
   private router = inject(Router);
   private sectionService = inject(SectionService)
   private activatedRoute = inject(ActivatedRoute);
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(
+    private sanitizer: DomSanitizer,
+    private deviceService: DeviceDetectorService
+    ) {}
   ngOnInit(): void {
+    this.deviceInfo = this.deviceService.getDeviceInfo();
+    this.isMobile = this.deviceService.isMobile();
+    this.isTablet = this.deviceService.isTablet();
+    this.isDesktop = this.deviceService.isDesktop();
+    console.log('deviceInfo',this.deviceInfo);
+    console.log('isMobile',this.isMobile); 
+    console.log('isTablet',this.isTablet); 
+    console.log('isDesktop',this.isDesktop); 
+    
+
     this.activatedRoute.params.subscribe(param => {
       this.idpost=param['idPost']
       this.idsection=param['idSection']
@@ -119,6 +137,22 @@ export default class PostComponent  implements OnInit{
   getImg2(url:string){
     return `${this.urlMedia}${url}`;
   }
+
+  getImgDesktop(post:any){
+    if (post.coverWeb) {
+      return this.getImg2(post.coverWeb)
+    }else{
+      return this.getImg2(post.thumbnail)
+    }
+  }
+  getImgMobile(post:any){
+    if (post.thumbnail) {
+      return this.getImg2(post.thumbnail)
+    }else{
+      return this.getImg2(post.coverWeb)
+    }
+  }
+
   isUnLock(item:Post){
 
     return item.tier?.name == Roles.GUEST ||

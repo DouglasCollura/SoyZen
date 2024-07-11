@@ -154,11 +154,12 @@
       </div>
     </div>
     } }
-      <div *ngIf="sectionData().postsDetail.length > 0"  class="w-[90%] m-auto grid py-9 px-3">
+      <div *ngIf="sectionData().postsDetail.length > 0"  class="sm:w-[90%] m-auto grid py-9 px-3">
         <div
           class="content-list-cards"
+          *ngIf="showLoadMoreButton2"
         >
-          @for (item of sectionData().postsDetail; track $index) {
+          @for (item of postsForTwoColumns; track $index) {
           <app-card
             [setPosts]="sectionData().postsDetail!"
             [index]="$index"
@@ -202,6 +203,11 @@
       </div>
     </ng-container>
   </div> <!--LLEGA HASTA AQUI-->
+  <!-- <div class="grid place-content-center p-4" *ngIf="showLoadMoreButton">
+    <button class="btn-border-green !text-[16px] !font-bold !px-10 !py-3 !mt-14 !mb-8" (click)="loadpaginate()">
+      cargar mas Meditaciones Nuevo
+    </button>
+  </div> -->
 </div>
 
 <ng-template #modalEvent>

@@ -1,8 +1,10 @@
 <div class="temp-post" >
 
   <div class="header-post" >
-
-    <img [srcset]="getImg2(post()?.postDetail?.thumbnail)" alt=""  >
+   
+    <img *ngIf="isMobile" [srcset]="getImgMobile(post()?.postDetail)" alt="SoyZen"  >
+    <img *ngIf="isDesktop" [srcset]="getImgDesktop(post()?.postDetail)" alt="SoyZen"  >
+    <img *ngIf="isTablet" [srcset]="getImgDesktop(post()?.postDetail)" alt="SoyZen"  >
 
     <div class="flex justify-between py-4">
       <button class="btn" id="btn-close" routerLink="/home" >
