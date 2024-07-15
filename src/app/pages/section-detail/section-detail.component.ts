@@ -121,11 +121,11 @@ totalRow:any
     // console.log('windowWidth', windowWidth);
     let totalWidth = 0;
     let rowCount = 1;
-    const marginBetweenPosts = 12; 
-  
+    const marginBetweenPosts = 12;
+
     const posts = this.sectionData();
     const postsForTwoColumns: any[] = []; // Arreglo para almacenar los posts de las dos primeras columnas
-  
+
     for (let post of posts?.postsDetail) {
       let postWidth = 0;
       switch (post.postType.name) {
@@ -139,45 +139,46 @@ totalRow:any
           postWidth = 372;
           break;
         default:
-          postWidth = 202; 
+          postWidth = 202;
       }
-  
+
       if (totalWidth + postWidth + marginBetweenPosts > containerWidth) {
         rowCount++;
         totalWidth = 0;
       }
-  
+
       totalWidth += postWidth + marginBetweenPosts;
-  
+
       // Si el post está en las dos primeras columnas, agregarlo al arreglo
       if (rowCount <= 2) {
         postsForTwoColumns.push(post);
         // this.postsForTwoColumns.push(postsForTwoColumns)
       }
-  
+
       // console.log('postWidth', postWidth);
       // console.log('post name', post.title);
     }
-  
+
     console.log('postsForTwoColumns', postsForTwoColumns);
     this.postsForTwoColumns=postsForTwoColumns
     console.log('posts', posts.postsDetail);
     // console.log('totalWidth', totalWidth);
     console.log('rowCount', rowCount);
-  
+
     this.showLoadMoreButton = rowCount > 2;
-  
+
     if(posts.postsDetail.length>10){
       this.postsForTwoColumns=[]
-      this.postsForTwoColumns=posts.postsDetail
+      this.postsForTwoColumns=this.sectionData().postsDetail
     }
-  
+
     // Aquí puedes hacer lo que necesites con postsForTwoColumns, como asignarlo a una propiedad de tu clase
     // this.postsForTwoColumns = postsForTwoColumns;
 
     console.log('estos serian los post',this.postsForTwoColumns)
+    console.log('pageDetail',this.sectionData().pageDetail)
   }
-  
+
 
   ngAfterViewInit(): void {
 
@@ -312,12 +313,7 @@ totalRow:any
 
   loadpaginate(){
     this.sectionService.getPostDetail(this.subcategorySelect());
-
-  
-
-
   }
-
 
   removeFilter(){
     this.subcategorySelect.set(null);

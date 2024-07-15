@@ -239,8 +239,7 @@ export class SectionService {
   getPostDetail(id:any){
     this.http.get<any>(`${this.urlApi}/posts/subcategory/${id}?page=${this.#sectionData().pageDetail ?? 1}&perPage=10`).pipe(
       tap((value)=>{
-        console.log('section ', value);
-
+        console.log('pageDetail service before', this.#sectionData().pageDetail)
         !this.#sectionData().pageDetail && this.#sectionData.update(data=> ({...data,pageDetail: 1}))
             let filter = value.content;
             // filter = filter.flat()
@@ -258,7 +257,10 @@ export class SectionService {
             }else{
               this.#sectionData.update(data=> ({...data,pageDetail: null}))
             }
+        console.log('pageDetail service after', this.#sectionData().pageDetail)
+
       })
+
     ).subscribe();
   }
 
