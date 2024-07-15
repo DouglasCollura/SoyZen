@@ -145,15 +145,15 @@
     }
 
     <div *ngIf="sectionData().posts.length > 0"  class="sm:w-[100%] m-auto grid py-9 px-0 sm:px-8">
-  
+
       <div
         class="content-list-cards"
         *ngIf="showLoadMoreButton2"
       >
-      
+
         @for (item of postsForTwoColumns; track $index) {
         <app-card
-          [setPosts]="sectionData().postsDetail!"
+          [setPosts]="sectionData().posts!"
           [index]="$index"
           isList="true"
           [titleSection]="sectionData().nameSection"

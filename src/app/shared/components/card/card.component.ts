@@ -87,6 +87,8 @@ export class CardComponent {
   openReel(){
     if(!this.isUnLock()) return;
       this.reelService.setSectionPost(this.posts()!, this.index);
+      console.log('index', this.index)
+      console.log('posts', this.posts())
       this.dialog.open(ReelComponent, {
         width: '100%',
         height:'100%',
@@ -130,7 +132,7 @@ export class CardComponent {
     if (match) {
         const number = Math.floor(parseFloat(match[1]));
         const unit = match[2];
-        
+
         return `${number} ${unit}`;
     } else {
         // Si el formato no es correcto, retornamos null o algún mensaje de error

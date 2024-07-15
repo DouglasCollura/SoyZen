@@ -43,7 +43,8 @@ export class ReelComponent implements AfterViewInit{
   constructor(){
     this.controlPause.set(this.reelDataService().sectionPost?.map(e => ({...e, pause:false})));
     this.screenWidth = window.innerWidth;
-    this.swiperParams.direction = this.screenWidth > 500 ? 'horizontal' : 'vertical'
+    this.swiperParams.direction = this.screenWidth > 500 ? 'horizontal' : 'vertical';
+    console.log('reelDataService', this.reelDataService())
   }
 
   detectDevice() {
