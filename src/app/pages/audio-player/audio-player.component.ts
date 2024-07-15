@@ -183,7 +183,6 @@ export default class AudioPlayerComponent  {
   getFeedBack(){
     this.sectionService.getFeedback(this.post()!.id)?.subscribe(
       (data)=>{
-        console.log(data)
         this.feelSelect.set(data.id);
       }
     )

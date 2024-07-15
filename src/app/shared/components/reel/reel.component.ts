@@ -25,6 +25,11 @@ import { Post, PostMediaType } from '@interfaces/post';
 })
 export class ReelComponent implements AfterViewInit{
 
+  deviceInfo:any = null;
+  isMobile: boolean = false;
+  isTablet: boolean = false;
+  isDesktop: boolean = false;
+
   @ViewChild('swiper', { static: true }) swiperRef: ElementRef | undefined;
   swiperComponent: Swiper | undefined;
   private reelService = inject(ReelService);
@@ -39,6 +44,17 @@ export class ReelComponent implements AfterViewInit{
     this.controlPause.set(this.reelDataService().sectionPost?.map(e => ({...e, pause:false})));
     this.screenWidth = window.innerWidth;
     this.swiperParams.direction = this.screenWidth > 500 ? 'horizontal' : 'vertical'
+  }
+
+  detectDevice() {
+    const userAgent = navigator.userAgent;
+
+    this.isMobile = /Android|iPhone|iPad|Mobile/i.test(userAgent);
+    this.isTablet = /iPad|Tablet/i.test(userAgent);
+    this.isDesktop = !this.isMobile && !this.isTablet;
+  }
+  ngOnInit(): void {
+        this.detectDevice()
   }
 
   ngAfterViewInit(): void {
@@ -93,7 +109,6 @@ export class ReelComponent implements AfterViewInit{
 
 
   prevMedia(index:number){
-    console.log(index < this.reelDataService().sectionPost?.length!)
     if(this.canPrev(index)){
       setTimeout(()=>{
         this.swiperComponent?.slidePrev();

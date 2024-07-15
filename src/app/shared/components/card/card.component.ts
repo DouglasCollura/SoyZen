@@ -86,7 +86,6 @@ export class CardComponent {
 
   openReel(){
     if(!this.isUnLock()) return;
-      console.log(this.posts())
       this.reelService.setSectionPost(this.posts()!, this.index);
       this.dialog.open(ReelComponent, {
         width: '100%',
@@ -121,5 +120,22 @@ export class CardComponent {
   close(){
     this.dialog.closeAll()
   }
+
+  extractAndRoundTime(input:string | undefined | null) {
+    if (input == null || input == undefined) {
+      return null
+    }
+    const match = input.match(/^([\d.]+)([a-zA-Z]+)$/);
+
+    if (match) {
+        const number = Math.floor(parseFloat(match[1]));
+        const unit = match[2];
+        
+        return `${number} ${unit}`;
+    } else {
+        // Si el formato no es correcto, retornamos null o algún mensaje de error
+        return null;
+    }
+}
 
  }

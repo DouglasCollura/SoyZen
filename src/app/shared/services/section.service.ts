@@ -152,6 +152,12 @@ export class SectionService {
     return response;
   }
 
+  getCustomSection(id:any){
+    const response = this.http.get<SectionPost>(`${this.urlApi}/custom-sections/${id}`).pipe(
+    );
+    return response;
+  }
+
   setLikePost(idPost:number){
 
     const userId = localStorage.getItem('userId');
@@ -230,7 +236,6 @@ export class SectionService {
 
     this.http.get<SectionDetail>(`${this.urlApi}/page-category/category/${id}`).subscribe(
       (data)=>{
-        console.log('section ', data);
         this.#sectionData.update(value=> ({...value, sectionDetail:data, nameSection:data.name, colorSection: data.color, iconSection:data.icon}))
       }
     );
@@ -239,7 +244,6 @@ export class SectionService {
   getPostDetail(id:any){
     this.http.get<any>(`${this.urlApi}/posts/subcategory/${id}?page=${this.#sectionData().pageDetail ?? 1}&perPage=20`).pipe(
       tap((value)=>{
-        console.log('section ', value);
 
         !this.#sectionData().pageDetail && this.#sectionData.update(data=> ({...data,pageDetail: 1}))
             let filter = value.content;

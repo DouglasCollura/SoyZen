@@ -20,11 +20,24 @@
       }
       @if(item.postType.name == postType.audio){
         <app-audio-player
+          *ngIf="isMobile"
           [setItem]="item"
           [isLock]="isLock(item)"
           [urlPlayer]="item.postDetail.audioUrl!"
           [pause]="controlPause()[i].pause"
-          [url_img]="item.postDetail.thumbnail!"
+          [url_img]="item.postDetail.coverMobile ? item.postDetail.coverMobile : item.postDetail.thumbnail!"
+          [title]="item.title!"
+          [category]="item.category.name!"
+          (nextMedia)="nexMedia(i)"
+          (prevMedia)="prevMedia(i)"
+        />
+        <app-audio-player
+          *ngIf="!isMobile"
+          [setItem]="item"
+          [isLock]="isLock(item)"
+          [urlPlayer]="item.postDetail.audioUrl!"
+          [pause]="controlPause()[i].pause"
+          [url_img]="item.postDetail.coverWeb ? item.postDetail.coverWeb : item.postDetail.thumbnail!"
           [title]="item.title!"
           [category]="item.category.name!"
           (nextMedia)="nexMedia(i)"

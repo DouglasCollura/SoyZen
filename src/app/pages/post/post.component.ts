@@ -15,6 +15,7 @@ import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { Post } from '@interfaces/post';
 import { Sanitizer } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -38,10 +39,14 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 })
 export default class PostComponent  implements OnInit{
+
+  private _snackBar = inject(MatSnackBar);
+
   deviceInfo:any = null;
   isMobile: boolean = false;
   isTablet: boolean = false;
   isDesktop: boolean = false;
+  loading: boolean = false
 
   $audio!: HTMLAudioElement;
 
@@ -72,9 +77,24 @@ export default class PostComponent  implements OnInit{
       this.isTablet = /iPad|Tablet/i.test(userAgent);
       this.isDesktop = !this.isMobile && !this.isTablet;
     }
+
+    extractAndRoundTime(input:string) {
+      const match = input.match(/^([\d.]+)([a-zA-Z]+)$/);
+  
+      if (match) {
+          const number = Math.floor(parseFloat(match[1]));
+          const unit = match[2];
+          
+          return `${number} ${unit}`;
+      } else {
+          // Si el formato no es correcto, retornamos null o algún mensaje de error
+          return null;
+      }
+  }
+
   ngOnInit(): void {
 
-    
+    this.detectDevice()
 
     this.activatedRoute.params.subscribe(param => {
       this.idpost=param['idPost']
@@ -91,11 +111,29 @@ export default class PostComponent  implements OnInit{
     return this.sanitizer.bypassSecurityTrustHtml(content);
   }
   loadPost(id:any){
+
+    this.loading = true
     this.sectionService.getPost(id).subscribe((data)=>{
 
       this.post.set(data);
-      console.log(this.post())
       this.viewPost()
+      this.loading = false
+
+      if (data) {
+        if (data.postType.name !== 'blog') {
+          this._snackBar.open('Este post ha cambiado de tipo. Por favor, regrese al inicio e intente nuevamente.', '', {
+            duration:10000,
+            horizontalPosition: 'left',
+            verticalPosition: 'bottom',
+            panelClass:'snack-red'
+          });
+          
+        }
+      }
+
+    },(error:any)=>{
+      console.log('error',error);
+      this.loading = false
 
     })
   }
@@ -147,10 +185,14 @@ export default class PostComponent  implements OnInit{
     }
   }
   getImgMobile(post:any){
-    if (post.thumbnail) {
-      return this.getImg2(post.thumbnail)
+    if(post){
+      if (post.coverMobile) {
+        return this.getImg2(post.coverMobile)
+      }else{
+        return this.getImg2(post.thumbnail)
+      }
     }else{
-      return this.getImg2(post.coverWeb)
+      return null
     }
   }
 
@@ -165,6 +207,9 @@ export default class PostComponent  implements OnInit{
   viewPost(){
     this.sectionService.setViewPost(this.post()!.id)?.subscribe()
   }
-
+  
+  transform(html: string): any {
+    return this.sanitizer.bypassSecurityTrustHtml(html);
+  }
 
 }

@@ -22,7 +22,7 @@ else if (urlActually === 'https://front-prod.soyzen.com') {
 export const environment  = {
   production: false,
 
-  apiUrl: apiurl,
+  apiUrl: 'https://api-qa.soyzen.com/api/v1',
   urlMedia: 'https://dev-media.soyzen.com/'
 };
 // Export 'environment'

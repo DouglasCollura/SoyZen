@@ -117,7 +117,6 @@ export default class HomeComponent implements AfterViewInit {
     const marginBetweenPosts = 12; 
   
     const posts = this.sectionData();
-    console.log('hola',posts)
     const postsForTwoColumns: any[] = []; // Arreglo para almacenar los posts de las dos primeras columnas
   
     for (let post of posts?.posts) {
@@ -153,15 +152,10 @@ export default class HomeComponent implements AfterViewInit {
       // console.log('post name', post.title);
     }
   
-    console.log('postsForTwoColumns', postsForTwoColumns);
     this.postsForTwoColumns=postsForTwoColumns
-    console.log('posts', posts.posts);
     // console.log('totalWidth', totalWidth);
-    console.log('rowCount', rowCount);
-    console.log('page detail', posts);
   
     this.showLoadMoreButton = rowCount > 2;
-    console.log('entramos',this.clickco)
     if(posts.posts.length>20 || ( posts.posts.length < 20 && !posts.page && posts.posts.length > this.postsForTwoColumns.length && this.clickco==1) &&  (posts.page! >2 ||  !posts.page   )  ){
       // console.log('entramos')
       this.postsForTwoColumns=[]
@@ -171,7 +165,6 @@ export default class HomeComponent implements AfterViewInit {
     // Aquí puedes hacer lo que necesites con postsForTwoColumns, como asignarlo a una propiedad de tu clase
     // this.postsForTwoColumns = postsForTwoColumns;
 
-    console.log('estos serian los post',this.postsForTwoColumns)
   }
   
 

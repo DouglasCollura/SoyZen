@@ -34,13 +34,17 @@ export class ModalSubscribeAlertComponent {
   constructor(private http: HttpClient){}
 
   ngAfterViewInit(): void {
-    this.authService.getCancelar()
-
-
+    // this.authService.getCancelar()
+    
+    
   }
   // linkData().link?.link 
-  exitSubscribe(link:any){
+  exitSubscribe(){
+    this.authService.getCancelar()
 
+  }
+  exitSubscribe2(link:any){
+    
     this.http.get<any>(`${link}`)
     .subscribe((data)=>{
       if(data.respenvio==='ok'){
@@ -64,6 +68,9 @@ export class ModalSubscribeAlertComponent {
       }
   
 
+    },(error:any)=>{
+      console.log('error',error);
+      
     })
 
     // localStorage.clear();

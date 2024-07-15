@@ -1,6 +1,13 @@
 <div class="temp-post" >
-
-  <div class="header-post" >
+  <div *ngIf="loading" class="skeleton-container">
+    <div class="skeleton skeleton-title"></div>
+    <div class="skeleton skeleton-subtitle"></div>
+    <div class="skeleton skeleton-text"></div>
+    <div class="skeleton skeleton-text"></div>
+    <div class="skeleton skeleton-text"></div>
+    <div class="skeleton skeleton-text"></div>
+</div>  
+<div class="header-post" >
    
     <img *ngIf="isMobile" [srcset]="getImgMobile(post()?.postDetail)" alt="SoyZen"  >
     <img *ngIf="isDesktop" [srcset]="getImgDesktop(post()?.postDetail)" alt="SoyZen"  >
@@ -70,13 +77,17 @@
 
 
       <div class="grid content-center">
-        <span class="text-[12px] leading-[16.34px] font-normal text-[#686D76]" >Lectura 2 minutos</span>
+        <span class="text-[12px] leading-[16.34px] font-normal text-[#686D76]" >
+          Lectura {{post()?.postDetail?.readingTime ? post()?.postDetail?.readingTime : extractAndRoundTime(post()?.duration) }}
+        </span>
         <span class="text-[14px] leading-[24px] font-bold" >REPRODUCIR AUDIO</span>
       </div>
     </div>
 
 
       <p class="text-[16px] leading-[24px] font-normal" [innerHTML]="sanitizeContent(post()?.postDetail?.content)"></p>
+      <!-- <p class="text-[16px] leading-[24px] font-normal" [innerHTML]="transform(post()?.postDetail?.content)"></p>
+      <div class="text-[16px] leading-[24px] font-normal" [innerHTML]="post()?.postDetail?.content"></div> -->
 
 
 

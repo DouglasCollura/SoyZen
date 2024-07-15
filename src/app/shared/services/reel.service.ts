@@ -30,7 +30,6 @@ export class ReelService {
     });
     const sectionPost:Post[] = sectionPosts.filter(data => data.postType.name != 'blog' && data.postType.name != 'ads' )
     this.#reelDataService.set({sectionPost, indexSection});
-    console.log(sectionPost, indexSection);
   }
 
 }

@@ -69,6 +69,13 @@ $font-url-bold: '../font/NotoSans-Bold.ttf';
   line-height: calculateRem($size)*1.5;
 }
 
+.snack-red > div{
+  background: #ce5a5a!important ;
+}
+.snack-green > div{
+  background: #2a5449!important;
+}
+
 
 * {
   box-sizing: border-box;

@@ -159,12 +159,8 @@ totalRow:any
       // console.log('post name', post.title);
     }
   
-    console.log('postsForTwoColumns', postsForTwoColumns);
     this.postsForTwoColumns=postsForTwoColumns
-    console.log('posts', posts.postsDetail);
     // console.log('totalWidth', totalWidth);
-    console.log('rowCount', rowCount);
-    console.log('page detail', posts.pageDetail);
   
     this.showLoadMoreButton = rowCount > 2;
   
@@ -176,7 +172,6 @@ totalRow:any
     // Aquí puedes hacer lo que necesites con postsForTwoColumns, como asignarlo a una propiedad de tu clase
     // this.postsForTwoColumns = postsForTwoColumns;
 
-    console.log('estos serian los post',this.postsForTwoColumns)
   }
   
 
@@ -199,11 +194,6 @@ totalRow:any
     const sectionDetail = this.sectionData().sectionDetail || '';
     const currentUrl = window.location.href;
     const currentDomain = window.location.hostname;
-    console.log(currentUrl);
-    console.log(currentDomain);
-    
-
-    console.log('post',this.sectionData().sectionDetail);
     if (currentUrl.includes('qa') || currentDomain.includes('localhost')) {
 
       if(sectionDetail && (sectionDetail.name === 'Astrología' || sectionDetail.name === 'Astrologia')  ){

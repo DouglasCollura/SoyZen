@@ -131,7 +131,7 @@ export default class HeaderComponent implements AfterViewInit {
       this.searchInvestigator(e)
     });
     this.authService.getNotification();
-    this.authService.getCancelar()
+    // this.authService.getCancelar()
 
 
   }
@@ -227,9 +227,11 @@ export default class HeaderComponent implements AfterViewInit {
 
   openAlertSubscribe(){
     this.dialog.open(this.modalSubscribeAlert, {
-      width: 'max-content',
-      height: 'max-content',
-      maxWidth:'auto',
+      width: '100%',
+        height: '100%',
+        maxHeight:'420px',
+        maxWidth:'505px',
+      panelClass: 'panel-suscription'
 
       // data:
     });
