@@ -5,6 +5,7 @@ import { tap } from 'rxjs';
 import { UserAuth } from '@interfaces/user-request.interface';
 import { Router } from '@angular/router';
 import { Post } from '@interfaces/post';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export enum Roles {
 
@@ -36,6 +37,7 @@ export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
   private urlApi = environment.apiUrl;
+  private _snackBar = inject(MatSnackBar);
 
 
   #authData = signal<AuthServiceData>({
@@ -123,7 +125,6 @@ export class AuthService {
 
     return this.http.get<any>(`${this.urlApi}/notifications/user/${userId}`)
     .subscribe((data)=>{
-      console.log(data)
       this.#authData.update(value=> ({...value, notifications:data}))
 
     })
@@ -136,8 +137,28 @@ export class AuthService {
 
     return this.http.get<any>(`${this.urlApi}/auth/cancelacion`)
     .subscribe((data)=>{
-      console.log(data)
-      this.#linkData.update(value=> ({...value, link:data}))
+      // this.#linkData.update(value=> ({...value, link:data}))
+      if(data.error===false){
+
+        this._snackBar.open(data.message, '', {
+          duration:3000,
+          horizontalPosition: 'left',
+          verticalPosition: 'bottom',
+          panelClass:'snack-green'
+        });
+        localStorage.clear();
+        // window.open(`${link}`, "_blank");
+        this.router.navigate(['/'])
+        localStorage.setItem('role', 'guest');
+
+      }else{
+        this._snackBar.open(data.message, '', {
+          duration:3000,
+          horizontalPosition: 'left',
+          verticalPosition: 'bottom',
+          panelClass:'snack-red'
+        });
+      }
 
     })
 

@@ -5,7 +5,7 @@
       <div class="flex justify-between">
         <div class="chip" *ngIf="post()?.postType?.name != postTypes.ads">
           <mat-icon  class="material-symbols-rounded !w-[16px] !h-[16px] !text-[16px]">watch_later</mat-icon>
-          <p class="text-[12px] leading-[16.34px] font-bold"> {{post()?.duration ?? '0 min'}} </p>
+          <p class="text-[12px] leading-[16.34px] font-bold"> {{ post() && post()?.duration ? extractAndRoundTime(post()?.duration) : '0 min'}} </p>
         </div>
         @if(isNew){
           <div class="chip new">

@@ -159,15 +159,12 @@ totalRow:any
       // console.log('post name', post.title);
     }
 
-    console.log('postsForTwoColumns', postsForTwoColumns);
     this.postsForTwoColumns=postsForTwoColumns
-    console.log('posts', posts.postsDetail);
     // console.log('totalWidth', totalWidth);
-    console.log('rowCount', rowCount);
 
     this.showLoadMoreButton = rowCount > 2;
 
-    if(posts.postsDetail.length>10){
+    if(posts.postsDetail.length>20 &&  posts.pageDetail! >2 ||  !posts.pageDetail   ){
       this.postsForTwoColumns=[]
       this.postsForTwoColumns=this.sectionData().postsDetail
     }
@@ -175,8 +172,6 @@ totalRow:any
     // Aquí puedes hacer lo que necesites con postsForTwoColumns, como asignarlo a una propiedad de tu clase
     // this.postsForTwoColumns = postsForTwoColumns;
 
-    console.log('estos serian los post',this.postsForTwoColumns)
-    console.log('pageDetail',this.sectionData().pageDetail)
   }
 
 
@@ -196,7 +191,19 @@ totalRow:any
   }
 
   getBgByUrl(url:string | null){
-    return `url(${this.urlMedia}${url})`;
+    const sectionDetail = this.sectionData().sectionDetail || '';
+    const currentUrl = window.location.href;
+    const currentDomain = window.location.hostname;
+    if (currentUrl.includes('qa') || currentDomain.includes('localhost')) {
+
+      if(sectionDetail && (sectionDetail.name === 'Astrología' || sectionDetail.name === 'Astrologia')  ){
+
+        return `url("https://dev-media.soyzen.com/thumbnails/1720707894068-BG-Mood-Zen-(10).png")`;
+      }
+    }
+
+      return `url(${this.urlMedia}${url})`;
+
   }
 
 

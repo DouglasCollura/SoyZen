@@ -1,6 +1,6 @@
 <div class="grid pl3r3 py-4 pb-3rm gap-8 justify-items-center">
 
-  <button class="btn justify-self-end !p-0"  mat-dialog-close="true" ><mat-icon class="!w-[25px] !h-[25px] !text-[28px] sm:!w-[32px] sm:!h-[32px] sm:!text-[40px] font-normal sm:font-extralight material-symbols-rounded"  > close </mat-icon></button>
+  <button class="btn justify-self-end !p-0 btn-close-modal"  mat-dialog-close="true" ><mat-icon class="!w-[25px] !h-[25px] !text-[28px] sm:!w-[32px] sm:!h-[32px] sm:!text-[40px] font-normal sm:font-extralight material-symbols-rounded"  > close </mat-icon></button>
 
   <span class="font-bold sm:font-medium text-[20px] sm:text-[28px] leading-[27.24px] text-center" >Manejar Suscripción</span>
 
@@ -12,7 +12,7 @@
   </span>
 
   <div class="flex gap-2 mt-3 flex-wrap sm:justify-normal justify-center  ">
-    <button class="btn btn-secondary !font-bold !py-2 !text-[14px]" (click)="exitSubscribe(linkData().link?.link )" mat-dialog-close="true" >
+    <button class="btn btn-secondary !font-bold !py-2 !text-[14px]" (click)="exitSubscribe()" mat-dialog-close="true" >
       Cancelar Suscripción
     </button>
 

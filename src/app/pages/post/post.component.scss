@@ -1,3 +1,44 @@
+.skeleton-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100vh;
+}
+
+.skeleton {
+  background-color: #e0e0e0; /* Color del esqueleto */
+  border-radius: 4px;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.skeleton-title {
+  width: 100%;
+  height: 380px;
+}
+.skeleton-subtitle {
+  width: 35%;
+    height: 65px;
+    left: 15px;
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.skeleton-text {
+  width: 90%;
+  height: 16px;
+  left: 15px;
+  position: relative;
+}
+
+@keyframes shimmer {
+  0% {
+      background-position: -200px 0;
+  }
+  100% {
+      background-position: 200px 0;
+  }
+}
+
 .temp-post{
   display: grid;
 
@@ -27,6 +68,7 @@
       width: 100%;
       max-width: 80%;
       text-align: start;
+      text-shadow: 0px 0px 3px black;
     }
   }
 

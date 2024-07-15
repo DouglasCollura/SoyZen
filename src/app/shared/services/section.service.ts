@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { Observable, tap } from 'rxjs';
 import {  SectionPost } from '@interfaces/section_post';
 import { Post } from '@interfaces/post';
@@ -109,7 +109,7 @@ export class SectionService {
 
   filterSections(id:any, idSub:any = null){
     this.getSubCategories(id)
-    this.http.get<any>(`${this.urlApi}/sections/filter-by-category?category=${id}${idSub ? `&subcategory=${idSub}&page=${this.#sectionData().page ?? 1}&limit=2` : '' }`).pipe(
+    this.http.get<any>(`${this.urlApi}/sections/filter-by-category?category=${id}${idSub ? `&subcategory=${idSub}&page=${this.#sectionData().page ?? 1}&limit=20` : '' }`).pipe(
       tap(
         value => {
           if(idSub){
@@ -148,6 +148,12 @@ export class SectionService {
 
   getSection(id:any){
     const response = this.http.get<SectionPost>(`${this.urlApi}/sections/${id}`).pipe(
+    );
+    return response;
+  }
+
+  getCustomSection(id:any){
+    const response = this.http.get<SectionPost>(`${this.urlApi}/custom-sections/${id}`).pipe(
     );
     return response;
   }
@@ -230,16 +236,15 @@ export class SectionService {
 
     this.http.get<SectionDetail>(`${this.urlApi}/page-category/category/${id}`).subscribe(
       (data)=>{
-        console.log('section ', data);
         this.#sectionData.update(value=> ({...value, sectionDetail:data, nameSection:data.name, colorSection: data.color, iconSection:data.icon}))
       }
     );
   }
 
   getPostDetail(id:any){
-    this.http.get<any>(`${this.urlApi}/posts/subcategory/${id}?page=${this.#sectionData().pageDetail ?? 1}&perPage=10`).pipe(
+    this.http.get<any>(`${this.urlApi}/posts/subcategory/${id}?page=${this.#sectionData().pageDetail ?? 1}&perPage=20`).pipe(
       tap((value)=>{
-        console.log('pageDetail service before', this.#sectionData().pageDetail)
+
         !this.#sectionData().pageDetail && this.#sectionData.update(data=> ({...data,pageDetail: 1}))
             let filter = value.content;
             // filter = filter.flat()

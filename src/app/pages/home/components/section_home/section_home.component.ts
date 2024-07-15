@@ -83,7 +83,6 @@ export class SectionHomeComponent {
   getIndexByItem(item:Post){
     let filterPost = this.section()?.posts.filter( (data)=> data.postType.name != 'blog');
     let index = filterPost?.findIndex(data=> data == item);
-    console.log(`index ${index}`);
     return index;
   }
   onSwiper() {
