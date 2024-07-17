@@ -173,9 +173,10 @@ export class AuthService {
   }
 
   isUnLock(item:Post){
-    return item.tier?.name == Roles.GUEST ||
-          (item.tier?.name == Roles.REGISTER && this.#authData().role != Roles.GUEST) ||
-            (item.tier?.name == Roles.SUBSCRIBE && this.#authData().role == Roles.SUBSCRIBE);
+    const tier = item.tier?.name ?? item.tier;
+    return tier == Roles.GUEST ||
+          (tier == Roles.REGISTER && this.#authData().role != Roles.GUEST) ||
+            (tier == Roles.SUBSCRIBE && this.#authData().role == Roles.SUBSCRIBE);
   }
 
 }

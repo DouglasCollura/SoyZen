@@ -101,12 +101,12 @@ export default class HomeComponent implements AfterViewInit {
     // this.filter_options.set(filter_options_data);
 
   }
-  
+
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.calculateRows();
   }
- 
+
   calculateRows() {
     const windowWidth = window.innerWidth;
     const containerWidth = (windowWidth * 0.9) - 24;
@@ -114,11 +114,11 @@ export default class HomeComponent implements AfterViewInit {
     // console.log('windowWidth', windowWidth);
     let totalWidth = 0;
     let rowCount = 1;
-    const marginBetweenPosts = 12; 
-  
+    const marginBetweenPosts = 12;
+
     const posts = this.sectionData();
     const postsForTwoColumns: any[] = []; // Arreglo para almacenar los posts de las dos primeras columnas
-  
+
     for (let post of posts?.posts) {
       let postWidth = 0;
       switch (post.postType.name) {
@@ -132,41 +132,41 @@ export default class HomeComponent implements AfterViewInit {
           postWidth = 372;
           break;
         default:
-          postWidth = 202; 
+          postWidth = 202;
       }
-  
+
       if (totalWidth + postWidth + marginBetweenPosts > containerWidth) {
         rowCount++;
         totalWidth = 0;
       }
-  
+
       totalWidth += postWidth + marginBetweenPosts;
-  
+
       // Si el post está en las dos primeras columnas, agregarlo al arreglo
       if (rowCount <= 2) {
         postsForTwoColumns.push(post);
         // this.postsForTwoColumns.push(postsForTwoColumns)
       }
-  
+
       // console.log('postWidth', postWidth);
       // console.log('post name', post.title);
     }
-  
+
     this.postsForTwoColumns=postsForTwoColumns
     // console.log('totalWidth', totalWidth);
-  
+
     this.showLoadMoreButton = rowCount > 2;
     if(posts.posts.length>20 || ( posts.posts.length < 20 && !posts.page && posts.posts.length > this.postsForTwoColumns.length && this.clickco==1) &&  (posts.page! >2 ||  !posts.page   )  ){
       // console.log('entramos')
       this.postsForTwoColumns=[]
       this.postsForTwoColumns=posts.posts
     }
-  
+
     // Aquí puedes hacer lo que necesites con postsForTwoColumns, como asignarlo a una propiedad de tu clase
     // this.postsForTwoColumns = postsForTwoColumns;
 
   }
-  
+
 
 
   ngAfterViewInit(): void {
@@ -295,7 +295,7 @@ export default class HomeComponent implements AfterViewInit {
   }
 
   isUnLock(item:any){
-
+    console.log(item)
     return this.authservice.isUnLock(item);
   }
   close(){
@@ -306,5 +306,9 @@ export default class HomeComponent implements AfterViewInit {
     // Llama a calculateRows() para determinar si mostrar el botón de carga
     this.calculateRows();
     return true;
+  }
+
+  closeFilterModal(){
+    this.showSearch.set(false);
   }
 }

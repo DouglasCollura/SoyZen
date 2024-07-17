@@ -25,13 +25,13 @@
         <div class="p-3 py-4 flex items-center justify-between w-full modal-filter-header">
 
           <div class="flex items-center">
-            <button class="btn">
+            <button class="btn" (click)="closeFilterModal()">
               <mat-icon class="material-symbols-rounded font-light" >arrow_back</mat-icon>
             </button>
             <span> {{searchText}} </span>
           </div>
 
-          <button class="btn">
+          <button class="btn" (click)="closeFilterModal()">
             <mat-icon class="material-symbols-rounded font-light" >close</mat-icon>
           </button>
         </div>
