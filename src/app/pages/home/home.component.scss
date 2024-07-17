@@ -133,3 +133,15 @@
   padding-left: 16.5px !important;
   padding-right: 16.5px !important;
 }
+::ng-deep{
+  .mat-mdc-dialog-container:has(.body-alert) {
+    overflow: hidden;
+    border-radius: 15px !important;
+    -webkit-border-radius: 15px !important;
+    -moz-border-radius: 15px !important;
+    -ms-border-radius: 15px !important;
+    -o-border-radius: 15px !important;
+}
+}
+
+
