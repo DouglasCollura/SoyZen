@@ -151,6 +151,7 @@ totalRow:any
 
       // Si el post está en las dos primeras columnas, agregarlo al arreglo
       if (rowCount <= 2) {
+        // console.log('entramos')
         postsForTwoColumns.push(post);
         // this.postsForTwoColumns.push(postsForTwoColumns)
       }
@@ -158,7 +159,7 @@ totalRow:any
       // console.log('postWidth', postWidth);
       // console.log('post name', post.title);
     }
-
+    // console.log('este es el psot',postsForTwoColumns)
     this.postsForTwoColumns=postsForTwoColumns
     // console.log('totalWidth', totalWidth);
 
@@ -334,6 +335,6 @@ totalRow:any
     get showLoadMoreButton2() {
     // Llama a calculateRows() para determinar si mostrar el botón de carga
     this.calculateRows();
-    return this.showLoadMoreButton;
+    return true;
   }
  }

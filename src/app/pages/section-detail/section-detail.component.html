@@ -159,6 +159,7 @@
           class="content-list-cards"
           *ngIf="showLoadMoreButton2"
         >
+        
           @for (item of postsForTwoColumns; track $index) {
           <app-card
             [setPosts]="sectionData().postsDetail!"
