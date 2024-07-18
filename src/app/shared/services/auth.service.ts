@@ -138,6 +138,12 @@ export class AuthService {
     return this.http.get<any>(`${this.urlApi}/auth/cancelacion`)
     .subscribe((data)=>{
       // this.#linkData.update(value=> ({...value, link:data}))
+      if(data.operator=='Digitel'){
+        localStorage.clear();
+        window.open(`${data.link}`, "_blank");
+        this.router.navigate(['/'])
+        localStorage.setItem('role', 'guest');
+      }else{
       if(data.error===false){
 
         this._snackBar.open(data.message, '', {
@@ -159,6 +165,9 @@ export class AuthService {
           panelClass:'snack-red'
         });
       }
+    }
+
+
 
     })
 
