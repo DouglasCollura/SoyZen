@@ -41,8 +41,50 @@
           >
           }
         </div>
+         <div class="modal-filter" #menuHome *ngIf="showSearch() && isMobile">
+          <div class="p-3 py-4 flex items-center justify-between w-full modal-filter-header">
+  
+            <div class="flex items-center">
+              <button class="btn" (click)="closeFilterModal()">
+                <mat-icon class="material-symbols-rounded font-light" >arrow_back</mat-icon>
+              </button>
+              <span> {{searchText}} </span>
+            </div>
+  
+            <button class="btn" (click)="closeFilterModal()">
+              <mat-icon class="material-symbols-rounded font-light" >close</mat-icon>
+            </button>
+          </div>
+  
+          <div class="body-filter">
+            @for (item of listSearch(); track $index) {
+              <div class="item-result" (click)="openPost(item)">
+                <div class="img">
+                  <img [src]="getImg(item.thumbnail)" alt="">
+                </div>
+  
+                <div class="grid">
+                  <span class="text-[14px] leading-[19.07px]" [innerHtml]="item.title"> </span>
+                  <span class="text-[10px] leading-[13.62px] font-medium" > {{item.category}} </span>
+                </div>
+              </div>
+            }
+  
+            @if(listSearch().length == 0){
+              <div class="p-4 grid gap-1 justify-items-center">
+                <img srcset="/assets/images/head_logo.webp" width="150" alt="">
+                <div class="flex">
+                  <mat-icon class="material-symbols-rounded font-light" >info</mat-icon>
+                  <span class="font-medium">No se encontraron resultados</span>
+                </div>
+              </div>
+            }
+          </div>
+  
+        </div>
+        
 
-        <div class="content-result" #menuDetail *ngIf="showSearch()">
+        <div class="content-result" #menuDetail *ngIf="showSearch() && isDesktop">
           @for (item of listSearch(); track $index) {
           <div class="item-result" (click)="openPost(item)">
             <div class="img">
@@ -190,9 +232,7 @@
         </div>
         <div
           class="grid place-content-center p-4"
-          *ngIf="
-            sectionData().postsDetail.length > 0 && sectionData().pageDetail
-          "
+          *ngIf="isShow"
         >
           <button
             class="btn-border-green !text-[16px] !font-bold !px-10 !py-3 !mt-14 !mb-8"
@@ -201,6 +241,12 @@
             Cargar Más Meditaciones
           </button>
         </div>
+<!--         
+      <div class="grid place-content-center p-4" *ngIf="isShow" >
+        <button class="btn-border-green !text-[16px] !font-bold  !px-10 !py-3" (click)="loadpaginate()">
+          Cargar Más Meditaciones2
+        </button>
+      </div>  -->
       </div>
     </ng-container>
   </div> <!--LLEGA HASTA AQUI-->
@@ -212,36 +258,22 @@
 </div>
 
 <ng-template #modalEvent>
-  <mat-dialog-actions class="grid">
-    <div class="grid pb-8 w-full">
-      <button class="btn justify-self-end">
-        <mat-icon
-          class="!w-[30px] !h-[30px] text-[30px] font-extralight material-symbols-rounded"
-          mat-dialog-close="true"
-        >
-          close
-        </mat-icon>
-      </button>
+  <mat-dialog-actions class="grid modal-register">
+    <div class="grid pb-10 w-full pt-4">
+      <button class="btn justify-self-end " (click)="closeDialog()"><mat-icon class="!w-[30px] !h-[30px] text-[30px] font-extralight material-symbols-rounded" mat-dialog-close="true" > close </mat-icon></button>
 
       <div class="grid gap-5 text-center justify-items-center w-[300px] m-auto">
-        <span class="text-[28px] font-medium leading-[38.14px]"
-          >Hazte Premium</span
-        >
+        <span class="text-[28px] font-medium leading-[38.14px]" >Hazte Premium</span>
 
         <span class="text-[14px] leading-[22px] font-normal">
-          Suscríbete y obtén full acceso a todos los contenidos y
-          funcionalidades de Soy Zen.
+          Suscríbete y obtén full acceso a todos los contenidos y funcionalidades de Soy Zen.
         </span>
 
-        <button
-          class="btn-gold"
-          routerLink="/premium/subscribe_operator"
-          (click)="close()"
-        >
-          Suscripción Premium
-        </button>
+        <button class="btn-gold"  routerLink="/premium/subscribe_operator" (click)="close()"  mat-dialog-close="true" >Suscripción Premium</button>
       </div>
     </div>
+
+
   </mat-dialog-actions>
 </ng-template>
 

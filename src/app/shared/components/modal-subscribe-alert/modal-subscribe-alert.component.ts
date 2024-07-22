@@ -26,12 +26,28 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalSubscribeAlertComponent {
+  deviceInfo:any = null;
+  isMobile: boolean = false;
+  isTablet: boolean = false;
+  isDesktop: boolean = false;
+  loading: boolean = false
 
   private router = inject(Router);
   private authService = inject(AuthService);
   private _snackBar = inject(MatSnackBar);
   public linkData = computed<LinkServiceData>(()=> this.authService.linkData());
   constructor(private http: HttpClient){}
+
+  detectDevice() {
+    const userAgent = navigator.userAgent;
+
+    this.isMobile = /Android|iPhone|iPad|Mobile/i.test(userAgent);
+    this.isTablet = /iPad|Tablet/i.test(userAgent);
+    this.isDesktop = !this.isMobile && !this.isTablet;
+  }
+  ngOnInit(): void {
+    this.detectDevice()
+  }
 
   ngAfterViewInit(): void {
     // this.authService.getCancelar()

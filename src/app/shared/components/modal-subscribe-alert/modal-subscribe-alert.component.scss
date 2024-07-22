@@ -18,16 +18,19 @@
   padding-bottom: 3rem;
 }
 .pl3r3{
-  padding-left: 3rem;
-  padding-right: 3rem;
+  padding-left: 0rem;
+  padding-right: 0rem;
+}
+.pl3r3 .btn-close-modal{
+  margin-right: 35px;
+  top: 22px;
+  position: relative;
 }
 
 @media (width < 600px) , (max-device-width: 600px) {
-  .pl3r3{
-    padding-left: 4rem;
-    padding-right: 4rem;
-  }
-    .pl3r3 .btn-close-modal{
-      margin-right: -40px;
+  
+  .pl3r3 .btn-close-modal{
+    margin-right: 18px;
+    top: 15px;
     }
 }

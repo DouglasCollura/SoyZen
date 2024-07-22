@@ -1,17 +1,22 @@
-<div class="grid pl3r3 py-4 pb-3rm gap-8 justify-items-center">
-
-  <button class="btn justify-self-end !p-0 btn-close-modal"  mat-dialog-close="true" ><mat-icon class="!w-[25px] !h-[25px] !text-[28px] sm:!w-[32px] sm:!h-[32px] sm:!text-[40px] font-normal sm:font-extralight material-symbols-rounded"  > close </mat-icon></button>
+<div class="grid pl3r3 pt-0 pb-9 sm:pb-14  gap-4 sm:gap-6 justify-items-center">
+  <button class="btn justify-self-end !p-0 btn-close-modal"  mat-dialog-close="true" ><mat-icon class="!w-[24px] !h-[24px] !text-[24px] sm:!w-[40px] sm:!h-[40px] sm:!text-[45px] font-normal sm:font-extralight material-symbols-rounded"  > close </mat-icon></button>
 
   <span class="font-bold sm:font-medium text-[20px] sm:text-[28px] leading-[27.24px] text-center" >Manejar Suscripción</span>
 
-  <span class="text-[16px] font-normal leading-[22px] text-center max-w-[380px]">
+  <span *ngIf="isMobile" class="text-[14px] font-normal leading-[22px] text-center max-w-[400px] sm:max-w-[505px]">
     Estás suscrito con tu operadora móvil. <br>
       Sí cancelas tu suscripción, <strong class="text-[14px] text-[#686D76] leading-[22px]">
-        dejarás de tener acceso al contenido premium de SoyZen.
+        dejarás de <br>tener acceso al contenido premium de<br> SoyZen.
+      </strong>
+  </span>
+  <span *ngIf="isDesktop" class="text-[16px] font-normal leading-[22px] text-center max-w-[400px] sm:max-w-[505px]">
+    Estás suscrito con tu operadora móvil. <br>
+      Sí cancelas tu suscripción, <strong class="text-[16px] text-[#686D76] leading-[22px]">
+        dejarás de tener acceso al<br> contenido premium de SoyZen.
       </strong>
   </span>
 
-  <div class="flex gap-2 mt-3 flex-wrap sm:justify-normal justify-center  ">
+  <div class="flex gap-3 mt-3 flex-wrap sm:justify-normal justify-center  ">
     <button class="btn btn-secondary !font-bold !py-2 !text-[14px]" (click)="exitSubscribe()" mat-dialog-close="true" >
       Cancelar Suscripción
     </button>

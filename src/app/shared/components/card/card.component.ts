@@ -87,8 +87,6 @@ export class CardComponent {
   openReel(){
     if(!this.isUnLock()) return;
       this.reelService.setSectionPost(this.posts()!, this.index);
-      console.log('index', this.index)
-      console.log('posts', this.posts())
       this.dialog.open(ReelComponent, {
         width: '100%',
         height:'100%',

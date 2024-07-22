@@ -262,7 +262,6 @@ export class SectionService {
             }else{
               this.#sectionData.update(data=> ({...data,pageDetail: null}))
             }
-        console.log('pageDetail service after', this.#sectionData().pageDetail)
 
       })
 

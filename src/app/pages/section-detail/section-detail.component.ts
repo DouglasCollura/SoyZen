@@ -55,6 +55,12 @@ interface Posto {
 })
 
 export default class SectionDetailComponent implements AfterViewInit {
+  deviceInfo:any = null;
+  isMobile: boolean = false;
+  isTablet: boolean = false;
+  isDesktop: boolean = false;
+  loading: boolean = false;
+  isShow: boolean = false
 
 
   @ViewChild('modalVideo') modalVideo!: TemplateRef<any>;
@@ -109,6 +115,17 @@ totalRow:any
     })
   }
 
+  detectDevice() {
+    const userAgent = navigator.userAgent;
+
+    this.isMobile = /Android|iPhone|iPad|Mobile/i.test(userAgent);
+    this.isTablet = /iPad|Tablet/i.test(userAgent);
+    this.isDesktop = !this.isMobile && !this.isTablet;
+  }
+  ngOnInit(){
+    this.detectDevice()
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.calculateRows();
@@ -116,30 +133,39 @@ totalRow:any
 
   calculateRows() {
     const windowWidth = window.innerWidth;
-    const containerWidth = (windowWidth * 0.9) - 24;
-    // console.log('containerWidth', containerWidth);
-    // console.log('windowWidth', windowWidth);
+    let containerWidth
+    if (this.isMobile) {
+       containerWidth = (windowWidth ) - 24;
+    }else{
+       containerWidth = (windowWidth * 0.9) - 24;
+
+    }
+    const pixels = (44 / 100) * windowWidth;
     let totalWidth = 0;
     let rowCount = 1;
-    const marginBetweenPosts = 12;
+    const marginBetweenPosts = 10;
 
     const posts = this.sectionData();
     const postsForTwoColumns: any[] = []; // Arreglo para almacenar los posts de las dos primeras columnas
 
     for (let post of posts?.postsDetail) {
       let postWidth = 0;
+      
       switch (post.postType.name) {
         case 'audio':
-          postWidth = 202;
+          const pixelsAudio = (44 / 100) * windowWidth
+          postWidth = this.isMobile ? pixelsAudio : 202;
           break;
         case 'video':
-          postWidth = 310;
+          const pixelsVideo = (68 / 100) * windowWidth
+          postWidth = this.isMobile ? pixelsVideo : 310;
           break;
         case 'blog':
-          postWidth = 372;
+          const pixelsBlog = (68 / 100) * windowWidth
+          postWidth = this.isMobile ? pixelsBlog : 372;
           break;
         default:
-          postWidth = 202;
+          postWidth =this.isMobile ? 190 : 202;
       }
 
       if (totalWidth + postWidth + marginBetweenPosts > containerWidth) {
@@ -150,10 +176,11 @@ totalRow:any
       totalWidth += postWidth + marginBetweenPosts;
 
       // Si el post está en las dos primeras columnas, agregarlo al arreglo
-      if (rowCount <= 2) {
-        // console.log('entramos')
-        postsForTwoColumns.push(post);
-        // this.postsForTwoColumns.push(postsForTwoColumns)
+      
+      if (this.isMobile) {
+        if (rowCount <= 4) postsForTwoColumns.push(post);
+      }else{
+        if (rowCount <= 2) postsForTwoColumns.push(post);
       }
 
       // console.log('postWidth', postWidth);
@@ -162,13 +189,25 @@ totalRow:any
     // console.log('este es el psot',postsForTwoColumns)
     this.postsForTwoColumns=postsForTwoColumns
     // console.log('totalWidth', totalWidth);
-
-    this.showLoadMoreButton = rowCount > 2;
+    
+    if (this.isMobile) {
+      this.showLoadMoreButton = rowCount > 4;
+    }else{
+      this.showLoadMoreButton = rowCount > 2;
+    }
 
     if(posts.postsDetail.length>20 &&  posts.pageDetail! >2 ||  !posts.pageDetail   ){
       this.postsForTwoColumns=[]
       this.postsForTwoColumns=this.sectionData().postsDetail
     }
+    if (this.postsForTwoColumns && posts.postsDetail) {
+      if (this.postsForTwoColumns.length > 0 && posts.postsDetail.length > 0) {
+
+        this.isShow = this.postsForTwoColumns.length < posts.postsDetail.length
+      }
+      
+    }
+    
 
     // Aquí puedes hacer lo que necesites con postsForTwoColumns, como asignarlo a una propiedad de tu clase
     // this.postsForTwoColumns = postsForTwoColumns;
@@ -268,6 +307,10 @@ totalRow:any
     }
   }
 
+  closeDialog(): void {
+    this.dialog.closeAll();
+  }
+
   onInputChange(value: any) {
     this.inputSubject.next(value.target.value);
   }
@@ -336,5 +379,9 @@ totalRow:any
     // Llama a calculateRows() para determinar si mostrar el botón de carga
     this.calculateRows();
     return true;
+  }
+
+  closeFilterModal(){
+    this.showSearch.set(false);
   }
  }

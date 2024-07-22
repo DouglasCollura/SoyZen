@@ -43,6 +43,12 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 export default class HeaderComponent implements AfterViewInit {
 
+  deviceInfo:any = null;
+  isMobile: boolean = false;
+  isTablet: boolean = false;
+  isDesktop: boolean = false;
+  loading: boolean = false
+
   @ViewChild('modalVideo') modalVideo!: TemplateRef<any>;
   @ViewChild('modalAudio') modalAudio!: TemplateRef<any>;
   @ViewChild('modalEvent') modalEvent!: TemplateRef<any>;
@@ -124,6 +130,17 @@ export default class HeaderComponent implements AfterViewInit {
     this.renderer.listen('window', 'click',(e:Event)=>{
       this.showSearch() && e.target !== this.inputSearch!.nativeElement && e.target!==this.menu!.nativeElement && this.showSearch.set(false);
     })
+  }
+
+  detectDevice() {
+    const userAgent = navigator.userAgent;
+
+    this.isMobile = /Android|iPhone|iPad|Mobile/i.test(userAgent);
+    this.isTablet = /iPad|Tablet/i.test(userAgent);
+    this.isDesktop = !this.isMobile && !this.isTablet;
+  }
+  ngOnInit(){
+    this.detectDevice()
   }
 
   ngAfterViewInit(): void {
@@ -228,9 +245,9 @@ export default class HeaderComponent implements AfterViewInit {
   openAlertSubscribe(){
     this.dialog.open(this.modalSubscribeAlert, {
       width: '100%',
-        height: '100%',
-        maxHeight:'420px',
-        maxWidth:'505px',
+        // height: '100%',
+        // maxHeight:'420px',
+        maxWidth: this.isMobile ? '343px': '505px',
       panelClass: 'panel-suscription'
 
       // data:

@@ -65,6 +65,12 @@ import { ReelComponent } from '@shared/components/reel/reel.component';
 })
 export default class HomeComponent implements AfterViewInit {
 
+  deviceInfo:any = null;
+  isMobile: boolean = false;
+  isTablet: boolean = false;
+  isDesktop: boolean = false;
+  loading: boolean = false
+
   @ViewChild('modalVideo') modalVideo!: TemplateRef<any>;
   @ViewChild('modalAudio') modalAudio!: TemplateRef<any>;
   @ViewChild('modalEvent') modalEvent!: TemplateRef<any>;
@@ -102,6 +108,17 @@ export default class HomeComponent implements AfterViewInit {
 
   }
 
+  detectDevice() {
+    const userAgent = navigator.userAgent;
+
+    this.isMobile = /Android|iPhone|iPad|Mobile/i.test(userAgent);
+    this.isTablet = /iPad|Tablet/i.test(userAgent);
+    this.isDesktop = !this.isMobile && !this.isTablet;
+  }
+  ngOnInit(){
+    this.detectDevice()
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.calculateRows();
@@ -109,12 +126,16 @@ export default class HomeComponent implements AfterViewInit {
 
   calculateRows() {
     const windowWidth = window.innerWidth;
-    const containerWidth = (windowWidth * 0.9) - 24;
-    // console.log('containerWidth', containerWidth);
-    // console.log('windowWidth', windowWidth);
+    let containerWidth
+    if (this.isMobile) {
+       containerWidth = (windowWidth ) - 27;
+    }else{
+       containerWidth = (windowWidth * 0.9) - 24;
+
+    }
     let totalWidth = 0;
     let rowCount = 1;
-    const marginBetweenPosts = 12;
+    const marginBetweenPosts = 1;
 
     const posts = this.sectionData();
     const postsForTwoColumns: any[] = []; // Arreglo para almacenar los posts de las dos primeras columnas
@@ -123,17 +144,19 @@ export default class HomeComponent implements AfterViewInit {
       let postWidth = 0;
       switch (post.postType.name) {
         case 'audio':
-          postWidth = 202;
+          postWidth = this.isMobile ? 190 : 202;
           break;
         case 'video':
-          postWidth = 310;
+          postWidth = this.isMobile ? 292 : 310;
           break;
         case 'blog':
-          postWidth = 372;
+          postWidth = this.isMobile ? 292 : 372;
           break;
         default:
-          postWidth = 202;
+          postWidth =this.isMobile ? 190 : 202;
       }
+
+      
 
       if (totalWidth + postWidth + marginBetweenPosts > containerWidth) {
         rowCount++;
@@ -143,9 +166,11 @@ export default class HomeComponent implements AfterViewInit {
       totalWidth += postWidth + marginBetweenPosts;
 
       // Si el post está en las dos primeras columnas, agregarlo al arreglo
-      if (rowCount <= 2) {
-        postsForTwoColumns.push(post);
-        // this.postsForTwoColumns.push(postsForTwoColumns)
+      
+     if (this.isMobile) {
+        if (rowCount <= 4) postsForTwoColumns.push(post);
+      }else{
+        if (rowCount <= 2) postsForTwoColumns.push(post);
       }
 
       // console.log('postWidth', postWidth);
@@ -155,12 +180,24 @@ export default class HomeComponent implements AfterViewInit {
     this.postsForTwoColumns=postsForTwoColumns
     // console.log('totalWidth', totalWidth);
 
-    this.showLoadMoreButton = rowCount > 2;
+    
+
+    if (this.isMobile) {
+      this.showLoadMoreButton = rowCount > 4;
+    }else{
+      this.showLoadMoreButton = rowCount > 2;
+    }
+
     if(posts.posts.length>20 || ( posts.posts.length < 20 && !posts.page && posts.posts.length > this.postsForTwoColumns.length && this.clickco==1) &&  (posts.page! >2 ||  !posts.page   )  ){
       // console.log('entramos')
       this.postsForTwoColumns=[]
-      this.postsForTwoColumns=posts.posts
+          this.postsForTwoColumns=posts.posts
     }
+    
+    // if(posts.postsDetail.length>20 &&  posts.pageDetail! >2 ||  !posts.pageDetail   ){
+    //   this.postsForTwoColumns=[]
+    //   // this.postsForTwoColumns=this.sectionData().postsDetail
+    // }
 
     // Aquí puedes hacer lo que necesites con postsForTwoColumns, como asignarlo a una propiedad de tu clase
     // this.postsForTwoColumns = postsForTwoColumns;
@@ -295,7 +332,6 @@ export default class HomeComponent implements AfterViewInit {
   }
 
   isUnLock(item:any){
-    console.log(item)
     return this.authservice.isUnLock(item);
   }
   close(){
