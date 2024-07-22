@@ -184,7 +184,7 @@ export class AuthService {
       'Authorization': `Bearer ${this.token}`
     })
     this.#authData.update((data)=> ({...data, notifications:[]}));
-    this.http.delete<any>(`${this.urlApi}/notifications/read/all/user`,{ headers: headers}
+    this.http.get<any>(`${this.urlApi}/notifications/read/all/user`,{ headers: headers}
     ).subscribe()
   }
 
