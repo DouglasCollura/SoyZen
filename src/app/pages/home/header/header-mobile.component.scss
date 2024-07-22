@@ -1,12 +1,12 @@
 @media (width < 820px),
 (max-device-width: 820px) {
-  
+
   .temp-header {
     .search {
       display: none !important;
     }
   }
- 
+
 
 }
 
@@ -143,4 +143,14 @@ only screen and (min-device-pixel-ratio: 3) {
   .centrar{
     height: 80vh;
   }
+}
+.modal-filter{
+  z-index: 99;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  top: 0;
+  left: 0;
+  right: 0;
 }

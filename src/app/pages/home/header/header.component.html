@@ -1,7 +1,7 @@
 <div class="temp-header">
   <img id="logo" srcset="/assets/images/head_logo.webp" alt="">
   <div class="content-search" *ngIf="showInput()">
-  
+
     <div class="input-icon-right search">
       <input
 
@@ -130,7 +130,7 @@
 
       @case (roles.SUBSCRIBE){
         <div class="flex items-center gap-3 ">
-          <button class="grid place-content-center" [matMenuTriggerFor]="notify">
+          <button *ngIf="!isMobile" class="grid place-content-center" [matMenuTriggerFor]="notify">
             @if(authData().notifications.length > 0){
               <mat-icon svgIcon="my-bell-notification" ></mat-icon>
             }@else{
@@ -162,6 +162,43 @@
               </div>
             </mat-menu>
           </button>
+
+          <button *ngIf="isMobile" (click)="openNotify()" class="grid place-content-center">
+            @if(authData().notifications.length > 0){
+              <mat-icon svgIcon="my-bell-notification" ></mat-icon>
+            }@else{
+              <mat-icon svgIcon="my-bell-empty" class="!h-[20px]"></mat-icon>
+            }
+          </button>
+
+          <div class="modal-filter" *ngIf="showNotify()">
+            <div class="body-notify">
+              <div class="flex items-center justify-between">
+                <button class="justify-self-end" (click)="closeNotify()" ><mat-icon class="material-symbols-rounded !font-extralight notify-back-arrrow" >arrow_back</mat-icon></button>
+                <button class="justify-self-end" ><mat-icon class="material-symbols-rounded !font-extralight" svgIcon="my-settings" ></mat-icon></button>
+              </div>
+
+              <div class="flex items-end justify-between mb-6">
+                <span class="text-[24px] leading-[38px] font-normal" >Notificaciones</span>
+
+                <button class="text-[14px] leading-[24px] font-semibold  "  [class]="authData().notifications.length > 0 ? 'text-blue' : 'text-disable' " (click)="clearNotify($event)" >Borrar todo</button>
+              </div>
+
+              @if(authData().notifications.length == 0){
+                <div class="grid justify-items-center content-center centrar content-notification">
+                  <img src="/assets/images/notify/logo_notify.png" alt="">
+                  <span class="text-[14px] leading-[19.07px] font-semibold" >Aún no tienes <br/>
+                    notificaciones</span>
+                </div>
+              }@else {
+                <div class="grid content-start">
+                  @for (item of authData().notifications; track $index) {
+                    <app-nofity-item [notify]="item" />
+                  }
+                </div>
+              }
+            </div>
+          </div>
 
           <button class="btn-user-menu" [matMenuTriggerFor]="menu">
             <mat-icon class="material-symbols-rounded text-gold iconoUser" >account_circle</mat-icon>

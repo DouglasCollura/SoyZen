@@ -111,6 +111,7 @@ export default class HeaderComponent implements AfterViewInit {
   public searchText:string = '';
   public listSearch = signal<null | [] | any>(null);
   public showSearch = signal<boolean>(false);
+  public showNotify = signal<boolean>(false);
   public routeActual = signal<string>('');
   public nombre = signal<string | null>('');
   public email = signal<string | null>('');
@@ -256,6 +257,13 @@ export default class HeaderComponent implements AfterViewInit {
 
   showInput(){
     return !this.routeActual().includes('section')
+  }
+
+  openNotify(){
+    this.showNotify.set(true)
+  }
+  closeNotify(){
+    this.showNotify.set(false)
   }
 
 }

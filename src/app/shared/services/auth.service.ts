@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { tap } from 'rxjs';
@@ -38,6 +38,7 @@ export class AuthService {
   private router = inject(Router);
   private urlApi = environment.apiUrl;
   private _snackBar = inject(MatSnackBar);
+  private token = localStorage.getItem('token');
 
 
   #authData = signal<AuthServiceData>({
@@ -178,7 +179,13 @@ export class AuthService {
   }
 
   clearNotification(){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.token}`
+    })
     this.#authData.update((data)=> ({...data, notifications:[]}));
+    this.http.delete<any>(`${this.urlApi}/notifications/read/all/user`,{ headers: headers}
+    ).subscribe()
   }
 
   isUnLock(item:Post){
