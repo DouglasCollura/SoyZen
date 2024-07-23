@@ -126,7 +126,7 @@ export class AuthService {
 
     return this.http.get<any>(`${this.urlApi}/notifications/user/${userId}`)
     .subscribe((data)=>{
-      this.#authData.update(value=> ({...value, notifications:data.filter((data:any)=> !data.read && data)}))
+      this.#authData.update(value=> ({...value, notifications:data.filter((data:any)=> data.read && data)}))
 
     })
 
