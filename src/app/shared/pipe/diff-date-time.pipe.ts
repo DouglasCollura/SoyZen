@@ -1,5 +1,5 @@
-import { Pipe, type PipeTransform } from '@angular/core';
-import moment from 'moment';
+import { Pipe, PipeTransform } from '@angular/core';
+import dayjs from 'dayjs';
 
 @Pipe({
   name: 'appDiffDateTime',
@@ -8,22 +8,25 @@ import moment from 'moment';
 export class DiffDateTimePipe implements PipeTransform {
 
   transform(date: string): string {
-    let dateOrder = moment(date).format('YYYY-MM-DD HH:mm');
+    const now = dayjs();
+    const dateOrder = dayjs(date);
 
-    let difM = moment().diff(dateOrder, 'minute');
-    let difH = moment().diff(dateOrder, 'hours');
-    let difD = moment().diff(dateOrder, 'day');
-    if (difM === 0) {
-      return '0 minutos';
-    } else if (difM > 0 && difM < 59) {
-      return difM + ' minutos';
-    } else if (difH > 0 && difH < 23) {
-      let mt = difH * 60;
-      let mr = difM - mt;
-      let mrt = mr > 0 ? (mr < 10 ? '0' + mr : mr) : 0;
-      return difH + ' H ' + mrt + ' Min';
+    const difM = now.diff(dateOrder, 'minute');
+    const difH = now.diff(dateOrder, 'hour');
+    const difD = now.diff(dateOrder, 'day');
+    const difW = now.diff(dateOrder, 'week');
+
+    if (difW > 0) {
+      return difW + ' sem';
+    } else if (difD > 0) {
+      return difD + ' ' + (difD > 1 ? 'días' : 'día');
+    } else if (difH > 0) {
+      return difH + ' hr';
+    } else if (difM > 0) {
+      return difM + ' min';
+    } else {
+      return '0 min';
     }
-    return difD + ' Dias';
   }
 
 }

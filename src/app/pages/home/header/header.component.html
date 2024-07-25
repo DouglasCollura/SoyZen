@@ -191,7 +191,7 @@
                     notificaciones</span>
                 </div>
               }@else {
-                <div class="grid content-start">
+                <div class="grid content-start grid-content-scroll ">
                   @for (item of authData().notifications; track $index) {
                     <app-nofity-item [notify]="item" />
                   }

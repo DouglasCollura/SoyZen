@@ -126,6 +126,12 @@
     margin-top: 14px;
   }
 
+  .grid-content-scroll {
+    max-height: 100vh; /* Ajusta la altura máxima según sea necesario */
+    overflow-y: auto; /* Permite el scroll vertical */
+  }
+  
+
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 3),

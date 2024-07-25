@@ -5,3 +5,27 @@
   gap: 5px;
   cursor: pointer;
 }
+
+.tex-grape{
+  color:#686D76 !important;
+}
+
+.m5p{
+  margin-left: 6px;
+}
+.truncate-text{
+  display: inline-block;
+  width: 100%; /* Ajusta el ancho según sea necesario */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.wd45{
+  width: 45%;
+}
+
+@media (width < 600px) , (max-device-width: 600px) {
+  .wd45{
+    width: inherit;
+  }
+}

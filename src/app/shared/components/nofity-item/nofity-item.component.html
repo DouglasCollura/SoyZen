@@ -1,11 +1,11 @@
 
 <div class="notify-item">
-  <div class="img">
-    <img [src]="getLogo()" alt="">
+  <div class="img" style="    width: 50px;">
+    <img style="width: 40px;height: 40px;" [src]="getImg(notify.category?.pageCategory?.icon)" alt="">
   </div>
 
-  <div class="grid">
-    <span class="text-[14px] leading-[24px] font-semibold"> {{notify.title}} </span>
-    <span class="text-[10px] leading-[13.62px] font-semibold text-dark-gray" >{{notify.category.name}} - {{notify.created_at | appDiffDateTime}} </span>
+  <div class="grid m5p">
+    <span class="text-[14px] leading-[24px] font-semibold truncate-text"> {{ truncateText(notify.title, 55) }}</span>
+    <span class="text-[10px] leading-[13.62px] font-semibold text-dark-gray tex-grape" >{{notify.category.name}} - {{notify.created_at | appDiffDateTime}} </span>
   </div>
 </div>
