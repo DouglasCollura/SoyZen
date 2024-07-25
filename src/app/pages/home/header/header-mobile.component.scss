@@ -126,9 +126,20 @@
     margin-top: 14px;
   }
 
+  // .grid-content-scroll {
+  //   max-height: 100vh; /* Ajusta la altura máxima según sea necesario */
+  //   overflow-y: auto; /* Permite el scroll vertical */
+  // }
   .grid-content-scroll {
     max-height: 100vh; /* Ajusta la altura máxima según sea necesario */
-    overflow-y: auto; /* Permite el scroll vertical */
+    overflow-y: scroll; /* Permite el scroll vertical */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none !important;  /* Firefox */
+  }
+  
+  /* Ocultar barra de desplazamiento en navegadores WebKit (Chrome, Safari) */
+  .grid-content-scroll::-webkit-scrollbar {
+    display: none;
   }
   
 

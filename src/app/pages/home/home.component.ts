@@ -70,7 +70,7 @@ export default class HomeComponent implements AfterViewInit {
   isTablet: boolean = false;
   isDesktop: boolean = false;
   loading: boolean = false
-
+  @ViewChild('inputRef') inputElement!: ElementRef;
   @ViewChild('modalVideo') modalVideo!: TemplateRef<any>;
   @ViewChild('modalAudio') modalAudio!: TemplateRef<any>;
   @ViewChild('modalEvent') modalEvent!: TemplateRef<any>;
@@ -94,7 +94,7 @@ export default class HomeComponent implements AfterViewInit {
   public showSearch = signal<boolean>(false);
   private dialog = inject(MatDialog);
   private reelService = inject(ReelService);
-
+  isEditing: boolean = false;
   urlPlayer:string = '';
   url_img:string = '';
   title:string = '';
@@ -239,7 +239,13 @@ export default class HomeComponent implements AfterViewInit {
   }
 
   onInputChange(value: any) {
-    this.inputSubject.next(value.target.value);
+
+    if(value?.target?.value){
+      this.inputSubject.next(value.target.value);
+    }else{
+      this.inputSubject.next(value);
+    }
+    
   }
 
   getImg(url:string){
@@ -346,5 +352,22 @@ export default class HomeComponent implements AfterViewInit {
 
   closeFilterModal(){
     this.showSearch.set(false);
+  }
+  // enableEditing() {
+  //   console.log('holaa')
+  //   this.isEditing = true;
+  // }
+  enableEditing() {
+    this.isEditing = true;
+    setTimeout(() => {
+      this.inputElement.nativeElement.focus();
+    }, 0);
+  }
+
+  disableEditing(event: any) {
+    console.log('este es el evento',event.target.value)
+    this.isEditing = false;
+    this.searchText = event.target.value;
+    this.onInputChange(event.target.value)
   }
 }

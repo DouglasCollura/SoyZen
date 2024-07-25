@@ -79,7 +79,7 @@ export class SectionService {
       value=> ({...value, loadingSearch:true})
     );
 
-    const response = this.http.get<any>(`${this.urlApi}/posts/all/search?search=${search}&page=1&perPage=10${category ? '&category='+category : ''}`).pipe(
+    const response = this.http.get<any>(`${this.urlApi}/posts/all/search?search=${search}&page=1&perPage=1000${category ? '&category='+category : ''}`).pipe(
       tap(()=>{
         this.#sectionData.update(
           value=> ({...value, loadingSearch:false})

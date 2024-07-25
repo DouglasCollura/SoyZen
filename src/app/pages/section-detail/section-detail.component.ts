@@ -61,7 +61,7 @@ export default class SectionDetailComponent implements AfterViewInit {
   isDesktop: boolean = false;
   loading: boolean = false;
   isShow: boolean = false
-
+  isEditing: boolean = false;
 
   @ViewChild('modalVideo') modalVideo!: TemplateRef<any>;
   @ViewChild('modalAudio') modalAudio!: TemplateRef<any>;
@@ -69,7 +69,7 @@ export default class SectionDetailComponent implements AfterViewInit {
 
   @ViewChild('inputSearchDetail') inputSearch: ElementRef | undefined;
   @ViewChild('menuDetail') menu: ElementRef | undefined;
-
+  @ViewChild('inputRef') inputElement!: ElementRef;
   private routeActive = inject(ActivatedRoute);
   private sectionService = inject(SectionService);
   private renderer = inject(Renderer2);
@@ -312,7 +312,13 @@ totalRow:any
   }
 
   onInputChange(value: any) {
-    this.inputSubject.next(value.target.value);
+
+    if(value?.target?.value){
+      this.inputSubject.next(value.target.value);
+    }else{
+      this.inputSubject.next(value);
+    }
+    
   }
 
   getImage(img:string){
@@ -383,5 +389,19 @@ totalRow:any
 
   closeFilterModal(){
     this.showSearch.set(false);
+  }
+
+  enableEditing() {
+    this.isEditing = true;
+    setTimeout(() => {
+      this.inputElement.nativeElement.focus();
+    }, 0);
+  }
+
+  disableEditing(event: any) {
+    console.log('este es el evento',event.target.value)
+    this.isEditing = false;
+    this.searchText = event.target.value;
+    this.onInputChange(event.target.value)
   }
  }
