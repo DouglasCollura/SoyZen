@@ -38,6 +38,7 @@
                 [value]="searchText" 
                 (blur)="disableEditing($event)"
                 (keydown.enter)="disableEditing($event)" 
+                (input)="onInputChange($event)"
                 class="input-style"/>
             </ng-template>
           </div>
