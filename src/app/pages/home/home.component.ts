@@ -144,13 +144,16 @@ export default class HomeComponent implements AfterViewInit {
       let postWidth = 0;
       switch (post.postType.name) {
         case 'audio':
-          postWidth = this.isMobile ? 190 : 202;
+          const pixelsAudio = (44 / 100) * windowWidth
+          postWidth = this.isMobile ? pixelsAudio : 202;
           break;
         case 'video':
-          postWidth = this.isMobile ? 292 : 310;
+          const pixelsVideo = (68 / 100) * windowWidth
+          postWidth = this.isMobile ? pixelsVideo : 310;
           break;
         case 'blog':
-          postWidth = this.isMobile ? 292 : 372;
+          const pixelsBlog = (68 / 100) * windowWidth
+          postWidth = this.isMobile ? pixelsBlog : 372;
           break;
         default:
           postWidth =this.isMobile ? 190 : 202;

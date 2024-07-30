@@ -145,3 +145,11 @@
 }
 
 
+.mat-mdc-dialog-container .mdc-dialog__surface:has(.modal-register){
+  padding: 0px !important;
+  border-radius: 20px!important;
+  -webkit-border-radius: 20px!important;
+  -moz-border-radius: 20px!important;
+  -ms-border-radius: 20px!important;
+  -o-border-radius: 20px!important;
+}

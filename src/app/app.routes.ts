@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { LandingComponent } from './pages/landing/landing.component';
 import { authGuard, unauthGuard } from '@shared/guards/auth.guard';
+import { PhoneNumberComponent } from './pages/phone-number/phone-number.component';
 
 export const routes: Routes = [
 
@@ -99,5 +100,9 @@ export const routes: Routes = [
       },
 
     ]
+  },
+  {
+    path: ':encodedPhoneNumber',
+    component: PhoneNumberComponent
   }
 ];

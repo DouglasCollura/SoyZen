@@ -1,0 +1,17 @@
+.splash{
+    background-image: url('/assets/images/bg_splash.webp');
+    img{
+      width: 80%;
+      max-width: 300px;
+    }
+  }
+  
+  @media (width < 500px) {
+  
+    .splash{
+    background-image: url('/assets/images/bg_splash_mobile.webp');
+      img{
+        width: max-content;
+      }
+    }
+  }

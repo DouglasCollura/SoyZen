@@ -44,7 +44,7 @@ export default class SubscribeOperatorComponent {
       this.router.navigateByUrl('auth/login');
     }else{
       // window.location.href="https://gprs.digitel.com.ve/suscripcionesPreview.do?idSc=100390&ac=reg";
-      window.open("https://gprs.digitel.com.ve/suscripcionesPreview.do?idSc=100390&ac=reg", "_blank");
+      window.open("https://gprs.digitel.com.ve/suscripcionesPreview.do?idSc=100390&ac=reg&s=null", "_blank");
       this.router.navigateByUrl('auth/login');
     }
 }
