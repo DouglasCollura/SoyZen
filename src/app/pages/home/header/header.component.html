@@ -264,11 +264,11 @@
 </ng-template>
 
 <ng-template #modalVideo>
-  <app-videoplayer [urlPlayer]="urlPlayer"  />
+  <app-videoplayer [urlPlayer]="urlPlayer" [setItem]="test"  />
 </ng-template>
 
 <ng-template #modalAudio>
-  <app-audio-player [urlPlayer]="urlPlayer " [url_img]="url_img" [title]="title" [category]="category"/>
+  <app-audio-player [urlPlayer]="urlPlayer " [setItem]="test" [url_img]="url_img" [title]="title" [category]="category"/>
 </ng-template>
 
 <ng-template #modalSubscribeAlert>

@@ -117,13 +117,27 @@
   }
 
   .bg-message-lock{
-    top: 0;
+    // top: 0;
     position: absolute;
-    width: 100%;
-    height: 100%;
+    // width: 100%;
+    // height: 100%;
     display: grid;
-    z-index: 9999;
-    background-color: rgba(0,0,0,0.6);
+    z-index: 9999!important;
+    // background-color: rgba(0,0,0,0.6);
+    margin: 0 auto;
+    background: white;
+    color: black;
+    width: 26vw;
+    height: auto;
+    z-index: 7;
+    left: 100vw;
+    translate: calc(-50vw + -13vw);
+    top: 35vh;
+    border-radius: 20px;
+    padding: 50px 20px 35px;
+    button .mat-icon{
+      color:black;
+    }
   }
 }
 

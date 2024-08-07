@@ -399,7 +399,6 @@ totalRow:any
   }
 
   disableEditing(event: any) {
-    console.log('este es el evento',event.target.value)
     this.isEditing = false;
     this.searchText = event.target.value;
     this.onInputChange(event.target.value)

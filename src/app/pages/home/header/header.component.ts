@@ -120,7 +120,7 @@ export default class HeaderComponent implements AfterViewInit {
   url_img:string = '';
   title:string = '';
   category:string = '';
-
+test:any
   constructor(){
     this.notifications.set(this.listNotify);
     this.routeActual.set(this.router.url);
@@ -198,6 +198,7 @@ export default class HeaderComponent implements AfterViewInit {
 
 
     if(this.isUnLock(item)){
+      this.test=item
       this.urlPlayer = item.audioUrl
       this.url_img = item.thumbnail
       this.title = item.title

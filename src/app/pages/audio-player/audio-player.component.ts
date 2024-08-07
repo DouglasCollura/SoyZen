@@ -10,6 +10,8 @@ import { environment } from '../../../environments/environment';
 import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { Post } from '@interfaces/post';
 import { SectionService } from '@services/section.service';
+import { RouterModule } from '@angular/router';
+
 @Component({
   selector: 'app-audio-player',
   standalone: true,
@@ -22,6 +24,7 @@ import { SectionService } from '@services/section.service';
     MatIconModule,
     MatBottomSheetModule,
     MatDialogModule,
+    RouterModule
   ],
   templateUrl: './audio-player.component.html',
   styleUrls: ['./audio-player.component.scss', './audio-player-mobile.component.scss'],
@@ -160,6 +163,9 @@ export default class AudioPlayerComponent  {
     this._bottomSheet.dismiss();
   }
 
+  close(){
+    this.dialog.closeAll()
+  }
 
   viewPost(){
     this.sectionService.setViewPost(this.post()!.id)?.subscribe()
@@ -186,6 +192,20 @@ export default class AudioPlayerComponent  {
         this.feelSelect.set(data.id);
       }
     )
+  }
+
+  getContentFromHtmlString(htmlString: string | undefined): string | null {
+    if (!htmlString) {
+      return null;
+    }
+    if(htmlString.includes('<b')){
+
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(htmlString, 'text/html');
+      return doc.querySelector('b')?.textContent || null;
+    }else{
+      return htmlString;
+    }
   }
 
  }

@@ -10,6 +10,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { OnlyNumberDirective } from '@shared/directives/only-number.directive';
 import { tap } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 enum TypeLogin { email, movistar, digitel};
 
 @Component({
@@ -40,7 +41,7 @@ export default class LoginComponent implements AfterViewInit {
   private router = inject(Router);
   private authService = inject(AuthService);
   public authData = this.authService.authData;
-
+  private _snackBar = inject(MatSnackBar);
   passwordVisible = false;
   public typeLogin= signal<TypeLogin>(TypeLogin.email);
   public typesLogin = TypeLogin;
@@ -77,8 +78,20 @@ export default class LoginComponent implements AfterViewInit {
 
       this.authService.login(this.form.value)
       .subscribe({
-        next:()=>{
-          this.router.navigate(['/home']);
+        next:(response)=>{
+          console.log('testing',response)
+          if(response.active){
+            this.router.navigate(['/home']);
+          }else{
+            this._snackBar.open('Usuario Inactivo', '', {
+              duration:4000,
+              horizontalPosition: 'left',
+              verticalPosition: 'bottom',
+              panelClass:'snack-red'
+            });
+            localStorage.clear()
+          }
+        
 
         },
         error:({error})=>{

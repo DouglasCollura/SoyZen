@@ -7,6 +7,9 @@
       margin-right: 0px !important;
       width: revert-layer !important;
     }
+    .modal-opacity{
+      opacity: 0!important;
+    }
 
     .mat-mdc-dialog-container .mdc-dialog__surface{
       border-radius: 0px !important;
@@ -18,6 +21,35 @@
   }
 
 }
+
+.post-ads-reel{
+  width: 100%;
+  height: 100%;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  flex-direction: column;
+    gap: 20px;
+  h1{
+    color: white;
+    background: rgba(0,0,0,.5);
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 10px;
+  }
+  h2{
+    color: white;
+  }
+  button{
+    background:none;
+  }
+}
+
+
 
 .mat-mdc-dialog-container, .mdc-dialog__surface{
   border-radius: 0px !important;

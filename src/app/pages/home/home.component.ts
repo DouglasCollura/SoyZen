@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, signal, CUSTOM_ELEMENTS_SCHEMA, inject, computed, AfterViewInit, Renderer2, ViewChild, TemplateRef, ElementRef, HostListener } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal, CUSTOM_ELEMENTS_SCHEMA, inject, computed, AfterViewInit, Renderer2, ViewChild, TemplateRef, ElementRef, HostListener, ChangeDetectorRef } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
@@ -30,6 +30,7 @@ import { CardArticleComponent } from '@shared/components/card_article/card_artic
 import { Post, PostMediaType } from '@interfaces/post';
 import { ReelService } from '@services/reel.service';
 import { ReelComponent } from '@shared/components/reel/reel.component';
+import SwiperCore, { Swiper } from 'swiper';
 
 @Component({
   selector: 'app-home',
@@ -70,13 +71,16 @@ export default class HomeComponent implements AfterViewInit {
   isTablet: boolean = false;
   isDesktop: boolean = false;
   loading: boolean = false
+  
   @ViewChild('inputRef') inputElement!: ElementRef;
   @ViewChild('modalVideo') modalVideo!: TemplateRef<any>;
   @ViewChild('modalAudio') modalAudio!: TemplateRef<any>;
   @ViewChild('modalEvent') modalEvent!: TemplateRef<any>;
   @ViewChild('inputSearchHome') inputSearch: ElementRef | undefined;
   @ViewChild('menuHome') menu: ElementRef | undefined;
-
+  @ViewChild('selectedChip', { static: false }) selectedChip!: ElementRef;
+  @ViewChild('swiper', { static: false }) swiperRef: ElementRef | undefined;
+  swiperComponent: Swiper | undefined;
   // filter_options = signal<FilterOption[]>([]);
   sectionService = inject(SectionService);
   private router = inject(Router);
@@ -103,7 +107,7 @@ export default class HomeComponent implements AfterViewInit {
   public showLoadMoreButton: boolean = false;
   postsForTwoColumns:any=[]
 
-  constructor(){
+  constructor(private cdr: ChangeDetectorRef){
     // this.filter_options.set(filter_options_data);
 
   }
@@ -210,12 +214,29 @@ export default class HomeComponent implements AfterViewInit {
 
 
   ngAfterViewInit(): void {
-
+    const swiperElement = this.swiperRef?.nativeElement as HTMLElement;
     this.inputSubject.pipe(debounceTime(500)).subscribe((e:any) => {
       this.searchInvestigator(e)
     });
+    this.cdr.detectChanges();
   }
-
+  scrollToChip(elementId: string, isCategory: boolean = false) {
+    // setTimeout(() => {
+      const selectedChip = document.getElementById(elementId);
+      // if (selectedChip) {
+        // const parentElement = selectedChip.parentElement;
+        // if (parentElement) {
+        //   if (isCategory) {
+            console.log('entramos',this.swiperRef?.nativeElement)
+            // this.swiperRef?.nativeElement?.slidePrev();
+            this.swiperRef?.nativeElement?.slideTo(0, 500); // Scroll to the first slide
+        //   } else {
+        //     selectedChip.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        //   }
+        // }
+      // }
+    // }, 0);
+  }
 
   searchInvestigator(data:any) {
     if(data == ''){
@@ -259,12 +280,14 @@ export default class HomeComponent implements AfterViewInit {
     this.sectionService.setIdCategoryHomeFilter(id);
     this.sectionService.clearIdSubCategoryHomeFilter();
     id ?  this.sectionService.filterSections(id) : this.sectionService.getSections();
+    this.scrollToChip('chip-category-' + id);
   }
 
   selectSubCategory(id:number | null){
     this.sectionService.setIdSubCategoryHomeFilter(id);
     this.sectionService.clearPosts()
     id ?  this.sectionService.filterSections(this.sectionData().idCategoryHomeFilter,id) : this.sectionService.getSections();
+    this.scrollToChip('chip-category-' + this.sectionData().idCategoryHomeFilter,true);
   }
 
   loadpaginate(clickt?: any){
@@ -368,7 +391,6 @@ export default class HomeComponent implements AfterViewInit {
   }
 
   disableEditing(event: any) {
-    console.log('este es el evento',event.target.value)
     this.isEditing = false;
     this.searchText = event.target.value;
     this.onInputChange(event.target.value)

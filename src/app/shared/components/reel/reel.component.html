@@ -1,5 +1,4 @@
 <div class="content-reel">
-
   <swiper-container
     #swiper
     fmSwiper
@@ -8,6 +7,15 @@
   >
     <swiper-slide *ngFor="let item of reelDataService().sectionPost; let i = index" >
 
+      @if(item.postType.name == postType.ads){
+        <div
+        class="post-ads-reel"
+        [style]="{ background: getBgByUrl(item.postDetail.thumbnail) }"
+      >
+          <h1>{{item.title}}</h1>
+          <h2>Publicidad</h2>
+        </div>
+      }
       @if(item.postType.name == postType.video){
         <app-videoplayer
           [isLock]="isLock(item)"

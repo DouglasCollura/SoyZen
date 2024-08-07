@@ -1,4 +1,8 @@
 @media (width < 600px) , (max-device-width: 600px) {
+  .bg-message-lock{
+    width: 88vw!important;
+    translate: calc(-50vw + -44vw)!important;
+  }
 
   .btn-modal-feel{
     padding: 10px 30px !important;
@@ -55,6 +59,10 @@
 }
 
 @media (orientation: landscape) and (height < 450px) , (max-device-height: 450px){
+  .bg-message-lock{
+    width: 88vw!important;
+    translate: calc(-50vw + -44vw)!important;
+  }
   .info-audio{
     display: flex !important;
   }

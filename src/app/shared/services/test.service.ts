@@ -86,13 +86,13 @@ export class TestService {
     this.#testData.update(
       value=> ({...value, loading:true})
     );
-    const response = this.http.get<any>(`https://api.ipify.org/?format=json`).pipe(
+    const response = this.http.get<any>(`${this.urlApi}/questions/grouped-by-pillar/1`).pipe(
       tap(data=>{
-        const ip = data.ip.replaceAll('.','');
+        // const ip = data.ip.replaceAll('.','');
         const epoch = new Date(2010, 6, 26).getTime() / 1000;
-        localStorage.setItem('uuidToken', `${this.#testData().name}${ip}${epoch}`);
+        localStorage.setItem('uuidToken', `${this.#testData().name}${epoch}`);
         this.#testData.update(
-          value=> ({...value, loading:false, ip, epoch: epoch.toString()})
+          value=> ({...value, loading:false,  epoch: epoch.toString()})
         );
         this.saveProgressTest();
       })

@@ -69,9 +69,13 @@ export class CardComponent {
   openDialog(): void {
 
     if(this.isUnLock()){
-        if(this.post()!.postType.name != PostMediaType.blog){
+        if(this.post()!.postType.name != PostMediaType.blog && this.post()!.postType.name != PostMediaType.ads ){
          this.openReel();
-        } else{
+        }else if(this.post()!.postType.name == PostMediaType.ads){
+          if (this.post()!.postDetail?.adsUrl && this.post()!.postDetail?.adsUrl != '') {
+            this.goToAds(this.post()!.postDetail?.adsUrl)
+          }
+        }else{
           this.router.navigateByUrl('home/post');
         }
     }else{
@@ -82,7 +86,9 @@ export class CardComponent {
     }
 
   }
-
+  goToAds(url:string){
+    window.open(url, '_blank');
+  }
 
   openReel(){
     if(!this.isUnLock()) return;

@@ -10,6 +10,7 @@ import { environment } from '../../../environments/environment';
 import {MatBottomSheet, MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { Post } from '@interfaces/post';
 import { SectionService } from '@services/section.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-videoplayer',
@@ -22,7 +23,8 @@ import { SectionService } from '@services/section.service';
     VgBufferingModule,
     MatDialogModule,
     MatIconModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    RouterModule
   ],
   templateUrl: './videoplayer.component.html',
   styleUrls: ['./videoplayer.component.scss', './videoplayer-mobile.component.scss'],

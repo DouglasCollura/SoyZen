@@ -1,4 +1,8 @@
 @media (width < 400px) , (max-device-width: 400px) {
+  .bg-message-lock{
+    width: 88vw!important;
+    translate: calc(-50vw + -44vw)!important;
+  }
 
   .content-control{
     display: flex !important;
@@ -43,6 +47,11 @@
       gap: 1rem;
   }
 
+  .bg-message-lock{
+    width: 88vw!important;
+    translate: calc(-50vw + -44vw)!important;
+  }
+
 }
 @media  (orientation: portrait) and (width < 400px) , (max-device-width: 400px) {
 
@@ -56,10 +65,18 @@
   .desktoponly{
     margin-left: 0 !important;
   }
+  .bg-message-lock{
+    width: 88vw!important;
+    translate: calc(-50vw + -44vw)!important;
+  }
 }
 
 
 @media (orientation: landscape) and (height < 450px) , (max-device-height: 450px) {
+  .bg-message-lock{
+    width: 88vw!important;
+    translate: calc(-50vw + -44vw)!important;
+  }
     .opt-video{
     display: flex !important;
   }

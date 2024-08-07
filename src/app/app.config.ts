@@ -16,7 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(
       routes,
       withViewTransitions(),
-      withHashLocation(),
+      // withHashLocation(),
       inMemoryScrollingFeature
     ),
     provideAnimations(),

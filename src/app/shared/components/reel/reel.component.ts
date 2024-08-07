@@ -8,6 +8,7 @@ import { Swiper, SwiperOptions } from 'swiper/types';
 import { SwiperDirective } from '@shared/directives/fmSwiper.directive';
 import { AuthService } from '@services/auth.service';
 import { Post, PostMediaType } from '@interfaces/post';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-reel',
@@ -29,8 +30,10 @@ export class ReelComponent implements AfterViewInit{
   isMobile: boolean = false;
   isTablet: boolean = false;
   isDesktop: boolean = false;
+  public urlMedia = environment.urlMedia;
 
-  @ViewChild('swiper', { static: true }) swiperRef: ElementRef | undefined;
+
+  @ViewChild('swiper', { static: false }) swiperRef: ElementRef | undefined;
   swiperComponent: Swiper | undefined;
   private reelService = inject(ReelService);
   private authService = inject(AuthService);
@@ -39,12 +42,13 @@ export class ReelComponent implements AfterViewInit{
 
   public controlPause = signal<any>(null);
   public screenWidth: any;
+  showSwiper = signal<boolean>(false);
+
 
   constructor(){
     this.controlPause.set(this.reelDataService().sectionPost?.map(e => ({...e, pause:false})));
     this.screenWidth = window.innerWidth;
     this.swiperParams.direction = this.screenWidth > 500 ? 'horizontal' : 'vertical';
-    console.log('reelDataService', this.reelDataService())
   }
 
   detectDevice() {
@@ -59,9 +63,17 @@ export class ReelComponent implements AfterViewInit{
   }
 
   ngAfterViewInit(): void {
+    const swiperElement = this.swiperRef?.nativeElement as HTMLElement;
+    const swiperElementparent = swiperElement.parentElement  as HTMLElement;
+    const swiperElementparent2 = swiperElementparent.parentElement  as HTMLElement;
+    const swiperElementparent3 = swiperElementparent2.parentElement  as HTMLElement;
+
     this.swiperComponent = this.swiperRef?.nativeElement.swiper
+    swiperElementparent3?.classList.add('modal-opacity')
     setTimeout(()=>{
       this.swiperComponent?.slideTo(this.reelService.reelDataService().indexSection!, 0);
+      this.showSwiper.set(true); // Mostrar el Swiper después del setTimeout
+    swiperElementparent3?.classList.remove('modal-opacity')
     },200)
 
     this.swiperComponent?.on('slideChange', (event) => {
@@ -116,5 +128,9 @@ export class ReelComponent implements AfterViewInit{
       },100)
     }
 
+  }
+
+  getBgByUrl(url:string | null){
+      return `url(${this.urlMedia}${url})`;
   }
 }

@@ -1,6 +1,6 @@
 // phone-number.component.ts
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../shared/services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -9,9 +9,11 @@ import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-phone-number',
   templateUrl: './phone-number.component.html',
-  styleUrls: ['./phone-number.component.scss']
+  styleUrls: ['./phone-number.component.scss'],
 })
 export class PhoneNumberComponent implements OnInit {
+  private authService = inject(AuthService);
+
   phoneNumber: string | null = null;
   private _snackBar = inject(MatSnackBar);
   private urlApi = environment.apiUrl;
@@ -21,8 +23,8 @@ export class PhoneNumberComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    private authService: AuthService,
     private router: Router
+
     ) {}
     
     ngOnInit(): void {
@@ -32,7 +34,6 @@ export class PhoneNumberComponent implements OnInit {
       
       if (encodedPhoneNumber) {
         this.phoneNumber = this.decodePhoneNumber(encodedPhoneNumber);
-        console.log('xxxx encodedPhoneNumber xxx: ',this.phoneNumber);
         if (this.isValidPhoneNumber(this.phoneNumber)) {
           this.addPhoneNumber(this.phoneNumber);
         } else {
@@ -73,12 +74,18 @@ export class PhoneNumberComponent implements OnInit {
     }
   }
 
+  logout(){
+    this.authService.logout()
+  }
+
   addPhoneNumber(phoneNumber: string | null): void {
         const userId = localStorage.getItem('userId');
 
     this.http.post<any>(`${this.urlApi}/users/addphonenumber`, { phoneNumber ,  userId }).subscribe({
       next: response => {
         if (response) {
+          localStorage.clear();
+          this.router.navigate(['/auth/login']); // Redirigir al usuario a una página después de agregar el número
           
           this._snackBar.open('Número de teléfono agregado', '', {
             duration:4000,
@@ -86,6 +93,7 @@ export class PhoneNumberComponent implements OnInit {
             verticalPosition: 'bottom',
             panelClass:'snack-green'
           });
+
         }else{
             this._snackBar.open('Número de teléfono no agregado', '', {
               duration:4000,
@@ -95,8 +103,7 @@ export class PhoneNumberComponent implements OnInit {
             });
 
         }
-        console.log('Número de teléfono agregado:', response);
-        this.router.navigate(['/home']); // Redirigir al usuario a una página después de agregar el número
+        // console.log('Número de teléfono agregado232:', response);
       },
       error: error => {
         this._snackBar.open('Error al agregar el número de teléfono', '', {
