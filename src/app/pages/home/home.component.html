@@ -28,16 +28,16 @@
             <button class="btn" (click)="closeFilterModal()">
               <mat-icon class="material-symbols-rounded font-light" >arrow_back</mat-icon>
             </button>
-          
+
             <div style="width: 250px;" (click)="enableEditing()" *ngIf="!isEditing; else editMode">
               <span style="width: 250px;" (click)="enableEditing()"> {{searchText}} </span>
             </div>
             <ng-template #editMode>
-              <input 
+              <input
               #inputRef
-                [value]="searchText" 
+                [value]="searchText"
                 (blur)="disableEditing($event)"
-                (keydown.enter)="disableEditing($event)" 
+                (keydown.enter)="disableEditing($event)"
                 (input)="onInputChange($event)"
                 class="input-style"/>
             </ng-template>
@@ -86,6 +86,7 @@
         class="overflow-auto"
         free-mode="true"
         long-swipes="true"
+        [class.max-w-min]="sectionData().idCategoryHomeFilter"
         long-swipes-ratio="0.1"
         long-swipes-ms="300"
         touch-ratio="1.5"
@@ -95,10 +96,10 @@
         <swiper-slide>
           <mat-chip-listbox #chipListTop>
             @for (filter_option of sectionData().categorias; track $index) {
-              <mat-chip-row 
-                [id]="'chip-category-' + filter_option.id" 
-                [class.selected]="sectionData().idCategoryHomeFilter == filter_option.id" 
-                (click)="selectSection(filter_option.id)" 
+              <mat-chip-row
+                [id]="'chip-category-' + filter_option.id"
+                [class.selected]="sectionData().idCategoryHomeFilter == filter_option.id"
+                (click)="selectSection(filter_option.id)"
                 *ngIf="!sectionData().idCategoryHomeFilter || sectionData().idCategoryHomeFilter == filter_option.id">
                 <mat-icon matChipRemove class="material-symbols-rounded font-extralight closeWhite" *ngIf="sectionData().idCategoryHomeFilter == filter_option.id && filter_option.id == null" (click)="removeFilter()">close</mat-icon>
                 {{ filter_option.name }} chavez
@@ -110,7 +111,7 @@
           </mat-chip-listbox>
         </swiper-slide>
       </swiper-container>
-    
+
       <swiper-container
         slides-per-view="auto"
         speed="500"
@@ -128,9 +129,9 @@
         <swiper-slide>
           <mat-chip-listbox #chipListBottom>
             @for (filter_option of sectionData().subcategories; track $index) {
-              <mat-chip-row 
-                [id]="'chip-subcategory-' + filter_option.id" 
-                [class.selected]="sectionData().idSubCategoryHomeFilter == filter_option.id" 
+              <mat-chip-row
+                [id]="'chip-subcategory-' + filter_option.id"
+                [class.selected]="sectionData().idSubCategoryHomeFilter == filter_option.id"
                 (click)="selectSubCategory(filter_option.id)" >
                 <mat-icon matChipRemove class="material-symbols-rounded font-extralight closeWhite" *ngIf="sectionData().idCategoryHomeFilter == filter_option.id && filter_option.id == null" (click)="removeFilter()">close</mat-icon>
                 {{ filter_option.name }} diosdado
@@ -143,8 +144,8 @@
         </swiper-slide>
       </swiper-container>
     </section>
-    
-    
+
+
 
 
     @for (item of sectionData().sections; track $index) {

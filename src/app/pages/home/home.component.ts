@@ -71,7 +71,7 @@ export default class HomeComponent implements AfterViewInit {
   isTablet: boolean = false;
   isDesktop: boolean = false;
   loading: boolean = false
-  
+
   @ViewChild('inputRef') inputElement!: ElementRef;
   @ViewChild('modalVideo') modalVideo!: TemplateRef<any>;
   @ViewChild('modalAudio') modalAudio!: TemplateRef<any>;
@@ -163,7 +163,7 @@ export default class HomeComponent implements AfterViewInit {
           postWidth =this.isMobile ? 190 : 202;
       }
 
-      
+
 
       if (totalWidth + postWidth + marginBetweenPosts > containerWidth) {
         rowCount++;
@@ -173,7 +173,7 @@ export default class HomeComponent implements AfterViewInit {
       totalWidth += postWidth + marginBetweenPosts;
 
       // Si el post está en las dos primeras columnas, agregarlo al arreglo
-      
+
      if (this.isMobile) {
         if (rowCount <= 4) postsForTwoColumns.push(post);
       }else{
@@ -187,7 +187,7 @@ export default class HomeComponent implements AfterViewInit {
     this.postsForTwoColumns=postsForTwoColumns
     // console.log('totalWidth', totalWidth);
 
-    
+
 
     if (this.isMobile) {
       this.showLoadMoreButton = rowCount > 4;
@@ -200,7 +200,7 @@ export default class HomeComponent implements AfterViewInit {
       this.postsForTwoColumns=[]
           this.postsForTwoColumns=posts.posts
     }
-    
+
     // if(posts.postsDetail.length>20 &&  posts.pageDetail! >2 ||  !posts.pageDetail   ){
     //   this.postsForTwoColumns=[]
     //   // this.postsForTwoColumns=this.sectionData().postsDetail
@@ -269,7 +269,7 @@ export default class HomeComponent implements AfterViewInit {
     }else{
       this.inputSubject.next(value);
     }
-    
+
   }
 
   getImg(url:string){
