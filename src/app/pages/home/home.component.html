@@ -102,7 +102,7 @@
                 (click)="selectSection(filter_option.id)"
                 *ngIf="!sectionData().idCategoryHomeFilter || sectionData().idCategoryHomeFilter == filter_option.id">
                 <mat-icon matChipRemove class="material-symbols-rounded font-extralight closeWhite" *ngIf="sectionData().idCategoryHomeFilter == filter_option.id && filter_option.id == null" (click)="removeFilter()">close</mat-icon>
-                {{ filter_option.name }} chavez
+                {{ filter_option.name }} 
                 @if(sectionData().idCategoryHomeFilter == filter_option.id && filter_option.id != null){
                   <mat-icon matChipRemove class="material-symbols-rounded font-extralight closeWhite" (click)="removeFilter()">close</mat-icon>
                 }
@@ -134,7 +134,7 @@
                 [class.selected]="sectionData().idSubCategoryHomeFilter == filter_option.id"
                 (click)="selectSubCategory(filter_option.id)" >
                 <mat-icon matChipRemove class="material-symbols-rounded font-extralight closeWhite" *ngIf="sectionData().idCategoryHomeFilter == filter_option.id && filter_option.id == null" (click)="removeFilter()">close</mat-icon>
-                {{ filter_option.name }} diosdado
+                {{ filter_option.name }} 
                 @if(sectionData().idSubCategoryHomeFilter == filter_option.id && filter_option.id != null){
                   <mat-icon matChipRemove class="material-symbols-rounded font-extralight closeWhite" (click)="removeSubCategory()">close</mat-icon>
                 }
