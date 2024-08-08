@@ -14,7 +14,7 @@
     display: grid;
     padding: 20px;
     align-content: space-around;
-    margin: 0px auto;
+    margin: 40px auto 0px;
     max-width: 500px;
     width: 60%;
     gap: 20px;
@@ -47,4 +47,8 @@
   .mdc-circular-progress__indeterminate-circle-graphic{
     stroke: var(--green) !important;
   }
+}
+.form-group {
+
+  margin-bottom: 150px;
 }
