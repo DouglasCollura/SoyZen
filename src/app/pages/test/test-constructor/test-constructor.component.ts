@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Signal, computed, inject, signal, OnDestroy, HostListener } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Signal, computed, inject, signal, OnDestroy, HostListener, OnInit } from '@angular/core';
 import { TestItemComponent } from '../test-item/test-item.component';
 import { BodyTest, TestGet, TypeTest } from '@interfaces/test.interface';
 import { Router } from '@angular/router';
@@ -28,7 +28,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
   styleUrls: ['./test-constructor.component.scss','./test-constructor-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class TestConstructorComponent implements OnDestroy {
+export default class TestConstructorComponent implements OnDestroy,  OnInit {
 
 
   constructor(){
@@ -45,7 +45,7 @@ export default class TestConstructorComponent implements OnDestroy {
   public percent = signal<number>(0);
   public title = signal<string>('');
 
-  public index = signal<number>(0);
+  public index = signal<number>(1);
 
   testConstructor = signal<BodyTest | null>(null);
 
@@ -59,7 +59,9 @@ export default class TestConstructorComponent implements OnDestroy {
           this.testData.set(value);
           value!.length > 0 && this.testConstructor.set(value![0]);
           const uuidToken = localStorage.getItem('uuidToken');
-
+          console.log((100/this.testData()!.length)*this.index()+1)
+          console.log(this.testData()!.length)
+          console.log(this.index()+1)
           if(uuidToken && !this.testService.testProgress()){
             this.testService.getProgress(uuidToken)
             .subscribe(_=>this.setPositionProgress());
@@ -76,8 +78,14 @@ export default class TestConstructorComponent implements OnDestroy {
 
   public test = this.testService.test;
 
-  sendTest(){
 
+
+  ngOnInit(): void {
+
+
+  }
+
+  sendTest(){
   }
 
   nextStep(){
@@ -90,13 +98,14 @@ export default class TestConstructorComponent implements OnDestroy {
       return
     }
     this.index.update(value => value+1);
+    this.step.update(value => value+1);
     this.testConstructor.update(value => null)
     this.testConstructor.update(value => this.testData()![this.index()]);
     this.setPositionProgress()
     this.setTitlePercent();
-    setTimeout(()=>{
-      this.percent.update(value=>((100/this.testData()!.length)*this.index()+1));
-    },200)
+    // setTimeout(()=>{
+    //   this.percent.update(value=>((100/this.testData()!.length)*this.index()+1));
+    // },200)
   }
 
   formInvalid(){
@@ -106,6 +115,8 @@ export default class TestConstructorComponent implements OnDestroy {
   canNext(){
     if(this.name.invalid){this.name.markAllAsTouched(); return;}
     this.testService.saveName(this.name.value!);
+    this.setPositionProgress()
+
   }
 
   setTitlePercent(){
@@ -125,7 +136,10 @@ export default class TestConstructorComponent implements OnDestroy {
 
   goBack(){
     if(this.step() > 0 ){
+      this.index.update(value => value-1);
       this.step.update(data => data-1)
+      this.testConstructor.update(value => this.testData()![this.index()]);
+
       this.setTitlePercent();
       setTimeout(()=>{
         this.percent.update(value=>value-8.3);
@@ -136,6 +150,9 @@ export default class TestConstructorComponent implements OnDestroy {
   }
 
   setPositionProgress(){
+    setTimeout(()=>{
+      this.percent.update(value=>((100/this.testData()!.length)*this.index()+1));
+    },200)
     this.testService.testProgress()?.guestAnswers.map((data:any)=>{
       data.questionId == this.testConstructor()?.id && this.nextStep();
       return data;

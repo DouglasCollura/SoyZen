@@ -29,7 +29,7 @@
 
       <h1 class="text-[24px] leading-[32.69px] text-center sm:text-[20px] sm:leading-[27.24px]" > {{test()!.content}} </h1>
 
-      <div class="grid list-buttons justify-center gap-3">
+      <div class="grid list-buttons justify-center gap-5">
         @for (answer of test()!.answers; track $index) {
           <button [class]="select() == answer.id ? 'btn-beige' : 'btn-border-beige'" (click)="select.set(answer.id)" > {{answer.content}} </button>
         }
@@ -41,7 +41,7 @@
 
   @case(type_test.multiple){
     <div class=" grid gap-2 animate__animated animate__slideInRight animate__fast" >
-      <h1 class="text-[20px] leading-[27.24px] sm:text-[24px] sm:leading-[32.69px] text-center font-medium" >Selecciona los temas que te interesan</h1>
+      <h1 class="text-[20px] leading-[27.24px] sm:text-[24px] sm:leading-[32.69px] !justify-self-center text-center font-medium !max-w-[340px]" >Selecciona los temas que te interesan</h1>
       <h3 class="text-gray text-center text-[14px] leading-[24px] sm:text-[16px] sm:leading-[24px]" >Puedes marcar más de uno</h3>
 
 
@@ -51,7 +51,7 @@
         }
       </div>
 
-      <button class="justify-self-center !py-2 !w-full"
+      <button class="justify-self-center !py-2 !w-full !max-w-[340px]"
         [class]="multiSelected().length > 0 ? 'btn-green' : 'btn-disable' "
         (click)="multiSelected().length > 0 && nexStep()"
 
@@ -63,7 +63,8 @@
 
   @case(type_test.select_icon){
     <div class="temp-select-feeling">
-      <div class="text-center my-9">
+      <div class="text-center mt-[20px]">
+        <span class="text-gray text-[16px] font-normal" > Hola, {{testData().name}} </span>
         <h1 class="font-medium text-[24px] leading-[38px]"> {{test()?.content}} </h1>
       </div>
 

@@ -1,40 +1,43 @@
 <div class="temp-test">
-  <button class="btn" id="btn-close" (click)="goBack()">
-    <mat-icon class="material-symbols-rounded font-extralight !w-[40px] !h-[40px] text-[40px]"> arrow_back </mat-icon>
-  </button>
 
-  <div class="main !content-stretch" [class]="step() >= 2 ? '!content-stretch' :''">
-    @if(testDataService().loading){
-      <div class="w-full grid place-content-center">
-        <mat-spinner></mat-spinner>
-      </div>
-    }@else {
+  <div class="flex mt-[60px]">
+    <button class="btn mt-[35px]" id="btn-close" (click)="goBack()">
+      <mat-icon class="material-symbols-rounded font-extralight !w-[40px] !h-[40px] text-[40px]"> arrow_back </mat-icon>
+    </button>
+    <div class="main !content-stretch" [class]="step() >= 2 ? '!content-stretch' :''">
+      @if(testDataService().loading){
+        <div class="w-full grid place-content-center">
+          <mat-spinner></mat-spinner>
+        </div>
+      }@else {
 
-      @if(!testDataService().name){
+        @if(!testDataService().name){
 
-        <div class="content animate__animated animate__slideInRight animate__fast">
-          <img srcset="/assets/images/isotype.svg" alt="" />
+          <div class="content animate__animated animate__slideInRight animate__fast">
+            <img srcset="/assets/images/isotype.svg" alt="" />
 
-          <span class="text-[24px] leading-[38px] sm:text-[28px] sm:leading-[38px]" >Cómo te llamas...</span>
-          <div class="form-group">
-            <input type="text" class="input-plane" [formControl]="name" placeholder="Nombre" />
-            <p *ngIf="formInvalid()" class="text-error">Campo requerido</p>
+            <span class="text-[24px] leading-[38px] sm:text-[28px] sm:leading-[38px]" >Cómo te llamas...</span>
+            <div class="form-group">
+              <input type="text" class="input-plane" [formControl]="name" placeholder="Nombre" />
+              <p *ngIf="formInvalid()" class="text-error">Campo requerido</p>
+            </div>
+
           </div>
 
-        </div>
+          <button  class="btn-green mx-auto !py-2" (click)="canNext()">Continuar</button>
 
-        <button  class="btn-green mx-auto !py-2" (click)="canNext()">Continuar</button>
-
-      }@else {
-        @if(testConstructor()){
-          <app-test-progress class="w-full" [percent]="percent()" [title]="testConstructor()!.pillar!.name" />
-          <app-test-item (nextStepEmitter)="nextStep()" [setTest]="testConstructor()!" ></app-test-item>
+        }@else {
+          @if(testConstructor()){
+            <app-test-progress class="w-full" [percent]="percent()" [title]="testConstructor()!.pillar!.name" />
+            <app-test-item (nextStepEmitter)="nextStep()" [setTest]="testConstructor()!" ></app-test-item>
+          }
         }
+
       }
 
-    }
-
+    </div>
   </div>
+
 
   <button class="btn-link" id="do_later" routerLink="../" >Quiero hacerlo después</button>
 </div>

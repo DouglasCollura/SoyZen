@@ -4,7 +4,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
 import { BodyTest, TypeTest, AnswerTest } from '@interfaces/test.interface';
-import { TestService } from '@services/test.service';
+import { TestService, TestServiceData } from '@services/test.service';
 import { FeelingCardComponent } from '../feeling_card/feeling_card.component';
 
 @Component({
@@ -75,6 +75,7 @@ export class TestItemComponent {
 
 
   questionAnswer = signal<any>(null);
+  public testData = computed<TestServiceData>(()=>this.testService.testData());
 
   nexStep(){
     this.test()!.type == this.type_test.select_single && this.updateProgress([this.select()]);
