@@ -7,7 +7,11 @@ if (urlActually === "https://front-dev.soyzen.com") {
   apiurl = "https://api-qa.soyzen.com/api/v1";
 } else if (urlActually === "https://front-prod.soyzen.com") {
   apiurl = "https://api.soyzen.com/api/v1";
-} else {
+} else if(urlActually === "https://soyzen.com"){
+   apiurl = "https://api.soyzen.com/api/v1"; 
+}else if(urlActually === "https://soyzen.com"){
+   apiurl = "https://api.soyzen.com/api/v1"; 
+}else {
   apiurl = "https://api-dev.soyzen.com/api/v1";
 }
 export const environment = {

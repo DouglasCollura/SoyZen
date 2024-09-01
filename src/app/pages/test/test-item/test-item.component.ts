@@ -29,13 +29,16 @@ export class TestItemComponent {
     this.test()!.type == this.type_test.range && this.setRangeValues();
     this.test()!.type == this.type_test.select_single && (this.select.set(this.test()!.answers[0].id));
   };
+
   public type_test = TypeTest;
 
 
   private testService = inject(TestService);
   @Output() nextStepEmitter = new EventEmitter<boolean>();
 
-
+constructor(){
+  console.log('holitas', this.test)
+}
 
     public test = signal<BodyTest | null>(null);
 

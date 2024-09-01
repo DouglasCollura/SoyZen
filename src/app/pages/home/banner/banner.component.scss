@@ -57,7 +57,9 @@
 
   #see-program{
     font-weight: 600 !important;
-    padding: 13px 50px;
+    // padding: 13px 39px;
+    padding: 16px 63px 16px 63px;
+    border-radius: 16px;
   }
 }
 
@@ -67,6 +69,7 @@
 
   .landing-freemium {
     padding: 20px !important;
+    background-image: url('/assets/images/fondomovile.webp');
   }
 
   .btn-white{
@@ -97,4 +100,7 @@
 }
 .paddinsjl{
   padding-left: 16.5px !important;
+}
+.fontLetra{
+  font-weight: 300;
 }

@@ -1,12 +1,15 @@
 @media (width < 620px)  , (max-device-width: 620px){
-    .landing-guest{
-        min-height: 300px;
-    }
+ 
     .ftSizemobile{
         font-size: 28px;
     }
     .landing-guest{
-        padding: 40px 16.5px;
+        min-height: 300px;
+        padding-top: 64px;
+        padding-bottom: 40px;
+        padding-left: 16.5px;
+        padding-right: 16.5px;
+
     }
     .marginMobile{
         padding-right: 5rem;
@@ -14,4 +17,16 @@
     .paddinslt{
         padding-left: 0 !important;
     }
+    .fontLetra{
+        font-weight: 500;
+      }
+
+      #see-program{
+    
+        border-radius: 8px !important;
+      }
+      .py-16 {
+        padding-top: 0.5rem;
+        padding-bottom: 2rem;
+        }
 }

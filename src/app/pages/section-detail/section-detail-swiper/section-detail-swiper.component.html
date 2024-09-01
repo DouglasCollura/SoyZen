@@ -46,7 +46,7 @@
       [time]="item.duration!"
       [title]="item.title!"
       [isLock]="!isUnLock(item)"
-      [url_img]="item.postDetail!.thumbnail"
+      [url_img]="item && item.postDetail && item.postDetail.thumbnail ? item.postDetail.thumbnail : ''"
       [user]="item.user!"
       [type]="item.postType ? item.postType.name! : ''"
       [textColor]="section()?.color ?? '#373A40'"

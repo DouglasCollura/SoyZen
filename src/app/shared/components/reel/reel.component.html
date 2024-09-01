@@ -35,7 +35,7 @@
           [pause]="controlPause()[i].pause"
           [url_img]="item.postDetail.coverMobile ? item.postDetail.coverMobile : item.postDetail.thumbnail!"
           [title]="item.title!"
-          [category]="item.category.name!"
+          [category]="item.category && item.category.name ? item.category.name : null"
           (nextMedia)="nexMedia(i)"
           (prevMedia)="prevMedia(i)"
         />
@@ -47,7 +47,7 @@
           [pause]="controlPause()[i].pause"
           [url_img]="item.postDetail.coverWeb ? item.postDetail.coverWeb : item.postDetail.thumbnail!"
           [title]="item.title!"
-          [category]="item.category.name!"
+          [category]="item.category && item.category.name ? item.category.name : null"
           (nextMedia)="nexMedia(i)"
           (prevMedia)="prevMedia(i)"
         />

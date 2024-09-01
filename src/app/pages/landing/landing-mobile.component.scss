@@ -14,8 +14,10 @@
     .main {
       padding: 10px 14px !important;
       grid-template-rows: auto max-content;
+      background-position: 85%;
 
       #center {
+        padding-right: 16%;
         h1 {
           font-family: Noto Sans;
           font-size: 40px;
@@ -83,5 +85,9 @@
   #center{
     padding-top: 100px !important;
     padding-bottom: 100px !important;
+  }
+
+  .wdth315{
+    width:315px;
   }
 }

@@ -153,7 +153,7 @@ export class AuthService {
       if(data.error===false){
 
         this._snackBar.open(data.message, '', {
-          duration:3000,
+          duration:6000,
           horizontalPosition: 'left',
           verticalPosition: 'bottom',
           panelClass:'snack-green'
@@ -165,7 +165,7 @@ export class AuthService {
 
       }else{
         this._snackBar.open(data.message, '', {
-          duration:3000,
+          duration:6000,
           horizontalPosition: 'left',
           verticalPosition: 'bottom',
           panelClass:'snack-red'

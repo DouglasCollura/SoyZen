@@ -59,9 +59,6 @@ export default class TestConstructorComponent implements OnDestroy,  OnInit {
           this.testData.set(value);
           value!.length > 0 && this.testConstructor.set(value![0]);
           const uuidToken = localStorage.getItem('uuidToken');
-          console.log((100/this.testData()!.length)*this.index()+1)
-          console.log(this.testData()!.length)
-          console.log(this.index()+1)
           if(uuidToken && !this.testService.testProgress()){
             this.testService.getProgress(uuidToken)
             .subscribe(_=>this.setPositionProgress());
@@ -155,6 +152,7 @@ export default class TestConstructorComponent implements OnDestroy,  OnInit {
     },200)
     this.testService.testProgress()?.guestAnswers.map((data:any)=>{
       data.questionId == this.testConstructor()?.id && this.nextStep();
+      // console.log('data',data)
       return data;
     })
   }

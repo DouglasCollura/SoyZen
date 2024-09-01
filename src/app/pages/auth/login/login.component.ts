@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, inject, signal, ViewChild, TemplateRef } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,6 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { OnlyNumberDirective } from '@shared/directives/only-number.directive';
 import { tap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
 enum TypeLogin { email, movistar, digitel};
 
 @Component({
@@ -25,7 +26,8 @@ enum TypeLogin { email, movistar, digitel};
     MatSelectModule,
     MatInputModule,
     MatFormFieldModule,
-    OnlyNumberDirective
+    OnlyNumberDirective,
+    MatBottomSheetModule
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss','./login-mobile.component.scss'],
@@ -35,6 +37,7 @@ enum TypeLogin { email, movistar, digitel};
 
 export default class LoginComponent implements AfterViewInit {
 
+  @ViewChild('modalInfo') modalInfo!: TemplateRef<any>;
 
 
   private formBuilder = inject(FormBuilder);
@@ -58,6 +61,9 @@ export default class LoginComponent implements AfterViewInit {
     phone: [null, [Validators.required, Validators.minLength(7)]],
   });
 
+  private  _bottomSheet = inject(MatBottomSheet);
+
+
   ngAfterViewInit(): void {
     // this.form.valueChanges.pipe(
     //   tap(()=>{
@@ -65,6 +71,14 @@ export default class LoginComponent implements AfterViewInit {
     //     this.errorType.set(null)
     //   })
     // )
+  }
+
+  openBottomSheet(): void {
+    this._bottomSheet.open(this.modalInfo);
+  }
+
+  closeSheet(): void {
+    this._bottomSheet.dismiss();
   }
 
   login(){
@@ -79,12 +93,11 @@ export default class LoginComponent implements AfterViewInit {
       this.authService.login(this.form.value)
       .subscribe({
         next:(response)=>{
-          console.log('testing',response)
           if(response.active){
             this.router.navigate(['/home']);
           }else{
             this._snackBar.open('Usuario Inactivo', '', {
-              duration:4000,
+              duration:6000,
               horizontalPosition: 'left',
               verticalPosition: 'bottom',
               panelClass:'snack-red'

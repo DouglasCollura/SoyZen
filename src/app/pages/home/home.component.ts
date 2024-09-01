@@ -227,7 +227,6 @@ export default class HomeComponent implements AfterViewInit {
         // const parentElement = selectedChip.parentElement;
         // if (parentElement) {
         //   if (isCategory) {
-            console.log('entramos',this.swiperRef?.nativeElement)
             // this.swiperRef?.nativeElement?.slidePrev();
             this.swiperRef?.nativeElement?.slideTo(0, 500); // Scroll to the first slide
         //   } else {

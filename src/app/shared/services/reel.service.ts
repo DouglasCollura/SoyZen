@@ -24,7 +24,7 @@ export class ReelService {
 
 
   setSectionPost(sectionPosts:Post[], indexSection:number){
-    const sectionPost:Post[] = sectionPosts.filter(data => data.postType.name != 'blog' )
+    const sectionPost:Post[] = sectionPosts
     
     this.#reelDataService.set({sectionPost, indexSection});
   }

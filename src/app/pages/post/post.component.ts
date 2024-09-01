@@ -102,6 +102,7 @@ export default class PostComponent  implements OnInit{
       this.loadPost(param['idPost'])
       this.loadSection(param['idSection']);
     })
+
   }
 
   onPlayerReady(api: VgApiService) {
@@ -137,15 +138,16 @@ export default class PostComponent  implements OnInit{
 
     })
   }
-  loadSection(id:any){
-    this.sectionService.getSection(id).subscribe((data)=>{
-       this.potsitos.set(data.posts);
+   loadSection(id:any){
+    if(id){
+       this.sectionService.getSection(id).subscribe((data)=>{
+        this.potsitos.set(data.posts);
+        this.section.set(data.posts.filter(post => post.id != this.idpost))
+      })
+    }else{
+      this.section.set([])
 
-
-      this.section.set(data.posts.filter(post => post.id != this.idpost))
-
-
-    })
+    }
   }
   goToPreviousPost() {
     const previousIndex = this.potsitos().findIndex((post:any) => post.id == this.idpost) - 1;
@@ -178,16 +180,22 @@ export default class PostComponent  implements OnInit{
   }
 
   getImgDesktop(post:any){
-    if (post.coverWeb) {
-      return this.getImg2(post.coverWeb)
+    if(post){
+
+      if (post?.coverWeb) {
+        return this.getImg2(post.coverWeb)
+      }else{
+        return this.getImg2(post.thumbnail)
+      }
     }else{
-      return this.getImg2(post.thumbnail)
+      return null
     }
   }
+ 
   getImgMobile(post:any){
     if(post){
-      if (post.coverMobile) {
-        return this.getImg2(post.coverMobile)
+      if (post?.coverMobile) {
+        return this.getImg2(post?.coverMobile)
       }else{
         return this.getImg2(post.thumbnail)
       }

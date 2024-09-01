@@ -2,11 +2,11 @@
 @if(role == roles.GUEST){
   <div class="landing-guest">
     <div id="center">
-      <h1 class=" text-[46px] leading-[54.48px] sm:text-[28px] sm:leading-[70.82px] sm:font-light md:text-[52px] ftSizemobile " >¡Bienvenido a Soy Zen!</h1>
+      <h1 class=" text-[46px] leading-[54.48px] sm:text-[28px] sm:leading-[70.82px] sm:font-light md:text-[52px] ftSizemobile fontLetra " >¡Bienvenido a Soy Zen!</h1>
 
-      <h3 class="font-semibold text-[16px] leading-[24px] sm:text-[20px] md:text-[18px] sm:leading-[32px] sm:font-semibold marginMobile" >Realiza nuestro test y obtén un programa especial de 21 días.</h3>
+      <h3 class="font-semibold text-[16px] leading-[24px] sm:text-[20px] md:text-[18px] sm:leading-[32px] sm:font-semibold marginMobile font-[600]" >Realiza nuestro test y obtén un programa especial de 5 días.</h3>
 
-      <!-- <button class="btn-white !text-[16px] mt-3" routerLink="/premium/subscribe_operator" >Quiero suscribirme</button> -->
+      <button class="btn-white !text-[16px] mt-3" [routerLink]="['/test-constructor']" >Comenzar mi camino</button>
     </div>
 
   </div>
@@ -22,10 +22,10 @@
     </div>
 
     <div class="grid gap-4 py-16">
-      <span class="!font-light text-[28px] leading-[38.14px] sm:text-[52px] sm:leading-[70.82px]">¡Bienvenido a Soy Zen!</span>
-      <h3 class=" text-[16px] leading-[22px] sm:text-[18px] sm:leading-[32px]">Disfruta de acceso Freemium a clases de yoga, taróscopo, meditación y paz mental.</h3>
+      <span class=" text-[28px] leading-[38.14px] sm:text-[52px] sm:leading-[70.82px] fontLetra">Programa de 5 días</span>
+      <h3 class=" text-[16px] leading-[22px] sm:text-[18px] sm:leading-[32px] font-[600]">Ya puedes disfrutar de tu programa personalizado.</h3>
 
-      <button class="btn-white !text-[14px] !leading-[19.6px] sm:!text-[16px] sm:!leading-[22.4px] font-bold" id="see-program" routerLink="/premium/subscribe_operator"  >Quiero suscribirme</button>
+      <button class="btn-white !text-[14px] !leading-[19.6px] sm:!text-[16px] sm:!leading-[22.4px] font-bold" id="see-program" routerLink="../test-constructor"  >Ver Programa</button>
     </div>
   </div>
 }

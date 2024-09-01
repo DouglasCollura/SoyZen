@@ -1,6 +1,6 @@
 <div class="temp-landing animate__animated animate__fadeIn ">
   <header class="header">
-    <img srcset="/assets/images/head_logo.webp" alt="">
+    <img srcset="/assets/images/head_logo.webp" alt="" routerLink="/home" class="btn-boton-logo">
 
     <div class="buttons-group">
       <button class="btn" id="login" routerLink="/auth/login" >Iniciar sesión</button>
@@ -11,12 +11,12 @@
   <div class="main">
 
     <div id="center">
-      <h1 class=" text-[40px] leading-[54.48px] sm:text-[52px] sm:leading-[70.82px] sm:font-light" >¡Bienvenido a Soy Zen!</h1>
+      <h1 class=" text-[40px] leading-[54.48px] sm:text-[52px] sm:leading-[70.82px] sm:font-light wdth315" >¡Bienvenido a Soy Zen!</h1>
 
-      <h3 class="font-normal text-[16px] leading-[24px] sm:text-[20px] sm:leading-[32px] sm:font-normal">Descubre el camino hacia la calma interior uniéndote a nuestra comunidad.</h3>
-      <h3 class="font-semibold text-[16px] leading-[24px] sm:text-[20px] sm:leading-[32px] sm:font-semibold" >¡Realiza nuestro test y obtén un programa especial de 21 días!</h3>
+      <h3 class="font-normal text-[16px] leading-[24px] sm:text-[20px] sm:leading-[32px] sm:font-normal wdth315">Descubre el camino hacia la calma interior uniéndote a nuestra comunidad.</h3>
+      <h3 class="font-semibold text-[16px] leading-[24px] sm:text-[20px] sm:leading-[32px] sm:font-semibold wdth315" >¡Realiza nuestro test y obtén un programa especial de 5 días!</h3>
 
-      <!-- <button class="btn-white !text-[16px] mt-3" routerLink="test-constructor" >Comenzar mi camino</button> -->
+      <button class="btn-white !text-[16px] mt-3" [routerLink]="['/test-constructor']" >Comenzar mi camino</button>
     </div>
 
     <button class="btn-blur" id="go_home" (click)="gotToHome()"  >Ir al inicio</button>

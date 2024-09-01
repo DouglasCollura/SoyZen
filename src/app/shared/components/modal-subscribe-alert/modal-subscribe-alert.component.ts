@@ -66,7 +66,7 @@ export class ModalSubscribeAlertComponent {
       if(data.respenvio==='ok'){
 
         this._snackBar.open(data.msj, '', {
-          duration:2000,
+          duration:5000,
           horizontalPosition: 'left',
           verticalPosition: 'bottom',
         });
@@ -77,7 +77,7 @@ export class ModalSubscribeAlertComponent {
 
       }else{
         this._snackBar.open(data.msj, '', {
-          duration:2000,
+          duration:5000,
           horizontalPosition: 'left',
           verticalPosition: 'bottom',
         });

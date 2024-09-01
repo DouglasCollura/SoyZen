@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, TemplateRef, ViewChild } from '@angular/core';
+import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -7,13 +8,25 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [
     CommonModule,
-    MatIconModule
+    MatIconModule,
+    MatBottomSheetModule
   ],
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss', 'footer-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
+  @ViewChild('modalInfo') modalInfo!: TemplateRef<any>;
+  private  _bottomSheet = inject(MatBottomSheet);
+
+  openBottomSheet(): void {
+    this._bottomSheet.open(this.modalInfo);
+  }
+
+  closeSheet(): void {
+    this._bottomSheet.dismiss();
+  }
+
   irweb(link:any){
     if(link=='facebook'){
       window.open("https://m.facebook.com/100092244648405/", "_blank");

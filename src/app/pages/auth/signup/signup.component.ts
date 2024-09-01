@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, inject, signal, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
@@ -7,6 +7,7 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '@services/auth.service';
 import { tap } from 'rxjs';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-signup',
@@ -17,13 +18,15 @@ import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
     ReactiveFormsModule,
     MatDividerModule,
     RouterModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatBottomSheetModule
   ],
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss', './signup-mobile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SignupComponent implements AfterViewInit{
+  @ViewChild('modalInfo') modalInfo!: TemplateRef<any>;
 
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
@@ -37,6 +40,8 @@ export default class SignupComponent implements AfterViewInit{
     password: [null, [Validators.required,  Validators.minLength(6)]]
     // Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).+$'),
   });
+  private  _bottomSheet = inject(MatBottomSheet);
+
 
   ngAfterViewInit(){
     this.form.valueChanges.pipe(
@@ -44,6 +49,15 @@ export default class SignupComponent implements AfterViewInit{
         this.errMessage() && this.errMessage.set(null)
       })
     ).subscribe()
+  }
+
+  
+  openBottomSheet(): void {
+    this._bottomSheet.open(this.modalInfo);
+  }
+
+  closeSheet(): void {
+    this._bottomSheet.dismiss();
   }
 
   signup(){
@@ -58,7 +72,7 @@ export default class SignupComponent implements AfterViewInit{
       {
         next:(value) => {
           this._snackBar.open('Has sido registrado exitosamente.', '', {
-            duration:2000,
+            duration:5000,
             horizontalPosition: 'left',
             verticalPosition: 'bottom',
           });

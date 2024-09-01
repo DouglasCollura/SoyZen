@@ -3,10 +3,10 @@
     <div class="flex justify-between">
       <h1 class="text-white text-[16px] leading-[32px] font-bold"> {{post()?.title}} </h1>
       <div class="endTopPlayer">
-        <button class="btn-green items-center flex gap-1">
+        <!-- <button class="btn-green items-center flex gap-1">
           <mat-icon class="material-symbols-rounded" svgIcon="my-switch-video"></mat-icon>
           Escena
-        </button>
+        </button> -->
         <button class="btn close grid place-content-center" >
           <mat-icon class="material-symbols-rounded !font-thin !w-[30px] !h-[30px] !text-[30px]"  mat-dialog-close="true" >close</mat-icon>
         </button>
@@ -75,13 +75,13 @@
           </button>
 
         </div>
-        <div class="flex gap-5 opt-video">
+        <div class="flex gap-5 opt-video translate-7">
           <button (click)="openFeelModal()">
             <mat-icon svgIcon="my-smile-video" ></mat-icon>
           </button>
-          <button>
+          <!-- <button>
             <mat-icon class="material-symbols-rounded !font-thin" >share</mat-icon>
-          </button>
+          </button> -->
         </div>
 
       </div>

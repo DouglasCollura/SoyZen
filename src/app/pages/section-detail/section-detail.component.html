@@ -83,7 +83,7 @@
   
             @if(listSearch().length == 0){
               <div class="p-4 grid gap-1 justify-items-center">
-                <img srcset="/assets/images/head_logo.webp" width="150" alt="">
+                <img class="btn-boton-logo" srcset="/assets/images/head_logo.webp" width="150" alt="" routerLink="/home">
                 <div class="flex">
                   <mat-icon class="material-symbols-rounded font-light" >info</mat-icon>
                   <span class="font-medium">No se encontraron resultados</span>
@@ -115,7 +115,7 @@
           </div>
           } @if(listSearch().length == 0){
           <div class="p-4 grid gap-1 justify-items-center">
-            <img srcset="/assets/images/head_logo.webp" width="150" alt="" />
+            <img class="btn-boton-logo" srcset="/assets/images/head_logo.webp" width="150" alt="" routerLink="/home" />
             <div class="flex">
               <mat-icon class="material-symbols-rounded font-light"
                 >info</mat-icon

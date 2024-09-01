@@ -5,6 +5,9 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../shared/services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from '../../../environments/environment';
+import { UserAuth } from '../../shared/interfaces/user-request.interface';
+import { tap } from 'rxjs';
+
 
 @Component({
   selector: 'app-phone-number',
@@ -18,33 +21,33 @@ export class PhoneNumberComponent implements OnInit {
   private _snackBar = inject(MatSnackBar);
   private urlApi = environment.apiUrl;
 
-  public width:number = 0;
-  
+  public width: number = 0;
+
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
     private router: Router
 
-    ) {}
-    
-    ngOnInit(): void {
-      this.width = window.screen.width;
+  ) { }
+
+  ngOnInit(): void {
+    this.width = window.screen.width;
     this.route.paramMap.subscribe(params => {
       const encodedPhoneNumber = params.get('encodedPhoneNumber');
-      
+
       if (encodedPhoneNumber) {
         this.phoneNumber = this.decodePhoneNumber(encodedPhoneNumber);
         if (this.isValidPhoneNumber(this.phoneNumber)) {
           this.addPhoneNumber(this.phoneNumber);
         } else {
           this._snackBar.open('Número de teléfono no válido.', '', {
-            duration:4000,
+            duration: 6000,
             horizontalPosition: 'left',
             verticalPosition: 'bottom',
-            panelClass:'snack-red'
+            panelClass: 'snack-red'
           });
           console.error('Número de teléfono no válido');
-          this.router.navigate(['/home']); 
+          this.router.navigate(['/home']);
         }
       }
     });
@@ -64,56 +67,105 @@ export class PhoneNumberComponent implements OnInit {
       return parseInt(encoded, 36).toString();
     } catch (error) {
       this._snackBar.open('Error al decodificar el número de teléfono', '', {
-        duration:4000,
+        duration: 6000,
         horizontalPosition: 'left',
         verticalPosition: 'bottom',
-        panelClass:'snack-red'
+        panelClass: 'snack-red'
       });
       console.error('Error al decodificar el número de teléfono', error);
       return null;
     }
   }
 
-  logout(){
+  logout() {
     this.authService.logout()
   }
 
   addPhoneNumber(phoneNumber: string | null): void {
-        const userId = localStorage.getItem('userId');
+    const userId = localStorage.getItem('userId');
+    
 
-    this.http.post<any>(`${this.urlApi}/users/addphonenumber`, { phoneNumber ,  userId }).subscribe({
-      next: response => {
+    this.http.post<any>(`${this.urlApi}/users/addphonenumber`, { phoneNumber, userId }).subscribe({
+      next: async response => {
+        
         if (response) {
-          localStorage.clear();
-          this.router.navigate(['/auth/login']); // Redirigir al usuario a una página después de agregar el número
-          
-          this._snackBar.open('Número de teléfono agregado', '', {
-            duration:4000,
-            horizontalPosition: 'left',
-            verticalPosition: 'bottom',
-            panelClass:'snack-green'
-          });
+          if (response.status && response.data && response.data.token) {
+            // cerrar sesion si la tiene activa 
+            await localStorage.clear();
+            // iniciar sesion con el nuevo token 
 
-        }else{
-            this._snackBar.open('Número de teléfono no agregado', '', {
-              duration:4000,
+            if(response.data?.tier?.name!='guest'){
+              localStorage.setItem('token', response.data.token);
+            }
+            // 7GCBH18T
+            localStorage.setItem('name', response.data.name);
+            localStorage.setItem('email', response.data.email);
+            localStorage.setItem('role', response.data?.tier?.name)
+            localStorage.setItem('userId', response.data.id.toString())
+            // llevarlo al home con permisos actualizados 
+            this.router.navigate(['/home']); // Redirigir al usuario a una página después de agregar el número
+
+            this._snackBar.open(response.message, '', {
+              duration: 6000,
               horizontalPosition: 'left',
               verticalPosition: 'bottom',
-              panelClass:'snack-red'
+              panelClass: 'snack-green'
             });
+          }
+          if(!response.status && response.message){
+            await localStorage.clear();
+            this.router.navigate(['/auth/login']);
+            this._snackBar.open(response.message, '', {
+              duration: 6000,
+              horizontalPosition: 'left',
+              verticalPosition: 'bottom',
+              panelClass: 'snack-red'
+            });
+          }
+
+          const data = response.data
+
+          //       // hacer login 
+          //       this.http.post<UserAuth>(`${this.urlApi}/auth/login`, data)
+          // .pipe(
+          //   tap((data: UserAuth)=>{
+          //     this.#authData.update(
+          //       value=> ({ ...value ,userAuth: data , loading:false, role: data.tier.name})
+          //     );
+          //     if(data?.tier?.name!='guest'){
+          //       localStorage.setItem('token', data.token);
+          //     }
+
+          //     localStorage.setItem('name', data.name);
+          //     localStorage.setItem('email', data.email);
+          //     localStorage.setItem('role', data?.tier?.name)
+          //     localStorage.setItem('userId', data.id.toString())
+          //    })
+          // )
+
+        } else {
+          await localStorage.clear();
+            this.router.navigate(['/auth/login']);
+          this._snackBar.open('Número de teléfono no agregado', '', {
+            duration: 6000,
+            horizontalPosition: 'left',
+            verticalPosition: 'bottom',
+            panelClass: 'snack-red'
+          });
 
         }
         // console.log('Número de teléfono agregado232:', response);
       },
       error: error => {
         this._snackBar.open('Error al agregar el número de teléfono', '', {
-          duration:4000,
+          duration: 6000,
           horizontalPosition: 'left',
           verticalPosition: 'bottom',
-          panelClass:'snack-red'
+          panelClass: 'snack-red'
         });
         console.error('Error al agregar el número de teléfono:', error);
-        this.router.navigate(['/home']);
+         localStorage.clear();
+            this.router.navigate(['/auth/login']);
       }
     });
   }
