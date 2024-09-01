@@ -1,35 +1,81 @@
-<div class="temp-send-test-email">
+<div class="temp-send-test-email" >
+<div class="padding">
   <button class="btn" id="btn-close" routerLink="../">
-    <mat-icon class="material-symbols-outlined"> arrow_back </mat-icon>
+    <mat-icon class="material-symbols-rounded font-light sm:font-extralight !w-[32px] !h-[32px] text-[32px] sm:!w-[40px] sm:!h-[40px] sm:text-[40px]"> arrow_back </mat-icon>
+    <!-- <mat-icon class="material-symbols-outlined"> arrow_back </mat-icon> -->
   </button>
 
-  <div class="grid gap-4 justify-items-center max-w-[400px] mx-auto content-send">
+  <div class="grid gap-4 justify-items-center max-w-[410px] mx-auto content-send">
     <img srcset="/assets/images/isotype.svg" alt="" />
 
     <h1 class=" text-lx sm:text-3xl text-center font-medium title separation">
-      ¡Embárcate en un viaje de transformación!
+      ¡Hemos creado tu programa especial de 5 días!
     </h1>
 
-    <h3 class="text-center font-semibold leading-[22px] second separation">
-      Descubre herramientas y recursos para cultivar paz interior, mejorar salud mental y conectar con tu espiritualidad.
+    <h3 class="text-center font-semibold leading-[22px] second separation ftLine padLR">
+      ¡Ingresa con tu email y también <b>disfrutarás</b> de un <b>acceso Freemium</b> a nuestro portal web!
     </h3>
-
+<ng-container [formGroup]="emailForm">
     <div class="form-group w-full  sm:w-11/12 input-icon-right">
-      <input type="email" class="input w-full" placeholder="Email"  />
-      <mat-icon class="input-icon material-symbols-rounded" svgIcon="my-email" ></mat-icon>
+      <input type="email" [class.input-error]="getInputError('email')" class="input w-full" placeholder="Email" formControlName="email"  />
+      <mat-icon [class.colorIcon]="getInputError('email')" class="input-icon material-symbols-rounded" svgIcon="my-email" ></mat-icon>
     </div>
 
     <div class="form-group w-full  sm:w-11/12 input-icon-right">
-      <input type="{{ passwordVisible ? 'text' : 'password' }}" class="input w-full" formControlName="password" placeholder="Contraseña">
-        <mat-icon (click)="togglePasswordVisibility()" class="input-icon material-symbols-rounded ftIcon !w-[20px] !h-[20px] !text-[20px]" [svgIcon]="passwordVisible ? 'my-eyeoff' : 'my-eye'"></mat-icon>
+      <input [class.input-error]="getInputError('password')" (input)="limitPasswordInput($event)"  type="{{ passwordVisible ? 'text' : 'password' }}" class="input w-full" formControlName="password" placeholder="Contraseña">
+        <mat-icon [class.colorIcon]="getInputError('password')" (click)="togglePasswordVisibility()" class="input-icon material-symbols-rounded ftIcon !w-[20px] !h-[20px] !text-[20px]" [svgIcon]="passwordVisible ? 'my-eyeoff' : 'my-eye'"></mat-icon>
     </div>
 
-    <button class="btn-green" >Registrar email</button>
-
-    <h3 class="my-4 text-center text-[20px] leading-[34px] sm:text-[18px] sm:leading-[24.52px] txtt"><b class="txtt text-[20px] leading-[34px] sm:text-[18px] sm:leading-[24.52px]">Conecta con personas afines</b> y obtén el apoyo necesario <b class="txtt text-[20px] leading-[34px] sm:text-[18px] sm:leading-[24.52px]">para tu bienestar.</b> </h3>
+    @if(getTypeError('email', 'required') || getTypeError('password', 'required')){
+      <span class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Campo requerido.</span> </span>
+    }@else {
+      <!-- <span *ngIf="errorType() == 2" class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Contraseña inválida. Intenta nuevamente.</span> </span> -->
+      @if(getTypeError('email', 'email')){
+        <span class="text-error"><mat-icon class="icon">error_outline</mat-icon><span class="ft-text">  Formato inválido. Intenta nuevamente.</span> </span>
+      }@else if(getTypeError('password', 'maxlength')){
+        <span class="text-error ft-text">
+          La contraseña debe ser maximo 10 caracteres.
+        </span>
+      }@else if(getTypeError('password', 'minlength')){
+        <span class="text-error ft-text">
+          La contraseña debe ser mínimo 6 caracteres.
+        </span>
+      }
+    }
+    <button class="btn-green" (click)="save()">Registrar email</button>
+  </ng-container>
+    <!-- <h3 class="my-4 text-center text-[20px] leading-[34px] sm:text-[18px] sm:leading-[24.52px] txtt"><b class="txtt text-[20px] leading-[34px] sm:text-[18px] sm:leading-[24.52px]">Conecta con personas afines</b> y obtén el apoyo necesario <b class="txtt text-[20px] leading-[34px] sm:text-[18px] sm:leading-[24.52px]">para tu bienestar.</b> </h3> -->
 
   </div>
 
-  <button class="text-black self-end sm:self-center sm:text-white underline font-light justify-self-start sm:justify-self-end" id="btn-skip" routerLink="../" >Quiero hacerlo después</button>
 
+
+</div>
+
+  <div class="content-info justify-content-center" style="view-transition-name: img-transition-background-green;">
+    <div class="info">
+      <div class="grid md:gap-7 gap-3 content-center  max-w-[650px] w-[650px] min-h-[100px]">
+        <h1 class=" text-[28px] sm:text-[40px] leading-[38px] font-normal txtlft claso" >Resultados del Test</h1>
+
+        <span class="text-[14px] sm:text-[20px] leading-[22px] sm:leading-[28px] font-[500]">
+         {{computedResumen()}}
+        </span>
+
+
+        <!-- <button class="btn-gold" routerLink="/premium" >Quiero Suscribirme</button> -->
+      </div>
+
+      <div class="grid grid-cols-2 gap-3 justify-between mt-27">
+        <button class=" mtbp text-[14px] md:text-[16px]  leading-[22px]  text-black self-end sm:self-center sm:text-white underline font-light justify-self-start sm:justify-self-end" id="btn-skip" [routerLink]="['/']">
+          Quiero hacerlo después
+        </button>
+        <button class="btn-gold justify-self-end" [routerLink]="['/premium/subscribe_operator']">
+          Quiero Suscribirme
+        </button>
+      </div>
+      
+
+    </div>
+
+  </div>
 </div>

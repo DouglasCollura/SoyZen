@@ -63,6 +63,7 @@ export class TestService {
   });
 
   saveName(name:string){
+    localStorage.setItem('name',name)
     this.#testData.update(
       value=> ({...value, name:name})
     );
