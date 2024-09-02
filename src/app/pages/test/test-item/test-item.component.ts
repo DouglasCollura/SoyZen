@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
@@ -21,13 +21,14 @@ import { FeelingCardComponent } from '../feeling_card/feeling_card.component';
   styleUrl: './test-item.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TestItemComponent {
+export class TestItemComponent implements OnInit {
 
-  @Input({required: true}) set setTest(test:BodyTest){
+  @Input({ required: true }) set setTest(test: BodyTest) {
     this.test.set(test);
     (this.test()!.type == this.type_test.multiple || this.test()?.type == this.type_test.select_icon) && (this.multiList = this.test()!.answers);
     this.test()!.type == this.type_test.range && this.setRangeValues();
     this.test()!.type == this.type_test.select_single && (this.select.set(this.test()!.answers[0].id));
+    this.setValueHistory()
   };
 
   public type_test = TypeTest;
@@ -36,41 +37,37 @@ export class TestItemComponent {
   private testService = inject(TestService);
   @Output() nextStepEmitter = new EventEmitter<boolean>();
 
-constructor(){
-  console.log('holitas', this.test)
-}
-
-    public test = signal<BodyTest | null>(null);
+  public test = signal<BodyTest | null>(null);
 
   // * TYPE RANGE
-    public percent = new FormControl();
-    public percentSignal = toSignal(this.percent.valueChanges);
+  public percent = new FormControl();
+  public percentSignal = toSignal(this.percent.valueChanges);
 
-    public firstValue = signal('');
-    public lastValue = signal('');
+  public firstValue = signal('');
+  public lastValue = signal('');
 
-    private feelings_data =
+  private feelings_data =
     {
       hard: "assets/images/feelings/simple_estres.svg",
       medium: "assets/images/feelings/simple_not_sure.svg",
       easy: "assets/images/feelings/simple_entusiasmado.svg",
     }
 
-    public feeling = computed(() => {
-      return this.percentSignal()! < 30 ?
-        this.feelings_data.hard :
-        this.percentSignal()! >= 30 && this.percentSignal()! <= 70 ?
-          this.feelings_data.medium : this.feelings_data.easy
-    })
+  public feeling = computed(() => {
+    return this.percentSignal()! < 30 ?
+      this.feelings_data.hard :
+      this.percentSignal()! >= 30 && this.percentSignal()! <= 70 ?
+        this.feelings_data.medium : this.feelings_data.easy
+  })
 
 
   // * TYPE MULTI
-    public multiList: AnswerTest[] = [];
-    public multiSelected = signal<AnswerTest[]>([])
+  public multiList: AnswerTest[] = [];
+  public multiSelected = signal<AnswerTest[]>([])
 
 
   // * SINGLE SELECT
-    public select = signal<number| null>(null);
+  public select = signal<number | null>(null);
 
   // * SELECT ICON
 
@@ -78,31 +75,36 @@ constructor(){
 
 
   questionAnswer = signal<any>(null);
-  public testData = computed<TestServiceData>(()=>this.testService.testData());
+  public testData = computed<TestServiceData>(() => this.testService.testData());
+  public testProgress: any = computed<TestServiceData>(() => this.testService.testProgress());
 
-  nexStep(){
+  ngOnInit(): void {
+
+  }
+
+  nexStep() {
     this.test()!.type == this.type_test.select_single && this.updateProgress([this.select()]);
 
-    if(this.test()!.type == this.type_test.range){
-      const index = this.test()?.answers.findIndex((value)=> this.percent.value <= value.ponderation);
+    if (this.test()!.type == this.type_test.range) {
+      const index = this.test()?.answers.findIndex((value) => this.percent.value <= value.ponderation);
       this.updateProgress([this.test()?.answers[index!].id])
     }
 
-    this.test()!.type == this.type_test.multiple && this.updateProgress(this.multiSelected().map(value=> value.id));
+    this.test()!.type == this.type_test.multiple && this.updateProgress(this.multiSelected().map(value => value.id));
 
     this.testService.setProgress(this.questionAnswer());
 
-    this.testService.test.update(value => ({...value, focus: this.percent.value }));
+    this.testService.test.update(value => ({ ...value, focus: this.percent.value }));
     this.nextStepEmitter.emit(true);
   }
 
 
-  toogleSelect(answer:AnswerTest){
+  toogleSelect(answer: AnswerTest) {
 
     const index = this.multiSelected().findIndex(value => value.id == answer.id);
     index < 0 ?
       this.multiSelected.update(value => [...value, answer]) :
-      this.multiSelected.update(value=>{
+      this.multiSelected.update(value => {
         value.splice(index, 1)
         return value;
       });
@@ -110,17 +112,17 @@ constructor(){
 
   }
 
-  isSelected(answer:AnswerTest){
+  isSelected(answer: AnswerTest) {
     return this.multiSelected().findIndex(value => value.id == answer.id) > -1;
   }
 
-  setRangeValues(){
+  setRangeValues() {
     this.percent.setValue(0);
-    this.test.update((value)=> (
+    this.test.update((value) => (
       {
         ...value!,
         answers: this.test()?.answers.map(
-          (data, index)=> (
+          (data, index) => (
             {
               ...data,
               ponderation: (100 / this.test()!.answers.length) * (index + 1)
@@ -132,7 +134,7 @@ constructor(){
     this.lastValue.set(this.test()!.answers[this.test()!.answers.length - 1].content);
   }
 
-  selectFeel(feeling:any){
+  selectFeel(feeling: any) {
     this.updateFeelingsSelect(feeling)
     // this.test.update((data) => ({
     //   ...data,
@@ -141,20 +143,40 @@ constructor(){
 
   };
 
-  updateFeelingsSelect(feeling:any){
-    const index:number = this.test()?.answers.findIndex((value)=> value.id == feeling.id)!;
-    let answers:AnswerTest[] = [...this.multiList];
-    answers.splice(index, 1 , {...feeling, selected: true})
-    this.test.update((value)=> {
-      return {...value!, answers:answers};
+  updateFeelingsSelect(feeling: any) {
+    const index: number = this.test()?.answers.findIndex((value) => value.id == feeling.id)!;
+    let answers: AnswerTest[] = [...this.multiList];
+    answers.splice(index, 1, { ...feeling, selected: true })
+    this.test.update((value) => {
+      return { ...value!, answers: answers };
     })
     this.selectIcon.set(true)
     this.updateProgress([feeling.id]);
   }
 
-  updateProgress(answers:any){
+  updateProgress(answers: any) {
     const questionId = this.test()?.id;
-    this.questionAnswer.set({questionId,answers});
+    this.questionAnswer.set({ questionId, answers });
   }
 
+  setValueHistory() {
+
+    const res = this.testProgress()?.guestAnswers.find((data: any) => data.questionId == this.test()!.id)
+
+    if (res) {
+      if (this.test()!.type == this.type_test.range) {
+        const pond:any = this.test()!.answers.find((ans: any) => ans.id == res.answers[0])
+        this.percent.setValue(pond.ponderation)
+      }
+      if (this.test()!.type == this.type_test.select_icon) {
+        const pond:any = this.test()!.answers.find((ans: any) => ans.id == res.answers[0])
+        this.updateFeelingsSelect(pond)
+      }
+      if (this.test()!.type == this.type_test.select_single) {
+        const pond:any = this.test()!.answers.find((ans: any) => ans.id == res.answers[0])
+        this.select.set(pond.id)
+      }
+    }
+
+  }
 }
