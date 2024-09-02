@@ -2,14 +2,15 @@
 @switch (test()!.type) {
 
   @case (type_test.range) {
-    <div class="content-range animate__animated animate__slideInRight animate__fast" >
-      <h1 class="text-center  text-[20px] leading-[27.24px] sm:text-[24px] sm:leading-[32.69px] " > {{test()!.content  }} </h1>
+
+    <div class="content-range animate__animated animate__slideInRight animate__fast" [ngClass]="type_test.range ? 'mt40' : '' " >
+      <h1 class="text-center  text-[20px] leading-[27.24px] sm:text-[24px] sm:leading-[32.69px] pdl25" > {{test()!.content  }} </h1>
 
       <div class="flex justify-center min-h-10">
          <img [srcset]="feeling()" alt="" width="64" height="64">
       </div>
 
-      <div class="grid gap-1">
+      <div class="grid gap-1 pdl25">
         <mat-slider >
           <input matSliderThumb [formControl]="percent" >
         </mat-slider>
@@ -25,13 +26,14 @@
   }
 
   @case(type_test.select_single){
-    <div class="content-single animate__animated animate__slideInRight animate__fast" >
+ 
+    <div class="content-single animate__animated animate__slideInRight animate__fast" [ngClass]="type_test.select_single ? 'mt40' : '' " >
 
-      <h1 class="text-[24px] leading-[32.69px] text-center sm:text-[20px] sm:leading-[27.24px]" > {{test()!.content}} </h1>
+      <h1 class="text-[24px] leading-[32.69px] text-center sm:text-[20px] sm:leading-[27.24px] pdl25" > {{test()!.content}} </h1>
 
-      <div class="grid list-buttons justify-center gap-5">
+      <div class="md:grid list-buttons justify-center gap-5 pdl25 ">
         @for (answer of test()!.answers; track $index) {
-          <button [class]="select() == answer.id ? 'btn-beige' : 'btn-border-beige'" (click)="select.set(answer.id)" > {{answer.content}} </button>
+          <button class="mbre" [class]="select() == answer.id ? 'btn-beige' : 'btn-border-beige'" (click)="select.set(answer.id)" > {{answer.content}} </button>
         }
       </div>
 
@@ -40,7 +42,8 @@
   }
 
   @case(type_test.multiple){
-    <div class=" grid gap-2 animate__animated animate__slideInRight animate__fast" >
+ 
+    <div class=" grid gap-2 animate__animated animate__slideInRight animate__fast" [ngClass]="type_test.multiple ? 'mt40' : '' " >
       <h1 class="text-[20px] leading-[27.24px] sm:text-[24px] sm:leading-[32.69px] !justify-self-center text-center font-medium !max-w-[340px]" >Selecciona los temas que te interesan</h1>
       <h3 class="text-gray text-center text-[14px] leading-[24px] sm:text-[16px] sm:leading-[24px]" >Puedes marcar más de uno</h3>
 
@@ -63,7 +66,7 @@
 
   @case(type_test.select_icon){
     <div class="temp-select-feeling">
-      <div class="text-center mt-[20px]">
+      <div class="text-center mt-[20px] hei">
         <span class="text-gray text-[16px] font-normal" > Hola, {{testData().name}} </span>
         <h1 class="font-medium text-[24px] leading-[38px]"> {{test()?.content}} </h1>
       </div>

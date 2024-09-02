@@ -30,11 +30,26 @@
     }
   }
 
+  .main{
+   
+    gap: 0px;
+   
+  }
+
+  .temp-test .main {
+
+ 
+    margin: 0px;
+
+    gap: 0px;
+  
+}
+
 }
 
 @media (width < 650px) {
 
   .temp-test {
-    padding: 50px;
+    // padding: 50px;
   }
 }

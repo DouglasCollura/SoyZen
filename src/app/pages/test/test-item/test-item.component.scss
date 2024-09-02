@@ -106,3 +106,50 @@
   }
 
 }
+.hei{
+  height: inherit;
+}
+@media (width < 500px) {
+.hei{
+  height: 0px;
+}
+.temp-select-feeling #btn-continue {
+  width: 100% !important;
+
+}
+.mt40{
+  margin-top: 40px;
+}
+.content-range #btn-continue {
+  width: 100% !important;
+
+}
+.content-range{
+
+  gap: 145px;
+}
+.pdl25{
+  padding: 0 25px !important;
+}
+
+.mbre{
+  margin-bottom: 1.25rem;
+}
+
+}
+
+
+
+
+
+
+.pdl25{
+  padding: 0;
+}
+.mt40{
+  margin-top: 40px;
+}
+
+.mbre{
+  margin-bottom: inherit;
+}
