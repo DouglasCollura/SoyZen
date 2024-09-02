@@ -50,6 +50,8 @@
   margin-top: 30px;
   margin-bottom: 20px;
   button{
+    border-radius: 8px;
+    font-weight: 700;
     padding: 5px 20px !important;
     width: 100%;
     transition: all 0.3s;
@@ -87,7 +89,7 @@
   display: grid;
   justify-items: center;
   height: 100%;
-  gap: 20px;
+  gap: 0px;
   .list-cards{
     display: grid;
     gap: 10px 40px;
@@ -129,27 +131,60 @@
   gap: 145px;
 }
 .pdl25{
-  padding: 0 25px !important;
+  padding: 0 45px !important;
 }
 
 .mbre{
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.25rem !important;
+}
+
+.content-single #btn-continue {
+  width: 100%;
+
+}
+
+.content-single {
+
+  gap: 145px;
+}
+
+.textTitleTo{
+  font-weight: 400;
+    line-height: 27.24px !important;
+    color: #373A40;
+    font-size: 20px !important;
+}
+
+.list-multiple{
+  margin: 145px 0px;
+
+}
+
+#btn-continue{
+  width: 100% !important;
 }
 
 }
 
-
+/*fin del media query*/
 
 
 
 
 .pdl25{
-  padding: 0;
+  padding: 0 45px;
 }
 .mt40{
   margin-top: 40px;
 }
 
 .mbre{
-  margin-bottom: inherit;
+  margin-bottom: 0;
+}
+
+.textTitleTo{
+  font-weight: 400;
+    line-height: 32.69px;
+    color: #373A40;
+    font-size: 24px;
 }

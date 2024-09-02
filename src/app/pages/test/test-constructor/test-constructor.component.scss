@@ -16,7 +16,7 @@
 
     grid-template-rows: max-content auto;
     align-content: space-around;
-    margin: 40px auto 0px;
+    margin: 100px auto 0px;
     max-width: 500px;
     width: 60%;
     gap: 50px;
@@ -53,4 +53,22 @@
 .form-group {
 
   margin-bottom: 150px;
+}
+.titeHola{
+  margin-top: inherit;
+  margin-bottom: inherit;
+}
+
+.howName{
+  margin-bottom: 100px;
+}
+.btnVerde{
+  width: 60%;
+  font-weight: 700;
+}
+.sinEspacing{
+  margin: 40px auto 0px !important;
+}
+.mtbt{
+  margin-top: 15%;
 }

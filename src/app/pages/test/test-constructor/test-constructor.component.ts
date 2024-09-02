@@ -161,5 +161,8 @@ export default class TestConstructorComponent implements OnDestroy,  OnInit {
   ngOnDestroy(): void {
     // this.testService.saveProgressTest()
   }
+  golater(){
+    this.router.navigate(['/']);
+  }
 
 }

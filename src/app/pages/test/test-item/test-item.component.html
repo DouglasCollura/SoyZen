@@ -4,7 +4,7 @@
   @case (type_test.range) {
 
     <div class="content-range animate__animated animate__slideInRight animate__fast" [ngClass]="type_test.range ? 'mt40' : '' " >
-      <h1 class="text-center  text-[20px] leading-[27.24px] sm:text-[24px] sm:leading-[32.69px] pdl25" > {{test()!.content  }} </h1>
+      <h1 class="text-center  text-[20px] leading-[27.24px] sm:text-[24px] sm:leading-[32.69px] pdl25 textTitleTo" > {{test()!.content  }} </h1>
 
       <div class="flex justify-center min-h-10">
          <img [srcset]="feeling()" alt="" width="64" height="64">
@@ -29,7 +29,7 @@
  
     <div class="content-single animate__animated animate__slideInRight animate__fast" [ngClass]="type_test.select_single ? 'mt40' : '' " >
 
-      <h1 class="text-[24px] leading-[32.69px] text-center sm:text-[20px] sm:leading-[27.24px] pdl25" > {{test()!.content}} </h1>
+      <h1 class="text-[24px] leading-[32.69px] text-center sm:text-[20px] sm:leading-[27.24px] pdl25 textTitleTo" > {{test()!.content}} </h1>
 
       <div class="md:grid list-buttons justify-center gap-5 pdl25 ">
         @for (answer of test()!.answers; track $index) {
@@ -44,7 +44,7 @@
   @case(type_test.multiple){
  
     <div class=" grid gap-2 animate__animated animate__slideInRight animate__fast" [ngClass]="type_test.multiple ? 'mt40' : '' " >
-      <h1 class="text-[20px] leading-[27.24px] sm:text-[24px] sm:leading-[32.69px] !justify-self-center text-center font-medium !max-w-[340px]" >Selecciona los temas que te interesan</h1>
+      <h1 class="text-[20px] leading-[27.24px] sm:text-[24px] sm:leading-[32.69px] !justify-self-center text-center font-medium !max-w-[340px] textTitleTo" >Selecciona los temas que te interesan</h1>
       <h3 class="text-gray text-center text-[14px] leading-[24px] sm:text-[16px] sm:leading-[24px]" >Puedes marcar más de uno</h3>
 
 
@@ -54,7 +54,7 @@
         }
       </div>
 
-      <button class="justify-self-center !py-2 !w-full !max-w-[340px]"
+      <button class="justify-self-center !py-2 !w-full md:!max-w-[340px]"
         [class]="multiSelected().length > 0 ? 'btn-green' : 'btn-disable' "
         (click)="multiSelected().length > 0 && nexStep()"
 
