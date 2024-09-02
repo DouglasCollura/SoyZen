@@ -45,7 +45,7 @@ export default class TestConstructorComponent implements OnDestroy,  OnInit {
   public percent = signal<number>(0);
   public title = signal<string>('');
 
-  public index = signal<number>(1);
+  public index = signal<number>(0);
 
   testConstructor = signal<BodyTest | null>(null);
 
@@ -61,10 +61,10 @@ export default class TestConstructorComponent implements OnDestroy,  OnInit {
           const uuidToken = localStorage.getItem('uuidToken');
           if(uuidToken && !this.testService.testProgress()){
             this.testService.getProgress(uuidToken)
-            .subscribe(_=>this.setPositionProgress());
+            .subscribe(_=>this.setPositionProgress(true));
           }
           if(uuidToken && this.testService.testProgress()){
-            this.setPositionProgress()
+            this.setPositionProgress(true)
           }
         }
       ),
@@ -78,7 +78,6 @@ export default class TestConstructorComponent implements OnDestroy,  OnInit {
 
 
   ngOnInit(): void {
-
 
   }
 
@@ -132,9 +131,10 @@ export default class TestConstructorComponent implements OnDestroy,  OnInit {
   }
 
   goBack(){
-    if(this.step() > 0 ){
+    if(this.step() >= 0 ){
       this.index.update(value => value-1);
       this.step.update(data => data-1)
+      console.log('testData ', this.testData())
       this.testConstructor.update(value => this.testData()![this.index()]);
 
       this.setTitlePercent();
@@ -146,12 +146,12 @@ export default class TestConstructorComponent implements OnDestroy,  OnInit {
     }
   }
 
-  setPositionProgress(){
+  setPositionProgress(isFirst:boolean = false){
     setTimeout(()=>{
       this.percent.update(value=>((100/this.testData()!.length)*this.index()+1));
     },200)
     this.testService.testProgress()?.guestAnswers.map((data:any)=>{
-      data.questionId == this.testConstructor()?.id && this.nextStep();
+      isFirst && data.questionId == this.testConstructor()?.id && this.nextStep();
       // console.log('data',data)
       return data;
     })
@@ -159,7 +159,7 @@ export default class TestConstructorComponent implements OnDestroy,  OnInit {
 
 
   ngOnDestroy(): void {
-    this.testService.saveProgressTest()
+    // this.testService.saveProgressTest()
   }
 
 }

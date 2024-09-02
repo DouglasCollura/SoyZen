@@ -34,7 +34,6 @@ export class TestService {
 
   #testProgressQuestions = signal<any>(null);
 
-
   public testData = computed(() => this.#testData());
   public testProgress = computed(() => this.#testProgressQuestions());
   // form = this.formBuilder.group({
@@ -118,7 +117,8 @@ export class TestService {
   }
 
   setProgress(question:any){
-    this.#testProgressQuestions.update((value:any)=>({...value, guestAnswers:[...value.guestAnswers, question]}))
+    const list = this.#testProgressQuestions()?.guestAnswers.filter((dat:any)=> dat.questionId != question.questionId)
+    this.#testProgressQuestions.update((value:any)=>({...value, guestAnswers:[...list, question]}))
   }
 
   getProgress(uuidToken : string):Observable<any | null>{
@@ -126,6 +126,7 @@ export class TestService {
       return this.http.get<any>(`${this.urlApi}/guest/bytoken/${uuidToken}`).pipe(
         tap((data)=>{
           const {name, uuidToken, ipAddress} = data;
+          console.log('resp ', data)
           this.#testData.update(
             value=> ({...value, loading:false, name, ip:ipAddress})
           );
