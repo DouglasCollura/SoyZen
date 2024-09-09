@@ -48,7 +48,20 @@ export class CardArticleComponent {
   @ViewChild('modalEvent') modalEvent!: TemplateRef<any>;
   public urlMedia = environment.urlMedia;
   public post = signal<null | Post>(null);
-
+  isNew2(createdAt: any): boolean {
+    const createdDate = new Date(createdAt);
+    
+    // Obtenemos solo la parte de la fecha (sin horas)
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Establece la hora a 00:00 para hoy
+    createdDate.setHours(0, 0, 0, 0); // Establece la hora a 00:00 para la fecha de creación
+  
+    const diffInDays = Math.floor((today.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24));
+    
+    console.log('Diferencia de días:', diffInDays, 'Fecha de creación:', createdDate, 'Es nuevo (<= 2 días):', diffInDays <= 2);
+  
+    return diffInDays <= 2;
+  }
 
   openDialog(): void {
 

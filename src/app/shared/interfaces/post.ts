@@ -16,6 +16,7 @@ export interface Post {
   user:         User;
   date:any;
   postDetail:   PostDetail;
+  created_at : any;
 }
 
 

@@ -9,12 +9,12 @@
             <!-- <p>30min</p> -->
           </div>
         }
-        @if(isNew){
-          <div class="chip new">
+       
+          <div *ngIf="isNew2(post()?.created_at)" class="chip new chipBoxshadow">
             <span class="font-semibold text-[12px]"  >Nuevo</span>
             <!-- <p>30min</p> -->
           </div>
-        }
+
       </div>
 
       <div class="content-title">

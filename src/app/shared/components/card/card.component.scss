@@ -1,6 +1,7 @@
 .content-card{
   padding: 0px 16.5px;
   padding-left: 0;
+  
   .card{
     min-width: 200px;
     // min-height: 240px;
@@ -12,6 +13,7 @@
       height: 240px;
       object-fit: cover;
       z-index: 0;
+      
     }
 
     .body{
@@ -23,6 +25,9 @@
       height: 100%;
       display: grid;
       grid-template-rows: max-content auto max-content;
+      
+      
+
 
       *{
         color: white;
@@ -205,3 +210,18 @@
   margin-bottom: 3px;
 }
 
+.audioBack{
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 25.42%, #000000 100%);
+}
+.videoAdsBack{
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 38.22%, #000000 100%);
+}
+.chipBoxshadow{
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
+
+}
+
+.tituloShadow{
+  text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+
+}

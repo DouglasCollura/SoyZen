@@ -1,20 +1,21 @@
 <div class="content-card  animate__animated animate__fadeInRight animate__fast" [class.card-list]="isList" >
   <div class="card " [ngClass]="post()!.postType.name =='video' || post()!.postType.name =='ads' ? 'maxwidthVideo' : 'maxwidthAudio' " (click)="openDialog()">
     <img  [ngClass]="post()!.postType.name =='video' || post()!.postType.name =='ads' ? 'maxwidthVideo' : 'maxwidthAudio' "   [srcset]="getImg(post()?.postDetail?.thumbnail!)" alt="">
-    <div class="body">
+    <div class="body" [ngClass]=" post()?.postType?.name==='audio' ? 'audioBack' : 'videoAdsBack' ">
+
       <div class="flex justify-between">
-        <div class="chip" *ngIf="post()?.postType?.name != postTypes.ads">
+        <div class="chip chipBoxshadow" *ngIf="post()?.postType?.name != postTypes.ads">
           <mat-icon  class="material-symbols-rounded !w-[16px] !h-[16px] !text-[16px]">watch_later</mat-icon>
           <p class="text-[12px] leading-[16.34px] font-bold"> {{ post() && post()?.duration ? extractAndRoundTime(post()?.duration) : '0 min'}} </p>
         </div>
-        @if(isNew){
-          <div class="chip new">
-            <span class="font-semibold text-[12px]"  >Nuevo</span>
+  
+          <div *ngIf="isNew2(post()?.created_at)" class="chip new chipBoxshadow">
+            <span class="font-[700] text-[12px]"  >Nuevo</span>
           </div>
-        }
+  
       </div>
 
-      <h2 class="self-center text-white text-center sm:leading-[22px] text-[16px] sm:text-[18px] leading-[20px] font-bold overflow-card-text" > {{post()!.postType.name == postTypes.ads || titleSection==='Taróscopo' || titleSection==='Astrología' || (post()!.category && post()!.category.name==='Astrología') ? '' : post()!.title}} </h2>
+      <h2 class="self-center text-white text-center sm:leading-[22px] text-[16px] sm:text-[18px] leading-[20px] font-bold overflow-card-text tituloShadow" > {{post()!.postType.name == postTypes.ads || titleSection==='Taróscopo' || titleSection==='Astrología' || (post()!.category && post()!.category.name==='Astrología') ? '' : post()!.title}} </h2>
 
       <div class="flex justify-between px-1 items-center hgt" >
         <p style="    width: 90%;"  > {{post()?.postType?.name == postTypes.ads || titleSection==='Taróscopo' || titleSection==='Astrología'  ? post()!.title : post()!.category ? post()!.category.name : post()!.subcategory.name }}  </p>

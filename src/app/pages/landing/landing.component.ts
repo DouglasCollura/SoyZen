@@ -16,12 +16,20 @@ import { Router, RouterModule } from '@angular/router';
 export class LandingComponent {
 
   private router = inject(Router);
-
+constructor(){
+  this.loadTypeformScript()
+}
   gotToHome(){
 
     localStorage.setItem('role', 'guest');
     this.router.navigateByUrl('/home').then(() => {
       window.location.reload();
     });
+  }
+  loadTypeformScript() {
+    const script = document.createElement('script');
+    script.src = 'https://embed.typeform.com/next/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
   }
 }
