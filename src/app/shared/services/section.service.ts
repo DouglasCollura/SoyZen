@@ -116,7 +116,7 @@ export class SectionService {
             !this.#sectionData().page && this.#sectionData.update(data=> ({...data,page: 1}))
 
             this.#sectionData.update(
-              data=> ({
+              data=> (console.log('hola',this.#sectionData().posts),{
                 ...data,
                 sections: [],
                 posts: this.#sectionData().page &&  this.#sectionData().page != 1 ?

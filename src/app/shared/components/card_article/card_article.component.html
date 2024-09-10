@@ -2,7 +2,7 @@
   <div class="card maxwidthVideo"  (click)="openDialog()">
     <img class="maxwidthVideo" [srcset]="getImg(url_img)" alt="">
     <div class="body">
-      <div class="flex  p-3" [class]="isNew ? 'justify-end': 'justify-between' ">
+      <div class="flex  p-3" [class]="isNew2(post()?.created_at) ? 'justify-end': 'justify-between' ">
         @if(isLock){
           <div class="chip">
               <mat-icon svgIcon="my-lock"></mat-icon>
@@ -16,7 +16,7 @@
           </div>
 
       </div>
-
+   
       <div class="content-title">
         <span class="self-start font-sm text-white text-start leading-normal title"> {{title}} </span>
       </div>

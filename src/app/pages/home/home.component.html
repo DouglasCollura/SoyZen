@@ -208,6 +208,8 @@
           [title]="item.title!"
           [url_img]="item.postDetail!.thumbnail"
           [user]="item.user!"
+          [setPosts]="sectionData().posts!"
+          [setPost]="item"
           [type]="item.postType ? item.postType.name! : ''"
         />
         }

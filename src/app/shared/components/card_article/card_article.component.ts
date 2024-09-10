@@ -45,9 +45,13 @@ export class CardArticleComponent {
   @Input() set setPost(post:Post){
     this.post.set(post);
   };
+  @Input() set setPosts(posts:Post[]){
+    this.posts.set(posts);
+  };
   @ViewChild('modalEvent') modalEvent!: TemplateRef<any>;
   public urlMedia = environment.urlMedia;
   public post = signal<null | Post>(null);
+  public posts = signal<null | Post[]>(null);
   isNew2(createdAt: any): boolean {
     const createdDate = new Date(createdAt);
     
