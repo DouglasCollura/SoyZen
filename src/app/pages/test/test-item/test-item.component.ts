@@ -45,7 +45,8 @@ export class TestItemComponent implements OnInit {
 
   public firstValue = signal('');
   public lastValue = signal('');
-
+  public currentSliderValue: number = 0;
+  calculatedTransformValue: string = '';
   private feelings_data =
     {
       first: "assets/images/feelings/demasiado.svg",
@@ -74,13 +75,20 @@ export class TestItemComponent implements OnInit {
 
     onSliderChange(event: any) {
       const value = event?.value || event.target?.value || 0; // Obtenemos el valor del slider
+      console.log('holasdhjshjffs',event)
       // Encuentra el índice del valor correspondiente en base a la ponderación
       const index = this.test()?.answers.findIndex((answer) => value <= answer.ponderation);
       const selectedAnswer = this.test()?.answers[index!];
-
+      console.log('respuesta',selectedAnswer)
+      this.currentSliderValue = +value; 
+      this.calculatedTransformValue = `translateX(-${this.currentSliderValue}%)`;
       if (selectedAnswer) {
+        console.log('test',selectedAnswer)
         this.selectedContent.set(selectedAnswer.content); // Actualiza el contenido mostrado debajo del slider
-        this.percent.setValue(value);  // Actualiza el valor de percent directamente
+        this.percent.setValue(value);
+        this.currentSliderValue=selectedAnswer.ponderation
+        this.calculatedTransformValue = `translateX(-${this.currentSliderValue}%)`;
+       // Actualiza el valor de percent directamente
       }
     }
 
@@ -110,6 +118,9 @@ export class TestItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.onSliderChange(this.percent.value || 1);
+    this.calculatedTransformValue = `translateX(-${this.currentSliderValue}%)`;
+    console.log('holitas',this.currentSliderValue)
+   
   }
 
   nexStep() {
@@ -197,6 +208,8 @@ export class TestItemComponent implements OnInit {
       if (this.test()!.type == this.type_test.range) {
         const pond:any = this.test()!.answers.find((ans: any) => ans.id == res.answers[0])
         this.percent.setValue(pond.ponderation)
+        console.log('esto',{value:pond.ponderation})
+         this.onSliderChange({value:pond.ponderation});
       }
       if (this.test()!.type == this.type_test.select_icon) {
         const pond:any = this.test()!.answers.find((ans: any) => ans.id == res.answers[0])

@@ -165,4 +165,17 @@ export default class TestConstructorComponent implements OnDestroy,  OnInit {
     this.router.navigate(['/']);
   }
 
+  allowOnlyLetters(event: KeyboardEvent): boolean {
+    const inputChar = event.key;
+
+    // Verificar si la tecla presionada no es una letra (mayúscula o minúscula)
+    const isLetter = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/.test(inputChar);
+
+    if (!isLetter && event.key !== 'Backspace') { // Si no es letra y no es la tecla de retroceso
+      event.preventDefault(); // Evitar que se escriba
+      return false;
+    }
+    return true;
+  }
+
 }

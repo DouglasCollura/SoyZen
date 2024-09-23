@@ -188,3 +188,19 @@
     color: #373A40;
     font-size: 24px;
 }
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 20px; /* Espacio para el texto debajo del slider */
+}
+
+.slider-content {
+  position: absolute;
+  top: 40px; /* Ajusta según la altura que necesites */
+  white-space: nowrap;
+  font-size: 16px; /* Ajusta el tamaño de letra según sea necesario */
+}
+.text-gray2{
+  color:#686D76 !important
+}

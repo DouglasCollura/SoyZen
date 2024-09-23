@@ -18,7 +18,7 @@
 
             <span class="text-[24px] leading-[38px] sm:text-[28px] sm:leading-[38px] titeHola" >Cómo te llamas...</span>
             <div class="form-group howName">
-              <input type="text" class="input-plane" [formControl]="name" placeholder="Nombre" />
+              <input type="text" class="input-plane" (keypress)="allowOnlyLetters($event)" [formControl]="name" placeholder="Nombre" />
               <p *ngIf="formInvalid()" class="text-error">Campo requerido</p>
             </div>
 

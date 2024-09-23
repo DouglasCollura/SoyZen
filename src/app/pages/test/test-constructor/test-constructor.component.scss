@@ -5,8 +5,8 @@
   background-position: center center;
   background-size: cover;
   background-image: linear-gradient(179.98deg, rgba(255, 255, 255, 1) 23.04%, rgba(255, 255, 255, 0.72) 99.98%), url('/assets/images/home.webp');
-  padding: 50px 150px;
-  grid-template-rows: max-content auto 15%;
+  padding: 0px 150px;
+  grid-template-rows: max-content;
   height: 100%;
   overflow: auto;
 
@@ -14,12 +14,14 @@
     display: grid;
     padding: 20px;
 
+
+
     grid-template-rows: max-content auto;
     align-content: space-around;
-    margin: 100px auto 0px;
+    margin: 50px auto 0px;
     max-width: 500px;
     width: 60%;
-    gap: 50px;
+    gap: 30px;
     height: 100%;
     .content{
       display: grid;
@@ -70,5 +72,8 @@
   margin: 40px auto 0px !important;
 }
 .mtbt{
-  margin-top: 15%;
+  margin-top: 10%;
+  margin-bottom: 10%;
 }
+
+
