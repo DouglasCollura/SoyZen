@@ -30,10 +30,9 @@ export class TestItemComponent implements OnInit {
     this.test()!.type == this.type_test.select_single && (this.select.set(this.test()!.answers[0].id));
     this.setValueHistory()
   };
-  public selectedContent = '';
+  public selectedContent = signal('');
   public selectedImage = '';
   public type_test = TypeTest;
-  private cd =inject(ChangeDetectorRef)
 
   private testService = inject(TestService);
   @Output() nextStepEmitter = new EventEmitter<boolean>();
@@ -57,8 +56,7 @@ export class TestItemComponent implements OnInit {
     }
 
     public feeling = computed(() => {
-      const value = this.percent.value || 0;
-    
+      const value = this.percentSignal() || 0;
       if (value <= 20) {
         return this.feelings_data.first;
       } else if (value <= 40) {
@@ -71,24 +69,27 @@ export class TestItemComponent implements OnInit {
         return this.feelings_data.five;
       }
     });
-    
-    
-    
+
+
+
     onSliderChange(event: any) {
-      const value = event.value || event.target.value || 0; // Obtenemos el valor del slider
-    
+      const value = event?.value || event.target?.value || 0; // Obtenemos el valor del slider
       // Encuentra el índice del valor correspondiente en base a la ponderación
       const index = this.test()?.answers.findIndex((answer) => value <= answer.ponderation);
       const selectedAnswer = this.test()?.answers[index!];
-    
+
       if (selectedAnswer) {
-        this.selectedContent = selectedAnswer.content; // Actualiza el contenido mostrado debajo del slider
+        this.selectedContent.set(selectedAnswer.content); // Actualiza el contenido mostrado debajo del slider
         this.percent.setValue(value);  // Actualiza el valor de percent directamente
       }
-      this.cd.detectChanges(); // Forzar la detección de cambios
     }
-    
-    
+
+    getTextSlider(event:any): string {
+
+      return `12`;
+    }
+
+
 
   // * TYPE MULTI
   public multiList: AnswerTest[] = [];
