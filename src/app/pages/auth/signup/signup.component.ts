@@ -76,6 +76,12 @@ export default class SignupComponent implements AfterViewInit{
             horizontalPosition: 'left',
             verticalPosition: 'bottom',
           });
+
+          localStorage.setItem('name', JSON.parse(JSON.stringify(value)).name);
+          localStorage.setItem('token', JSON.parse(JSON.stringify(value)).token);
+          localStorage.setItem('email', JSON.parse(JSON.stringify(value)).email);
+          localStorage.setItem('role', JSON.parse(JSON.stringify(value))?.tier?.name)
+          localStorage.setItem('userId', JSON.parse(JSON.stringify(value)).id.toString())
           this.router.navigate(['/auth/account-success']);
         },
         error:(err) => {

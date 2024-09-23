@@ -2,6 +2,9 @@ import { Routes } from '@angular/router';
 import { LandingComponent } from './pages/landing/landing.component';
 import { authGuard, unauthGuard } from '@shared/guards/auth.guard';
 import { PhoneNumberComponent } from './pages/phone-number/phone-number.component';
+import { CardComponent } from '@shared/components/card/card.component';
+import AudioPlayerComponent from './pages/audio-player/audio-player.component';
+import VideoplayerComponent from './pages/videoplayer/videoplayer.component';
 
 export const routes: Routes = [
 
@@ -84,11 +87,14 @@ export const routes: Routes = [
         path:'post/:idPost/:idSection',
         loadComponent: () => import('./pages/post/post.component')
       },
-
+      { path: 'postModal/:id/video', component: VideoplayerComponent},
+      { path: 'postModal/:id/audio', component: CardComponent},
+      // { path: 'postModal/:id/audio', component: CardComponent, data: { modal: 'audio' }},
       {
         path:'post/:idPost',
         loadComponent: () => import('./pages/post/post.component')
       },
+   
 
       {
         path:'audioplayer',
@@ -101,6 +107,7 @@ export const routes: Routes = [
 
     ]
   },
+
   {
     path: ':encodedPhoneNumber',
     component: PhoneNumberComponent

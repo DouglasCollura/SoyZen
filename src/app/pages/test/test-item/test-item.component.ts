@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatSliderModule } from '@angular/material/slider';
+import { MatSliderChange, MatSliderModule } from '@angular/material/slider';
 import { BodyTest, TypeTest, AnswerTest } from '@interfaces/test.interface';
 import { TestService, TestServiceData } from '@services/test.service';
 import { FeelingCardComponent } from '../feeling_card/feeling_card.component';
@@ -30,9 +30,10 @@ export class TestItemComponent implements OnInit {
     this.test()!.type == this.type_test.select_single && (this.select.set(this.test()!.answers[0].id));
     this.setValueHistory()
   };
-
+  public selectedContent = '';
+  public selectedImage = '';
   public type_test = TypeTest;
-
+  private cd =inject(ChangeDetectorRef)
 
   private testService = inject(TestService);
   @Output() nextStepEmitter = new EventEmitter<boolean>();
@@ -48,18 +49,46 @@ export class TestItemComponent implements OnInit {
 
   private feelings_data =
     {
-      hard: "assets/images/feelings/simple_estres.svg",
-      medium: "assets/images/feelings/simple_not_sure.svg",
-      easy: "assets/images/feelings/simple_entusiasmado.svg",
+      first: "assets/images/feelings/demasiado.svg",
+      second: "assets/images/feelings/bastante.svg",
+      three: "assets/images/feelings/algunasveces.svg",
+      four: "assets/images/feelings/raravez.svg",
+      five: "assets/images/feelings/poco.svg",
     }
 
-  public feeling = computed(() => {
-    return this.percentSignal()! < 30 ?
-      this.feelings_data.hard :
-      this.percentSignal()! >= 30 && this.percentSignal()! <= 70 ?
-        this.feelings_data.medium : this.feelings_data.easy
-  })
-
+    public feeling = computed(() => {
+      const value = this.percent.value || 0;
+    
+      if (value <= 20) {
+        return this.feelings_data.first;
+      } else if (value <= 40) {
+        return this.feelings_data.second;
+      } else if (value <= 60) {
+        return this.feelings_data.three;
+      } else if (value <= 80) {
+        return this.feelings_data.four;
+      } else {
+        return this.feelings_data.five;
+      }
+    });
+    
+    
+    
+    onSliderChange(event: any) {
+      const value = event.value || event.target.value || 0; // Obtenemos el valor del slider
+    
+      // Encuentra el índice del valor correspondiente en base a la ponderación
+      const index = this.test()?.answers.findIndex((answer) => value <= answer.ponderation);
+      const selectedAnswer = this.test()?.answers[index!];
+    
+      if (selectedAnswer) {
+        this.selectedContent = selectedAnswer.content; // Actualiza el contenido mostrado debajo del slider
+        this.percent.setValue(value);  // Actualiza el valor de percent directamente
+      }
+      this.cd.detectChanges(); // Forzar la detección de cambios
+    }
+    
+    
 
   // * TYPE MULTI
   public multiList: AnswerTest[] = [];
@@ -79,7 +108,7 @@ export class TestItemComponent implements OnInit {
   public testProgress: any = computed<TestServiceData>(() => this.testService.testProgress());
 
   ngOnInit(): void {
-
+    this.onSliderChange(this.percent.value || 1);
   }
 
   nexStep() {

@@ -3,26 +3,32 @@
 
   @case (type_test.range) {
 
-    <div class="content-range animate__animated animate__slideInRight animate__fast" [ngClass]="type_test.range ? 'mt40' : '' " >
-      <h1 class="text-center  text-[20px] leading-[27.24px] sm:text-[24px] sm:leading-[32.69px] pdl25 textTitleTo" > {{test()!.content  }} </h1>
-
-      <div class="flex justify-center min-h-10">
-         <img [srcset]="feeling()" alt="" width="64" height="64">
+    <div class="content-range animate__animated animate__slideInRight animate__fast" [ngClass]="type_test.range ? 'mt40' : '' ">
+      <h1 class="text-center text-[20px] leading-[27.24px] sm:text-[24px] sm:leading-[32.69px] pdl25 textTitleTo">
+        {{ test()!.content }}
+      </h1>
+    
+      <div *ngIf="feeling() as imageSource" class="flex justify-center min-h-10">
+        <img [src]="imageSource" alt="" width="64" height="64">
+       
       </div>
 
       <div class="grid gap-1 pdl25">
-        <mat-slider >
-          <input matSliderThumb [formControl]="percent" >
+        <mat-slider (input)="onSliderChange($event)">
+          <input matSliderThumb [formControl]="percent">
         </mat-slider>
-
-        <div class="flex justify-between items-center">
-          <h2 class="text-[12px] leading-[16.34px] font-normal" > {{firstValue()}} </h2>
-          <h2 class="text-[12px] leading-[16.34px] font-normal" > {{lastValue()}} </h2>
+    
+        <!-- Mostrar el contenido debajo del slider -->
+        <div class="text-center mt-4">
+          <h2 class="text-[16px] leading-[22px] font-medium">
+            {{ selectedContent }}
+          </h2>
         </div>
       </div>
-
-      <button  class="btn-green justify-self-center !py-2" id="btn-continue" (click)="nexStep()" >Continuar</button>
+    
+      <button class="btn-green justify-self-center !py-2" id="btn-continue" (click)="nexStep()">Continuar</button>
     </div>
+    
   }
 
   @case(type_test.select_single){

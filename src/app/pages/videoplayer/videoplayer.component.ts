@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule,Location } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnInit, Output, signal, TemplateRef, ViewChild} from '@angular/core';
 import {VgApiService, VgCoreModule, VgEvents} from '@videogular/ngx-videogular/core';
 import {VgControlsModule} from '@videogular/ngx-videogular/controls';
@@ -10,7 +10,8 @@ import { environment } from '../../../environments/environment';
 import {MatBottomSheet, MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { Post } from '@interfaces/post';
 import { SectionService } from '@services/section.service';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-videoplayer',
@@ -31,11 +32,7 @@ import { RouterModule } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class VideoplayerComponent {
-
-  constructor(){
-  }
-
-  private vgPlayer:VgApiService | undefined;
+  private activatedRoute = inject(ActivatedRoute);
 
   @Input() urlPlayer:string = '';
   @Input() isLock:boolean = false;
@@ -56,6 +53,24 @@ export default class VideoplayerComponent {
   };
   @Output() nextMedia = new EventEmitter<boolean>();
   @Output() prevMedia = new EventEmitter<boolean>();
+  constructor(private location: Location, private router: Router){
+    this.activatedRoute.params.subscribe(param => {
+       console.log('tomaaaa',param['id'])
+      // this.idPost=param['id']
+      this.sectionService.getPost(param['id']).subscribe((response:Post)=>{
+        // this.post.set(response);
+ 
+        this.urlPlayer=response.postDetail.videoUrl
+        this.isLock=this.isLock2(response)
+        this.post.set(response);
+        console.log('este es el post',response)
+      })
+    })
+  }
+
+  private vgPlayer:VgApiService | undefined;
+
+  
 
   public urlMedia = environment.urlMedia;
   private  _bottomSheet = inject(MatBottomSheet);
@@ -64,7 +79,7 @@ export default class VideoplayerComponent {
   public feelSelect = signal<number | null>(null);
   public post = signal<Post | null>(null);
   private sectionService = inject(SectionService);
-
+  private authService = inject(AuthService);
   private ctrlModals:MatDialogRef<any> | null = null;
 
   public controlVideoPlayer = signal({
@@ -77,6 +92,15 @@ export default class VideoplayerComponent {
 
   getMedia(){
     return `${this.urlMedia}${this.urlPlayer}`;
+  }
+  goBack() {
+    // Verificamos si existe un historial de navegación anterior
+    if (window.history.length > 1) {
+      this.location.back();
+    } else {
+      // Si no hay historial, redirigimos al home
+      this.router.navigate(['/home']);
+    }
   }
 
   onPlayerReady(api: VgApiService) {
@@ -180,5 +204,8 @@ export default class VideoplayerComponent {
         this.feelSelect.set(data.id);
       }
     )
+  }
+  isLock2(item:Post){
+    return !this.authService.isUnLock(item);
   }
 }

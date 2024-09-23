@@ -11,7 +11,8 @@ import { AuthService } from '@services/auth.service';
 import { SectionService } from '@services/section.service';
 import { ReelService } from '@services/reel.service';
 import { ReelComponent } from '../reel/reel.component';
-
+import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-card',
   standalone: true,
@@ -56,11 +57,79 @@ export class CardComponent {
 
   public postTypes = PostMediaType;
   public screenWidth: any;
-
-  constructor(){
+idPost:any
+private activatedRoute = inject(ActivatedRoute);
+  constructor(private route: ActivatedRoute,private cdr: ChangeDetectorRef){
     this.screenWidth = window.innerWidth;
+
+    this.activatedRoute.params.subscribe(param => {
+      // console.log('tomaaaa',param['id'])
+      this.idPost=param['id']
+      this.sectionService.getPost(this.idPost).subscribe((response:Post)=>{
+        this.post.set(response);
+        console.log('este es el post',response)
+      })
+    })
+
+    // this.route.data.subscribe(data => {
+    //   console.log('tomaaaa',data)
+    //   this.idPost=data['id']
+    //   if (data['modal'] === 'video') {
+    //     this.openVideoModal();
+    //   } else if (data['modal'] === 'audio') {
+    //     this.openAudioModal();
+    //   }
+    // });
+  }
+  // openVideoModal() {
+  //   this.dialog.open(this.modalVideo, { panelClass: 'full-screen-modal' });
+  //   this.cdr.detectChanges();
+  // }
+
+  openVideoModal(reId?:any) {
+    // Verificar si hay un post válidox
+    // this.activatedRoute.params.subscribe(param => {
+     console.log('tomaaaa',reId)
+
+      const id = this.activatedRoute.snapshot.paramMap.get('id')? this.activatedRoute.snapshot.paramMap.get('id'):reId;
+      console.log('el ir',id)
+      this.sectionService.getPost(id).subscribe((response:Post)=>{
+        this.post.set(response);
+        console.log('Post data videoooo:', this.post());
+        // getPost
+    
+      
+        if (this.post()) {
+          this.dialog.open(this.modalVideo, {
+            panelClass: 'full-screen-modal',
+         
+          });
+        } else {
+          console.warn('No hay un post vidio seleccionado.');
+        }
+      })
+    // })
+ 
   }
 
+  // openAudioModal() {
+  //   this.dialog.open(this.modalAudio, { panelClass: 'full-screen-modal' });
+  //   this.cdr.detectChanges();
+  // }
+
+  openAudioModal() {
+    // Verificar si hay un post válido
+    if (this.post()) {
+      this.dialog.open(this.modalAudio, {
+        panelClass: 'full-screen-modal',
+        data: {
+          post: this.post() // Pasar la información del post actual al modal
+        }
+      });
+    } else {
+      console.warn('No hay un post audio seleccionado.');
+    }
+  }
 
   @ViewChild('modalEvent') modalEvent!: TemplateRef<any>;
   public urlMedia = environment.urlMedia;
@@ -75,30 +144,83 @@ export class CardComponent {
   
     const diffInDays = Math.floor((today.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24));
     
-    console.log('Diferencia de días:', diffInDays, 'Fecha de creación:', createdDate, 'Es nuevo (<= 2 días):', diffInDays <= 2);
+    // console.log('Diferencia de días:', diffInDays, 'Fecha de creación:', createdDate, 'Es nuevo (<= 2 días):', diffInDays <= 2);
   
     return diffInDays <= 2;
   }
   
-  openDialog(): void {
+  // openDialog(): void {
 
-    if(this.isUnLock()){
-        if(this.post()!.postType.name != PostMediaType.blog && this.post()!.postType.name != PostMediaType.ads ){
-         this.openReel();
-        }else if(this.post()!.postType.name == PostMediaType.ads){
-          if (this.post()!.postDetail?.adsUrl && this.post()!.postDetail?.adsUrl != '') {
-            this.goToAds(this.post()!.postDetail?.adsUrl)
-          }
-        }else{
-          this.router.navigateByUrl('home/post');
+  //   if(this.isUnLock()){
+  //       if(this.post()!.postType.name != PostMediaType.blog && this.post()!.postType.name != PostMediaType.ads ){
+  //        this.openReel();
+  //       }else if(this.post()!.postType.name == PostMediaType.ads){
+  //         if (this.post()!.postDetail?.adsUrl && this.post()!.postDetail?.adsUrl != '') {
+  //           this.goToAds(this.post()!.postDetail?.adsUrl)
+  //         }
+  //       }else{
+  //         this.router.navigateByUrl('home/post');
+  //       }
+  //   }else{
+  //     this.dialog.open(this.modalEvent, {
+  //       width: '400px',
+  //       panelClass: 'full-screen-modal'
+  //     });
+  //   }
+
+  // }
+  openDialog23(): void {
+    // if (this.isUnLock()) {
+    //   this.router.navigate(['post', this.post()!.id, 'video']);
+    //   this.openVideoModal();
+    // }
+
+    if (this.post() && this.isUnLock()) {
+      if (this.post()!.postType?.name !== PostMediaType.blog && this.post()!.postType?.name !== PostMediaType.ads) {
+        this.router.navigate(['post', this.post()!.id, 'video']);
+        this.openVideoModal();
+      } else if (this.post()!.postType?.name === PostMediaType.ads) {
+        if (this.post()!.postDetail?.adsUrl && this.post()!.postDetail?.adsUrl !== '') {
+          this.goToAds(this.post()!.postDetail?.adsUrl);
         }
-    }else{
+      } else {
+        this.router.navigateByUrl('home/post');
+      }
+    } else {
       this.dialog.open(this.modalEvent, {
         width: '400px',
         panelClass: 'full-screen-modal'
       });
     }
-
+    
+  }
+  openDialog(): void {
+    // console.log('Post data:', this.post());
+    if (this.post() && this.isUnLock()) {
+      const postTypeName = this.post()?.postType?.name;  // Usa el operador opcional
+      const postDetailAdsUrl = this.post()?.postDetail?.adsUrl;
+  
+      if (postTypeName !== PostMediaType.blog && postTypeName !== PostMediaType.ads) {
+        this.router.navigate(['home/postModal', this.post()!.id, 'video']);
+        // this.openVideoModal(this.post()!.id);
+      } else if (postTypeName === PostMediaType.ads) {
+        if (postDetailAdsUrl && postDetailAdsUrl !== '') {
+          this.goToAds(postDetailAdsUrl);
+        }
+      } else {
+        this.router.navigateByUrl('home');
+      }
+    } else {
+      this.dialog.open(this.modalEvent, {
+        width: '400px',
+        panelClass: 'full-screen-modal'
+      });
+    }
+  }
+  
+  closeDialog() {
+    this.dialog.closeAll();
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
   goToAds(url:string){
     window.open(url, '_blank');

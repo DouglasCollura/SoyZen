@@ -121,8 +121,12 @@ export default class HomeComponent implements AfterViewInit {
   }
   ngOnInit(){
     this.detectDevice()
+    this.loadSectionData()
+    this.cdr.markForCheck(); 
   }
-
+  loadSectionData() {
+    this.sectionService.getSections(); // Método que obtiene las secciones
+  }
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.calculateRows();

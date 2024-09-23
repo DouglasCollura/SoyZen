@@ -189,6 +189,7 @@
           [setPosts]="sectionData().posts!"
           [index]="$index"
           isList="true"
+          [isLock]="!isUnLock(item)"
           [titleSection]="sectionData().nameSection"
           [textColor]="
             sectionData().sectionDetail?.color == '' ||
@@ -208,6 +209,7 @@
           [title]="item.title!"
           [url_img]="item.postDetail!.thumbnail"
           [user]="item.user!"
+          [isLock]="!isUnLock(item)"
           [setPosts]="sectionData().posts!"
           [setPost]="item"
           [type]="item.postType ? item.postType.name! : ''"

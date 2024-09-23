@@ -4,7 +4,7 @@
     <div class="body">
       <div class="flex  p-3" [class]="isNew2(post()?.created_at) ? 'justify-end': 'justify-between' ">
         @if(isLock){
-          <div class="chip">
+          <div class="chip" style="    margin-right: auto;">
               <mat-icon svgIcon="my-lock"></mat-icon>
             <!-- <p>30min</p> -->
           </div>
